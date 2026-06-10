@@ -82,7 +82,7 @@ export const Route = createFileRoute("/")({
             ratingValue: "5.0",
             reviewCount: "127",
           },
-          openingHours: ["Mo-Fr 08:00-18:00", "Sa 08:00-14:00"],
+          openingHours: ["Mo-Fr 08:00-18:00", "Sa 08:00-13:00"],
         }),
       },
     ],
@@ -207,7 +207,7 @@ function Hero() {
                 <Clock className="h-3.5 w-3.5 text-primary" /> Aberto
               </dt>
               <dd className="mt-1 font-display text-sm font-semibold text-white">Seg–Sex 8h–18h</dd>
-              <dd className="text-xs text-white/60">Sáb 8h–14h</dd>
+              <dd className="text-xs text-white/60">Sáb 8h–13h</dd>
             </div>
             <div>
               <dt className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-white/55">
@@ -225,15 +225,15 @@ function Hero() {
             <div className="absolute inset-0 bg-primary/5 mix-blend-overlay" />
             
             {/* Elementos visuais de solução */}
-            <div className="absolute inset-0 flex flex-col justify-center gap-6 p-6 sm:p-10">
+            <div className="absolute inset-0 flex flex-col justify-center gap-4 p-6 sm:p-10">
               <div className="grid grid-cols-2 gap-4">
                 <div className="group flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition hover:bg-primary/20">
                   <Zap className="h-10 w-10 text-primary mb-3 transition group-hover:scale-110" />
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">Elétrica</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/90 text-center">Elétrica</span>
                 </div>
                 <div className="group flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition hover:bg-primary/20">
                   <Droplets className="h-10 w-10 text-primary mb-3 transition group-hover:scale-110" />
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">Hidráulica</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/90 text-center">Hidráulica</span>
                 </div>
               </div>
               
@@ -244,7 +244,7 @@ function Hero() {
                   </div>
                   <div>
                     <p className="text-xs font-bold uppercase tracking-widest text-white">Consulte Agora</p>
-                    <p className="text-sm text-white/60 leading-tight">Disjuntores, Tomadas e Fios a pronta entrega.</p>
+                    <p className="text-sm text-white/60 leading-tight">Disjuntores e Fios a pronta entrega.</p>
                   </div>
                 </div>
               </div>
@@ -256,21 +256,21 @@ function Hero() {
                   </div>
                   <div>
                     <p className="text-xs font-bold uppercase tracking-widest text-white">Iluminação LED</p>
-                    <p className="text-sm text-white/60 leading-tight">Economia e design para sua casa.</p>
+                    <p className="text-sm text-white/60 leading-tight">Economia para sua casa.</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Selo de Confiança Local */}
-            <div className="absolute bottom-6 left-6 right-6 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-xl">
+            {/* Selo de Confiança Local - Ajustado para não cobrir o conteúdo */}
+            <div className="absolute bottom-4 left-4 right-4 rounded-xl border border-white/10 bg-secondary/80 p-3 backdrop-blur-xl">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-white">
-                  <ShieldCheck className="h-5 w-5" />
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-white">
+                  <ShieldCheck className="h-4 w-4" />
                 </div>
-                <p className="text-xs font-medium text-white/90 leading-tight">
-                  <span className="block font-bold text-white">Russo Elétrica</span>
-                  Confiança e Tradição no Rio Pequeno
+                <p className="text-[10px] font-medium text-white/90 leading-tight">
+                  <span className="block font-bold text-white uppercase tracking-tighter">Russo Elétrica</span>
+                  Confiança no Rio Pequeno
                 </p>
               </div>
             </div>
@@ -536,7 +536,7 @@ function Localizacao() {
             <ul className="mt-6 space-y-3 text-sm">
               <li className="flex items-start gap-3">
                 <Clock className="mt-0.5 h-5 w-5 text-primary" />
-                <span>Segunda a sexta: 8h às 18h · Sábado: 8h às 14h</span>
+                <span>Segunda a sexta: 8h às 18h · Sábado: 8h às 13h</span>
               </li>
               <li className="flex items-start gap-3">
                 <ParkingSquare className="mt-0.5 h-5 w-5 text-primary" />
@@ -617,7 +617,7 @@ function Contato() {
           {[
             { icon: Phone, label: "Telefone", value: `${PHONE_DISPLAY} / ${MOBILE_DISPLAY}` },
             { icon: MapPin, label: "Endereço", value: "Rio Pequeno · Zona Oeste SP" },
-            { icon: Clock, label: "Horário", value: "Seg–Sex 8h–18h · Sáb 8h–14h" },
+            { icon: Clock, label: "Horário", value: "Seg–Sex 8h–18h · Sáb 8h–13h" },
           ].map(({ icon: Icon, label, value }) => (
             <div key={label} className="rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur-sm">
               <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground">
@@ -670,7 +670,7 @@ function Footer() {
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
             <li className="flex items-start gap-2"><Phone className="mt-0.5 h-4 w-4 text-primary" />{PHONE_DISPLAY}</li>
             <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 text-primary" />Rio Pequeno, Zona Oeste — SP</li>
-            <li className="flex items-start gap-2"><Clock className="mt-0.5 h-4 w-4 text-primary" />Seg–Sex 8h–18h · Sáb 8h–14h</li>
+            <li className="flex items-start gap-2"><Clock className="mt-0.5 h-4 w-4 text-primary" />Seg–Sex 8h–18h · Sáb 8h–13h</li>
           </ul>
         </div>
       </div>
