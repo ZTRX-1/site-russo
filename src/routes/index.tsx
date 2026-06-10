@@ -82,7 +82,7 @@ export const Route = createFileRoute("/")({
             ratingValue: "5.0",
             reviewCount: "127",
           },
-          openingHours: ["Mo-Fr 08:00-18:00", "Sa 08:00-14:00"],
+          openingHours: ["Mo-Fr 08:00-18:00", "Sa 08:00-13:00"],
         }),
       },
     ],
@@ -207,7 +207,7 @@ function Hero() {
                 <Clock className="h-3.5 w-3.5 text-primary" /> Aberto
               </dt>
               <dd className="mt-1 font-display text-sm font-semibold text-white">Seg–Sex 8h–18h</dd>
-              <dd className="text-xs text-white/60">Sáb 8h–14h</dd>
+              <dd className="text-xs text-white/60">Sáb 8h–13h</dd>
             </div>
             <div>
               <dt className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-white/55">
@@ -536,7 +536,7 @@ function Localizacao() {
             <ul className="mt-6 space-y-3 text-sm">
               <li className="flex items-start gap-3">
                 <Clock className="mt-0.5 h-5 w-5 text-primary" />
-                <span>Segunda a sexta: 8h às 18h · Sábado: 8h às 14h</span>
+                <span>Segunda a sexta: 8h às 18h · Sábado: 8h às 13h</span>
               </li>
               <li className="flex items-start gap-3">
                 <ParkingSquare className="mt-0.5 h-5 w-5 text-primary" />
@@ -617,7 +617,7 @@ function Contato() {
           {[
             { icon: Phone, label: "Telefone", value: `${PHONE_DISPLAY} / ${MOBILE_DISPLAY}` },
             { icon: MapPin, label: "Endereço", value: "Rio Pequeno · Zona Oeste SP" },
-            { icon: Clock, label: "Horário", value: "Seg–Sex 8h–18h · Sáb 8h–14h" },
+            { icon: Clock, label: "Horário", value: "Seg–Sex 8h–18h · Sáb 8h–13h" },
           ].map(({ icon: Icon, label, value }) => (
             <div key={label} className="rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur-sm">
               <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground">
@@ -670,7 +670,7 @@ function Footer() {
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
             <li className="flex items-start gap-2"><Phone className="mt-0.5 h-4 w-4 text-primary" />{PHONE_DISPLAY}</li>
             <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 text-primary" />Rio Pequeno, Zona Oeste — SP</li>
-            <li className="flex items-start gap-2"><Clock className="mt-0.5 h-4 w-4 text-primary" />Seg–Sex 8h–18h · Sáb 8h–14h</li>
+            <li className="flex items-start gap-2"><Clock className="mt-0.5 h-4 w-4 text-primary" />Seg–Sex 8h–18h · Sáb 8h–13h</li>
           </ul>
         </div>
       </div>
