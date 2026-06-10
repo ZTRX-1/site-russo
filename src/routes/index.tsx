@@ -225,7 +225,7 @@ function Hero() {
             <div className="absolute inset-0 bg-primary/5 mix-blend-overlay" />
             
             {/* Elementos visuais de solução */}
-            <div className="absolute inset-0 flex flex-col justify-center gap-4 p-6 sm:p-10">
+            <div className="absolute inset-0 flex flex-col justify-center gap-4 p-6 sm:p-10 pb-16">
               <div className="grid grid-cols-2 gap-4">
                 <div className="group flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition hover:bg-primary/20">
                   <Zap className="h-10 w-10 text-primary mb-3 transition group-hover:scale-110" />
@@ -262,9 +262,9 @@ function Hero() {
               </div>
             </div>
 
-            {/* Selo de Confiança Local - Ajustado para não cobrir o conteúdo */}
-            <div className="absolute bottom-4 left-4 right-4 rounded-xl border border-white/10 bg-secondary/80 p-3 backdrop-blur-xl">
-              <div className="flex items-center gap-3">
+            {/* Selo de Confiança Local - Movido para fora do fluxo principal dos cards */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 pt-10">
+              <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-secondary/80 p-3 backdrop-blur-xl">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-white">
                   <ShieldCheck className="h-4 w-4" />
                 </div>
