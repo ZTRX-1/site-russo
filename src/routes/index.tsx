@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import fachada from "@/assets/fachada.jpg";
+import fachada from "/uploads/fachada.webp";
+import logoRusso from "/uploads/logo-russo.png";
 import lojaInterior from "@/assets/loja-interior.jpg";
 import {
   MessageCircle,
@@ -25,17 +26,18 @@ import {
   Award,
 } from "lucide-react";
 
-const WHATSAPP = "5511999999999";
+const WHATSAPP = "5511922328009";
 const WHATSAPP_MSG = encodeURIComponent(
-  "Olá! Vim pelo site da Russo Elétrica e Ferragens e gostaria de um atendimento."
+  "Olá! Vim pelo site da Russo Elétrica e Ferragens e gostaria de um orçamento."
 );
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP}?text=${WHATSAPP_MSG}`;
-const PHONE_DISPLAY = "(11) 99999-9999";
-const ADDRESS = "Av. Eng. Heitor Antônio Eiras Garcia, 1234 — Rio Pequeno, São Paulo — SP";
+const PHONE_DISPLAY = "(11) 3766-2002";
+const MOBILE_DISPLAY = "(11) 92232-8009";
+const ADDRESS = "R. Jorge Ward, 193 (Av. Escola Politécnica, 2850) — Rio Pequeno, São Paulo — SP";
 const MAPS_URL =
-  "https://www.google.com/maps/dir/?api=1&destination=Russo+Eletrica+e+Ferragens+Rio+Pequeno+Sao+Paulo";
+  "https://www.google.com/maps/dir/?api=1&destination=R.++Jorge+Ward,+193+-+Rio+Pequeno,+S%C3%A3o+Paulo+-+SP,+05386-130";
 const MAPS_EMBED =
-  "https://www.google.com/maps?q=Rio+Pequeno,+S%C3%A3o+Paulo+-+SP&output=embed";
+  "https://www.google.com/maps?q=R.+Jorge+Ward,+193+-+Rio+Pequeno,+S%C3%A3o+Paulo+-+SP&output=embed";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -63,15 +65,15 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "HardwareStore",
           name: "Russo Elétrica e Ferragens",
-          image: "/og-image.jpg",
-          telephone: "+5511999999999",
+          image: "/uploads/fachada.webp",
+          telephone: "+551137662002",
           priceRange: "$$",
           address: {
             "@type": "PostalAddress",
-            streetAddress: "Av. Eng. Heitor Antônio Eiras Garcia, 1234",
+            streetAddress: "R. Jorge Ward, 193",
             addressLocality: "São Paulo",
             addressRegion: "SP",
-            postalCode: "05553-001",
+            postalCode: "05386-130",
             addressCountry: "BR",
           },
           areaServed: "Rio Pequeno, Zona Oeste de São Paulo",
@@ -109,10 +111,12 @@ function Index() {
 
 function Logo({ className = "" }: { className?: string }) {
   return (
-    <a href="#top" className={`flex items-center gap-2 ${className}`}>
-      <span className="flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground font-display text-xl font-black shadow-[var(--shadow-elegant)]">
-        R
-      </span>
+    <a href="#top" className={`flex items-center gap-3 ${className}`}>
+      <img 
+        src={logoRusso} 
+        alt="Russo Elétrica e Ferragens" 
+        className="h-10 w-10 object-contain"
+      />
       <span className="flex flex-col leading-none">
         <span className="font-display text-lg font-extrabold tracking-tight">RUSSO</span>
         <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
@@ -163,11 +167,10 @@ function Hero() {
             <MapPin className="h-3 w-3 text-primary" /> Rio Pequeno · Zona Oeste SP
           </span>
           <h1 className="mt-5 font-display text-4xl font-black leading-[1.05] sm:text-5xl lg:text-6xl">
-            Materiais Elétricos, Ferragens e Soluções para sua{" "}
-            <span className="text-primary">Obra</span>.
+            Tudo em Elétrica, Ferragens e <span className="text-primary">Soluções</span> para sua Casa.
           </h1>
           <p className="mt-5 max-w-xl text-base text-white/75 sm:text-lg">
-            Atendimento especializado, produtos de qualidade e os melhores preços da região.
+            Do disjuntor ao chuveiro, temos a solução completa para o seu reparo ou obra com o melhor preço do Rio Pequeno.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -578,7 +581,7 @@ function Contato() {
 
         <div className="mt-12 grid gap-5 sm:grid-cols-3">
           {[
-            { icon: Phone, label: "Telefone", value: PHONE_DISPLAY },
+            { icon: Phone, label: "Telefone", value: `${PHONE_DISPLAY} / ${MOBILE_DISPLAY}` },
             { icon: MapPin, label: "Endereço", value: "Rio Pequeno · Zona Oeste SP" },
             { icon: Clock, label: "Horário", value: "Seg–Sex 8h–18h · Sáb 8h–14h" },
           ].map(({ icon: Icon, label, value }) => (

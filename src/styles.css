@@ -75,7 +75,7 @@
   --card-foreground: oklch(0.18 0.01 250);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.18 0.01 250);
-  --primary: oklch(0.55 0.22 27);          /* vermelho Russo */
+  --primary: oklch(0.55 0.23 27);          /* Vermelho Russo mais saturado */
   --primary-foreground: oklch(1 0 0);
   --primary-dark: oklch(0.45 0.2 27);
   --secondary: oklch(0.22 0.01 250);       /* cinza escuro */
