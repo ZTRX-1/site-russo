@@ -62,26 +62,36 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.5rem;
+  /* Russo brand: vermelho, branco, cinza escuro */
   --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.18 0.01 250);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.18 0.01 250);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --popover-foreground: oklch(0.18 0.01 250);
+  --primary: oklch(0.55 0.22 27);          /* vermelho Russo */
+  --primary-foreground: oklch(1 0 0);
+  --primary-dark: oklch(0.45 0.2 27);
+  --secondary: oklch(0.22 0.01 250);       /* cinza escuro */
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.96 0.005 250);
+  --muted-foreground: oklch(0.45 0.01 250);
+  --accent: oklch(0.96 0.005 250);
+  --accent-foreground: oklch(0.22 0.01 250);
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9 0.005 250);
+  --input: oklch(0.9 0.005 250);
+  --ring: oklch(0.55 0.22 27);
+  --whatsapp: oklch(0.62 0.17 150);
+  --gold: oklch(0.82 0.16 85);
+  --gradient-hero: linear-gradient(135deg, oklch(0.2 0.015 250) 0%, oklch(0.12 0.015 250) 100%);
+  --gradient-red: linear-gradient(135deg, oklch(0.6 0.22 28) 0%, oklch(0.45 0.2 27) 100%);
+  --shadow-elegant: 0 20px 50px -20px oklch(0.55 0.22 27 / 0.35);
+  --shadow-card: 0 10px 30px -10px oklch(0.2 0.01 250 / 0.15);
+  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +150,13 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+    font-weight: 700;
   }
 }
