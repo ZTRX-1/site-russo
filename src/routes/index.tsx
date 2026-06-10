@@ -221,22 +221,38 @@ function Hero() {
 
         <div className="relative">
           <div className="absolute -inset-3 rounded-2xl bg-primary/20 blur-2xl" />
-          <div className="relative overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
-            <img
-              src={fachada}
-              alt="Fachada da loja Russo Elétrica e Ferragens no Rio Pequeno, São Paulo"
-              width={1536}
-              height={1024}
-              className="h-full w-full object-cover"
-            />
+          <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-secondary to-black shadow-2xl">
+            <div className="absolute inset-0 bg-primary/10 mix-blend-overlay" />
+            <div className="grid grid-cols-2 gap-4 p-6 sm:p-8">
+              <div className="space-y-4">
+                <div className="aspect-square rounded-xl bg-white/5 p-4 flex flex-col items-center justify-center text-center transition hover:bg-white/10 border border-white/5">
+                  <Zap className="h-8 w-8 text-primary mb-2" />
+                  <span className="text-xs font-bold uppercase tracking-tight text-white/90">Disjuntores & Fios</span>
+                </div>
+                <div className="aspect-square rounded-xl bg-white/5 p-4 flex flex-col items-center justify-center text-center transition hover:bg-white/10 border border-white/5">
+                  <Droplets className="h-8 w-8 text-primary mb-2" />
+                  <span className="text-xs font-bold uppercase tracking-tight text-white/90">Chuveiros & Reparos</span>
+                </div>
+              </div>
+              <div className="space-y-4 pt-8">
+                <div className="aspect-square rounded-xl bg-white/5 p-4 flex flex-col items-center justify-center text-center transition hover:bg-white/10 border border-white/5">
+                  <Plug className="h-8 w-8 text-primary mb-2" />
+                  <span className="text-xs font-bold uppercase tracking-tight text-white/90">Tomadas & Interruptores</span>
+                </div>
+                <div className="aspect-square rounded-xl bg-white/5 p-4 flex flex-col items-center justify-center text-center transition hover:bg-white/10 border border-white/5">
+                  <Lightbulb className="h-8 w-8 text-primary mb-2" />
+                  <span className="text-xs font-bold uppercase tracking-tight text-white/90">Iluminação LED</span>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="absolute -bottom-4 -left-4 hidden rounded-xl border border-white/10 bg-secondary px-4 py-3 shadow-xl sm:flex sm:items-center sm:gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground">
-              <Award className="h-5 w-5" />
+              <ShieldCheck className="h-5 w-5" />
             </div>
             <div>
-              <p className="font-display text-sm font-bold text-white">Tradição no bairro</p>
-              <p className="text-xs text-white/60">Atendendo profissionais e moradores</p>
+              <p className="font-display text-sm font-bold text-white">Solução Imediata</p>
+              <p className="text-xs text-white/60">Tudo para sua elétrica no Rio Pequeno</p>
             </div>
           </div>
         </div>
@@ -298,9 +314,7 @@ function Sobre() {
               <span className="text-primary">Rio Pequeno</span>.
             </h2>
             <p className="mt-5 text-base text-muted-foreground sm:text-lg">
-              A Russo Elétrica e Ferragens é referência na Zona Oeste de São Paulo. Trabalhamos com as
-              melhores marcas do mercado e oferecemos uma estrutura completa para atender desde o pequeno
-              reparo doméstico até as demandas de eletricistas, construtores e empresas.
+              A Russo Elétrica e Ferragens é o ponto de confiança na Zona Oeste para quem busca solução, não apenas produto. Com estoque focado no que o morador e o profissional do Rio Pequeno realmente precisam, garantimos o melhor custo-benefício e um atendimento que entende de obra.
             </p>
 
             <ul className="mt-8 grid gap-4 sm:grid-cols-2">
