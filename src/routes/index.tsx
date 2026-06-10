@@ -338,14 +338,14 @@ function Sobre() {
 }
 
 const CATEGORIAS = [
-  { icon: Zap, name: "Materiais Elétricos", desc: "Linha completa para instalações residenciais e comerciais." },
-  { icon: Lightbulb, name: "Iluminação", desc: "Lâmpadas LED, luminárias, spots e refletores." },
-  { icon: Wrench, name: "Ferragens", desc: "Fechaduras, dobradiças, parafusos e acessórios." },
-  { icon: Hammer, name: "Ferramentas", desc: "Manuais e elétricas das melhores marcas." },
-  { icon: Cable, name: "Fios e Cabos", desc: "Diversas bitolas e voltagens, com nota fiscal." },
-  { icon: ShieldCheck, name: "Disjuntores", desc: "Monopolares, bipolares e tripolares de marcas certificadas." },
-  { icon: Plug, name: "Tomadas", desc: "Padrão novo, antigo, USB e linhas premium." },
-  { icon: Droplets, name: "Chuveiros", desc: "Elétricos, blindados e de alta potência." },
+  { icon: Zap, name: "Materiais Elétricos", desc: "Disjuntores, fios, cabos e toda a infraestrutura para sua instalação." },
+  { icon: Lightbulb, name: "Iluminação", desc: "Lâmpadas LED, refletores e luminárias para todos os ambientes." },
+  { icon: Droplets, name: "Hidráulica & Banho", desc: "Chuveiros elétricos, reparos, torneiras e acessórios para banheiro." },
+  { icon: Plug, name: "Tomadas & Teclas", desc: "Linhas completas de interruptores e tomadas de embutir ou sobrepor." },
+  { icon: Hammer, name: "Ferramentas", desc: "Ferramentas manuais essenciais para o dia a dia e para o profissional." },
+  { icon: Wrench, name: "Ferragens", desc: "Fechaduras, dobradiças, parafusos e itens de fixação em geral." },
+  { icon: Cable, name: "Conectividade", desc: "Extensões, adaptadores e materiais para rede e telefonia." },
+  { icon: ShieldCheck, name: "Segurança", desc: "Equipamentos para proteção elétrica e sensores de presença." },
 ];
 
 function Categorias() {
