@@ -161,16 +161,16 @@ function Hero() {
     <section className="relative overflow-hidden bg-secondary text-secondary-foreground">
       <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "24px 24px" }} />
       <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-primary/30 blur-3xl" />
-      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:py-24 lg:px-8">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16 lg:py-24 lg:px-8">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium uppercase tracking-widest text-white/80">
             <MapPin className="h-3 w-3 text-primary" /> Rio Pequeno · Zona Oeste SP
           </span>
-          <h1 className="mt-5 font-display text-4xl font-black leading-[1.05] sm:text-5xl lg:text-6xl">
-            Tudo em Elétrica, Ferragens e <span className="text-primary">Soluções</span> para sua Casa.
+          <h1 className="mt-5 font-display text-4xl font-black leading-[1.05] sm:text-6xl lg:text-7xl">
+            Sua Obra Pede <span className="text-primary italic">Soluções</span>, Não Só Materiais.
           </h1>
-          <p className="mt-5 max-w-xl text-base text-white/75 sm:text-lg">
-            Do disjuntor ao chuveiro, temos a solução completa para o seu reparo ou obra com o melhor preço do Rio Pequeno.
+          <p className="mt-5 max-w-xl text-base text-white/75 sm:text-xl leading-relaxed">
+            Do disjuntor ao chuveiro, garantimos o que você precisa com a confiança de quem conhece o Rio Pequeno há anos.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -220,39 +220,59 @@ function Hero() {
         </div>
 
         <div className="relative">
-          <div className="absolute -inset-3 rounded-2xl bg-primary/20 blur-2xl" />
-          <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-secondary to-black shadow-2xl">
-            <div className="absolute inset-0 bg-primary/10 mix-blend-overlay" />
-            <div className="grid grid-cols-2 gap-4 p-6 sm:p-8">
-              <div className="space-y-4">
-                <div className="aspect-square rounded-xl bg-white/5 p-4 flex flex-col items-center justify-center text-center transition hover:bg-white/10 border border-white/5">
-                  <Zap className="h-8 w-8 text-primary mb-2" />
-                  <span className="text-xs font-bold uppercase tracking-tight text-white/90">Disjuntores & Fios</span>
+          <div className="absolute -inset-4 rounded-2xl bg-primary/20 blur-3xl" />
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-secondary to-black shadow-2xl">
+            <div className="absolute inset-0 bg-primary/5 mix-blend-overlay" />
+            
+            {/* Elementos visuais de solução */}
+            <div className="absolute inset-0 flex flex-col justify-center gap-6 p-6 sm:p-10">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="group flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition hover:bg-primary/20">
+                  <Zap className="h-10 w-10 text-primary mb-3 transition group-hover:scale-110" />
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">Elétrica</span>
                 </div>
-                <div className="aspect-square rounded-xl bg-white/5 p-4 flex flex-col items-center justify-center text-center transition hover:bg-white/10 border border-white/5">
-                  <Droplets className="h-8 w-8 text-primary mb-2" />
-                  <span className="text-xs font-bold uppercase tracking-tight text-white/90">Chuveiros & Reparos</span>
+                <div className="group flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition hover:bg-primary/20">
+                  <Droplets className="h-10 w-10 text-primary mb-3 transition group-hover:scale-110" />
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">Hidráulica</span>
                 </div>
               </div>
-              <div className="space-y-4 pt-8">
-                <div className="aspect-square rounded-xl bg-white/5 p-4 flex flex-col items-center justify-center text-center transition hover:bg-white/10 border border-white/5">
-                  <Plug className="h-8 w-8 text-primary mb-2" />
-                  <span className="text-xs font-bold uppercase tracking-tight text-white/90">Tomadas & Interruptores</span>
+              
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary">
+                    <Plug className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-widest text-white">Consulte Agora</p>
+                    <p className="text-sm text-white/60 leading-tight">Disjuntores, Tomadas e Fios a pronta entrega.</p>
+                  </div>
                 </div>
-                <div className="aspect-square rounded-xl bg-white/5 p-4 flex flex-col items-center justify-center text-center transition hover:bg-white/10 border border-white/5">
-                  <Lightbulb className="h-8 w-8 text-primary mb-2" />
-                  <span className="text-xs font-bold uppercase tracking-tight text-white/90">Iluminação LED</span>
+              </div>
+
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary">
+                    <Lightbulb className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-widest text-white">Iluminação LED</p>
+                    <p className="text-sm text-white/60 leading-tight">Economia e design para sua casa.</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="absolute -bottom-4 -left-4 hidden rounded-xl border border-white/10 bg-secondary px-4 py-3 shadow-xl sm:flex sm:items-center sm:gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground">
-              <ShieldCheck className="h-5 w-5" />
-            </div>
-            <div>
-              <p className="font-display text-sm font-bold text-white">Solução Imediata</p>
-              <p className="text-xs text-white/60">Tudo para sua elétrica no Rio Pequeno</p>
+
+            {/* Selo de Confiança Local */}
+            <div className="absolute bottom-6 left-6 right-6 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-xl">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-white">
+                  <ShieldCheck className="h-5 w-5" />
+                </div>
+                <p className="text-xs font-medium text-white/90 leading-tight">
+                  <span className="block font-bold text-white">Russo Elétrica</span>
+                  Confiança e Tradição no Rio Pequeno
+                </p>
+              </div>
             </div>
           </div>
         </div>
