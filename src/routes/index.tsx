@@ -225,15 +225,15 @@ function Hero() {
             <div className="absolute inset-0 bg-primary/5 mix-blend-overlay" />
             
             {/* Elementos visuais de solução */}
-            <div className="absolute inset-0 flex flex-col justify-center gap-6 p-6 sm:p-10">
+            <div className="absolute inset-0 flex flex-col justify-center gap-4 p-6 sm:p-10">
               <div className="grid grid-cols-2 gap-4">
                 <div className="group flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition hover:bg-primary/20">
                   <Zap className="h-10 w-10 text-primary mb-3 transition group-hover:scale-110" />
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">Elétrica</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/90 text-center">Elétrica</span>
                 </div>
                 <div className="group flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition hover:bg-primary/20">
                   <Droplets className="h-10 w-10 text-primary mb-3 transition group-hover:scale-110" />
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">Hidráulica</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/90 text-center">Hidráulica</span>
                 </div>
               </div>
               
@@ -244,7 +244,7 @@ function Hero() {
                   </div>
                   <div>
                     <p className="text-xs font-bold uppercase tracking-widest text-white">Consulte Agora</p>
-                    <p className="text-sm text-white/60 leading-tight">Disjuntores, Tomadas e Fios a pronta entrega.</p>
+                    <p className="text-sm text-white/60 leading-tight">Disjuntores e Fios a pronta entrega.</p>
                   </div>
                 </div>
               </div>
@@ -256,21 +256,21 @@ function Hero() {
                   </div>
                   <div>
                     <p className="text-xs font-bold uppercase tracking-widest text-white">Iluminação LED</p>
-                    <p className="text-sm text-white/60 leading-tight">Economia e design para sua casa.</p>
+                    <p className="text-sm text-white/60 leading-tight">Economia para sua casa.</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Selo de Confiança Local */}
-            <div className="absolute bottom-6 left-6 right-6 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-xl">
+            {/* Selo de Confiança Local - Ajustado para não cobrir o conteúdo */}
+            <div className="absolute bottom-4 left-4 right-4 rounded-xl border border-white/10 bg-secondary/80 p-3 backdrop-blur-xl">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-white">
-                  <ShieldCheck className="h-5 w-5" />
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-white">
+                  <ShieldCheck className="h-4 w-4" />
                 </div>
-                <p className="text-xs font-medium text-white/90 leading-tight">
-                  <span className="block font-bold text-white">Russo Elétrica</span>
-                  Confiança e Tradição no Rio Pequeno
+                <p className="text-[10px] font-medium text-white/90 leading-tight">
+                  <span className="block font-bold text-white uppercase tracking-tighter">Russo Elétrica</span>
+                  Confiança no Rio Pequeno
                 </p>
               </div>
             </div>
