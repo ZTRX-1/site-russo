@@ -392,10 +392,10 @@ function OrcamentoCorporativo() {
 
 function Sobre() {
   const pillars = [
-    { icon: Users, label: "Atendimento especializado", text: "Equipe técnica preparada para orientar sua compra com precisão." },
-    { icon: Hammer, label: "Variedade e Estoque", text: "Ampla linha de produtos das melhores marcas a pronta entrega." },
-    { icon: ParkingSquare, label: "Estrutura organizada", text: "Loja preparada para um atendimento ágil e estacionamento fácil." },
-    { icon: Award, label: "Relacionamento e Confiança", text: "Tradição em atender bem, do profissional ao consumidor final." },
+    { icon: Users, label: "Atendimento humano", text: "Equipe técnica preparada para orientar sua compra com proximidade e precisão." },
+    { icon: Hammer, label: "Variedade e Estrutura", text: "Ampla linha de produtos das melhores marcas em um ambiente organizado." },
+    { icon: ParkingSquare, label: "Fácil acesso", text: "Loja preparada para um atendimento ágil com estacionamento próprio no local." },
+    { icon: Award, label: "Tradição e Confiança", text: "Uma empresa familiar comprometida com a solução dos seus problemas diários." },
   ];
   return (
     <section id="sobre" className="py-20 sm:py-28">
@@ -414,7 +414,7 @@ function Sobre() {
             </div>
             <div className="absolute -bottom-6 -right-6 hidden rounded-xl bg-primary px-6 py-5 text-primary-foreground shadow-[var(--shadow-elegant)] sm:block">
               <p className="font-display text-3xl font-black">+10mil</p>
-              <p className="text-xs uppercase tracking-widest">itens em estoque</p>
+              <p className="text-xs uppercase tracking-widest">itens à disposição</p>
             </div>
           </div>
 
@@ -423,13 +423,13 @@ function Sobre() {
               Nossa História & Compromisso
             </span>
             <h2 className="mt-3 font-display text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
-              Tradição e conhecimento técnico a serviço da <span className="text-primary">Zona Oeste</span>.
+              Tradição familiar e conhecimento técnico a serviço da <span className="text-primary">Zona Oeste</span>.
             </h2>
             <p className="mt-5 text-base text-muted-foreground sm:text-lg leading-relaxed">
-              A Russo é uma empresa familiar construída sobre os pilares da confiança e do relacionamento próximo com seus clientes. Mais do que fornecer materiais, entregamos soluções baseadas em anos de experiência técnica e um compromisso real com o sucesso de cada obra ou projeto.
+              A Russo é mais do que uma loja de materiais; é um ponto de apoio para quem busca resolver problemas com confiança. Nossa história é construída sobre o atendimento próximo, a variedade de produtos e o compromisso real com cada cliente, seja ele um morador da região ou um profissional da área.
             </p>
             <p className="mt-4 text-base text-muted-foreground">
-              Localizada em uma das regiões mais estratégicas da Zona Oeste de São Paulo, oferecemos fácil acesso pela Avenida Escola Politécnica e USP, consolidando-nos como um parceiro sólido para profissionais, empresas e moradores da região.
+              Com localização estratégica no Rio Pequeno, oferecemos fácil acesso pela Avenida Escola Politécnica para quem vem da USP, Jaguaré, Butantã, Osasco e demais bairros da Zona Oeste. Aqui, você encontra estrutura completa para atender desde pequenas reformas até grandes demandas de condomínios e empresas.
             </p>
 
             <ul className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -500,10 +500,10 @@ function Categorias() {
 
 const DIFERENCIAIS = [
   { icon: Headset, title: "Atendimento Especializado", text: "Suporte técnico qualificado para tirar dúvidas e indicar os melhores componentes." },
-  { icon: ShieldCheck, title: "Qualidade Garantida", text: "Trabalhamos apenas com marcas homologadas e certificadas pelo mercado." },
+  { icon: ShieldCheck, title: "Qualidade Garantida", text: "Trabalhamos apenas com marcas reconhecidas e certificadas pelo mercado." },
   { icon: Navigation, title: "Fácil Acesso", text: "Localização estratégica com entrada facilitada pela Avenida Escola Politécnica." },
   { icon: ParkingSquare, title: "Estrutura Completa", text: "Amplo estoque e estacionamento próprio para sua total comodidade." },
-  { icon: Users, title: "Foco no Cliente", text: "Atendimento personalizado para condomínios, empresas e profissionais da área." },
+  { icon: Users, title: "Atendimento Humano", text: "Proximidade e compromisso com o sucesso do seu projeto ou reparo." },
   { icon: Wrench, title: "Suporte Técnico", text: "Orientação técnica especializada para garantir a segurança da sua instalação." },
 ];
 
@@ -543,7 +543,7 @@ const REVIEWS = [
   {
     name: "Carlos Mendes",
     role: "Eletricista",
-    text: "Atendimento nota 10. Sempre encontro tudo que preciso para as obras e o preço é o melhor da região.",
+    text: "Atendimento nota 10. Sempre encontro tudo que preciso para as obras e o preço é justo pela qualidade.",
   },
   {
     name: "Juliana Souza",
@@ -553,7 +553,7 @@ const REVIEWS = [
   {
     name: "Roberto Lima",
     role: "Construtor",
-    text: "Compro materiais elétricos aqui há anos. Variedade, qualidade e entrega rápida. Parceiros da nossa construtora.",
+    text: "Compro materiais elétricos aqui há anos. Variedade, qualidade e atendimento próximo. Parceiros de confiança.",
   },
 ];
 
@@ -621,13 +621,13 @@ function Localizacao() {
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              Localização Estratégica
+              Conveniência & Acesso
             </span>
             <h2 className="mt-3 font-display text-3xl font-extrabold leading-tight sm:text-4xl">
-              Fácil acesso via <span className="text-primary">Escola Politécnica</span>
+              Fácil acesso no Rio Pequeno pela <span className="text-primary">Av. Escola Politécnica</span>
             </h2>
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              Situada em uma das regiões mais estratégicas da Zona Oeste de São Paulo, a Russo oferece fácil acesso pela Avenida Escola Politécnica, facilitando a logística para clientes vindo da USP, Raposo Tavares e vias principais.
+              Estamos localizados em um ponto estratégico para quem busca resolver compras de elétrica e ferragens sem perder tempo. Próximo à USP e com fácil acesso para quem vem da Raposo Tavares, Jaguaré, Butantã, Osasco, Lapa e Marginal Pinheiros.
             </p>
 
             <ul className="mt-6 space-y-3 text-sm">
@@ -637,11 +637,11 @@ function Localizacao() {
               </li>
               <li className="flex items-start gap-3">
                 <ParkingSquare className="mt-0.5 h-5 w-5 text-primary shrink-0" />
-                <span>Estacionamento próprio no local</span>
+                <span>Estacionamento próprio e gratuito no local</span>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-5 w-5 text-primary shrink-0" />
-                <span>Acesso facilitado pela Av. Escola Politécnica, 2850</span>
+                <span>{ADDRESS}</span>
               </li>
             </ul>
 
@@ -653,7 +653,7 @@ function Localizacao() {
                 className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-elegant)] transition hover:bg-primary-dark"
               >
                 <Navigation className="h-4 w-4 shrink-0" />
-                Traçar Rota
+                Traçar rota de carro
               </a>
               <a
                 href={WHATSAPP_URL}
@@ -662,7 +662,7 @@ function Localizacao() {
                 className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-5 py-3 text-sm font-semibold transition hover:border-primary hover:text-primary"
               >
                 <WhatsAppIcon className="h-4 w-4 shrink-0" />
-                Falar no WhatsApp
+                Solicitar orçamento
               </a>
             </div>
           </div>
@@ -691,23 +691,23 @@ function Contato() {
       <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "24px 24px" }} />
       <div className="relative mx-auto max-w-5xl px-4 text-center text-white sm:px-6 lg:px-8">
         <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-          Fale com a gente
+          Fale com nossa equipe
         </span>
         <h2 className="mt-3 font-display text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
-          Atendimento <span className="text-primary">rápido</span> pelo WhatsApp
+          Atendimento <span className="text-primary">especializado</span> via WhatsApp
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-white/70">
-          Tire dúvidas, peça orçamento, consulte disponibilidade. Respondemos no horário comercial.
+          Precisa de materiais elétricos, ferragens ou iluminação? Nossa equipe está pronta para te atender com agilidade e conhecimento técnico.
         </p>
 
         <a
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-8 inline-flex items-center gap-3 rounded-md bg-whatsapp px-8 py-4 text-sm font-bold uppercase tracking-widest text-white shadow-lg transition hover:bg-[#128C7E]"
+          className="mt-8 inline-flex items-center gap-3 rounded-md bg-[#25D366] px-8 py-4 text-sm font-bold uppercase tracking-widest text-white shadow-lg transition hover:bg-[#128C7E]"
         >
           <WhatsAppIcon className="h-5 w-5 shrink-0" />
-          Falar com Especialista
+          Falar com Especialista agora
         </a>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-3">
@@ -715,92 +715,31 @@ function Contato() {
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground">
               <Phone className="h-5 w-5 shrink-0" />
             </span>
-            <p className="mt-3 text-xs uppercase tracking-widest text-white/55">Telefone</p>
+            <p className="mt-3 text-xs uppercase tracking-widest text-white/55">Telefones</p>
             <div className="mt-1 flex flex-col font-semibold text-white">
-              <a href="tel:1137662002" className="hover:text-primary transition-colors">{PHONE_DISPLAY}</a>
-              <a href="tel:11922328009" className="hover:text-primary transition-colors">{MOBILE_DISPLAY}</a>
+              <a href={`tel:${PHONE_DISPLAY.replace(/\D/g, '')}`} className="hover:text-primary transition-colors">{PHONE_DISPLAY}</a>
+              <a href={`tel:${MOBILE_DISPLAY.replace(/\D/g, '')}`} className="hover:text-primary transition-colors">{MOBILE_DISPLAY}</a>
             </div>
           </div>
           <div className="rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur-sm">
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground">
               <MapPin className="h-5 w-5 shrink-0" />
             </span>
-            <p className="mt-3 text-xs uppercase tracking-widest text-white/55">Endereço</p>
-            <p className="mt-1 font-semibold text-white">Rio Pequeno · Zona Oeste SP</p>
+            <p className="mt-3 text-xs uppercase tracking-widest text-white/55">Localização</p>
+            <p className="mt-1 font-semibold text-white leading-tight">Rio Pequeno · Próximo à USP</p>
+            <p className="text-xs text-white/60 mt-1">Av. Escola Politécnica, 2850</p>
           </div>
           <div className="rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur-sm">
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground">
               <Clock className="h-5 w-5 shrink-0" />
             </span>
             <p className="mt-3 text-xs uppercase tracking-widest text-white/55">Horário</p>
-            <p className="mt-1 font-semibold text-white">Seg–Sex 8h–18h · Sáb 8h–13h</p>
+            <p className="mt-1 font-semibold text-white leading-tight">Seg–Sex: 8h às 18h</p>
+            <p className="text-sm font-semibold text-white">Sáb: 8h às 13h</p>
           </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="border-t border-border bg-background">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:px-8">
-        <div className="lg:col-span-2">
-          <Logo />
-          <p className="mt-4 max-w-sm text-sm text-muted-foreground">
-            Soluções técnicas em materiais elétricos, ferragens e iluminação. Tradição e atendimento especializado para condomínios, empresas e profissionais na Zona Oeste de São Paulo.
-          </p>
-          <div className="mt-5 flex items-center gap-3">
-            <a href="https://www.instagram.com/russoeletrofer/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-10 w-10 items-center justify-center rounded-md border border-border text-foreground/70 transition hover:border-primary hover:text-primary">
-              <Instagram className="h-5 w-5 shrink-0" />
-            </a>
-            <a href="https://web.facebook.com/russoeletrofer/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="flex h-10 w-10 items-center justify-center rounded-md border border-border text-foreground/70 transition hover:border-primary hover:text-primary">
-              <Facebook className="h-5 w-5 shrink-0" />
-            </a>
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="flex h-10 w-10 items-center justify-center rounded-md border border-border text-foreground/70 transition hover:border-primary hover:text-primary">
-              <WhatsAppIcon className="h-5 w-5 shrink-0" />
-            </a>
-          </div>
-        </div>
-        <div>
-          <h3 className="font-display text-sm font-bold uppercase tracking-widest text-foreground">Soluções</h3>
-          <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li><a href="#atendemos" className="hover:text-primary transition-colors">Para Condomínios</a></li>
-            <li><a href="#atendemos" className="hover:text-primary transition-colors">Para Empresas</a></li>
-            <li><a href="#orcamento-corporativo" className="hover:text-primary transition-colors">Orçamento Corporativo</a></li>
-            <li><a href="#categorias" className="hover:text-primary transition-colors">Infraestrutura Elétrica</a></li>
-            <li><a href="#localizacao" className="hover:text-primary transition-colors">Localização</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 className="font-display text-sm font-bold uppercase tracking-widest text-foreground">Institucional</h3>
-          <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li><button onClick={() => window.open('/privacidade', '_blank')} className="hover:text-primary text-left cursor-pointer">Privacidade</button></li>
-            <li><button onClick={() => window.open('/termos', '_blank')} className="hover:text-primary text-left cursor-pointer">Termos de Uso</button></li>
-            <li><button onClick={() => window.open('/lgpd', '_blank')} className="hover:text-primary text-left cursor-pointer">LGPD</button></li>
-            <li><button onClick={() => window.open('/direitos', '_blank')} className="hover:text-primary text-left cursor-pointer">Direitos do Consumidor</button></li>
-            <li><a href="#contato" className="hover:text-primary transition-colors">Contato</a></li>
-          </ul>
-        </div>
-      </div>
-      <div className="border-t border-border">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-6 text-[10px] uppercase tracking-widest text-muted-foreground sm:flex-row sm:px-6 lg:px-8">
-          <p>© {new Date().getFullYear()} Russo Elétrica e Ferragens. Todos os direitos reservados.</p>
-          <div className="flex items-center gap-4">
-            <span>Zona Oeste · São Paulo · SP</span>
-            <span className="hidden sm:inline text-border">|</span>
-            <a 
-              href="https://vexxon.company" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="group flex items-center gap-1.5 transition hover:text-primary"
-            >
-              Desenvolvido com <span className="text-red-500 group-hover:animate-pulse">💙</span> pela <span className="font-bold text-foreground">Vexxon Company</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
   );
 }
 
@@ -818,3 +757,4 @@ function FloatingWhats() {
     </a>
   );
 }
+
