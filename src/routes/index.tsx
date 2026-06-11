@@ -740,10 +740,10 @@ function Contato() {
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-8 inline-flex items-center gap-3 rounded-xl bg-whatsapp px-7 py-4 text-base font-bold text-white shadow-[var(--shadow-elegant)] transition hover:scale-[1.02]"
+          className="mt-8 inline-flex items-center gap-4 rounded-xl bg-whatsapp px-10 py-5 text-lg font-black uppercase tracking-widest text-white shadow-2xl transition hover:scale-[1.02] hover:bg-[#128C7E]"
         >
-          <WhatsAppIcon className="h-6 w-6" />
-          Conversar no WhatsApp agora
+          <WhatsAppIcon className="h-7 w-7" />
+          Solicitar Orçamento Agora
         </a>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-3">
