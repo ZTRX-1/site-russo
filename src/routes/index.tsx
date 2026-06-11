@@ -322,7 +322,7 @@ function Hero() {
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 pt-10">
               <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-secondary/80 p-3 backdrop-blur-xl">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-white">
-                  <ShieldCheck className="h-4 w-4" />
+                  <ShieldCheck className="h-4 w-4 shrink-0" />
                 </div>
                 <p className="text-[10px] font-medium text-white/90 leading-tight">
                   <span className="block font-bold text-white uppercase tracking-tighter">Russo Elétrica</span>
