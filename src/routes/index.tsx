@@ -29,6 +29,7 @@ import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { 
+  WHATSAPP,
   WHATSAPP_URL, 
   PHONE_DISPLAY, 
   MOBILE_DISPLAY, 
@@ -463,7 +464,7 @@ const CATEGORIAS = [
   { icon: Lightbulb, name: "Sistemas de Iluminação", desc: "LED industrial, comercial e residencial para alta performance." },
   { icon: Droplets, name: "Manutenção Hidráulica", desc: "Componentes para redes de água e soluções para banho." },
   { icon: Plug, name: "Acabamentos Elétricos", desc: "Linhas completas de interruptores e tomadas para obras." },
-  { icon: Hammer, name: "Ferramental Profissional", desc: "Ferramentas para operação, manutenção e prestação de serviço." },
+  { icon: Hammer, name: "Ferramentas Profissionais", desc: "Ferramentas para operação, manutenção e prestação de serviço." },
   { icon: Wrench, name: "Soluções em Ferragens", desc: "Fixação, segurança e infraestrutura metálica completa." },
   { icon: Cable, name: "Conectividade & Redes", desc: "Materiais para infraestrutura de dados e telecomunicações." },
   { icon: ShieldCheck, name: "Proteção & Segurança", desc: "Equipamentos para segurança elétrica e automação básica." },
@@ -479,25 +480,30 @@ function Categorias() {
           description="Uma curadoria completa de produtos para profissionais e consumidores finais."
         />
         <div className="mt-14 grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
-          {CATEGORIAS.map(({ icon: Icon, name, desc }) => (
-            <a
-              key={name}
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card p-5 transition hover:-translate-y-1 hover:border-primary hover:shadow-[var(--shadow-card)]"
-            >
-              <div className="absolute inset-x-0 top-0 h-1 bg-primary opacity-0 transition group-hover:opacity-100" />
-              <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-secondary text-primary transition group-hover:bg-primary group-hover:text-primary-foreground">
-                <Icon className="h-6 w-6 shrink-0" />
-              </span>
-              <h3 className="mt-4 font-display text-lg font-bold">{name}</h3>
-              <p className="mt-1 flex-grow text-sm text-muted-foreground">{desc}</p>
-              <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-primary">
-                Consultar <WhatsAppIcon className="h-3.5 w-3.5 shrink-0" />
-              </span>
-            </a>
-          ))}
+          {CATEGORIAS.map(({ icon: Icon, name, desc }) => {
+            const encodedMsg = encodeURIComponent(`Olá! Estou no site da Russo Elétrica e Ferragens e gostaria de um orçamento para ${name.toLowerCase()}.`);
+            const categoryWhatsappUrl = `https://wa.me/${WHATSAPP}?text=${encodedMsg}`;
+            
+            return (
+              <a
+                key={name}
+                href={categoryWhatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card p-5 transition hover:-translate-y-1 hover:border-primary hover:shadow-[var(--shadow-card)]"
+              >
+                <div className="absolute inset-x-0 top-0 h-1 bg-primary opacity-0 transition group-hover:opacity-100" />
+                <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-secondary text-primary transition group-hover:bg-primary group-hover:text-primary-foreground">
+                  <Icon className="h-6 w-6 shrink-0" />
+                </span>
+                <h3 className="mt-4 font-display text-lg font-bold">{name}</h3>
+                <p className="mt-1 flex-grow text-sm text-muted-foreground">{desc}</p>
+                <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-primary">
+                  Consultar <WhatsAppIcon className="h-3.5 w-3.5 shrink-0" />
+                </span>
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>
