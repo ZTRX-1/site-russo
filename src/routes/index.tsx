@@ -430,7 +430,7 @@ function OrcamentoCorporativo() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md bg-primary px-10 py-5 text-sm font-bold uppercase tracking-widest text-primary-foreground shadow-2xl transition hover:bg-primary-dark hover:translate-y-[-2px]"
+              className="inline-flex items-center gap-2 rounded-md bg-primary px-10 py-5 text-sm font-bold uppercase tracking-widest text-primary-foreground shadow-2xl transition hover:bg-primary-dark"
             >
               Solicitar Orçamento
             </a>
