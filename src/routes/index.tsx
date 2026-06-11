@@ -757,16 +757,35 @@ function Contato() {
 
 function FloatingWhats() {
   return (
-    <a
-      href={WHATSAPP_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Falar no WhatsApp"
-      className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-110 active:scale-95"
-    >
-      <WhatsAppIcon className="h-8 w-8 shrink-0" />
-      <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-[#25D366]/40" />
-    </a>
+    <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3 group">
+      <div className="relative mr-2 max-w-[200px] transform scale-0 opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100 lg:scale-100 lg:opacity-100">
+        <div className="relative rounded-2xl bg-white p-3 text-xs font-bold text-secondary shadow-xl ring-1 ring-black/5 after:absolute after:bottom-[-8px] after:right-6 after:h-4 after:w-4 after:rotate-45 after:bg-white after:content-['']">
+          <div className="flex items-start gap-2">
+            <img 
+              src="/uploads/mascote.png" 
+              alt="Mascote Russo" 
+              className="h-10 w-10 shrink-0 rounded-full border-2 border-primary bg-secondary p-0.5 object-contain"
+            />
+            <p className="leading-tight">
+              Olá, sou o <span className="text-primary">Russo</span>! <br />
+              Precisa de ajuda com seu orçamento?
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Falar no WhatsApp"
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-110 active:scale-95"
+      >
+        <WhatsAppIcon className="h-8 w-8 shrink-0" />
+        <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-[#25D366]/40" />
+      </a>
+    </div>
   );
 }
+
 
