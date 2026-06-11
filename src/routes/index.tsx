@@ -683,7 +683,7 @@ function Localizacao() {
 
             <ul className="mt-6 space-y-3 text-sm">
               <li className="flex items-start gap-3">
-                <Clock className="mt-0.5 h-5 w-5 text-primary" />
+                <Clock className="mt-0.5 h-5 w-5 text-primary shrink-0" />
                 <span>Segunda a sexta: 8h às 18h · Sábado: 8h às 13h</span>
               </li>
               <li className="flex items-start gap-3">
