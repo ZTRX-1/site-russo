@@ -534,7 +534,7 @@ function Categorias() {
             >
               <div className="absolute inset-x-0 top-0 h-1 bg-primary opacity-0 transition group-hover:opacity-100" />
               <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-secondary text-primary transition group-hover:bg-primary group-hover:text-primary-foreground">
-                <Icon className="h-6 w-6" />
+                <Icon className="h-6 w-6 shrink-0" />
               </span>
               <h3 className="mt-4 font-display text-lg font-bold">{name}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{desc}</p>
