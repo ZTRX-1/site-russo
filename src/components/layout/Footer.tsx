@@ -22,7 +22,13 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-6">
-            <Logo className="invert brightness-0" />
+            <Link to="/" className="flex items-center gap-3">
+              <img src="/uploads/logo-russo.png" alt="Russo Elétrica" className="h-10 w-10 brightness-0 invert" />
+              <div className="flex flex-col leading-none">
+                <span className="font-display text-lg font-extrabold tracking-tight text-white">RUSSO</span>
+                <span className="text-[10px] uppercase tracking-[0.18em] text-white/60">Elétrica & Ferragens</span>
+              </div>
+            </Link>
             <p className="text-sm leading-relaxed text-white/60">
               Sua parceira em soluções elétricas, ferragens e iluminação na Zona Oeste. Atendimento especializado para todos os tipos de projetos.
             </p>
