@@ -184,7 +184,7 @@ svg {
 }
 
 /* Ensure icons don't explode in size if Tailwind hasn't loaded */
-.lucide, svg {
+.lucide, svg:not(.lucide) {
   width: 1.5rem;
   height: 1.5rem;
 }
