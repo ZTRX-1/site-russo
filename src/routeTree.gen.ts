@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermosDeUsoRouteImport } from './routes/termos-de-uso'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as LgpdRouteImport } from './routes/lgpd'
+import { Route as CdcRouteImport } from './routes/cdc'
 import { Route as IndexRouteImport } from './routes/index'
 
 const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
@@ -29,6 +30,11 @@ const LgpdRoute = LgpdRouteImport.update({
   path: '/lgpd',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CdcRoute = CdcRouteImport.update({
+  id: '/cdc',
+  path: '/cdc',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -37,12 +43,14 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cdc': typeof CdcRoute
   '/lgpd': typeof LgpdRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cdc': typeof CdcRoute
   '/lgpd': typeof LgpdRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
@@ -50,20 +58,33 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cdc': typeof CdcRoute
   '/lgpd': typeof LgpdRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/lgpd' | '/politica-de-privacidade' | '/termos-de-uso'
+  fullPaths:
+    | '/'
+    | '/cdc'
+    | '/lgpd'
+    | '/politica-de-privacidade'
+    | '/termos-de-uso'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/lgpd' | '/politica-de-privacidade' | '/termos-de-uso'
-  id: '__root__' | '/' | '/lgpd' | '/politica-de-privacidade' | '/termos-de-uso'
+  to: '/' | '/cdc' | '/lgpd' | '/politica-de-privacidade' | '/termos-de-uso'
+  id:
+    | '__root__'
+    | '/'
+    | '/cdc'
+    | '/lgpd'
+    | '/politica-de-privacidade'
+    | '/termos-de-uso'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CdcRoute: typeof CdcRoute
   LgpdRoute: typeof LgpdRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   TermosDeUsoRoute: typeof TermosDeUsoRoute
@@ -92,6 +113,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LgpdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cdc': {
+      id: '/cdc'
+      path: '/cdc'
+      fullPath: '/cdc'
+      preLoaderRoute: typeof CdcRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -104,6 +132,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CdcRoute: CdcRoute,
   LgpdRoute: LgpdRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   TermosDeUsoRoute: TermosDeUsoRoute,
