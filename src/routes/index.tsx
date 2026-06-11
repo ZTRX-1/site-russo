@@ -284,11 +284,11 @@ function Hero() {
             <div className="absolute inset-0 flex flex-col justify-center gap-4 p-6 sm:p-10 pb-16">
               <div className="grid grid-cols-2 gap-4">
                 <div className="group flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition hover:bg-primary/20">
-                  <Zap className="h-10 w-10 text-primary mb-3 transition group-hover:scale-110" />
+                  <Zap className="h-10 w-10 text-primary mb-3 transition group-hover:scale-110 shrink-0" />
                   <span className="text-[10px] font-bold uppercase tracking-widest text-white/90 text-center">Elétrica</span>
                 </div>
                 <div className="group flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition hover:bg-primary/20">
-                  <Droplets className="h-10 w-10 text-primary mb-3 transition group-hover:scale-110" />
+                  <Droplets className="h-10 w-10 text-primary mb-3 transition group-hover:scale-110 shrink-0" />
                   <span className="text-[10px] font-bold uppercase tracking-widest text-white/90 text-center">Hidráulica</span>
                 </div>
               </div>
