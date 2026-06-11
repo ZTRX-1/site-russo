@@ -308,7 +308,7 @@ function Hero() {
               <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md">
                 <div className="flex items-center gap-4">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary">
-                    <Lightbulb className="h-6 w-6" />
+                    <Lightbulb className="h-6 w-6 shrink-0" />
                   </div>
                   <div>
                     <p className="text-xs font-bold uppercase tracking-widest text-white">Iluminação LED</p>
