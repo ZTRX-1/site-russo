@@ -46,7 +46,7 @@ const WHATSAPP_MSG = encodeURIComponent(
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP}?text=${WHATSAPP_MSG}`;
 const PHONE_DISPLAY = "(11) 3766-2002";
 const MOBILE_DISPLAY = "(11) 92232-8009";
-const ADDRESS = "R. Jorge Ward, 193 (Av. Escola Politécnica, 2850) — Rio Pequeno, São Paulo — SP";
+const ADDRESS = "R. Jorge Ward, 193 (Acesso pela Av. Escola Politécnica, 2850) — Rio Pequeno, São Paulo — SP";
 const MAPS_URL = "https://maps.apple.com/?daddr=R.+Jorge+Ward,+193+-+Rio+Pequeno,+S%C3%A3o+Paulo+-+SP,+05386-130&dirflg=d";
 const GOOGLE_MAPS_URL = "https://www.google.com/maps/dir/?api=1&destination=R.++Jorge+Ward,+193+-+Rio+Pequeno,+S%C3%A3o+Paulo+-+SP,+05386-130&travelmode=driving";
 const MAPS_EMBED =
