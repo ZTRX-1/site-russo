@@ -712,7 +712,7 @@ function Localizacao() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-5 py-3 text-sm font-semibold transition hover:border-primary hover:text-primary"
               >
-                <WhatsAppIcon className="h-4 w-4" />
+                <WhatsAppIcon className="h-4 w-4 shrink-0" />
                 Falar no WhatsApp
               </a>
             </div>
