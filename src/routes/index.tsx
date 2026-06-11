@@ -745,19 +745,30 @@ function Contato() {
         </a>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-3">
-          {[
-            { icon: Phone, label: "Telefone", value: `${PHONE_DISPLAY} / ${MOBILE_DISPLAY}` },
-            { icon: MapPin, label: "Endereço", value: "Rio Pequeno · Zona Oeste SP" },
-            { icon: Clock, label: "Horário", value: "Seg–Sex 8h–18h · Sáb 8h–13h" },
-          ].map(({ icon: Icon, label, value }) => (
-            <div key={label} className="rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur-sm">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground">
-                <Icon className="h-5 w-5" />
-              </span>
-              <p className="mt-3 text-xs uppercase tracking-widest text-white/55">{label}</p>
-              <p className="mt-1 font-semibold text-white">{value}</p>
+          <div className="rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur-sm">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground">
+              <Phone className="h-5 w-5" />
+            </span>
+            <p className="mt-3 text-xs uppercase tracking-widest text-white/55">Telefone</p>
+            <div className="mt-1 flex flex-col font-semibold text-white">
+              <a href="tel:1137662002" className="hover:text-primary transition-colors">{PHONE_DISPLAY}</a>
+              <a href="tel:11922328009" className="hover:text-primary transition-colors">{MOBILE_DISPLAY}</a>
             </div>
-          ))}
+          </div>
+          <div className="rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur-sm">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground">
+              <MapPin className="h-5 w-5" />
+            </span>
+            <p className="mt-3 text-xs uppercase tracking-widest text-white/55">Endereço</p>
+            <p className="mt-1 font-semibold text-white">Rio Pequeno · Zona Oeste SP</p>
+          </div>
+          <div className="rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur-sm">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground">
+              <Clock className="h-5 w-5" />
+            </span>
+            <p className="mt-3 text-xs uppercase tracking-widest text-white/55">Horário</p>
+            <p className="mt-1 font-semibold text-white">Seg–Sex 8h–18h · Sáb 8h–13h</p>
+          </div>
         </div>
       </div>
     </section>
