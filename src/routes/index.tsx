@@ -188,34 +188,47 @@ function Hero() {
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16 lg:py-24 lg:px-8">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium uppercase tracking-widest text-white/80">
-            <MapPin className="h-3 w-3 text-primary" /> Rio Pequeno · Zona Oeste SP
+            <MapPin className="h-3 w-3 text-primary" /> Rio Pequeno · Escola Politécnica · Zona Oeste SP
           </span>
           <h1 className="mt-5 font-display text-4xl font-black leading-[1.05] sm:text-6xl lg:text-7xl">
-            Sua Obra Pede <span className="text-primary italic">Soluções</span>, Não Só Materiais.
+            A Solução Completa em <span className="text-primary italic">Elétrica, Ferragens e Iluminação</span> na Zona Oeste.
           </h1>
           <p className="mt-5 max-w-xl text-base text-white/75 sm:text-xl leading-relaxed">
-            Do pequeno reparo à grande instalação: conte com a experiência técnica e o estoque completo da Russo para não travar o seu serviço.
+            Atendemos desde pequenas demandas residenciais até fornecimento para condomínios, empresas e grandes operações com agilidade técnica.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap gap-4">
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-elegant)] transition hover:translate-y-[-1px] hover:bg-primary-dark"
+              className="group inline-flex items-center gap-2 rounded-md bg-primary px-8 py-4 text-sm font-bold uppercase tracking-wide text-primary-foreground shadow-[var(--shadow-elegant)] transition hover:translate-y-[-2px] hover:bg-primary-dark"
             >
-              <WhatsAppIcon className="h-5 w-5" />
-              Solicitar Orçamento no WhatsApp
+              Solicitar Orçamento
             </a>
             <a
-              href={GOOGLE_MAPS_URL}
+              href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-md border border-white/20 bg-white/5 px-8 py-4 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-white/10 hover:translate-y-[-2px]"
             >
-              <Navigation className="h-5 w-5" />
-              Como Chegar
+              <WhatsAppIcon className="h-5 w-5" />
+              Falar no WhatsApp
             </a>
+          </div>
+
+          <div className="mt-8 grid grid-cols-2 gap-y-3 sm:grid-cols-4 sm:gap-4">
+            {[
+              "Atendimento especializado",
+              "Grande variedade em estoque",
+              "Estacionamento próprio",
+              "Fácil acesso (Politécnica)",
+            ].map((item) => (
+              <div key={item} className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-white/60">
+                <ShieldCheck className="h-3 w-3 text-primary" />
+                {item}
+              </div>
+            ))}
           </div>
 
           <dl className="mt-10 grid grid-cols-3 gap-4 border-t border-white/10 pt-6 text-left">
