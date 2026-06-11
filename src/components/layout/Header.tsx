@@ -4,15 +4,16 @@ import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 import logoRusso from "/uploads/logo-russo.png";
 
 export function Logo({ className = "" }: { className?: string }) {
+  const isInverted = className.includes("invert");
   return (
-    <Link to="/" className={`flex items-center gap-3 ${className}`}>
+    <Link to="/" className={`group flex items-center gap-3 ${className} ${isInverted ? "invert-colors" : ""}`}>
       <img 
         src={logoRusso} 
         alt="Russo Elétrica e Ferragens" 
         className="h-10 w-10 object-contain shrink-0"
       />
       <span className="flex flex-col leading-none">
-        <span className="font-display text-lg font-extrabold tracking-tight">RUSSO</span>
+        <span className="font-display text-lg font-extrabold tracking-tight text-foreground group-[.invert]:text-white">RUSSO</span>
         <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
           Elétrica & Ferragens
         </span>
