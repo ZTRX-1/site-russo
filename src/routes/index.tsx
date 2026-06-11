@@ -201,7 +201,7 @@ function Header() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-secondary text-secondary-foreground">
+    <section id="hero-section" className="relative overflow-hidden bg-secondary text-secondary-foreground">
       <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "24px 24px" }} />
       <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-primary/30 blur-3xl" />
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16 lg:py-24 lg:px-8">
