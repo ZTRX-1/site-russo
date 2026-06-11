@@ -244,7 +244,7 @@ function Hero() {
               "Fácil acesso (Politécnica)",
             ].map((item) => (
               <div key={item} className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-white/60">
-                <ShieldCheck className="h-3 w-3 text-primary" />
+                <ShieldCheck className="h-3 w-3 text-primary shrink-0" />
                 {item}
               </div>
             ))}
