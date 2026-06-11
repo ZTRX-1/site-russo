@@ -202,27 +202,27 @@ function Hero() {
             ))}
           </div>
 
-          <dl className="mt-10 grid grid-cols-1 gap-6 border-t border-white/10 pt-6 sm:grid-cols-3 sm:gap-4">
-            <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
-              <dt className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-white/55">
-                <Star className="h-3.5 w-3.5 fill-gold text-gold shrink-0" /> Google
+          <dl className="mt-10 grid grid-cols-3 gap-2 border-t border-white/10 pt-6 sm:gap-4">
+            <div className="flex flex-col items-center text-center">
+              <dt className="flex flex-col items-center gap-1 text-[8px] font-bold uppercase tracking-tight text-white/55 min-[400px]:text-[10px] min-[400px]:tracking-wider sm:flex-row sm:gap-1.5 sm:text-xs">
+                <Star className="h-3 w-3 fill-gold text-gold shrink-0 sm:h-3.5 sm:w-3.5" /> Google
               </dt>
-              <dd className="mt-1 font-display text-2xl font-bold text-white">5.0</dd>
-              <dd className="text-xs text-white/60">5.0 / +127 avaliações</dd>
+              <dd className="mt-1 font-display text-base font-bold text-white min-[400px]:text-lg sm:text-2xl">5.0</dd>
+              <dd className="hidden text-[8px] text-white/60 min-[400px]:block min-[400px]:text-[10px] sm:text-xs">+127 avaliações</dd>
             </div>
-            <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
-              <dt className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-white/55">
-                <ShieldCheck className="h-3.5 w-3.5 text-primary shrink-0" /> Faturamento
+            <div className="flex flex-col items-center text-center">
+              <dt className="flex flex-col items-center gap-1 text-[8px] font-bold uppercase tracking-tight text-white/55 min-[400px]:text-[10px] min-[400px]:tracking-wider sm:flex-row sm:gap-1.5 sm:text-xs">
+                <ShieldCheck className="h-3 w-3 text-primary shrink-0 sm:h-3.5 sm:w-3.5" /> Faturamento
               </dt>
-              <dd className="mt-1 font-display text-lg font-bold text-white leading-none">Para Empresas</dd>
-              <dd className="text-xs text-white/60">B2B e Condomínios</dd>
+              <dd className="mt-1 font-display text-[10px] font-bold text-white leading-none min-[400px]:text-xs sm:text-lg">Para Empresas</dd>
+              <dd className="hidden text-[8px] text-white/60 min-[400px]:block min-[400px]:text-[10px] sm:text-xs">B2B e Condomínios</dd>
             </div>
-            <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
-              <dt className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-white/55">
-                <Users className="h-3.5 w-3.5 text-primary shrink-0" /> Atendimento
+            <div className="flex flex-col items-center text-center">
+              <dt className="flex flex-col items-center gap-1 text-[8px] font-bold uppercase tracking-tight text-white/55 min-[400px]:text-[10px] min-[400px]:tracking-wider sm:flex-row sm:gap-1.5 sm:text-xs">
+                <Users className="h-3 w-3 text-primary shrink-0 sm:h-3.5 sm:w-3.5" /> Atendimento
               </dt>
-              <dd className="mt-1 font-display text-lg font-bold text-white leading-none">Especializado</dd>
-              <dd className="text-xs text-white/60">Técnico e Próximo</dd>
+              <dd className="mt-1 font-display text-[10px] font-bold text-white leading-none min-[400px]:text-xs sm:text-lg">Especializado</dd>
+              <dd className="hidden text-[8px] text-white/60 min-[400px]:block min-[400px]:text-[10px] sm:text-xs">Técnico e Próximo</dd>
             </div>
           </dl>
         </div>
