@@ -485,14 +485,14 @@ function Categorias() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative overflow-hidden rounded-xl border border-border bg-card p-5 transition hover:-translate-y-1 hover:border-primary hover:shadow-[var(--shadow-card)]"
+              className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card p-5 transition hover:-translate-y-1 hover:border-primary hover:shadow-[var(--shadow-card)]"
             >
               <div className="absolute inset-x-0 top-0 h-1 bg-primary opacity-0 transition group-hover:opacity-100" />
               <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-secondary text-primary transition group-hover:bg-primary group-hover:text-primary-foreground">
                 <Icon className="h-6 w-6 shrink-0" />
               </span>
               <h3 className="mt-4 font-display text-lg font-bold">{name}</h3>
-              <p className="mt-1 text-sm text-muted-foreground">{desc}</p>
+              <p className="mt-1 flex-grow text-sm text-muted-foreground">{desc}</p>
               <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-primary">
                 Consultar <WhatsAppIcon className="h-3.5 w-3.5 shrink-0" />
               </span>
