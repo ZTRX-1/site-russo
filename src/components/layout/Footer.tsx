@@ -64,11 +64,6 @@ export function Footer() {
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <div className="flex flex-col">
-                  <p className="font-bold text-white/40">CNPJ: 62.093.783/0001-52</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
                 <Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                 <div>
                   <p>Segunda a Sexta: 08:00 às 18:00</p>
@@ -91,7 +86,7 @@ export function Footer() {
 
         <div className="mt-16 border-t border-white/10 pt-8 text-center text-xs text-white/40">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <p>© {currentYear} Russo Elétrica e Ferragens. Todos os direitos reservados.</p>
+            <p>© {currentYear} Russo Elétrica e Ferragens. CNPJ: 62.093.783/0001-52. Todos os direitos reservados.</p>
             <p>
               Desenvolvido com 💙 pela{" "}
               <a 
