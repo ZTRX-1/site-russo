@@ -29,6 +29,7 @@ import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { 
+  WHATSAPP,
   WHATSAPP_URL, 
   PHONE_DISPLAY, 
   MOBILE_DISPLAY, 
