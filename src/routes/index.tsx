@@ -774,7 +774,7 @@ function Contato() {
           </div>
           <div className="rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur-sm">
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground">
-              <MapPin className="h-5 w-5" />
+              <MapPin className="h-5 w-5 shrink-0" />
             </span>
             <p className="mt-3 text-xs uppercase tracking-widest text-white/55">Endereço</p>
             <p className="mt-1 font-semibold text-white">Rio Pequeno · Zona Oeste SP</p>
