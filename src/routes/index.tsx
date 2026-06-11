@@ -94,7 +94,7 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "HardwareStore",
           name: "Russo Elétrica e Ferragens",
-          image: "/uploads/fachada.webp",
+          image: "/uploads/qqqq.jpg",
           telephone: "+551137662002",
           priceRange: "$$",
           address: {
