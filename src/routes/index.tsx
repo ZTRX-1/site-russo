@@ -239,21 +239,21 @@ function Hero() {
                 <Star className="h-3.5 w-3.5 fill-gold text-gold" /> Google
               </dt>
               <dd className="mt-1 font-display text-2xl font-bold text-white">5.0</dd>
-              <dd className="text-xs text-white/60">+127 avaliações</dd>
+              <dd className="text-xs text-white/60">5.0 / +127 avaliações</dd>
             </div>
             <div>
               <dt className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-white/55">
-                <Clock className="h-3.5 w-3.5 text-primary" /> Aberto
+                <ShieldCheck className="h-3.5 w-3.5 text-primary" /> Faturamento
               </dt>
-              <dd className="mt-1 font-display text-sm font-semibold text-white">Seg–Sex 8h–18h</dd>
-              <dd className="text-xs text-white/60">Sáb 8h–13h</dd>
+              <dd className="mt-1 font-display text-lg font-bold text-white leading-none">Para Empresas</dd>
+              <dd className="text-xs text-white/60">B2B e Condomínios</dd>
             </div>
             <div>
               <dt className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-white/55">
-                <MapPin className="h-3.5 w-3.5 text-primary" /> Local
+                <Clock className="h-3.5 w-3.5 text-primary" /> Entrega
               </dt>
-              <dd className="mt-1 font-display text-sm font-semibold text-white">Rio Pequeno</dd>
-              <dd className="text-xs text-white/60">Zona Oeste de SP</dd>
+              <dd className="mt-1 font-display text-lg font-bold text-white leading-none">Agilidade Técnica</dd>
+              <dd className="text-xs text-white/60">Rio Pequeno & Região</dd>
             </div>
           </dl>
         </div>
