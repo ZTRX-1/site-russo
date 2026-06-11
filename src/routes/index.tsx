@@ -457,14 +457,13 @@ function Sobre() {
               Nossa História & Compromisso
             </span>
             <h2 className="mt-3 font-display text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
-              Autoridade e tradição na{" "}
-              <span className="text-primary">Zona Oeste de SP</span>.
+              Tradição e conhecimento técnico a serviço da <span className="text-primary">Zona Oeste</span>.
             </h2>
             <p className="mt-5 text-base text-muted-foreground sm:text-lg leading-relaxed">
-              A Russo nasceu para suprir a carência de um atendimento técnico e ágil na região do Rio Pequeno. Mais do que uma loja, somos parceiros estratégicos de condomínios, empresas e profissionais que buscam segurança, estoque a pronta entrega e orientação especializada para suas operações.
+              A Russo é uma empresa familiar construída sobre os pilares da confiança e do relacionamento próximo com seus clientes. Mais do que fornecer materiais, entregamos soluções baseadas em anos de experiência técnica e um compromisso real com o sucesso de cada obra ou projeto.
             </p>
             <p className="mt-4 text-base text-muted-foreground">
-              Com localização estratégica próxima à Escola Politécnica e USP, consolidamos nossa presença como o principal fornecedor de soluções em infraestrutura elétrica e ferragens da região.
+              Localizada em uma das regiões mais estratégicas da Zona Oeste de São Paulo, oferecemos fácil acesso pela Avenida Escola Politécnica e USP, consolidando-nos como um parceiro sólido para profissionais, empresas e moradores da região.
             </p>
 
             <ul className="mt-8 grid gap-4 sm:grid-cols-2">
