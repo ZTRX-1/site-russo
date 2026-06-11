@@ -267,7 +267,7 @@ function Hero() {
             </div>
             <div>
               <dt className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-white/55">
-                <Users className="h-3.5 w-3.5 text-primary" /> Atendimento
+                <Users className="h-3.5 w-3.5 text-primary shrink-0" /> Atendimento
               </dt>
               <dd className="mt-1 font-display text-lg font-bold text-white leading-none">Especializado</dd>
               <dd className="text-xs text-white/60">Técnico e Próximo</dd>
