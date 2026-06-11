@@ -57,6 +57,10 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
+        name: "viewport",
+        content: "width=device-width, initial-scale=1, maximum-scale=5",
+      },
+      {
         title:
           "Russo Elétrica e Ferragens: Soluções Técnicas na Zona Oeste de SP",
       },
