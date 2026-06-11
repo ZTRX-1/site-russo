@@ -202,7 +202,7 @@ function Hero() {
             ))}
           </div>
 
-          <dl className="mt-10 grid grid-cols-1 gap-6 border-t border-white/10 pt-6 text-left sm:grid-cols-3 sm:gap-4">
+          <dl className="mt-10 grid grid-cols-1 gap-6 border-t border-white/10 pt-6 sm:grid-cols-3 sm:gap-4">
             <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
               <dt className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-white/55">
                 <Star className="h-3.5 w-3.5 fill-gold text-gold shrink-0" /> Google
