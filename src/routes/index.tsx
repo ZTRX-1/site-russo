@@ -153,19 +153,19 @@ function Hero() {
   return (
     <section id="hero-section" className="relative overflow-hidden bg-secondary text-secondary-foreground">
       <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "24px 24px" }} />
-      <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-primary/30 blur-3xl" />
-      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16 lg:py-24 lg:px-8">
+      <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl" />
+      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-24 lg:px-8">
         <div>
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium uppercase tracking-widest text-white/80">
-            <ShieldCheck className="h-3 w-3 text-primary shrink-0" /> Especialistas em elétrica e ferragens na Zona Oeste de São Paulo
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium uppercase tracking-widest text-white/70">
+            <ShieldCheck className="h-3 w-3 text-primary shrink-0" /> Loja especializada em elétrica, ferragens e hidráulica
           </span>
           <h1 className="mt-5 font-display text-4xl font-black leading-[1.05] sm:text-6xl lg:text-7xl">
             <span className="text-white">Materiais elétricos, </span>
             <span className="text-primary">ferragens e iluminação </span>
             <span className="text-white">com atendimento especializado na Zona Oeste de São Paulo</span>
           </h1>
-          <p className="mt-5 max-w-xl text-base text-white/75 sm:text-xl leading-relaxed">
-            Uma loja completa no Rio Pequeno, com fácil acesso pela Avenida Escola Politécnica, pronta para atender consumidores, eletricistas, empresas, condomínios e prestadores de serviço.
+          <p className="mt-5 max-w-xl text-base text-white/60 sm:text-lg leading-relaxed">
+            Uma estrutura completa no Rio Pequeno, com fácil acesso pela Avenida Escola Politécnica, preparada para atender consumidores, eletricistas, empresas, condomínios e prestadores de serviço com variedade, organização e atendimento especializado.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
