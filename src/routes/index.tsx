@@ -657,12 +657,14 @@ function Localizacao() {
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              Localização
+              Localização Estratégica
             </span>
             <h2 className="mt-3 font-display text-3xl font-extrabold leading-tight sm:text-4xl">
-              Estamos no <span className="text-primary">Rio Pequeno</span>, fácil de chegar
+              Fácil acesso via <span className="text-primary">Escola Politécnica</span>
             </h2>
-            <p className="mt-4 text-muted-foreground">{ADDRESS}</p>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              Situada no Rio Pequeno, a Russo ocupa uma posição privilegiada na Zona Oeste, com acesso rápido pela Av. Escola Politécnica, USP e Rod. Raposo Tavares. Estrutura completa para atender toda a região com agilidade logística.
+            </p>
 
             <ul className="mt-6 space-y-3 text-sm">
               <li className="flex items-start gap-3">
