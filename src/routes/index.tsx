@@ -703,7 +703,7 @@ function Localizacao() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-elegant)] transition hover:bg-primary-dark"
               >
-                <Navigation className="h-4 w-4" />
+                <Navigation className="h-4 w-4 shrink-0" />
                 Traçar Rota
               </a>
               <a
