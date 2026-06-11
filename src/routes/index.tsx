@@ -687,7 +687,7 @@ function Localizacao() {
                 <span>Segunda a sexta: 8h às 18h · Sábado: 8h às 13h</span>
               </li>
               <li className="flex items-start gap-3">
-                <ParkingSquare className="mt-0.5 h-5 w-5 text-primary" />
+                <ParkingSquare className="mt-0.5 h-5 w-5 text-primary shrink-0" />
                 <span>Estacionamento próprio no local</span>
               </li>
               <li className="flex items-start gap-3">
