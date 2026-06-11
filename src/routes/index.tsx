@@ -487,7 +487,7 @@ function Sobre() {
               {pillars.map(({ icon: Icon, label, text }) => (
                 <li key={label} className="flex gap-3 rounded-xl border border-border/70 bg-card p-4 transition-all hover:border-primary/30 hover:shadow-sm">
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">
-                    <Icon className="h-5 w-5" />
+                    <Icon className="h-5 w-5 shrink-0" />
                   </span>
                   <div>
                     <p className="font-bold text-foreground">{label}</p>
