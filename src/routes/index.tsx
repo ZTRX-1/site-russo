@@ -202,22 +202,22 @@ function Hero() {
             ))}
           </div>
 
-          <dl className="mt-10 grid grid-cols-3 gap-4 border-t border-white/10 pt-6 text-left">
-            <div>
+          <dl className="mt-10 grid grid-cols-1 gap-6 border-t border-white/10 pt-6 text-left sm:grid-cols-3 sm:gap-4">
+            <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
               <dt className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-white/55">
                 <Star className="h-3.5 w-3.5 fill-gold text-gold shrink-0" /> Google
               </dt>
               <dd className="mt-1 font-display text-2xl font-bold text-white">5.0</dd>
               <dd className="text-xs text-white/60">5.0 / +127 avaliações</dd>
             </div>
-            <div>
+            <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
               <dt className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-white/55">
                 <ShieldCheck className="h-3.5 w-3.5 text-primary shrink-0" /> Faturamento
               </dt>
               <dd className="mt-1 font-display text-lg font-bold text-white leading-none">Para Empresas</dd>
               <dd className="text-xs text-white/60">B2B e Condomínios</dd>
             </div>
-            <div>
+            <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
               <dt className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-white/55">
                 <Users className="h-3.5 w-3.5 text-primary shrink-0" /> Atendimento
               </dt>
