@@ -10,41 +10,35 @@ function TermosDeUso() {
     <LegalLayout title="Termos de Uso">
       <section className="space-y-6 text-muted-foreground leading-relaxed">
         <p>
-          Ao acessar o site da <strong>Russo Elétrica e Ferragens</strong>, você concorda em cumprir estes termos de serviço, todas as leis e regulamentos aplicáveis e concorda que é responsável pelo cumprimento de todas as leis locais aplicáveis.
+          Bem-vindo ao site da <strong>Russo Elétrica e Ferragens</strong>. Ao navegar ou interagir com nossos canais, você concorda com os seguintes termos:
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">1. Uso de Licença</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">1. Orçamentos e Preços</h2>
         <p>
-          É concedida permissão para baixar temporariamente uma cópia dos materiais (informações ou software) no site Russo Elétrica e Ferragens, apenas para visualização pessoal e não comercial transitória.
+          Os orçamentos fornecidos via WhatsApp ou formulários têm validade determinada no momento da emissão. Devido à volatilidade de preços de commodities (como cobre em fios elétricos), os valores podem sofrer alterações sem aviso prévio caso o orçamento expire.
         </p>
-        <p>Esta é a concessão de uma licença, não uma transferência de título e, sob esta licença, você não pode:</p>
-        <ul className="list-disc pl-6 space-y-2">
-          <li>Modificar ou copiar os materiais;</li>
-          <li>Usar os materiais para qualquer finalidade comercial ou para exibição pública;</li>
-          <li>Remover quaisquer direitos autorais ou outras notações de propriedade dos materiais.</li>
-        </ul>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">2. Isenção de Responsabilidade</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">2. Disponibilidade de Estoque</h2>
         <p>
-          Os materiais no site da Russo Elétrica e Ferragens são fornecidos 'como estão'. A Russo Elétrica e Ferragens não oferece garantias, expressas ou implícitas, e, por este meio, isenta e nega todas as outras garantias, incluindo, sem limitação, garantias implícitas ou condições de comercialização ou adequação a um fim específico.
+          As informações de estoque fornecidas são dinâmicas. A reserva de materiais só é confirmada mediante pagamento ou autorização formal de faturamento para empresas e condomínios cadastrados.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">3. Orçamentos e Preços</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">3. Propriedade Intelectual</h2>
         <p>
-          As informações sobre produtos e preços exibidas ou fornecidas via WhatsApp são meramente informativas e estão sujeitas a alterações sem aviso prévio. Um orçamento formal é válido apenas pelo período indicado no documento enviado por nossa equipe.
+          Todo o conteúdo deste site, incluindo fotos da fachada, textos descritivos e logotipos, são de propriedade da Russo Elétrica e Ferragens. O uso não autorizado para fins comerciais é proibido.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">4. Limitações</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">4. Atendimento Corporativo</h2>
         <p>
-          Em nenhum caso a Russo Elétrica e Ferragens ou seus fornecedores serão responsáveis por quaisquer danos decorrentes do uso ou da incapacidade de usar os materiais em seu site.
+          O faturamento para empresas e condomínios está sujeito à análise de crédito e apresentação de documentos societários/cadastrais válidos.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">5. Lei Aplicável</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">5. Foro</h2>
         <p>
-          Estes termos e condições são regidos e interpretados de acordo com as leis brasileiras e você se submete irrevogavelmente à jurisdição exclusiva dos tribunais de São Paulo - SP.
+          Fica eleito o foro da Comarca de São Paulo/SP para dirimir quaisquer controvérsias oriundas destes termos.
         </p>
 
-        <p className="mt-12 text-sm italic">
+        <p className="mt-12 text-sm italic border-t pt-4">
           Última atualização: 11 de Junho de 2026.
         </p>
       </section>

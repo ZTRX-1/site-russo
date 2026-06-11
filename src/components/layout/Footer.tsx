@@ -50,15 +50,23 @@ export function Footer() {
             <h4 className="font-display text-sm font-bold uppercase tracking-widest text-white">Contato & Horário</h4>
             <ul className="mt-6 space-y-4 text-sm text-white/60">
               <li className="flex items-start gap-3">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                <span>
+                  Av. Escola Politécnica, 2850<br />
+                  Rio Pequeno • São Paulo/SP
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                 <div className="flex flex-col">
                   <a href={`tel:${PHONE_DISPLAY.replace(/\D/g, '')}`} className="hover:text-white transition-colors">{PHONE_DISPLAY}</a>
-                  <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">{MOBILE_DISPLAY} (WhatsApp)</a>
+                  <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">WhatsApp: (11) 92232-8009</a>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                <span>{ADDRESS}</span>
+                <div className="flex flex-col">
+                  <p className="font-bold text-white/40">CNPJ: 62.093.783/0001-52</p>
+                </div>
               </li>
               <li className="flex items-start gap-3">
                 <Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary" />

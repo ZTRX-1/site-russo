@@ -10,46 +10,40 @@ function PoliticaPrivacidade() {
     <LegalLayout title="Política de Privacidade">
       <section className="space-y-6 text-muted-foreground leading-relaxed">
         <p>
-          A <strong>Russo Elétrica e Ferragens</strong> está comprometida com a proteção de sua privacidade. Esta Política de Privacidade descreve como coletamos, usamos e protegemos as informações que você nos fornece ao utilizar nosso site ou entrar em contato via WhatsApp.
+          A <strong>Russo Elétrica e Ferragens</strong>, localizada em São Paulo - SP, leva a sua privacidade a sério. Esta política detalha como tratamos seus dados pessoais em conformidade com as leis brasileiras.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">1. Coleta de Informações</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">1. Coleta e Finalidade</h2>
         <p>
-          Coletamos informações básicas quando você interage conosco, tais como:
+          Coletamos dados necessários para o atendimento comercial e a prestação de nossos serviços de varejo:
         </p>
         <ul className="list-disc pl-6 space-y-2">
-          <li>Dados de contato (nome, telefone/WhatsApp) para fins de orçamento e atendimento.</li>
-          <li>Informações técnicas de navegação através de cookies para melhorar a experiência no site.</li>
-          <li>Dados de localização para facilitar a prestação de serviços e rotas até nossa loja.</li>
+          <li><strong>Atendimento via WhatsApp:</strong> Nome e telefone para elaboração de orçamentos e acompanhamento de pedidos.</li>
+          <li><strong>Vendas Corporativas e Condomínios:</strong> Dados cadastrais para faturamento (CNPJ, Razão Social, Endereço).</li>
+          <li><strong>Navegação no Site:</strong> Cookies técnicos e de análise (Google Analytics) para entender o desempenho de nossas campanhas de tráfego pago e melhorar a experiência do usuário.</li>
         </ul>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">2. Uso das Informações</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">2. Compartilhamento de Dados</h2>
         <p>
-          As informações coletadas são utilizadas exclusivamente para:
+          Seus dados são utilizados exclusivamente para as finalidades descritas. Não comercializamos dados pessoais. O compartilhamento ocorre apenas com:
         </p>
         <ul className="list-disc pl-6 space-y-2">
-          <li>Fornecer orçamentos de materiais elétricos, ferragens e iluminação.</li>
-          <li>Atendimento personalizado e suporte técnico aos nossos clientes.</li>
-          <li>Comunicação sobre pedidos, novos produtos ou serviços.</li>
-          <li>Melhoria contínua das funcionalidades do nosso site.</li>
+          <li>Órgãos governamentais (emissão de Nota Fiscal).</li>
+          <li>Plataformas de tráfego pago (dados anonimizados de conversão).</li>
+          <li>Parceiros logísticos, quando houver necessidade de entrega.</li>
         </ul>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">3. Proteção de Dados</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">3. Segurança</h2>
         <p>
-          Implementamos medidas de segurança técnicas e organizacionais para proteger seus dados pessoais contra acesso não autorizado, perda ou alteração. Não vendemos ou compartilhamos suas informações com terceiros para fins de marketing.
+          Adotamos medidas organizacionais e técnicas para proteger suas informações contra acessos indevidos. Nossas comunicações via WhatsApp seguem a criptografia da plataforma, e nosso site utiliza protocolo HTTPS seguro.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">4. Seus Direitos</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">4. Contato</h2>
         <p>
-          Você tem o direito de solicitar o acesso, correção ou exclusão de seus dados pessoais em posse da Russo Elétrica e Ferragens. Para isso, entre em contato conosco através de nossos canais oficiais de atendimento.
+          Para dúvidas sobre seus dados ou para exercer seus direitos de exclusão/correção, entre em contato através de nossa loja física ou pelo WhatsApp oficial.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">5. Alterações nesta Política</h2>
-        <p>
-          Podemos atualizar esta política periodicamente. Recomendamos que você revise esta página regularmente para estar ciente de qualquer alteração.
-        </p>
-
-        <p className="mt-12 text-sm italic">
+        <p className="mt-12 text-sm italic border-t pt-4">
           Última atualização: 11 de Junho de 2026.
         </p>
       </section>
