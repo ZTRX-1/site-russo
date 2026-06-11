@@ -2,7 +2,7 @@ export const WHATSAPP = "5511922328009";
 export const WHATSAPP_MSG = encodeURIComponent(
   "Olá! Vim pelo site da Russo Elétrica e Ferragens e gostaria de um orçamento."
 );
-export const WHATSAPP_URL = `https://wa.me/${WHATSAPP}?text=${WHATSAPP_MSG}`;
+export const WHATSAPP_URL = `https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${WHATSAPP_MSG}`;
 export const PHONE_DISPLAY = "(11) 3766-2002";
 export const MOBILE_DISPLAY = "(11) 92232-8009";
 export const ADDRESS = "Av. Escola Politécnica, 2850 - Rio Pequeno, São Paulo - SP, 05386-130";
