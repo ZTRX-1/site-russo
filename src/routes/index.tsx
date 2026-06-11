@@ -81,6 +81,10 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:type", content: "business.business" },
       { property: "og:url", content: "/" },
+      {
+        property: "og:image",
+        content: "/uploads/qqqq.jpg",
+      },
     ],
     links: [{ rel: "canonical", href: "/" }],
     scripts: [
