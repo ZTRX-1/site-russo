@@ -489,14 +489,14 @@ function Sobre() {
 }
 
 const CATEGORIAS = [
-  { icon: Zap, name: "Materiais Elétricos", desc: "Disjuntores, fios, cabos e toda a infraestrutura para sua instalação." },
-  { icon: Lightbulb, name: "Iluminação", desc: "Lâmpadas LED, refletores e luminárias para todos os ambientes." },
-  { icon: Droplets, name: "Hidráulica & Banho", desc: "Chuveiros elétricos, reparos, torneiras e acessórios para banheiro." },
-  { icon: Plug, name: "Tomadas & Teclas", desc: "Linhas completas de interruptores e tomadas de embutir ou sobrepor." },
-  { icon: Hammer, name: "Ferramentas", desc: "Ferramentas manuais essenciais para o dia a dia e para o profissional." },
-  { icon: Wrench, name: "Ferragens", desc: "Fechaduras, dobradiças, parafusos e itens de fixação em geral." },
-  { icon: Cable, name: "Conectividade", desc: "Extensões, adaptadores e materiais para rede e telefonia." },
-  { icon: ShieldCheck, name: "Segurança", desc: "Equipamentos para proteção elétrica e sensores de presença." },
+  { icon: Zap, name: "Infraestrutura Elétrica", desc: "Soluções para manutenção, fios, cabos e quadros de energia." },
+  { icon: Lightbulb, name: "Sistemas de Iluminação", desc: "LED industrial, comercial e residencial para alta performance." },
+  { icon: Droplets, name: "Manutenção Hidráulica", desc: "Componentes para redes de água e soluções para banho." },
+  { icon: Plug, name: "Acabamentos Elétricos", desc: "Linhas completas de interruptores e tomadas para obras." },
+  { icon: Hammer, name: "Ferramental Profissional", desc: "Ferramentas para operação, manutenção e prestação de serviço." },
+  { icon: Wrench, name: "Soluções em Ferragens", desc: "Fixação, segurança e infraestrutura metálica completa." },
+  { icon: Cable, name: "Conectividade & Redes", desc: "Materiais para infraestrutura de dados e telecomunicações." },
+  { icon: ShieldCheck, name: "Proteção & Segurança", desc: "Equipamentos para segurança elétrica e automação básica." },
 ];
 
 function Categorias() {
