@@ -771,8 +771,7 @@ function Footer() {
         <div className="lg:col-span-2">
           <Logo />
           <p className="mt-4 max-w-sm text-sm text-muted-foreground">
-            Materiais elétricos, ferragens, ferramentas e iluminação no Rio Pequeno, Zona Oeste de São
-            Paulo. Atendimento especializado para profissionais e consumidores finais.
+            Soluções técnicas em materiais elétricos, ferragens e iluminação. Tradição e atendimento especializado para condomínios, empresas e profissionais na Zona Oeste de São Paulo.
           </p>
           <div className="mt-5 flex items-center gap-3">
             <a href="https://www.instagram.com/russoeletrofer/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-10 w-10 items-center justify-center rounded-md border border-border text-foreground/70 transition hover:border-primary hover:text-primary">
@@ -787,28 +786,41 @@ function Footer() {
           </div>
         </div>
         <div>
-          <h3 className="font-display text-sm font-bold uppercase tracking-widest text-foreground">Soluções Institucionais</h3>
+          <h3 className="font-display text-sm font-bold uppercase tracking-widest text-foreground">Soluções</h3>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
             <li><a href="#atendemos" className="hover:text-primary transition-colors">Para Condomínios</a></li>
             <li><a href="#atendemos" className="hover:text-primary transition-colors">Para Empresas</a></li>
             <li><a href="#orcamento-corporativo" className="hover:text-primary transition-colors">Orçamento Corporativo</a></li>
             <li><a href="#categorias" className="hover:text-primary transition-colors">Infraestrutura Elétrica</a></li>
-            <li><a href="#localizacao" className="hover:text-primary transition-colors">Rio Pequeno / USP</a></li>
+            <li><a href="#localizacao" className="hover:text-primary transition-colors">Localização</a></li>
           </ul>
         </div>
         <div>
-          <h3 className="font-display text-sm font-bold uppercase tracking-widest text-foreground">Informações Legais</h3>
+          <h3 className="font-display text-sm font-bold uppercase tracking-widest text-foreground">Institucional</h3>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li><button onClick={() => alert('Políticas de Privacidade')} className="hover:text-primary text-left cursor-pointer">Políticas de Privacidade</button></li>
+            <li><button onClick={() => alert('Políticas de Privacidade')} className="hover:text-primary text-left cursor-pointer">Privacidade</button></li>
             <li><button onClick={() => alert('Termos de Uso')} className="hover:text-primary text-left cursor-pointer">Termos de Uso</button></li>
-            <li><button onClick={() => alert('Código de Defesa do Consumidor')} className="hover:text-primary text-left cursor-pointer">CDC</button></li>
+            <li><button onClick={() => alert('Conformidade LGPD')} className="hover:text-primary text-left cursor-pointer">LGPD</button></li>
+            <li><button onClick={() => alert('Direitos do Consumidor')} className="hover:text-primary text-left cursor-pointer">Direitos do Consumidor</button></li>
+            <li><a href="#contato" className="hover:text-primary transition-colors">Contato</a></li>
           </ul>
         </div>
       </div>
       <div className="border-t border-border">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-muted-foreground sm:flex-row sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-6 text-[10px] uppercase tracking-widest text-muted-foreground sm:flex-row sm:px-6 lg:px-8">
           <p>© {new Date().getFullYear()} Russo Elétrica e Ferragens. Todos os direitos reservados.</p>
-          <p>Rio Pequeno · São Paulo · SP</p>
+          <div className="flex items-center gap-4">
+            <span>Zona Oeste · São Paulo · SP</span>
+            <span className="hidden sm:inline text-border">|</span>
+            <a 
+              href="https://vexxon.company" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group flex items-center gap-1.5 transition hover:text-primary"
+            >
+              Desenvolvido com <span className="text-red-500 group-hover:animate-pulse">💙</span> pela <span className="font-bold text-foreground">Vexxon Company</span>
+            </a>
+          </div>
         </div>
       </div>
     </footer>
