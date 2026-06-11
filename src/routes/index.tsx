@@ -419,9 +419,8 @@ function Sobre() {
                 className="h-full w-full object-cover"
               />
             </div>
-            <div className="absolute -bottom-6 -right-6 hidden rounded-xl bg-primary px-6 py-5 text-primary-foreground shadow-[var(--shadow-elegant)] sm:block">
-              <p className="font-display text-3xl font-black">+10mil</p>
-              <p className="text-xs uppercase tracking-widest">itens à disposição</p>
+            <div className="absolute -bottom-6 -right-6 hidden max-w-[240px] rounded-xl bg-primary px-6 py-5 text-primary-foreground shadow-[var(--shadow-elegant)] sm:block">
+              <p className="text-xs font-bold uppercase tracking-widest leading-tight">Grande variedade de marcas, modelos e opções disponíveis em estoque.</p>
             </div>
           </div>
 

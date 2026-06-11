@@ -10,39 +10,31 @@ function LGPD() {
     <LegalLayout title="Conformidade LGPD">
       <section className="space-y-6 text-muted-foreground leading-relaxed">
         <p>
-          Em conformidade com a <strong>Lei Geral de Proteção de Dados (Lei nº 13.709/2018)</strong>, a Russo Elétrica e Ferragens reafirma seu compromisso com a transparência e segurança no tratamento de dados pessoais de seus clientes, parceiros e colaboradores.
+          A <strong>Russo Elétrica e Ferragens</strong> reafirma seu compromisso com a <strong>Lei Geral de Proteção de Dados (Lei nº 13.709/2018)</strong>, garantindo que o tratamento de dados pessoais em nossa operação varejista seja feito de forma ética e transparente.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Princípios de Tratamento</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Nossa Atuação como Controladora</h2>
         <p>
-          Baseamos nosso tratamento de dados nos seguintes princípios:
+          Como controladora dos dados, a Russo garante:
         </p>
         <ul className="list-disc pl-6 space-y-2">
-          <li><strong>Finalidade:</strong> Coletamos dados apenas para propósitos legítimos e específicos (ex: emissão de orçamentos e notas fiscais).</li>
-          <li><strong>Necessidade:</strong> Limitamos a coleta ao mínimo necessário para a realização de nossas atividades.</li>
-          <li><strong>Segurança:</strong> Utilizamos práticas de mercado para proteger as informações contra incidentes.</li>
-          <li><strong>Transparência:</strong> Mantemos o titular informado sobre como seus dados são utilizados.</li>
+          <li><strong>Minimização:</strong> Coletamos apenas o CPF/CNPJ para obrigações fiscais e telefone para comunicação comercial.</li>
+          <li><strong>Direitos do Titular:</strong> Você pode solicitar a confirmação, o acesso, a correção ou a exclusão de seus dados a qualquer momento através de nossos canais oficiais.</li>
+          <li><strong>Transparência no Tráfego Pago:</strong> Utilizamos ferramentas de rastreamento (como pixels de conversão) que processam dados de forma anonimizada para otimização de nossos anúncios no Google e Meta.</li>
         </ul>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Seus Direitos como Titular</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Tratamento de Dados de Contato</h2>
         <p>
-          De acordo com a LGPD, você pode solicitar a qualquer momento:
-        </p>
-        <ul className="list-disc pl-6 space-y-2">
-          <li>Confirmação da existência de tratamento de seus dados.</li>
-          <li>Acesso aos seus dados pessoais.</li>
-          <li>Correção de dados incompletos ou inexatos.</li>
-          <li>Anonimização, bloqueio ou eliminação de dados desnecessários.</li>
-          <li>Revogação do consentimento para tratamento.</li>
-        </ul>
-
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Encarregado de Dados (DPO)</h2>
-        <p>
-          Para exercer seus direitos ou tirar dúvidas sobre como tratamos seus dados, você pode entrar em contato com nosso encarregado de proteção de dados através do e-mail de contato da loja ou pelo nosso WhatsApp oficial.
+          Ao iniciar um atendimento via WhatsApp através de nosso site, você consente com o tratamento de seu número e nome para fins de envio de orçamentos e informações técnicas solicitadas por você.
         </p>
 
-        <p className="mt-12 text-sm italic">
-          Esta declaração é revisada periodicamente para garantir a conformidade com as regulamentações vigentes.
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Segurança da Informação</h2>
+        <p>
+          Nossos sistemas de gestão de vendas e faturamento possuem controle de acesso restrito, garantindo que apenas colaboradores autorizados tenham acesso aos dados cadastrais para finalidades estritamente profissionais.
+        </p>
+
+        <p className="mt-12 text-sm italic border-t pt-4">
+          Compromisso Russo com a transparência e segurança digital.
         </p>
       </section>
     </LegalLayout>
