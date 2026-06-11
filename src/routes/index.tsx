@@ -260,7 +260,7 @@ function Hero() {
             </div>
             <div>
               <dt className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-white/55">
-                <ShieldCheck className="h-3.5 w-3.5 text-primary" /> Faturamento
+                <ShieldCheck className="h-3.5 w-3.5 text-primary shrink-0" /> Faturamento
               </dt>
               <dd className="mt-1 font-display text-lg font-bold text-white leading-none">Para Empresas</dd>
               <dd className="text-xs text-white/60">B2B e Condomínios</dd>
