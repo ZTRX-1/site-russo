@@ -163,11 +163,10 @@ function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <Logo />
         <nav className="hidden items-center gap-8 text-sm font-medium text-foreground/80 md:flex">
-          <a href="#sobre" className="hover:text-primary transition-colors">Sobre</a>
-          <a href="#categorias" className="hover:text-primary transition-colors">Categorias</a>
-          <a href="#diferenciais" className="hover:text-primary transition-colors">Diferenciais</a>
+          <a href="#atendemos" className="hover:text-primary transition-colors">Públicos</a>
+          <a href="#categorias" className="hover:text-primary transition-colors">Soluções</a>
+          <a href="#orcamento-corporativo" className="hover:text-primary transition-colors font-bold text-primary">Corporativo</a>
           <a href="#localizacao" className="hover:text-primary transition-colors">Localização</a>
-          <a href="#contato" className="hover:text-primary transition-colors">Contato</a>
         </nav>
         <a
           href={WHATSAPP_URL}
