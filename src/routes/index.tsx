@@ -116,6 +116,22 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  useEffect(() => {
+    const handleScroll = () => {
+      const hero = document.getElementById('hero-section');
+      if (hero) {
+        const rect = hero.getBoundingClientRect();
+        if (rect.top < 0) {
+          document.body.classList.add('scrolled');
+        } else {
+          document.body.classList.remove('scrolled');
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
