@@ -757,7 +757,7 @@ function Contato() {
           rel="noopener noreferrer"
           className="mt-8 inline-flex items-center gap-3 rounded-md bg-whatsapp px-8 py-4 text-sm font-bold uppercase tracking-widest text-white shadow-lg transition hover:bg-[#128C7E]"
         >
-          <WhatsAppIcon className="h-5 w-5" />
+          <WhatsAppIcon className="h-5 w-5 shrink-0" />
           Falar com Especialista
         </a>
 
