@@ -864,7 +864,7 @@ function FloatingWhats() {
       aria-label="Falar no WhatsApp"
       className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-110 active:scale-95"
     >
-      <WhatsAppIcon className="h-8 w-8" />
+      <WhatsAppIcon className="h-8 w-8 shrink-0" />
       <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-[#25D366]/40" />
     </a>
   );
