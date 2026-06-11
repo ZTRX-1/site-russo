@@ -423,13 +423,13 @@ function Sobre() {
               Nossa História & Compromisso
             </span>
             <h2 className="mt-3 font-display text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
-              Tradição familiar e conhecimento técnico a serviço da <span className="text-primary">Zona Oeste</span>.
+              Mais do que uma loja. Um <span className="text-primary">parceiro para quem precisa resolver</span>.
             </h2>
             <p className="mt-5 text-base text-muted-foreground sm:text-lg leading-relaxed">
-              A Russo é mais do que uma loja de materiais; é um ponto de apoio para quem busca resolver problemas com confiança. Nossa história é construída sobre o atendimento próximo, a variedade de produtos e o compromisso real com cada cliente, seja ele um morador da região ou um profissional da área.
+              A Russo é mais do que uma loja de materiais elétricos e ferragens. É um ponto de apoio para quem busca resolver problemas com confiança, encontrar os produtos certos e contar com um atendimento próximo e especializado.
             </p>
             <p className="mt-4 text-base text-muted-foreground">
-              Com localização estratégica no Rio Pequeno, oferecemos fácil acesso pela Avenida Escola Politécnica para quem vem da USP, Jaguaré, Butantã, Osasco e demais bairros da Zona Oeste. Aqui, você encontra estrutura completa para atender desde pequenas reformas até grandes demandas de condomínios e empresas.
+              Nossa história foi construída sobre relacionamento, variedade de produtos e compromisso real com cada cliente, seja ele um morador da região, um eletricista, um síndico, uma empresa ou um prestador de serviço. Localizada no Rio Pequeno, a Russo oferece fácil acesso pela Avenida Escola Politécnica para quem vem da USP, Jaguaré, Butantã, Osasco e demais regiões da Zona Oeste. Com estrutura organizada, estacionamento próprio e uma ampla variedade de produtos, estamos preparados para atender desde pequenas reformas residenciais até demandas recorrentes de condomínios, empresas e profissionais da área.
             </p>
 
             <ul className="mt-8 grid gap-4 sm:grid-cols-2">
