@@ -830,7 +830,7 @@ function Footer() {
         <div>
           <h3 className="font-display text-sm font-bold uppercase tracking-widest text-foreground">Institucional</h3>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li><button onClick={() => alert('Políticas de Privacidade')} className="hover:text-primary text-left cursor-pointer">Privacidade</button></li>
+            <li><button onClick={() => window.open('/privacidade', '_blank')} className="hover:text-primary text-left cursor-pointer">Privacidade</button></li>
             <li><button onClick={() => alert('Termos de Uso')} className="hover:text-primary text-left cursor-pointer">Termos de Uso</button></li>
             <li><button onClick={() => alert('Conformidade LGPD')} className="hover:text-primary text-left cursor-pointer">LGPD</button></li>
             <li><button onClick={() => alert('Direitos do Consumidor')} className="hover:text-primary text-left cursor-pointer">Direitos do Consumidor</button></li>
