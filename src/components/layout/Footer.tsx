@@ -22,7 +22,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-6">
-            <Logo className="invert brightness-0" />
+            <Logo className="brightness-0 invert" />
             <p className="text-sm leading-relaxed text-white/60">
               Sua parceira em soluções elétricas, ferragens e iluminação na Zona Oeste. Atendimento especializado para todos os tipos de projetos.
             </p>
