@@ -157,13 +157,13 @@ function Hero() {
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16 lg:py-24 lg:px-8">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium uppercase tracking-widest text-white/80">
-            <MapPin className="h-3 w-3 text-primary shrink-0" /> Localização estratégica na Zona Oeste de SP
+            <MapPin className="h-3 w-3 text-primary shrink-0" /> Fácil acesso pela Av. Escola Politécnica
           </span>
           <h1 className="mt-5 font-display text-4xl font-black leading-[1.05] sm:text-6xl lg:text-7xl">
-            Soluções Técnicas em <span className="text-primary italic">Elétrica, Ferragens e Iluminação</span>.
+            Materiais elétricos, ferragens e iluminação com <span className="text-primary italic">atendimento de verdade</span> na Zona Oeste
           </h1>
           <p className="mt-5 max-w-xl text-base text-white/75 sm:text-xl leading-relaxed">
-            Estrutura consolidada para atender com precisão desde demandas residenciais até o fornecimento técnico para condomínios e empresas.
+            Uma loja completa no Rio Pequeno, com fácil acesso pela Av. Escola Politécnica, pronta para atender consumidores, eletricistas, empresas, condomínios e prestadores de serviço.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
@@ -173,23 +173,23 @@ function Hero() {
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-primary-foreground shadow-sm transition hover:bg-primary-dark"
             >
-              Consultar Orçamento
+              Solicitar orçamento no WhatsApp
             </a>
             <a
-              href={WHATSAPP_URL}
+              href={GOOGLE_MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-md border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-white/10"
             >
-              <WhatsAppIcon className="h-4 w-4 shrink-0" />
-              WhatsApp
+              <Navigation className="h-4 w-4 shrink-0" />
+              Traçar rota de carro
             </a>
           </div>
 
           <div className="mt-8 grid grid-cols-2 gap-y-3 sm:grid-cols-4 sm:gap-4">
             {[
               "Atendimento especializado",
-              "Grande variedade em estoque",
+              "Variedade de produtos",
               "Estacionamento próprio",
               "Fácil acesso (Politécnica)",
             ].map((item) => (
@@ -230,7 +230,6 @@ function Hero() {
           <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-secondary to-black shadow-2xl">
             <div className="absolute inset-0 bg-primary/5 mix-blend-overlay" />
             
-            {/* Elementos visuais de solução */}
             <div className="absolute inset-0 flex flex-col justify-center gap-4 p-6 sm:p-10 pb-16">
               <div className="grid grid-cols-2 gap-4">
                 <div className="group flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition hover:bg-primary/20">
@@ -268,7 +267,6 @@ function Hero() {
               </div>
             </div>
 
-            {/* Selo de Confiança Local - Movido para fora do fluxo principal dos cards */}
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 pt-10">
               <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-secondary/80 p-3 backdrop-blur-xl">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-white">
@@ -286,6 +284,7 @@ function Hero() {
     </section>
   );
 }
+
 
 function SectionHeader({ eyebrow, title, description }: { eyebrow: string; title: React.ReactNode; description?: string }) {
   return (
