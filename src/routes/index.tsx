@@ -394,7 +394,7 @@ function Atendemos() {
           {segmentos.map(({ title, icon: Icon, desc }) => (
             <div key={title} className="group relative rounded-2xl border border-border bg-card p-8 transition hover:border-primary/40 hover:shadow-lg">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary mb-6 transition group-hover:bg-primary group-hover:text-primary-foreground">
-                <Icon className="h-6 w-6" />
+                <Icon className="h-6 w-6 shrink-0" />
               </div>
               <h3 className="font-display text-2xl font-bold mb-3">{title}</h3>
               <p className="text-muted-foreground leading-relaxed">{desc}</p>
