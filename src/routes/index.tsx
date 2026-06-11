@@ -622,7 +622,7 @@ function Avaliacoes() {
             </h2>
             <div className="mt-4 flex items-center gap-1.5">
               {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="h-6 w-6 fill-gold text-gold" />
+                <Star key={i} className="h-6 w-6 fill-gold text-gold shrink-0" />
               ))}
             </div>
             <p className="mt-4 text-muted-foreground">
