@@ -806,7 +806,7 @@ function FloatingWhats() {
               />
               <p className="leading-tight">
                 Olá, sou o <span className="text-primary">Russo</span>! <br />
-                Estou no site da Russo e gostaria de um orçamento.
+                Precisa de ajuda com seu orçamento?
               </p>
             </div>
           </a>
