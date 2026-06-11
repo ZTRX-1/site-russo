@@ -79,8 +79,8 @@ export const Route = createFileRoute("/")({
         content:
           "Atendimento especializado e soluções completas em elétrica, ferragens e iluminação. Para condomínios, empresas e profissionais na Zona Oeste de SP.",
       },
-      { property: "og:type", content: "business.business" },
-      { property: "og:url", content: "/" },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://russoeletrofer.com.br" },
       {
         property: "og:image",
         content: "/uploads/qqqq.jpg",
