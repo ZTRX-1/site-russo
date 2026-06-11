@@ -539,7 +539,7 @@ function Categorias() {
               <h3 className="mt-4 font-display text-lg font-bold">{name}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{desc}</p>
               <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-primary">
-                Consultar <WhatsAppIcon className="h-3.5 w-3.5" />
+                Consultar <WhatsAppIcon className="h-3.5 w-3.5 shrink-0" />
               </span>
             </a>
           ))}
