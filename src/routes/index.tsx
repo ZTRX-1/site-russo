@@ -250,10 +250,10 @@ function Hero() {
             </div>
             <div>
               <dt className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-white/55">
-                <Clock className="h-3.5 w-3.5 text-primary" /> Entrega
+                <Users className="h-3.5 w-3.5 text-primary" /> Atendimento
               </dt>
-              <dd className="mt-1 font-display text-lg font-bold text-white leading-none">Agilidade Técnica</dd>
-              <dd className="text-xs text-white/60">Rio Pequeno & Região</dd>
+              <dd className="mt-1 font-display text-lg font-bold text-white leading-none">Especializado</dd>
+              <dd className="text-xs text-white/60">Técnico e Próximo</dd>
             </div>
           </dl>
         </div>
