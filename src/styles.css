@@ -203,3 +203,11 @@ svg {
 .w-7 { width: 1.75rem !important; }
 .h-8 { height: 2rem !important; }
 .w-8 { width: 2rem !important; }
+
+/* Hide Lovable badge */
+#lovable-badge,
+#lovable-badge-v2,
+[id^="lovable-badge"],
+a[href*="lovable.dev"][target="_blank"] {
+  display: none !important;
+}
