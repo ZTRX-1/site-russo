@@ -159,7 +159,7 @@ function Logo({ className = "" }: { className?: string }) {
       <img 
         src={logoRusso} 
         alt="Russo Elétrica e Ferragens" 
-        className="h-10 w-10 object-contain"
+        className="h-10 w-10 object-contain shrink-0"
       />
       <span className="flex flex-col leading-none">
         <span className="font-display text-lg font-extrabold tracking-tight">RUSSO</span>
