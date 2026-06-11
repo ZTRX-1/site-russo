@@ -691,7 +691,7 @@ function Localizacao() {
                 <span>Estacionamento próprio no local</span>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-5 w-5 text-primary" />
+                <MapPin className="mt-0.5 h-5 w-5 text-primary shrink-0" />
                 <span>Acesso facilitado pela Av. Escola Politécnica, 2850</span>
               </li>
             </ul>
