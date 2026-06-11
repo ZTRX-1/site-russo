@@ -57,16 +57,27 @@ export const Route = createFileRoute("/")({
     meta: [
       {
         title:
-          "Russo Elétrica e Ferragens | Rio Pequeno - Zona Oeste de SP",
+          "Russo Elétrica e Ferragens: Soluções Completas na Zona Oeste de SP",
       },
       {
         name: "description",
         content:
-          "Materiais elétricos, ferragens, ferramentas, iluminação, fios, disjuntores e chuveiros no Rio Pequeno, Zona Oeste de São Paulo. Atendimento especializado e melhores preços da região.",
+          "Fornecedora de soluções em elétrica, ferragens e iluminação na Zona Oeste de São Paulo. Atendemos condomínios, empresas, academias, eletricistas e consumidor final. Rio Pequeno, USP, Escola Politécnica.",
       },
-      { name: "keywords", content: "material elétrico Rio Pequeno, ferragens Zona Oeste SP, loja elétrica São Paulo, disjuntores, fios e cabos, chuveiros, ferramentas Rio Pequeno" },
-      { property: "og:title", content: "Russo Elétrica e Ferragens — Rio Pequeno, SP" },
-      { property: "og:description", content: "Atendimento especializado, produtos de qualidade e os melhores preços da Zona Oeste de SP." },
+      {
+        name: "keywords",
+        content:
+          "material elétrico Zona Oeste, loja de elétrica Rio Pequeno, ferragens Rio Pequeno, materiais elétricos próximo à USP, materiais elétricos Escola Politécnica, ferragens Zona Oeste SP, fornecedor elétrica SP, soluções elétricas corporativas",
+      },
+      {
+        property: "og:title",
+        content: "Russo Elétrica e Ferragens — Soluções na Zona Oeste de SP",
+      },
+      {
+        property: "og:description",
+        content:
+          "Atendimento especializado e soluções completas em elétrica, ferragens e iluminação. Para condomínios, empresas e profissionais na Zona Oeste de SP.",
+      },
       { property: "og:type", content: "business.business" },
       { property: "og:url", content: "/" },
     ],
