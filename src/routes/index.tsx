@@ -380,7 +380,7 @@ function OrcamentoCorporativo() {
           </p>
           <div className="flex flex-wrap gap-4">
             <a
-              href={WHATSAPP_URL}
+              href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Olá! Estou no site da Russo e gostaria de solicitar um orçamento para faturamento corporativo/condomínio.")}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-md bg-primary px-10 py-5 text-sm font-bold uppercase tracking-widest text-primary-foreground shadow-2xl transition hover:bg-primary-dark"
