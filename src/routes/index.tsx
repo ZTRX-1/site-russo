@@ -364,25 +364,28 @@ function Sobre() {
 
           <div>
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              Sobre a Russo
+              Nossa História & Compromisso
             </span>
             <h2 className="mt-3 font-display text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
-              Uma loja consolidada no coração do{" "}
-              <span className="text-primary">Rio Pequeno</span>.
+              Autoridade e tradição na{" "}
+              <span className="text-primary">Zona Oeste de SP</span>.
             </h2>
-            <p className="mt-5 text-base text-muted-foreground sm:text-lg">
-              A Russo Elétrica e Ferragens é o ponto de confiança na Zona Oeste para quem busca solução, não apenas produto. Com estoque focado no que o morador e o profissional do Rio Pequeno realmente precisam, garantimos o melhor custo-benefício e um atendimento que entende de obra.
+            <p className="mt-5 text-base text-muted-foreground sm:text-lg leading-relaxed">
+              A Russo nasceu para suprir a carência de um atendimento técnico e ágil na região do Rio Pequeno. Mais do que uma loja, somos parceiros estratégicos de condomínios, empresas e profissionais que buscam segurança, estoque a pronta entrega e orientação especializada para suas operações.
+            </p>
+            <p className="mt-4 text-base text-muted-foreground">
+              Com localização estratégica próxima à Escola Politécnica e USP, consolidamos nossa presença como o principal fornecedor de soluções em infraestrutura elétrica e ferragens da região.
             </p>
 
             <ul className="mt-8 grid gap-4 sm:grid-cols-2">
               {pillars.map(({ icon: Icon, label, text }) => (
-                <li key={label} className="flex gap-3 rounded-xl border border-border/70 bg-card p-4">
+                <li key={label} className="flex gap-3 rounded-xl border border-border/70 bg-card p-4 transition-all hover:border-primary/30 hover:shadow-sm">
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">
                     <Icon className="h-5 w-5" />
                   </span>
                   <div>
-                    <p className="font-semibold text-foreground">{label}</p>
-                    <p className="mt-0.5 text-sm text-muted-foreground">{text}</p>
+                    <p className="font-bold text-foreground">{label}</p>
+                    <p className="mt-0.5 text-sm text-muted-foreground leading-snug">{text}</p>
                   </div>
                 </li>
               ))}
