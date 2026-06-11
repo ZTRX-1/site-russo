@@ -798,11 +798,11 @@ function Footer() {
           </ul>
         </div>
         <div>
-          <h3 className="font-display text-sm font-bold uppercase tracking-widest">Contato</h3>
+          <h3 className="font-display text-sm font-bold uppercase tracking-widest text-foreground">Informações Legais</h3>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li className="flex items-start gap-2"><Phone className="mt-0.5 h-4 w-4 text-primary" /><a href={`tel:${PHONE_DISPLAY.replace(/\D/g, '')}`} className="hover:text-primary">{PHONE_DISPLAY}</a></li>
-            <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 text-primary" />Rio Pequeno, Zona Oeste — SP</li>
-            <li className="flex items-start gap-2"><Clock className="mt-0.5 h-4 w-4 text-primary" />Seg–Sex 8h–18h · Sáb 8h–13h</li>
+            <li><button onClick={() => alert('Políticas de Privacidade')} className="hover:text-primary text-left cursor-pointer">Políticas de Privacidade</button></li>
+            <li><button onClick={() => alert('Termos de Uso')} className="hover:text-primary text-left cursor-pointer">Termos de Uso</button></li>
+            <li><button onClick={() => alert('Código de Defesa do Consumidor')} className="hover:text-primary text-left cursor-pointer">CDC</button></li>
           </ul>
         </div>
       </div>
