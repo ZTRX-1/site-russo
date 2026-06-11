@@ -30,10 +30,12 @@ export function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <Logo />
         <nav className="hidden items-center gap-8 text-sm font-medium text-foreground/80 md:flex">
-          <Link to="/#atendemos" className="hover:text-primary transition-colors">Públicos</Link>
+          <Link to="/" className="hover:text-primary transition-colors">Início</Link>
+          <Link to="/#sobre" className="hover:text-primary transition-colors">Quem Somos</Link>
           <Link to="/#categorias" className="hover:text-primary transition-colors">Soluções</Link>
-          <Link to="/#orcamento-corporativo" className="hover:text-primary transition-colors font-bold text-primary">Corporativo</Link>
+          <Link to="/#orcamento-corporativo" className="hover:text-primary transition-colors">Corporativo</Link>
           <Link to="/#localizacao" className="hover:text-primary transition-colors">Localização</Link>
+          <Link to="/#contato" className="hover:text-primary transition-colors">Contato</Link>
         </nav>
         <a
           href={WHATSAPP_URL}

@@ -157,13 +157,13 @@ function Hero() {
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16 lg:py-24 lg:px-8">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium uppercase tracking-widest text-white/80">
-            <MapPin className="h-3 w-3 text-primary shrink-0" /> Fácil acesso pela Av. Escola Politécnica
+            <ShieldCheck className="h-3 w-3 text-primary shrink-0" /> Especialistas em elétrica e ferragens na Zona Oeste de São Paulo
           </span>
           <h1 className="mt-5 font-display text-4xl font-black leading-[1.05] sm:text-6xl lg:text-7xl">
-            Materiais elétricos, ferragens e iluminação com <span className="text-primary italic">atendimento de verdade</span> na Zona Oeste
+            Materiais elétricos, ferragens e iluminação com atendimento especializado na Zona Oeste de São Paulo
           </h1>
           <p className="mt-5 max-w-xl text-base text-white/75 sm:text-xl leading-relaxed">
-            Uma loja completa no Rio Pequeno, com fácil acesso pela Av. Escola Politécnica, pronta para atender consumidores, eletricistas, empresas, condomínios e prestadores de serviço.
+            Uma loja completa no Rio Pequeno, com fácil acesso pela Avenida Escola Politécnica, pronta para atender consumidores, eletricistas, empresas, condomínios e prestadores de serviço.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
@@ -173,7 +173,7 @@ function Hero() {
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-primary-foreground shadow-sm transition hover:bg-primary-dark"
             >
-              Solicitar orçamento no WhatsApp
+              Solicitar orçamento
             </a>
             <a
               href={GOOGLE_MAPS_URL}
@@ -182,7 +182,7 @@ function Hero() {
               className="inline-flex items-center gap-2 rounded-md border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-white/10"
             >
               <Navigation className="h-4 w-4 shrink-0" />
-              Traçar rota de carro
+              Como chegar
             </a>
           </div>
 
@@ -362,13 +362,13 @@ function OrcamentoCorporativo() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-3xl">
           <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">
-            Área do Cliente Corporativo
+            Atendimento para empresas, condomínios e profissionais
           </span>
           <h2 className="font-display text-4xl font-black leading-tight sm:text-5xl lg:text-6xl mb-6">
-            Precisa de orçamento para sua <span className="text-primary">empresa ou condomínio?</span>
+            Atendimento para <span className="text-primary">empresas, condomínios e profissionais</span>
           </h2>
           <p className="text-lg text-white/70 mb-10 leading-relaxed">
-            Atendemos compras recorrentes, manutenção predial, faturamento para empresas e suporte técnico para grandes projetos. Fale com nosso consultor especializado.
+            Além do consumidor residencial, a Russo atende empresas, condomínios, academias, eletricistas e prestadores de serviço que precisam de agilidade, variedade e confiança na hora de comprar materiais elétricos e ferragens. Solicite um orçamento com nossa equipe e encontre uma solução adequada para a sua necessidade.
           </p>
           <div className="flex flex-wrap gap-4">
             <a
@@ -423,13 +423,13 @@ function Sobre() {
               Nossa História & Compromisso
             </span>
             <h2 className="mt-3 font-display text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
-              Tradição familiar e conhecimento técnico a serviço da <span className="text-primary">Zona Oeste</span>.
+              Mais do que uma loja. Um <span className="text-primary">parceiro para quem precisa resolver</span>.
             </h2>
             <p className="mt-5 text-base text-muted-foreground sm:text-lg leading-relaxed">
-              A Russo é mais do que uma loja de materiais; é um ponto de apoio para quem busca resolver problemas com confiança. Nossa história é construída sobre o atendimento próximo, a variedade de produtos e o compromisso real com cada cliente, seja ele um morador da região ou um profissional da área.
+              A Russo é mais do que uma loja de materiais elétricos e ferragens. É um ponto de apoio para quem busca resolver problemas com confiança, encontrar os produtos certos e contar com um atendimento próximo e especializado.
             </p>
             <p className="mt-4 text-base text-muted-foreground">
-              Com localização estratégica no Rio Pequeno, oferecemos fácil acesso pela Avenida Escola Politécnica para quem vem da USP, Jaguaré, Butantã, Osasco e demais bairros da Zona Oeste. Aqui, você encontra estrutura completa para atender desde pequenas reformas até grandes demandas de condomínios e empresas.
+              Nossa história foi construída sobre relacionamento, variedade de produtos e compromisso real com cada cliente, seja ele um morador da região, um eletricista, um síndico, uma empresa ou um prestador de serviço. Localizada no Rio Pequeno, a Russo oferece fácil acesso pela Avenida Escola Politécnica para quem vem da USP, Jaguaré, Butantã, Osasco e demais regiões da Zona Oeste. Com estrutura organizada, estacionamento próprio e uma ampla variedade de produtos, estamos preparados para atender desde pequenas reformas residenciais até demandas recorrentes de condomínios, empresas e profissionais da área.
             </p>
 
             <ul className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -624,10 +624,10 @@ function Localizacao() {
               Conveniência & Acesso
             </span>
             <h2 className="mt-3 font-display text-3xl font-extrabold leading-tight sm:text-4xl">
-              Fácil acesso no Rio Pequeno pela <span className="text-primary">Av. Escola Politécnica</span>
+              Fácil acesso na <span className="text-primary">Zona Oeste de São Paulo</span>
             </h2>
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              Estamos localizados em um ponto estratégico para quem busca resolver compras de elétrica e ferragens sem perder tempo. Próximo à USP e com fácil acesso para quem vem da Raposo Tavares, Jaguaré, Butantã, Osasco, Lapa e Marginal Pinheiros.
+              Estamos localizados na Avenida Escola Politécnica, uma das principais vias da região, facilitando o acesso para clientes que vêm do Rio Pequeno, USP, Jaguaré, Butantã, Osasco, Raposo Tavares e bairros próximos. Conte com estacionamento próprio e uma estrutura preparada para receber você com conforto e praticidade.
             </p>
 
             <ul className="mt-6 space-y-3 text-sm">
