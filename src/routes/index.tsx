@@ -415,7 +415,7 @@ function OrcamentoCorporativo() {
             </a>
             <div className="flex flex-col justify-center">
               <p className="text-xs uppercase tracking-widest text-white/50 mb-1">Atendimento Direto</p>
-              <p className="font-display text-lg font-bold">{PHONE_DISPLAY}</p>
+              <a href={`tel:${PHONE_DISPLAY.replace(/\D/g, '')}`} className="font-display text-lg font-bold hover:text-primary transition-colors">{PHONE_DISPLAY}</a>
             </div>
           </div>
         </div>
