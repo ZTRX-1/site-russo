@@ -788,15 +788,13 @@ function Footer() {
           </div>
         </div>
         <div>
-          <h3 className="font-display text-sm font-bold uppercase tracking-widest">Navegação</h3>
+          <h3 className="font-display text-sm font-bold uppercase tracking-widest text-foreground">Soluções Institucionais</h3>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li><a href="#sobre" className="hover:text-primary">Sobre</a></li>
-            <li><a href="#categorias" className="hover:text-primary">Categorias</a></li>
-            <li><a href="#diferenciais" className="hover:text-primary">Diferenciais</a></li>
-            <li><a href="#localizacao" className="hover:text-primary">Localização</a></li>
-            <li><a href="#contato" className="hover:text-primary">Contato</a></li>
-            <li><button onClick={() => alert('Em breve')} className="hover:text-primary text-left">Políticas de Privacidade</button></li>
-            <li><button onClick={() => alert('Em breve')} className="hover:text-primary text-left">Termos de Uso</button></li>
+            <li><a href="#atendemos" className="hover:text-primary transition-colors">Para Condomínios</a></li>
+            <li><a href="#atendemos" className="hover:text-primary transition-colors">Para Empresas</a></li>
+            <li><a href="#orcamento-corporativo" className="hover:text-primary transition-colors">Orçamento Corporativo</a></li>
+            <li><a href="#categorias" className="hover:text-primary transition-colors">Infraestrutura Elétrica</a></li>
+            <li><a href="#localizacao" className="hover:text-primary transition-colors">Rio Pequeno / USP</a></li>
           </ul>
         </div>
         <div>
