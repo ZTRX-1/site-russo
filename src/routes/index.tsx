@@ -646,7 +646,7 @@ function Avaliacoes() {
               >
                 <div className="flex gap-0.5">
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-gold text-gold" />
+                    <Star key={i} className="h-4 w-4 fill-gold text-gold shrink-0" />
                   ))}
                 </div>
                 <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-foreground/80">
