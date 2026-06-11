@@ -778,7 +778,7 @@ function FloatingWhats() {
   };
 
   const message = encodeURIComponent("Olá, estou no site da Russo Elétrica e Ferragens e gostaria de um orçamento.");
-  const whatsappUrl = `https://wa.me/551137662002?text=${message}`;
+  const whatsappUrl = `https://api.whatsapp.com/send?phone=5511922328009&text=${message}`;
 
   return (
     <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3 group">
