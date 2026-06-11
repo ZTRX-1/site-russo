@@ -533,12 +533,12 @@ function Categorias() {
 }
 
 const DIFERENCIAIS = [
-  { icon: Headset, title: "Atendimento especializado", text: "Equipe técnica preparada para tirar dúvidas e indicar a solução certa." },
-  { icon: ShieldCheck, title: "Produtos de qualidade", text: "Marcas reconhecidas, certificadas e com garantia de fábrica." },
-  { icon: MapPin, title: "Localização estratégica", text: "Bem no centro do Rio Pequeno, fácil acesso pela Zona Oeste." },
-  { icon: Truck, title: "Entrega rápida", text: "Entregamos em obras e residências da região com agilidade." },
-  { icon: ParkingSquare, title: "Estacionamento próprio", text: "Comodidade para carga rápida e atendimento sem stress." },
-  { icon: Wrench, title: "Suporte técnico", text: "Orientação para eletricistas, profissionais e moradores." },
+  { icon: Headset, title: "Atendimento Especializado", text: "Suporte técnico qualificado para tirar dúvidas e indicar os melhores componentes." },
+  { icon: ShieldCheck, title: "Qualidade Garantida", text: "Trabalhamos apenas com marcas homologadas e certificadas pelo mercado." },
+  { icon: Navigation, title: "Fácil Acesso", text: "Localização estratégica com entrada facilitada pela Avenida Escola Politécnica." },
+  { icon: ParkingSquare, title: "Estrutura Completa", text: "Amplo estoque e estacionamento próprio para sua total comodidade." },
+  { icon: Users, title: "Foco no Cliente", text: "Atendimento personalizado para condomínios, empresas e profissionais da área." },
+  { icon: Wrench, title: "Suporte Técnico", text: "Orientação técnica especializada para garantir a segurança da sua instalação." },
 ];
 
 function Diferenciais() {
