@@ -129,7 +129,7 @@ function Index() {
       const hero = document.getElementById('hero-section');
       if (hero) {
         const rect = hero.getBoundingClientRect();
-        if (rect.top < 0) {
+        if (window.scrollY > 20) {
           document.body.classList.add('scrolled');
         } else {
           document.body.classList.remove('scrolled');
