@@ -160,7 +160,9 @@ function Hero() {
             <ShieldCheck className="h-3 w-3 text-primary shrink-0" /> Especialistas em elétrica e ferragens na Zona Oeste de São Paulo
           </span>
           <h1 className="mt-5 font-display text-4xl font-black leading-[1.05] sm:text-6xl lg:text-7xl">
-            Materiais elétricos, ferragens e iluminação com atendimento especializado na Zona Oeste de São Paulo
+            <span className="text-white">Materiais elétricos, </span>
+            <span className="text-primary">ferragens e iluminação </span>
+            <span className="text-white">com atendimento especializado na Zona Oeste de São Paulo</span>
           </h1>
           <p className="mt-5 max-w-xl text-base text-white/75 sm:text-xl leading-relaxed">
             Uma loja completa no Rio Pequeno, com fácil acesso pela Avenida Escola Politécnica, pronta para atender consumidores, eletricistas, empresas, condomínios e prestadores de serviço.
