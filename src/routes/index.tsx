@@ -426,10 +426,10 @@ function OrcamentoCorporativo() {
 
 function Sobre() {
   const pillars = [
-    { icon: Users, label: "Atendimento especializado", text: "Equipe que entende de obra e te orienta na escolha certa." },
-    { icon: Hammer, label: "Variedade de produtos", text: "Materiais elétricos, ferragens, ferramentas e iluminação." },
-    { icon: ParkingSquare, label: "Estacionamento próprio", text: "Comodidade para carga rápida e atendimento ágil." },
-    { icon: Wrench, label: "Profissional & consumidor", text: "Eletricistas, construtores e clientes finais bem atendidos." },
+    { icon: Users, label: "Atendimento especializado", text: "Equipe técnica preparada para orientar sua compra com precisão." },
+    { icon: Hammer, label: "Variedade e Estoque", text: "Ampla linha de produtos das melhores marcas a pronta entrega." },
+    { icon: ParkingSquare, label: "Estrutura organizada", text: "Loja preparada para um atendimento ágil e estacionamento fácil." },
+    { icon: Award, label: "Relacionamento e Confiança", text: "Tradição em atender bem, do profissional ao consumidor final." },
   ];
   return (
     <section id="sobre" className="py-20 sm:py-28">
