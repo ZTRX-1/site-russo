@@ -190,13 +190,13 @@ function Hero() {
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16 lg:py-24 lg:px-8">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium uppercase tracking-widest text-white/80">
-            <MapPin className="h-3 w-3 text-primary" /> Rio Pequeno · Escola Politécnica · Zona Oeste SP
+            <MapPin className="h-3 w-3 text-primary" /> Localização estratégica na Zona Oeste de SP
           </span>
           <h1 className="mt-5 font-display text-4xl font-black leading-[1.05] sm:text-6xl lg:text-7xl">
-            A Solução Completa em <span className="text-primary italic">Elétrica, Ferragens e Iluminação</span> na Zona Oeste.
+            Soluções Técnicas em <span className="text-primary italic">Elétrica, Ferragens e Iluminação</span>.
           </h1>
           <p className="mt-5 max-w-xl text-base text-white/75 sm:text-xl leading-relaxed">
-            Atendemos desde pequenas demandas residenciais até fornecimento para condomínios, empresas e grandes operações com agilidade técnica.
+            Estrutura consolidada para atender com precisão desde demandas residenciais até o fornecimento técnico para condomínios e empresas.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
@@ -204,18 +204,18 @@ function Hero() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-md bg-primary px-8 py-4 text-sm font-bold uppercase tracking-wide text-primary-foreground shadow-[var(--shadow-elegant)] transition hover:translate-y-[-2px] hover:bg-primary-dark"
+              className="group inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-primary-foreground shadow-sm transition hover:bg-primary-dark"
             >
-              Solicitar Orçamento
+              Consultar Orçamento
             </a>
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-white/20 bg-white/5 px-8 py-4 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-white/10 hover:translate-y-[-2px]"
+              className="inline-flex items-center gap-2 rounded-md border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-white/10"
             >
-              <WhatsAppIcon className="h-5 w-5" />
-              Falar no WhatsApp
+              <WhatsAppIcon className="h-4 w-4" />
+              WhatsApp
             </a>
           </div>
 
