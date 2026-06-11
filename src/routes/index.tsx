@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
 import fachada from "/uploads/fachada.webp";
 import logoRusso from "/uploads/logo-russo.png";
 import lojaInterior from "@/assets/loja-interior.jpg";
@@ -30,7 +31,7 @@ function WhatsAppIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
     <svg 
       viewBox="0 0 24 24" 
-      className={className}
+      className={`lucide ${className}`}
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -56,6 +57,10 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
+        name: "viewport",
+        content: "width=device-width, initial-scale=1, maximum-scale=5",
+      },
+      {
         title:
           "Russo Elétrica e Ferragens: Soluções Técnicas na Zona Oeste de SP",
       },
@@ -78,10 +83,14 @@ export const Route = createFileRoute("/")({
         content:
           "Atendimento especializado e soluções completas em elétrica, ferragens e iluminação. Para condomínios, empresas e profissionais na Zona Oeste de SP.",
       },
-      { property: "og:type", content: "business.business" },
-      { property: "og:url", content: "/" },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://russoeletrofer.com.br" },
+      {
+        property: "og:image",
+        content: "/uploads/qqqq.jpg",
+      },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://russoeletrofer.com.br" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -89,7 +98,7 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "HardwareStore",
           name: "Russo Elétrica e Ferragens",
-          image: "/uploads/fachada.webp",
+          image: "/uploads/qqqq.jpg",
           telephone: "+551137662002",
           priceRange: "$$",
           address: {
@@ -115,6 +124,22 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  useEffect(() => {
+    const handleScroll = () => {
+      const hero = document.getElementById('hero-section');
+      if (hero) {
+        const rect = hero.getBoundingClientRect();
+        if (window.scrollY > 20) {
+          document.body.classList.add('scrolled');
+        } else {
+          document.body.classList.remove('scrolled');
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
@@ -142,7 +167,7 @@ function Logo({ className = "" }: { className?: string }) {
       <img 
         src={logoRusso} 
         alt="Russo Elétrica e Ferragens" 
-        className="h-10 w-10 object-contain"
+        className="h-10 w-10 object-contain shrink-0"
       />
       <span className="flex flex-col leading-none">
         <span className="font-display text-lg font-extrabold tracking-tight">RUSSO</span>
@@ -158,7 +183,7 @@ function Header() {
   return (
     <header
       id="top"
-      className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/85 backdrop-blur-md"
+      className="sticky top-0 z-40 w-full border-b border-transparent bg-transparent transition-all duration-300 scrolled:bg-white/90 scrolled:backdrop-blur-md scrolled:border-border/60"
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <Logo />
@@ -174,7 +199,7 @@ function Header() {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition hover:bg-primary-dark"
         >
-          <WhatsAppIcon className="h-4 w-4" />
+          <WhatsAppIcon className="h-4 w-4 shrink-0" />
           <span className="hidden sm:inline">WhatsApp</span>
         </a>
       </div>
@@ -184,13 +209,13 @@ function Header() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-secondary text-secondary-foreground">
+    <section id="hero-section" className="relative overflow-hidden bg-secondary text-secondary-foreground">
       <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "24px 24px" }} />
       <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-primary/30 blur-3xl" />
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16 lg:py-24 lg:px-8">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium uppercase tracking-widest text-white/80">
-            <MapPin className="h-3 w-3 text-primary" /> Localização estratégica na Zona Oeste de SP
+            <MapPin className="h-3 w-3 text-primary shrink-0" /> Localização estratégica na Zona Oeste de SP
           </span>
           <h1 className="mt-5 font-display text-4xl font-black leading-[1.05] sm:text-6xl lg:text-7xl">
             Soluções Técnicas em <span className="text-primary italic">Elétrica, Ferragens e Iluminação</span>.
@@ -214,7 +239,7 @@ function Hero() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-md border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-white/10"
             >
-              <WhatsAppIcon className="h-4 w-4" />
+              <WhatsAppIcon className="h-4 w-4 shrink-0" />
               WhatsApp
             </a>
           </div>
@@ -227,7 +252,7 @@ function Hero() {
               "Fácil acesso (Politécnica)",
             ].map((item) => (
               <div key={item} className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-white/60">
-                <ShieldCheck className="h-3 w-3 text-primary" />
+                <ShieldCheck className="h-3 w-3 text-primary shrink-0" />
                 {item}
               </div>
             ))}
@@ -236,21 +261,21 @@ function Hero() {
           <dl className="mt-10 grid grid-cols-3 gap-4 border-t border-white/10 pt-6 text-left">
             <div>
               <dt className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-white/55">
-                <Star className="h-3.5 w-3.5 fill-gold text-gold" /> Google
+                <Star className="h-3.5 w-3.5 fill-gold text-gold shrink-0" /> Google
               </dt>
               <dd className="mt-1 font-display text-2xl font-bold text-white">5.0</dd>
               <dd className="text-xs text-white/60">5.0 / +127 avaliações</dd>
             </div>
             <div>
               <dt className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-white/55">
-                <ShieldCheck className="h-3.5 w-3.5 text-primary" /> Faturamento
+                <ShieldCheck className="h-3.5 w-3.5 text-primary shrink-0" /> Faturamento
               </dt>
               <dd className="mt-1 font-display text-lg font-bold text-white leading-none">Para Empresas</dd>
               <dd className="text-xs text-white/60">B2B e Condomínios</dd>
             </div>
             <div>
               <dt className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-white/55">
-                <Users className="h-3.5 w-3.5 text-primary" /> Atendimento
+                <Users className="h-3.5 w-3.5 text-primary shrink-0" /> Atendimento
               </dt>
               <dd className="mt-1 font-display text-lg font-bold text-white leading-none">Especializado</dd>
               <dd className="text-xs text-white/60">Técnico e Próximo</dd>
@@ -267,11 +292,11 @@ function Hero() {
             <div className="absolute inset-0 flex flex-col justify-center gap-4 p-6 sm:p-10 pb-16">
               <div className="grid grid-cols-2 gap-4">
                 <div className="group flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition hover:bg-primary/20">
-                  <Zap className="h-10 w-10 text-primary mb-3 transition group-hover:scale-110" />
+                  <Zap className="h-10 w-10 text-primary mb-3 transition group-hover:scale-110 shrink-0" />
                   <span className="text-[10px] font-bold uppercase tracking-widest text-white/90 text-center">Elétrica</span>
                 </div>
                 <div className="group flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition hover:bg-primary/20">
-                  <Droplets className="h-10 w-10 text-primary mb-3 transition group-hover:scale-110" />
+                  <Droplets className="h-10 w-10 text-primary mb-3 transition group-hover:scale-110 shrink-0" />
                   <span className="text-[10px] font-bold uppercase tracking-widest text-white/90 text-center">Hidráulica</span>
                 </div>
               </div>
@@ -279,7 +304,7 @@ function Hero() {
               <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md">
                 <div className="flex items-center gap-4">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary">
-                    <Plug className="h-6 w-6" />
+                    <Plug className="h-6 w-6 shrink-0" />
                   </div>
                   <div>
                     <p className="text-xs font-bold uppercase tracking-widest text-white">Consulte Agora</p>
@@ -291,7 +316,7 @@ function Hero() {
               <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md">
                 <div className="flex items-center gap-4">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary">
-                    <Lightbulb className="h-6 w-6" />
+                    <Lightbulb className="h-6 w-6 shrink-0" />
                   </div>
                   <div>
                     <p className="text-xs font-bold uppercase tracking-widest text-white">Iluminação LED</p>
@@ -305,7 +330,7 @@ function Hero() {
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 pt-10">
               <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-secondary/80 p-3 backdrop-blur-xl">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-white">
-                  <ShieldCheck className="h-4 w-4" />
+                  <ShieldCheck className="h-4 w-4 shrink-0" />
                 </div>
                 <p className="text-[10px] font-medium text-white/90 leading-tight">
                   <span className="block font-bold text-white uppercase tracking-tighter">Russo Elétrica</span>
@@ -377,7 +402,7 @@ function Atendemos() {
           {segmentos.map(({ title, icon: Icon, desc }) => (
             <div key={title} className="group relative rounded-2xl border border-border bg-card p-8 transition hover:border-primary/40 hover:shadow-lg">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary mb-6 transition group-hover:bg-primary group-hover:text-primary-foreground">
-                <Icon className="h-6 w-6" />
+                <Icon className="h-6 w-6 shrink-0" />
               </div>
               <h3 className="font-display text-2xl font-bold mb-3">{title}</h3>
               <p className="text-muted-foreground leading-relaxed">{desc}</p>
@@ -409,7 +434,7 @@ function OrcamentoCorporativo() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md bg-primary px-10 py-5 text-sm font-bold uppercase tracking-widest text-primary-foreground shadow-2xl transition hover:bg-primary-dark hover:translate-y-[-2px]"
+              className="inline-flex items-center gap-2 rounded-md bg-primary px-10 py-5 text-sm font-bold uppercase tracking-widest text-primary-foreground shadow-2xl transition hover:bg-primary-dark"
             >
               Solicitar Orçamento
             </a>
@@ -470,7 +495,7 @@ function Sobre() {
               {pillars.map(({ icon: Icon, label, text }) => (
                 <li key={label} className="flex gap-3 rounded-xl border border-border/70 bg-card p-4 transition-all hover:border-primary/30 hover:shadow-sm">
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">
-                    <Icon className="h-5 w-5" />
+                    <Icon className="h-5 w-5 shrink-0" />
                   </span>
                   <div>
                     <p className="font-bold text-foreground">{label}</p>
@@ -517,12 +542,12 @@ function Categorias() {
             >
               <div className="absolute inset-x-0 top-0 h-1 bg-primary opacity-0 transition group-hover:opacity-100" />
               <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-secondary text-primary transition group-hover:bg-primary group-hover:text-primary-foreground">
-                <Icon className="h-6 w-6" />
+                <Icon className="h-6 w-6 shrink-0" />
               </span>
               <h3 className="mt-4 font-display text-lg font-bold">{name}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{desc}</p>
               <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-primary">
-                Consultar <WhatsAppIcon className="h-3.5 w-3.5" />
+                Consultar <WhatsAppIcon className="h-3.5 w-3.5 shrink-0" />
               </span>
             </a>
           ))}
@@ -561,7 +586,7 @@ function Diferenciais() {
               className="group rounded-xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm transition hover:border-primary/50 hover:bg-white/[0.07]"
             >
               <span className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-[var(--shadow-elegant)]">
-                <Icon className="h-6 w-6" />
+                <Icon className="h-6 w-6 shrink-0" />
               </span>
               <h3 className="mt-4 font-display text-xl font-bold text-white">{title}</h3>
               <p className="mt-2 text-sm text-white/65">{text}</p>
@@ -605,7 +630,7 @@ function Avaliacoes() {
             </h2>
             <div className="mt-4 flex items-center gap-1.5">
               {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="h-6 w-6 fill-gold text-gold" />
+                <Star key={i} className="h-6 w-6 fill-gold text-gold shrink-0" />
               ))}
             </div>
             <p className="mt-4 text-muted-foreground">
@@ -629,7 +654,7 @@ function Avaliacoes() {
               >
                 <div className="flex gap-0.5">
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-gold text-gold" />
+                    <Star key={i} className="h-4 w-4 fill-gold text-gold shrink-0" />
                   ))}
                 </div>
                 <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-foreground/80">
@@ -666,15 +691,15 @@ function Localizacao() {
 
             <ul className="mt-6 space-y-3 text-sm">
               <li className="flex items-start gap-3">
-                <Clock className="mt-0.5 h-5 w-5 text-primary" />
+                <Clock className="mt-0.5 h-5 w-5 text-primary shrink-0" />
                 <span>Segunda a sexta: 8h às 18h · Sábado: 8h às 13h</span>
               </li>
               <li className="flex items-start gap-3">
-                <ParkingSquare className="mt-0.5 h-5 w-5 text-primary" />
+                <ParkingSquare className="mt-0.5 h-5 w-5 text-primary shrink-0" />
                 <span>Estacionamento próprio no local</span>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-5 w-5 text-primary" />
+                <MapPin className="mt-0.5 h-5 w-5 text-primary shrink-0" />
                 <span>Acesso facilitado pela Av. Escola Politécnica, 2850</span>
               </li>
             </ul>
@@ -686,7 +711,7 @@ function Localizacao() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-elegant)] transition hover:bg-primary-dark"
               >
-                <Navigation className="h-4 w-4" />
+                <Navigation className="h-4 w-4 shrink-0" />
                 Traçar Rota
               </a>
               <a
@@ -695,7 +720,7 @@ function Localizacao() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-5 py-3 text-sm font-semibold transition hover:border-primary hover:text-primary"
               >
-                <WhatsAppIcon className="h-4 w-4" />
+                <WhatsAppIcon className="h-4 w-4 shrink-0" />
                 Falar no WhatsApp
               </a>
             </div>
@@ -740,14 +765,14 @@ function Contato() {
           rel="noopener noreferrer"
           className="mt-8 inline-flex items-center gap-3 rounded-md bg-whatsapp px-8 py-4 text-sm font-bold uppercase tracking-widest text-white shadow-lg transition hover:bg-[#128C7E]"
         >
-          <WhatsAppIcon className="h-5 w-5" />
+          <WhatsAppIcon className="h-5 w-5 shrink-0" />
           Falar com Especialista
         </a>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-3">
           <div className="rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur-sm">
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground">
-              <Phone className="h-5 w-5" />
+              <Phone className="h-5 w-5 shrink-0" />
             </span>
             <p className="mt-3 text-xs uppercase tracking-widest text-white/55">Telefone</p>
             <div className="mt-1 flex flex-col font-semibold text-white">
@@ -757,14 +782,14 @@ function Contato() {
           </div>
           <div className="rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur-sm">
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground">
-              <MapPin className="h-5 w-5" />
+              <MapPin className="h-5 w-5 shrink-0" />
             </span>
             <p className="mt-3 text-xs uppercase tracking-widest text-white/55">Endereço</p>
             <p className="mt-1 font-semibold text-white">Rio Pequeno · Zona Oeste SP</p>
           </div>
           <div className="rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur-sm">
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground">
-              <Clock className="h-5 w-5" />
+              <Clock className="h-5 w-5 shrink-0" />
             </span>
             <p className="mt-3 text-xs uppercase tracking-widest text-white/55">Horário</p>
             <p className="mt-1 font-semibold text-white">Seg–Sex 8h–18h · Sáb 8h–13h</p>
@@ -786,13 +811,13 @@ function Footer() {
           </p>
           <div className="mt-5 flex items-center gap-3">
             <a href="https://www.instagram.com/russoeletrofer/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-10 w-10 items-center justify-center rounded-md border border-border text-foreground/70 transition hover:border-primary hover:text-primary">
-              <Instagram className="h-5 w-5" />
+              <Instagram className="h-5 w-5 shrink-0" />
             </a>
             <a href="https://web.facebook.com/russoeletrofer/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="flex h-10 w-10 items-center justify-center rounded-md border border-border text-foreground/70 transition hover:border-primary hover:text-primary">
-              <Facebook className="h-5 w-5" />
+              <Facebook className="h-5 w-5 shrink-0" />
             </a>
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="flex h-10 w-10 items-center justify-center rounded-md border border-border text-foreground/70 transition hover:border-primary hover:text-primary">
-              <WhatsAppIcon className="h-5 w-5" />
+              <WhatsAppIcon className="h-5 w-5 shrink-0" />
             </a>
           </div>
         </div>
@@ -809,10 +834,10 @@ function Footer() {
         <div>
           <h3 className="font-display text-sm font-bold uppercase tracking-widest text-foreground">Institucional</h3>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li><button onClick={() => alert('Políticas de Privacidade')} className="hover:text-primary text-left cursor-pointer">Privacidade</button></li>
-            <li><button onClick={() => alert('Termos de Uso')} className="hover:text-primary text-left cursor-pointer">Termos de Uso</button></li>
-            <li><button onClick={() => alert('Conformidade LGPD')} className="hover:text-primary text-left cursor-pointer">LGPD</button></li>
-            <li><button onClick={() => alert('Direitos do Consumidor')} className="hover:text-primary text-left cursor-pointer">Direitos do Consumidor</button></li>
+            <li><button onClick={() => window.open('/privacidade', '_blank')} className="hover:text-primary text-left cursor-pointer">Privacidade</button></li>
+            <li><button onClick={() => window.open('/termos', '_blank')} className="hover:text-primary text-left cursor-pointer">Termos de Uso</button></li>
+            <li><button onClick={() => window.open('/lgpd', '_blank')} className="hover:text-primary text-left cursor-pointer">LGPD</button></li>
+            <li><button onClick={() => window.open('/direitos', '_blank')} className="hover:text-primary text-left cursor-pointer">Direitos do Consumidor</button></li>
             <li><a href="#contato" className="hover:text-primary transition-colors">Contato</a></li>
           </ul>
         </div>
@@ -847,7 +872,7 @@ function FloatingWhats() {
       aria-label="Falar no WhatsApp"
       className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-110 active:scale-95"
     >
-      <WhatsAppIcon className="h-8 w-8" />
+      <WhatsAppIcon className="h-8 w-8 shrink-0" />
       <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-[#25D366]/40" />
     </a>
   );
