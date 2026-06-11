@@ -86,7 +86,7 @@ export const Route = createFileRoute("/")({
         content: "/uploads/qqqq.jpg",
       },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://russoeletrofer.com.br" }],
     scripts: [
       {
         type: "application/ld+json",
