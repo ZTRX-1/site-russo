@@ -661,7 +661,7 @@ function Localizacao() {
               Fácil acesso via <span className="text-primary">Escola Politécnica</span>
             </h2>
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              Situada no Rio Pequeno, a Russo ocupa uma posição privilegiada na Zona Oeste, com acesso rápido pela Av. Escola Politécnica, USP e Rod. Raposo Tavares. Estrutura completa para atender toda a região com agilidade logística.
+              Situada em uma das regiões mais estratégicas da Zona Oeste de São Paulo, a Russo oferece fácil acesso pela Avenida Escola Politécnica, facilitando a logística para clientes vindo da USP, Raposo Tavares e vias principais.
             </p>
 
             <ul className="mt-6 space-y-3 text-sm">
@@ -671,11 +671,11 @@ function Localizacao() {
               </li>
               <li className="flex items-start gap-3">
                 <ParkingSquare className="mt-0.5 h-5 w-5 text-primary" />
-                <span>Estacionamento próprio para clientes</span>
+                <span>Estacionamento próprio no local</span>
               </li>
               <li className="flex items-start gap-3">
-                <Truck className="mt-0.5 h-5 w-5 text-primary" />
-                <span>Entregas para toda a Zona Oeste de São Paulo</span>
+                <MapPin className="mt-0.5 h-5 w-5 text-primary" />
+                <span>Acesso facilitado pela Av. Escola Politécnica, 2850</span>
               </li>
             </ul>
 
