@@ -463,7 +463,7 @@ const CATEGORIAS = [
   { icon: Lightbulb, name: "Sistemas de Iluminação", desc: "LED industrial, comercial e residencial para alta performance." },
   { icon: Droplets, name: "Manutenção Hidráulica", desc: "Componentes para redes de água e soluções para banho." },
   { icon: Plug, name: "Acabamentos Elétricos", desc: "Linhas completas de interruptores e tomadas para obras." },
-  { icon: Hammer, name: "Ferramental Profissional", desc: "Ferramentas para operação, manutenção e prestação de serviço." },
+  { icon: Hammer, name: "Ferramentas Profissionais", desc: "Ferramentas para operação, manutenção e prestação de serviço." },
   { icon: Wrench, name: "Soluções em Ferragens", desc: "Fixação, segurança e infraestrutura metálica completa." },
   { icon: Cable, name: "Conectividade & Redes", desc: "Materiais para infraestrutura de dados e telecomunicações." },
   { icon: ShieldCheck, name: "Proteção & Segurança", desc: "Equipamentos para segurança elétrica e automação básica." },
