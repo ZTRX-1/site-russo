@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
-import fachada from "/uploads/fachada.webp";
+import fachada from "/uploads/fachada-russo.png";
 import lojaInterior from "@/assets/loja-interior.jpg";
 import {
   MapPin,
