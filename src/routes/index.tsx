@@ -337,6 +337,94 @@ function SectionHeader({ eyebrow, title, description }: { eyebrow: string; title
   );
 }
 
+function ClientesParceiros() {
+  return (
+    <section className="bg-background py-10 border-b border-border/40">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <p className="text-center text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-8">
+          Soluções confiadas por empresas, condomínios e profissionais da região
+        </p>
+        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-40 grayscale">
+          {["Condomínios", "Empresas", "Academias", "Eletricistas", "Escolas", "Indústrias"].map((tipo) => (
+            <span key={tipo} className="text-xl md:text-2xl font-display font-black tracking-tighter uppercase italic">
+              {tipo}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Atendemos() {
+  const segmentos = [
+    { title: "Condomínios", icon: Award, desc: "Suporte completo para manutenção predial e compras recorrentes com faturamento." },
+    { title: "Empresas", icon: ShieldCheck, desc: "Infraestrutura e manutenção para escritórios, galpões e operações comerciais." },
+    { title: "Academias", icon: Zap, desc: "Soluções ágeis em iluminação e elétrica para manter sua operação sempre ativa." },
+    { title: "Eletricistas", icon: Wrench, desc: "Parceria técnica com estoque variado e as melhores marcas para seus projetos." },
+    { title: "Prestadores de Serviço", icon: Hammer, desc: "Ferramentas e materiais de qualidade para garantir a excelência do seu trabalho." },
+    { title: "Consumidor Residencial", icon: Users, desc: "Atendimento especializado para reformas e pequenos reparos com orientação técnica." },
+  ];
+
+  return (
+    <section id="atendemos" className="py-20 bg-muted/30">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="Segmentos de Atendimento"
+          title={<>Soluções sob medida para <span className="text-primary">cada necessidade</span></>}
+          description="Nossa estrutura está preparada para atender desde o consumidor final até grandes demandas corporativas."
+        />
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {segmentos.map(({ title, icon: Icon, desc }) => (
+            <div key={title} className="group relative rounded-2xl border border-border bg-card p-8 transition hover:border-primary/40 hover:shadow-lg">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary mb-6 transition group-hover:bg-primary group-hover:text-primary-foreground">
+                <Icon className="h-6 w-6" />
+              </div>
+              <h3 className="font-display text-2xl font-bold mb-3">{title}</h3>
+              <p className="text-muted-foreground leading-relaxed">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function OrcamentoCorporativo() {
+  return (
+    <section id="orcamento-corporativo" className="py-20 bg-secondary text-secondary-foreground relative overflow-hidden">
+      <div className="absolute right-0 top-0 w-1/2 h-full bg-primary/5 -skew-x-12 translate-x-1/4" />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
+        <div className="max-w-3xl">
+          <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">
+            Área do Cliente Corporativo
+          </span>
+          <h2 className="font-display text-4xl font-black leading-tight sm:text-5xl lg:text-6xl mb-6">
+            Precisa de orçamento para sua <span className="text-primary">empresa ou condomínio?</span>
+          </h2>
+          <p className="text-lg text-white/70 mb-10 leading-relaxed">
+            Atendemos compras recorrentes, manutenção predial, faturamento para empresas e suporte técnico para grandes projetos. Fale com nosso consultor especializado.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-md bg-primary px-10 py-5 text-sm font-bold uppercase tracking-widest text-primary-foreground shadow-2xl transition hover:bg-primary-dark hover:translate-y-[-2px]"
+            >
+              Solicitar Orçamento
+            </a>
+            <div className="flex flex-col justify-center">
+              <p className="text-xs uppercase tracking-widest text-white/50 mb-1">Atendimento Direto</p>
+              <p className="font-display text-lg font-bold">{PHONE_DISPLAY}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Sobre() {
   const pillars = [
     { icon: Users, label: "Atendimento especializado", text: "Equipe que entende de obra e te orienta na escolha certa." },
