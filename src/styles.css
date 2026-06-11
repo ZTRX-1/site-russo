@@ -66,6 +66,8 @@
   --font-body: var(--font-body);
 }
 
+@custom-variant scrolled (&:is(body.scrolled *));
+
 :root {
   --radius: 0.5rem;
   /* Russo brand: vermelho, branco, cinza escuro */
