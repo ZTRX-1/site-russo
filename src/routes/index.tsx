@@ -578,7 +578,7 @@ function Diferenciais() {
               className="group rounded-xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm transition hover:border-primary/50 hover:bg-white/[0.07]"
             >
               <span className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-[var(--shadow-elegant)]">
-                <Icon className="h-6 w-6" />
+                <Icon className="h-6 w-6 shrink-0" />
               </span>
               <h3 className="mt-4 font-display text-xl font-bold text-white">{title}</h3>
               <p className="mt-2 text-sm text-white/65">{text}</p>
