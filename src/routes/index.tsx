@@ -483,7 +483,7 @@ function Categorias() {
         <div className="mt-14 grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
           {CATEGORIAS.map(({ icon: Icon, name, desc }) => {
             const encodedMsg = encodeURIComponent(`Olá! Estou no site da Russo Elétrica e Ferragens e gostaria de um orçamento para ${name.toLowerCase()}.`);
-            const categoryWhatsappUrl = `https://wa.me/${WHATSAPP}?text=${encodedMsg}`;
+            const categoryWhatsappUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${encodedMsg}`;
             
             return (
               <a
