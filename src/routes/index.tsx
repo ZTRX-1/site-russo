@@ -433,10 +433,10 @@ function Sobre() {
               Mais do que uma loja. Um <span className="text-primary">parceiro para quem precisa resolver</span>.
             </h2>
             <p className="mt-5 text-base text-muted-foreground sm:text-lg leading-relaxed">
-              A Russo é mais do que uma loja de materiais elétricos e ferragens. É um ponto de apoio para quem busca resolver problemas com confiança, encontrar os produtos certos e contar com um atendimento próximo e especializado.
+              A Russo é mais do que uma loja de materiais elétricos, ferragens e itens para pequenos reparos. É um ponto de apoio para quem busca resolver problemas com confiança, encontrar os produtos certos e contar com atendimento próximo e especializado.
             </p>
             <p className="mt-4 text-base text-muted-foreground">
-              Nossa história foi construída sobre relacionamento, variedade de produtos e compromisso real com cada cliente, seja ele um morador da região, um eletricista, um síndico, uma empresa ou um prestador de serviço. Localizada no Rio Pequeno, a Russo oferece fácil acesso pela Avenida Escola Politécnica para quem vem da USP, Jaguaré, Butantã, Osasco e demais regiões da Zona Oeste. Com estrutura organizada, estacionamento próprio e uma ampla variedade de produtos, estamos preparados para atender desde pequenas reformas residenciais até demandas recorrentes de condomínios, empresas e profissionais da área.
+              Nossa história foi construída sobre relacionamento, variedade de produtos e compromisso real com cada cliente, seja ele um morador da região, um eletricista, uma empresa, um condomínio ou um prestador de serviço. Com localização privilegiada no Rio Pequeno e fácil acesso pela Avenida Escola Politécnica, oferecemos estrutura organizada, estacionamento próprio e uma ampla variedade de produtos para atender desde pequenas necessidades do dia a dia até demandas recorrentes de profissionais e empresas.
             </p>
 
             <ul className="mt-8 grid gap-4 sm:grid-cols-2">
