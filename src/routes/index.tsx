@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { X } from "lucide-react";
 import fachada from "/uploads/fachada-russo.png";
 import lojaInterior from "@/assets/loja-interior.jpg";
 import {
@@ -756,26 +757,64 @@ function Contato() {
 }
 
 function FloatingWhats() {
+  const [showPopup, setShowPopup] = useState(false);
+  const [isDismissed, setIsDismissed] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!isDismissed) {
+        setShowPopup(true);
+      }
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [isDismissed]);
+
+  const handleDismiss = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowPopup(false);
+    setIsDismissed(true);
+  };
+
+  const message = encodeURIComponent("Olá, estou no site da Russo Elétrica e Ferragens e gostaria de um orçamento.");
+  const whatsappUrl = `https://wa.me/551137662002?text=${message}`;
+
   return (
     <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3 group">
-      <div className="relative mr-2 max-w-[200px] transform scale-0 opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100 lg:scale-100 lg:opacity-100">
-        <div className="relative rounded-2xl bg-white p-3 text-xs font-bold text-secondary shadow-xl ring-1 ring-black/5 after:absolute after:bottom-[-8px] after:right-6 after:h-4 after:w-4 after:rotate-45 after:bg-white after:content-['']">
-          <div className="flex items-start gap-2">
-            <img 
-              src="/uploads/mascote.png" 
-              alt="Mascote Russo" 
-              className="h-10 w-10 shrink-0 rounded-full border-2 border-primary bg-secondary p-0.5 object-contain"
-            />
-            <p className="leading-tight">
-              Olá, sou o <span className="text-primary">Russo</span>! <br />
-              Precisa de ajuda com seu orçamento?
-            </p>
-          </div>
+      {(showPopup && !isDismissed) && (
+        <div className="relative mr-2 max-w-[220px] animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <button 
+            onClick={handleDismiss}
+            className="absolute -right-2 -top-2 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md hover:bg-gray-100 ring-1 ring-black/5"
+            aria-label="Fechar popup"
+          >
+            <X className="h-3 w-3 text-secondary" />
+          </button>
+          
+          <a 
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block relative rounded-2xl bg-white p-3 text-xs font-bold text-secondary shadow-xl ring-1 ring-black/5 after:absolute after:bottom-[-8px] after:right-6 after:h-4 after:w-4 after:rotate-45 after:bg-white after:content-[''] transition-transform hover:scale-[1.02] active:scale-95"
+          >
+            <div className="flex items-start gap-2 text-left">
+              <img 
+                src="/uploads/mascote.png" 
+                alt="Mascote Russo" 
+                className="h-10 w-10 shrink-0 rounded-full border-2 border-primary bg-secondary p-0.5 object-contain"
+              />
+              <p className="leading-tight">
+                Olá, sou o <span className="text-primary">Russo</span>! <br />
+                Estou no site da Russo e gostaria de um orçamento.
+              </p>
+            </div>
+          </a>
         </div>
-      </div>
+      )}
       
       <a
-        href={WHATSAPP_URL}
+        href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Falar no WhatsApp"
@@ -787,5 +826,6 @@ function FloatingWhats() {
     </div>
   );
 }
+
 
 
