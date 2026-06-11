@@ -120,8 +120,11 @@ function Index() {
       <Header />
       <main>
         <Hero />
+        <ClientesParceiros />
         <Sobre />
+        <Atendemos />
         <Categorias />
+        <OrcamentoCorporativo />
         <Diferenciais />
         <Avaliacoes />
         <Localizacao />
