@@ -37,15 +37,6 @@ export function Header() {
           <Link to="/#localizacao" className="hover:text-primary transition-colors">Localização</Link>
           <Link to="/#contato" className="hover:text-primary transition-colors">Contato</Link>
         </nav>
-        <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition hover:bg-primary-dark"
-        >
-          <WhatsAppIcon className="h-4 w-4 shrink-0" />
-          <span className="hidden sm:inline">WhatsApp</span>
-        </a>
       </div>
     </header>
   );
