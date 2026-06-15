@@ -2,6 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LegalLayout } from "@/components/layout/LegalLayout";
 
 export const Route = createFileRoute("/politica-de-privacidade")({
+  head: () => ({
+    meta: [
+      { title: "Política de Privacidade | Russo Elétrica e Ferragens" },
+      { name: "description", content: "Saiba como a Russo Elétrica e Ferragens coleta, usa e protege seus dados pessoais ao navegar pelo nosso site e canais de atendimento." },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "Política de Privacidade | Russo Elétrica e Ferragens" },
+      { property: "og:url", content: "https://russoeletrofer.com.br/politica-de-privacidade" },
+    ],
+    links: [{ rel: "canonical", href: "https://russoeletrofer.com.br/politica-de-privacidade" }],
+  }),
   component: PoliticaPrivacidade,
 });
 

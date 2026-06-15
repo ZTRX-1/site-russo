@@ -78,14 +78,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Russo Elétrica e Ferragens — Materiais Elétricos no Rio Pequeno, Zona Oeste SP" },
+      { name: "description", content: "Loja de materiais elétricos, ferragens, hidráulica e iluminação no Rio Pequeno, Zona Oeste de São Paulo. Atendimento para consumidores, eletricistas, empresas e condomínios." },
+      { name: "author", content: "Russo Elétrica e Ferragens" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
+      { name: "googlebot", content: "index, follow" },
+      { name: "theme-color", content: "#0F172A" },
+      { name: "geo.region", content: "BR-SP" },
+      { name: "geo.placename", content: "São Paulo - Rio Pequeno" },
+      { name: "geo.position", content: "-23.56133;-46.74526" },
+      { name: "ICBM", content: "-23.56133, -46.74526" },
+      { property: "og:site_name", content: "Russo Elétrica e Ferragens" },
+      { property: "og:locale", content: "pt_BR" },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -99,6 +105,35 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "@id": "https://russoeletrofer.com.br/#organization",
+          name: "Russo Elétrica e Ferragens",
+          url: "https://russoeletrofer.com.br",
+          logo: "https://russoeletrofer.com.br/uploads/logo-russo.png",
+          image: "https://russoeletrofer.com.br/uploads/fachada-russo.png",
+          telephone: "+551137662002",
+          email: "contato@russoeletrofer.com.br",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Av. Escola Politécnica, 2850",
+            addressLocality: "São Paulo",
+            addressRegion: "SP",
+            postalCode: "05386-130",
+            addressCountry: "BR",
+          },
+          areaServed: ["Rio Pequeno", "Butantã", "Jaguaré", "Vila Sônia", "Morumbi", "Lapa", "Osasco", "Zona Oeste de São Paulo"],
+          sameAs: [
+            "https://www.instagram.com/russoeletrica/",
+            "https://www.facebook.com/russoeletrica/",
+          ],
+        }),
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -108,7 +143,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
       </head>
