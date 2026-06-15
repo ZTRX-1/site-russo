@@ -2,6 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LegalLayout } from "@/components/layout/LegalLayout";
 
 export const Route = createFileRoute("/cdc")({
+  head: () => ({
+    meta: [
+      { title: "Direitos do Consumidor (CDC) | Russo Elétrica e Ferragens" },
+      { name: "description", content: "Direitos do consumidor, garantias, trocas e devoluções da Russo Elétrica e Ferragens conforme o Código de Defesa do Consumidor." },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "Direitos do Consumidor (CDC) | Russo Elétrica e Ferragens" },
+      { property: "og:url", content: "https://russoeletrofer.com.br/cdc" },
+    ],
+    links: [{ rel: "canonical", href: "https://russoeletrofer.com.br/cdc" }],
+  }),
   component: CDC,
 });
 
