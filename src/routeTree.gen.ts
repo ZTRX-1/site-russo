@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermosDeUsoRouteImport } from './routes/termos-de-uso'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as LgpdRouteImport } from './routes/lgpd'
 import { Route as CdcRouteImport } from './routes/cdc'
@@ -18,6 +19,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
   id: '/termos-de-uso',
   path: '/termos-de-uso',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
@@ -46,6 +52,7 @@ export interface FileRoutesByFullPath {
   '/cdc': typeof CdcRoute
   '/lgpd': typeof LgpdRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/cdc': typeof CdcRoute
   '/lgpd': typeof LgpdRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
 }
 export interface FileRoutesById {
@@ -61,6 +69,7 @@ export interface FileRoutesById {
   '/cdc': typeof CdcRoute
   '/lgpd': typeof LgpdRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
 }
 export interface FileRouteTypes {
@@ -70,15 +79,23 @@ export interface FileRouteTypes {
     | '/cdc'
     | '/lgpd'
     | '/politica-de-privacidade'
+    | '/sitemap.xml'
     | '/termos-de-uso'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cdc' | '/lgpd' | '/politica-de-privacidade' | '/termos-de-uso'
+  to:
+    | '/'
+    | '/cdc'
+    | '/lgpd'
+    | '/politica-de-privacidade'
+    | '/sitemap.xml'
+    | '/termos-de-uso'
   id:
     | '__root__'
     | '/'
     | '/cdc'
     | '/lgpd'
     | '/politica-de-privacidade'
+    | '/sitemap.xml'
     | '/termos-de-uso'
   fileRoutesById: FileRoutesById
 }
@@ -87,6 +104,7 @@ export interface RootRouteChildren {
   CdcRoute: typeof CdcRoute
   LgpdRoute: typeof LgpdRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermosDeUsoRoute: typeof TermosDeUsoRoute
 }
 
@@ -97,6 +115,13 @@ declare module '@tanstack/react-router' {
       path: '/termos-de-uso'
       fullPath: '/termos-de-uso'
       preLoaderRoute: typeof TermosDeUsoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/politica-de-privacidade': {
@@ -135,6 +160,7 @@ const rootRouteChildren: RootRouteChildren = {
   CdcRoute: CdcRoute,
   LgpdRoute: LgpdRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermosDeUsoRoute: TermosDeUsoRoute,
 }
 export const routeTree = rootRouteImport

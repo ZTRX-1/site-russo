@@ -1,2 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /lovable/
+
+Sitemap: https://russoeletrofer.com.br/sitemap.xml
