@@ -424,30 +424,30 @@ function ClientesParceiros() {
 
 function Atendemos() {
   const segmentos = [
-    { title: "Condomínios", icon: Award, desc: "Suporte completo para manutenção predial e compras recorrentes com faturamento." },
-    { title: "Empresas", icon: ShieldCheck, desc: "Infraestrutura e manutenção para escritórios, galpões e operações comerciais." },
-    { title: "Academias", icon: Zap, desc: "Soluções ágeis em iluminação e elétrica para manter sua operação sempre ativa." },
-    { title: "Eletricistas", icon: Wrench, desc: "Parceria técnica com estoque variado e as melhores marcas para seus projetos." },
-    { title: "Prestadores de Serviço", icon: Hammer, desc: "Ferramentas e materiais de qualidade para garantir a excelência do seu trabalho." },
-    { title: "Consumidor Residencial", icon: Users, desc: "Atendimento especializado para reformas e pequenos reparos com orientação técnica." },
+    { title: "Condomínios", icon: Award, desc: "Manutenção predial sem gargalos: síndicos e zeladores atendidos por vendedor dedicado, orçamento formal e faturamento." },
+    { title: "Empresas", icon: ShieldCheck, desc: "Compras recorrentes com nota fiscal, condições comerciais e reposição rápida — sua operação não para por falta de material." },
+    { title: "Construtoras", icon: Hammer, desc: "Suprimento contínuo para obras na Zona Oeste: entrega ágil, disponibilidade real e cotação em minutos." },
+    { title: "Academias & Comércios", icon: Zap, desc: "Elétrica e iluminação prioritária para negócios que não podem ficar horas fora do ar." },
+    { title: "Eletricistas", icon: Wrench, desc: "Parceria técnica com estoque de marcas certificadas e condições especiais para profissionais." },
+    { title: "Prestadores de Serviço", icon: Users, desc: "Ferramentas profissionais e materiais para quem entrega qualidade e prazo todos os dias." },
   ];
 
   return (
-    <section id="atendemos" className="py-20 bg-muted/30">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="atendemos" className="relative py-20 sm:py-24 bg-muted/30 section-edge">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          eyebrow="Segmentos de Atendimento"
-          title={<>Soluções sob medida para <span className="text-primary">cada necessidade</span></>}
-          description="Nossa estrutura está preparada para atender desde o consumidor final até grandes demandas corporativas."
+          eyebrow="Atendimento especializado"
+          title={<>Para operações que <span className="text-primary">não podem parar</span></>}
+          description="Nossa estrutura foi desenhada para atender demandas técnicas e recorrentes — do reparo urgente à compra programada de grande volume."
         />
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {segmentos.map(({ title, icon: Icon, desc }) => (
-            <div key={title} className="group relative rounded-2xl border border-border bg-card p-8 transition hover:border-primary/40 hover:shadow-lg">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary mb-6 transition group-hover:bg-primary group-hover:text-primary-foreground">
+            <div key={title} className="card-premium group relative rounded-2xl border border-border bg-card p-8 hover:border-primary/40 hover:shadow-[var(--shadow-card)]">
+              <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary mb-6 transition duration-300 group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-[var(--shadow-red-glow)]">
                 <Icon className="h-6 w-6 shrink-0" />
               </div>
-              <h3 className="font-display text-2xl font-bold mb-3">{title}</h3>
-              <p className="text-muted-foreground leading-relaxed">{desc}</p>
+              <h3 className="font-display text-2xl font-black tracking-tight mb-3">{title}</h3>
+              <p className="text-muted-foreground leading-relaxed text-[15px]">{desc}</p>
             </div>
           ))}
         </div>
@@ -458,30 +458,52 @@ function Atendemos() {
 
 function OrcamentoCorporativo() {
   return (
-    <section id="orcamento-corporativo" className="py-20 bg-secondary text-secondary-foreground relative overflow-hidden">
+    <section
+      id="orcamento-corporativo"
+      className="relative overflow-hidden py-20 sm:py-24 text-secondary-foreground"
+      style={{ background: "var(--gradient-industrial)" }}
+    >
+      <div className="absolute inset-0 grid-industrial pointer-events-none opacity-70" />
       <div className="absolute right-0 top-0 w-1/2 h-full bg-primary/5 -skew-x-12 translate-x-1/4" />
+      <div className="absolute -left-40 top-1/4 h-96 w-96 rounded-full bg-primary/15 blur-[110px]" />
+      <div className="absolute inset-x-0 top-0 red-glow-line" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-3xl">
-          <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">
-            Atendimento para empresas, condomínios e profissionais
+          <span className="glass-industrial inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-primary mb-6">
+            <Building2Icon /> Compras corporativas
           </span>
-          <h2 className="font-display text-4xl font-black leading-tight sm:text-5xl lg:text-6xl mb-6">
-            Atendimento para <span className="text-primary">empresas, condomínios e profissionais</span>
+          <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl mb-6 text-white">
+            Sua empresa merece um <span className="text-primary">fornecedor à altura da sua operação</span>
           </h2>
-          <p className="text-lg text-white/70 mb-10 leading-relaxed">
-            Além do consumidor residencial, a Russo atende empresas, condomínios, academias, eletricistas e prestadores de serviço que precisam de agilidade, variedade e confiança na hora de comprar materiais elétricos e ferragens. Solicite um orçamento com nossa equipe e encontre uma solução adequada para a sua necessidade.
+          <p className="text-lg text-white/70 mb-6 leading-relaxed max-w-2xl">
+            Empresas, condomínios, construtoras e academias contam com a Russo para o que a rotina exige e para o que a emergência não avisa. Estoque profundo, vendedor dedicado, orçamento formal e faturamento — a estrutura que transforma compra de material em processo, não em problema.
           </p>
+          <ul className="mb-10 grid gap-3 max-w-2xl sm:grid-cols-2">
+            {[
+              "Faturamento com nota fiscal",
+              "Vendedor dedicado à sua conta",
+              "Reposição rápida e programada",
+              "Cotação formal por escrito",
+            ].map((item) => (
+              <li key={item} className="flex items-center gap-2.5 text-sm text-white/85">
+                <ShieldCheck className="h-4 w-4 shrink-0 text-primary" />
+                {item}
+              </li>
+            ))}
+          </ul>
           <div className="flex flex-wrap gap-4">
             <a
-              href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Olá! Estou no site da Russo e gostaria de solicitar um orçamento para faturamento corporativo/condomínio.")}`}
+              href={WHATSAPP_URL_EMPRESA}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md bg-primary px-10 py-5 text-sm font-bold uppercase tracking-widest text-primary-foreground shadow-2xl transition hover:bg-primary-dark"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-md bg-primary px-10 py-5 text-sm font-bold uppercase tracking-widest text-primary-foreground shadow-[var(--shadow-red-glow)] transition-all hover:-translate-y-0.5 hover:bg-primary-dark"
             >
-              Solicitar Orçamento
+              <WhatsAppIcon className="h-4 w-4 shrink-0" />
+              Solicitar orçamento empresarial
+              <span className="absolute inset-y-0 -left-6 w-6 -skew-x-12 bg-white/20 transition-transform duration-700 group-hover:translate-x-[320px]" />
             </a>
             <div className="flex flex-col justify-center">
-              <p className="text-xs uppercase tracking-widest text-white/50 mb-1">Atendimento Direto</p>
+              <p className="text-xs uppercase tracking-widest text-white/50 mb-1">Ou ligue diretamente</p>
               <a href={`tel:${PHONE_DISPLAY.replace(/\D/g, '')}`} className="font-display text-lg font-bold hover:text-primary transition-colors">{PHONE_DISPLAY}</a>
             </div>
           </div>
