@@ -65,7 +65,7 @@ export const Route = createFileRoute("/")({
       {
         name: "keywords",
         content:
-          "material elétrico Rio Pequeno, loja de elétrica Zona Oeste SP, ferragens Rio Pequeno, materiais elétricos Butantã, loja de ferragens Jaguaré, iluminação Zona Oeste, fios e cabos São Paulo, hidráulica Rio Pequeno, eletricista Zona Oeste, material elétrico USP, fornecedor elétrico condomínios SP, Av. Escola Politécnica",
+          "material elétrico Rio Pequeno, loja de elétrica Zona Oeste SP, ferragens Rio Pequeno, materiais elétricos Butantã, loja de ferragens Jaguaré, iluminação Zona Oeste, fios e cabos São Paulo, hidráulica Rio Pequeno, eletricista Zona Oeste, material elétrico USP, material elétrico Raposo Tavares, material elétrico Vila São Francisco, fornecedor material elétrico condomínios, orçamento elétrica empresa SP, fornecedor B2B elétrica, Av. Escola Politécnica",
       },
       {
         property: "og:title",
