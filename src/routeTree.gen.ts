@@ -15,6 +15,7 @@ import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-
 import { Route as LgpdRouteImport } from './routes/lgpd'
 import { Route as CdcRouteImport } from './routes/cdc'
 import { Route as AtendimentoEmpresasRouteImport } from './routes/atendimento-empresas'
+import { Route as AtendimentoCondominiosRouteImport } from './routes/atendimento-condominios'
 import { Route as IndexRouteImport } from './routes/index'
 
 const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
@@ -47,6 +48,11 @@ const AtendimentoEmpresasRoute = AtendimentoEmpresasRouteImport.update({
   path: '/atendimento-empresas',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AtendimentoCondominiosRoute = AtendimentoCondominiosRouteImport.update({
+  id: '/atendimento-condominios',
+  path: '/atendimento-condominios',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -55,6 +61,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/atendimento-condominios': typeof AtendimentoCondominiosRoute
   '/atendimento-empresas': typeof AtendimentoEmpresasRoute
   '/cdc': typeof CdcRoute
   '/lgpd': typeof LgpdRoute
@@ -64,6 +71,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/atendimento-condominios': typeof AtendimentoCondominiosRoute
   '/atendimento-empresas': typeof AtendimentoEmpresasRoute
   '/cdc': typeof CdcRoute
   '/lgpd': typeof LgpdRoute
@@ -74,6 +82,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/atendimento-condominios': typeof AtendimentoCondominiosRoute
   '/atendimento-empresas': typeof AtendimentoEmpresasRoute
   '/cdc': typeof CdcRoute
   '/lgpd': typeof LgpdRoute
@@ -85,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/atendimento-condominios'
     | '/atendimento-empresas'
     | '/cdc'
     | '/lgpd'
@@ -94,6 +104,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/atendimento-condominios'
     | '/atendimento-empresas'
     | '/cdc'
     | '/lgpd'
@@ -103,6 +114,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/atendimento-condominios'
     | '/atendimento-empresas'
     | '/cdc'
     | '/lgpd'
@@ -113,6 +125,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AtendimentoCondominiosRoute: typeof AtendimentoCondominiosRoute
   AtendimentoEmpresasRoute: typeof AtendimentoEmpresasRoute
   CdcRoute: typeof CdcRoute
   LgpdRoute: typeof LgpdRoute
@@ -165,6 +178,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AtendimentoEmpresasRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/atendimento-condominios': {
+      id: '/atendimento-condominios'
+      path: '/atendimento-condominios'
+      fullPath: '/atendimento-condominios'
+      preLoaderRoute: typeof AtendimentoCondominiosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -177,6 +197,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AtendimentoCondominiosRoute: AtendimentoCondominiosRoute,
   AtendimentoEmpresasRoute: AtendimentoEmpresasRoute,
   CdcRoute: CdcRoute,
   LgpdRoute: LgpdRoute,
