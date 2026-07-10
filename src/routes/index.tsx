@@ -215,7 +215,7 @@ function Hero() {
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-24 lg:px-8">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium uppercase tracking-widest text-white/70">
-            <ShieldCheck className="h-3 w-3 text-primary shrink-0" /> Loja especializada em elétrica, ferragens e hidráulica
+            <ShieldCheck className="h-3 w-3 text-primary shrink-0" /> Loja especializada em elétrica e ferragens
           </span>
           <h1 className="mt-5 font-display text-4xl font-black leading-[1.05] sm:text-6xl lg:text-7xl">
             <span className="text-white">Materiais elétricos, </span>
