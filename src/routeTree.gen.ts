@@ -12,8 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermosDeUsoRouteImport } from './routes/termos-de-uso'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
+import { Route as MaterialEletricoRioPequenoRouteImport } from './routes/material-eletrico-rio-pequeno'
 import { Route as LgpdRouteImport } from './routes/lgpd'
 import { Route as CdcRouteImport } from './routes/cdc'
+import { Route as AtendimentoEmpresasRouteImport } from './routes/atendimento-empresas'
+import { Route as AtendimentoCondominiosRouteImport } from './routes/atendimento-condominios'
 import { Route as IndexRouteImport } from './routes/index'
 
 const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
@@ -31,6 +34,12 @@ const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
   path: '/politica-de-privacidade',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MaterialEletricoRioPequenoRoute =
+  MaterialEletricoRioPequenoRouteImport.update({
+    id: '/material-eletrico-rio-pequeno',
+    path: '/material-eletrico-rio-pequeno',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const LgpdRoute = LgpdRouteImport.update({
   id: '/lgpd',
   path: '/lgpd',
@@ -41,6 +50,16 @@ const CdcRoute = CdcRouteImport.update({
   path: '/cdc',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AtendimentoEmpresasRoute = AtendimentoEmpresasRouteImport.update({
+  id: '/atendimento-empresas',
+  path: '/atendimento-empresas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AtendimentoCondominiosRoute = AtendimentoCondominiosRouteImport.update({
+  id: '/atendimento-condominios',
+  path: '/atendimento-condominios',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -49,16 +68,22 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/atendimento-condominios': typeof AtendimentoCondominiosRoute
+  '/atendimento-empresas': typeof AtendimentoEmpresasRoute
   '/cdc': typeof CdcRoute
   '/lgpd': typeof LgpdRoute
+  '/material-eletrico-rio-pequeno': typeof MaterialEletricoRioPequenoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/atendimento-condominios': typeof AtendimentoCondominiosRoute
+  '/atendimento-empresas': typeof AtendimentoEmpresasRoute
   '/cdc': typeof CdcRoute
   '/lgpd': typeof LgpdRoute
+  '/material-eletrico-rio-pequeno': typeof MaterialEletricoRioPequenoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
@@ -66,8 +91,11 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/atendimento-condominios': typeof AtendimentoCondominiosRoute
+  '/atendimento-empresas': typeof AtendimentoEmpresasRoute
   '/cdc': typeof CdcRoute
   '/lgpd': typeof LgpdRoute
+  '/material-eletrico-rio-pequeno': typeof MaterialEletricoRioPequenoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
@@ -76,24 +104,33 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/atendimento-condominios'
+    | '/atendimento-empresas'
     | '/cdc'
     | '/lgpd'
+    | '/material-eletrico-rio-pequeno'
     | '/politica-de-privacidade'
     | '/sitemap.xml'
     | '/termos-de-uso'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/atendimento-condominios'
+    | '/atendimento-empresas'
     | '/cdc'
     | '/lgpd'
+    | '/material-eletrico-rio-pequeno'
     | '/politica-de-privacidade'
     | '/sitemap.xml'
     | '/termos-de-uso'
   id:
     | '__root__'
     | '/'
+    | '/atendimento-condominios'
+    | '/atendimento-empresas'
     | '/cdc'
     | '/lgpd'
+    | '/material-eletrico-rio-pequeno'
     | '/politica-de-privacidade'
     | '/sitemap.xml'
     | '/termos-de-uso'
@@ -101,8 +138,11 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AtendimentoCondominiosRoute: typeof AtendimentoCondominiosRoute
+  AtendimentoEmpresasRoute: typeof AtendimentoEmpresasRoute
   CdcRoute: typeof CdcRoute
   LgpdRoute: typeof LgpdRoute
+  MaterialEletricoRioPequenoRoute: typeof MaterialEletricoRioPequenoRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermosDeUsoRoute: typeof TermosDeUsoRoute
@@ -131,6 +171,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/material-eletrico-rio-pequeno': {
+      id: '/material-eletrico-rio-pequeno'
+      path: '/material-eletrico-rio-pequeno'
+      fullPath: '/material-eletrico-rio-pequeno'
+      preLoaderRoute: typeof MaterialEletricoRioPequenoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lgpd': {
       id: '/lgpd'
       path: '/lgpd'
@@ -145,6 +192,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CdcRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/atendimento-empresas': {
+      id: '/atendimento-empresas'
+      path: '/atendimento-empresas'
+      fullPath: '/atendimento-empresas'
+      preLoaderRoute: typeof AtendimentoEmpresasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/atendimento-condominios': {
+      id: '/atendimento-condominios'
+      path: '/atendimento-condominios'
+      fullPath: '/atendimento-condominios'
+      preLoaderRoute: typeof AtendimentoCondominiosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -157,8 +218,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AtendimentoCondominiosRoute: AtendimentoCondominiosRoute,
+  AtendimentoEmpresasRoute: AtendimentoEmpresasRoute,
   CdcRoute: CdcRoute,
   LgpdRoute: LgpdRoute,
+  MaterialEletricoRioPequenoRoute: MaterialEletricoRioPequenoRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermosDeUsoRoute: TermosDeUsoRoute,
