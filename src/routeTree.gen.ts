@@ -14,6 +14,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as LgpdRouteImport } from './routes/lgpd'
 import { Route as CdcRouteImport } from './routes/cdc'
+import { Route as AtendimentoEmpresasRouteImport } from './routes/atendimento-empresas'
 import { Route as IndexRouteImport } from './routes/index'
 
 const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
@@ -41,6 +42,11 @@ const CdcRoute = CdcRouteImport.update({
   path: '/cdc',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AtendimentoEmpresasRoute = AtendimentoEmpresasRouteImport.update({
+  id: '/atendimento-empresas',
+  path: '/atendimento-empresas',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -49,6 +55,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/atendimento-empresas': typeof AtendimentoEmpresasRoute
   '/cdc': typeof CdcRoute
   '/lgpd': typeof LgpdRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
@@ -57,6 +64,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/atendimento-empresas': typeof AtendimentoEmpresasRoute
   '/cdc': typeof CdcRoute
   '/lgpd': typeof LgpdRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
@@ -66,6 +74,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/atendimento-empresas': typeof AtendimentoEmpresasRoute
   '/cdc': typeof CdcRoute
   '/lgpd': typeof LgpdRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
@@ -76,6 +85,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/atendimento-empresas'
     | '/cdc'
     | '/lgpd'
     | '/politica-de-privacidade'
@@ -84,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/atendimento-empresas'
     | '/cdc'
     | '/lgpd'
     | '/politica-de-privacidade'
@@ -92,6 +103,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/atendimento-empresas'
     | '/cdc'
     | '/lgpd'
     | '/politica-de-privacidade'
@@ -101,6 +113,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AtendimentoEmpresasRoute: typeof AtendimentoEmpresasRoute
   CdcRoute: typeof CdcRoute
   LgpdRoute: typeof LgpdRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
@@ -145,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CdcRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/atendimento-empresas': {
+      id: '/atendimento-empresas'
+      path: '/atendimento-empresas'
+      fullPath: '/atendimento-empresas'
+      preLoaderRoute: typeof AtendimentoEmpresasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -157,6 +177,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AtendimentoEmpresasRoute: AtendimentoEmpresasRoute,
   CdcRoute: CdcRoute,
   LgpdRoute: LgpdRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
