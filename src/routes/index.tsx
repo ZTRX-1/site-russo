@@ -29,6 +29,8 @@ import {
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { QuickQuote } from "@/components/home/QuickQuote";
+import { CtaBar } from "@/components/home/CtaBar";
 import { 
   WHATSAPP,
   WHATSAPP_URL, 
@@ -39,7 +41,9 @@ import {
   GOOGLE_MAPS_URL, 
   MAPS_EMBED,
   SITE_URL,
-  COMPANY_NAME
+  COMPANY_NAME,
+  WHATSAPP_URL_EMPRESA,
+  WHATSAPP_URL_ESPECIALISTA,
 } from "@/lib/constants";
 
 export const Route = createFileRoute("/")({
@@ -191,11 +195,28 @@ function Index() {
       <main>
         <Hero />
         <ClientesParceiros />
+        <QuickQuote />
         <Sobre />
         <Atendemos />
+        <CtaBar
+          eyebrow="Compras corporativas"
+          title="Precisa de orçamento com faturamento para empresa ou condomínio?"
+          description="Estrutura preparada para compras recorrentes, notas fiscais, condições comerciais e atendimento dedicado para operações maiores."
+          href={WHATSAPP_URL_EMPRESA}
+          cta="Falar com o comercial"
+          variant="dark"
+        />
         <Categorias />
         <OrcamentoCorporativo />
         <Diferenciais />
+        <CtaBar
+          eyebrow="Atendimento técnico"
+          title="Fale agora com um especialista da Russo"
+          description="Tire dúvidas técnicas antes de comprar — nossa equipe orienta o material certo para o seu projeto."
+          href={WHATSAPP_URL_ESPECIALISTA}
+          cta="Falar com especialista"
+          variant="light"
+        />
         <Avaliacoes />
         <Localizacao />
         <Contato />
