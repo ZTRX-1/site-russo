@@ -1,49 +1,29 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { X } from "lucide-react";
-import fachada from "/uploads/fachada-russo.png";
-import lojaInterior from "@/assets/loja-interior.jpg";
-import {
-  MapPin,
-  Phone,
-  Clock,
-  Star,
-  Zap,
-  Lightbulb,
-  Wrench,
-  Hammer,
-  Cable,
-  ShieldCheck,
-  Plug,
-  Droplets,
-  Users,
-  Truck,
-  ParkingSquare,
-  Headset,
-  Navigation,
-  Instagram,
-  Facebook,
-  Award,
-} from "lucide-react";
+import { useEffect } from "react";
 
-import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
+import { FloatingWhats } from "@/components/shared/FloatingWhats";
+
+import { Hero } from "@/components/home/Hero";
+import { ClientesParceiros } from "@/components/home/ClientesParceiros";
 import { QuickQuote } from "@/components/home/QuickQuote";
+import { Categorias } from "@/components/home/Categorias";
+import { Diferenciais } from "@/components/home/Diferenciais";
+import { Atendemos } from "@/components/home/Atendemos";
+import { OrcamentoCorporativo } from "@/components/home/OrcamentoCorporativo";
+import { Avaliacoes } from "@/components/home/Avaliacoes";
+import { Sobre } from "@/components/home/Sobre";
+import { Localizacao } from "@/components/home/Localizacao";
+import { Contato } from "@/components/home/Contato";
 import { CtaBar } from "@/components/home/CtaBar";
-import { 
-  WHATSAPP,
-  WHATSAPP_URL, 
-  PHONE_DISPLAY, 
-  MOBILE_DISPLAY, 
-  ADDRESS, 
-  MAPS_URL, 
-  GOOGLE_MAPS_URL, 
-  MAPS_EMBED,
+
+import {
+  WHATSAPP_URL_ESPECIALISTA,
   SITE_URL,
   COMPANY_NAME,
-  WHATSAPP_URL_EMPRESA,
-  WHATSAPP_URL_ESPECIALISTA,
+  GOOGLE_MAPS_URL,
 } from "@/lib/constants";
 
 export const Route = createFileRoute("/")({
@@ -174,55 +154,47 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const hero = document.getElementById('hero-section');
-      if (hero) {
-        const rect = hero.getBoundingClientRect();
-        if (window.scrollY > 20) {
-          document.body.classList.add('scrolled');
-        } else {
-          document.body.classList.remove('scrolled');
-        }
-      }
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        if (window.scrollY > 20) document.body.classList.add("scrolled");
+        else document.body.classList.remove("scrolled");
+        ticking = false;
+      });
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background pb-16 text-foreground sm:pb-0">
       <Header />
       <main>
         <Hero />
         <ClientesParceiros />
         <QuickQuote />
-        <Sobre />
-        <Atendemos />
-        <CtaBar
-          eyebrow="Compras corporativas"
-          title="Precisa de orçamento com faturamento para empresa ou condomínio?"
-          description="Estrutura preparada para compras recorrentes, notas fiscais, condições comerciais e atendimento dedicado para operações maiores."
-          href={WHATSAPP_URL_EMPRESA}
-          cta="Falar com o comercial"
-          variant="dark"
-        />
         <Categorias />
-        <OrcamentoCorporativo />
         <Diferenciais />
+        <Atendemos />
+        <OrcamentoCorporativo />
         <CtaBar
           eyebrow="Atendimento técnico"
           title="Fale agora com um especialista da Russo"
-          description="Tire dúvidas técnicas antes de comprar — nossa equipe orienta o material certo para o seu projeto."
+          description="Tire dúvidas técnicas antes de comprar — nossa equipe orienta o material certo para o seu projeto. Atendimento durante o horário comercial."
           href={WHATSAPP_URL_ESPECIALISTA}
           cta="Falar com especialista"
           variant="light"
         />
         <Avaliacoes />
+        <Sobre />
         <Localizacao />
         <Contato />
       </main>
       <Footer />
       <FloatingWhats />
+      <MobileCtaBar />
     </div>
   );
 }
