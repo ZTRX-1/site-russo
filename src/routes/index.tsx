@@ -626,38 +626,47 @@ function Categorias() {
 }
 
 const DIFERENCIAIS = [
-  { icon: Headset, title: "Atendimento Especializado", text: "Suporte técnico qualificado para tirar dúvidas e indicar os melhores componentes." },
-  { icon: ShieldCheck, title: "Qualidade Garantida", text: "Trabalhamos apenas com marcas reconhecidas e certificadas pelo mercado." },
-  { icon: Navigation, title: "Fácil Acesso", text: "Localização estratégica com entrada facilitada pela Avenida Escola Politécnica." },
-  { icon: ParkingSquare, title: "Estrutura Completa", text: "Amplo estoque e estacionamento próprio para sua total comodidade." },
-  { icon: Users, title: "Atendimento Humano", text: "Proximidade e compromisso com o sucesso do seu projeto ou reparo." },
-  { icon: Wrench, title: "Suporte Técnico", text: "Orientação técnica especializada para garantir a segurança da sua instalação." },
+  { icon: Headset, title: "Vendedor técnico", text: "Você conversa com quem entende de instalação, não com balconista de check-out." },
+  { icon: ShieldCheck, title: "Marcas certificadas", text: "Trabalhamos apenas com fabricantes reconhecidos — segurança e conformidade garantidas." },
+  { icon: Truck, title: "Reposição rápida", text: "Estoque profundo e logística local para não deixar sua obra ou operação parada." },
+  { icon: Navigation, title: "Acesso privilegiado", text: "Av. Escola Politécnica — direto do Rio Pequeno, Butantã, Jaguaré e Raposo Tavares." },
+  { icon: ParkingSquare, title: "Estacionamento próprio", text: "Carga, descarga e retirada sem estresse — o tempo do seu profissional é dinheiro." },
+  { icon: Award, title: "5.0 no Google", text: "127+ clientes avaliaram com nota máxima. Reputação construída no balcão, todo dia." },
 ];
 
 function Diferenciais() {
   return (
-    <section id="diferenciais" className="relative overflow-hidden bg-secondary py-20 text-secondary-foreground sm:py-28">
+    <section
+      id="diferenciais"
+      className="relative overflow-hidden py-20 sm:py-28 text-secondary-foreground"
+      style={{ background: "var(--gradient-industrial)" }}
+    >
+      <div className="absolute inset-0 grid-industrial pointer-events-none opacity-60" />
       <div className="absolute inset-y-0 right-0 hidden w-1/3 bg-primary/10 [clip-path:polygon(20%_0,100%_0,100%_100%,0%_100%)] lg:block" />
+      <div className="absolute inset-x-0 top-0 red-glow-line" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-            Diferenciais
+          <span className="glass-industrial inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
+            <Award className="h-3 w-3 shrink-0" /> Por que a Russo
           </span>
-          <h2 className="mt-3 font-display text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
-            Por que a <span className="text-primary">Russo</span> é referência na região
+          <h2 className="mt-5 font-display text-3xl font-black leading-tight tracking-tight sm:text-4xl lg:text-5xl text-white">
+            Diferenciais que <span className="text-primary">viram vantagem</span> para você
           </h2>
+          <p className="mt-4 text-white/60 text-base sm:text-lg">
+            Estrutura de fornecedor de médio porte com a proximidade de loja de bairro. É essa combinação que faz cliente empresarial voltar.
+          </p>
         </div>
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {DIFERENCIAIS.map(({ icon: Icon, title, text }) => (
             <div
               key={title}
-              className="group rounded-xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm transition hover:border-primary/50 hover:bg-white/[0.07]"
+              className="card-premium group glass-industrial rounded-2xl p-7 hover:border-primary/50"
             >
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-[var(--shadow-elegant)]">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-[var(--shadow-red-glow)] transition-transform duration-500 group-hover:scale-110">
                 <Icon className="h-6 w-6 shrink-0" />
               </span>
-              <h3 className="mt-4 font-display text-xl font-bold text-white">{title}</h3>
-              <p className="mt-2 text-sm text-white/65">{text}</p>
+              <h3 className="mt-5 font-display text-xl font-black tracking-tight text-white">{title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-white/65">{text}</p>
             </div>
           ))}
         </div>
