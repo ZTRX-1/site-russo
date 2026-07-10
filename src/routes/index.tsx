@@ -587,12 +587,12 @@ const CATEGORIAS = [
 
 function Categorias() {
   return (
-    <section id="categorias" className="bg-muted/40 py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="categorias" className="relative bg-muted/40 py-20 sm:py-28 section-edge">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          eyebrow="Categorias"
-          title={<>Tudo o que sua <span className="text-primary">obra precisa</span></>}
-          description="Uma curadoria completa de produtos para profissionais e consumidores finais."
+          eyebrow="Linhas de produto"
+          title={<>Estoque completo para <span className="text-primary">projetos, obras e manutenção</span></>}
+          description="Toque na categoria e fale direto no WhatsApp — sua cotação começa antes mesmo de você entrar na loja."
         />
         <div className="mt-14 grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
           {CATEGORIAS.map(({ icon: Icon, name, desc }) => {
@@ -605,15 +605,15 @@ function Categorias() {
                 href={categoryWhatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card p-5 transition hover:-translate-y-1 hover:border-primary hover:shadow-[var(--shadow-card)]"
+                className="card-premium group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card p-5 hover:border-primary hover:shadow-[var(--shadow-card)]"
               >
-                <div className="absolute inset-x-0 top-0 h-1 bg-primary opacity-0 transition group-hover:opacity-100" />
-                <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-secondary text-primary transition group-hover:bg-primary group-hover:text-primary-foreground">
+                <div className="absolute inset-x-0 top-0 h-[2px] bg-linear-to-r from-transparent via-primary to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-secondary text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-[var(--shadow-red-glow)]">
                   <Icon className="h-6 w-6 shrink-0" />
                 </span>
-                <h3 className="mt-4 font-display text-lg font-bold">{name}</h3>
-                <p className="mt-1 flex-grow text-sm text-muted-foreground">{desc}</p>
-                <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-primary">
+                <h3 className="mt-4 font-display text-lg font-black tracking-tight">{name}</h3>
+                <p className="mt-1 grow text-sm text-muted-foreground leading-snug">{desc}</p>
+                <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary">
                   Consultar <WhatsAppIcon className="h-3.5 w-3.5 shrink-0" />
                 </span>
               </a>
