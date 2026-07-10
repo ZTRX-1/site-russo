@@ -470,7 +470,7 @@ function OrcamentoCorporativo() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-3xl">
           <span className="glass-industrial inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-primary mb-6">
-            <Building2Icon /> Compras corporativas
+            <ShieldCheck className="h-3 w-3 shrink-0" /> Compras corporativas
           </span>
           <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl mb-6 text-white">
             Sua empresa merece um <span className="text-primary">fornecedor à altura da sua operação</span>
