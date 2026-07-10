@@ -230,49 +230,64 @@ function Index() {
 
 function Hero() {
   return (
-    <section id="hero-section" className="relative overflow-hidden bg-secondary text-secondary-foreground">
-      <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "24px 24px" }} />
-      <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl" />
+    <section
+      id="hero-section"
+      className="relative overflow-hidden text-secondary-foreground"
+      style={{ background: "var(--gradient-industrial-radial)" }}
+    >
+      {/* Grid técnico premium */}
+      <div className="absolute inset-0 grid-industrial pointer-events-none" />
+      {/* Halo vermelho suave */}
+      <div className="absolute -right-32 -top-32 h-[32rem] w-[32rem] rounded-full bg-primary/15 blur-[120px]" />
+      <div className="absolute -left-40 bottom-0 h-96 w-96 rounded-full bg-primary/10 blur-[100px]" />
+      {/* Linha vermelha iluminada no rodapé do hero */}
+      <div className="absolute inset-x-0 bottom-0 red-glow-line" />
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-24 lg:px-8">
-        <div>
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium uppercase tracking-widest text-white/70">
-            <ShieldCheck className="h-3 w-3 text-primary shrink-0" /> Loja especializada em elétrica e ferragens
+        <div className="animate-fade-up">
+          <span className="glass-industrial inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/80">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary"></span>
+            </span>
+            Referência técnica na Zona Oeste de SP
           </span>
-          <h1 className="mt-5 font-display text-4xl font-black leading-[1.05] sm:text-6xl lg:text-7xl">
-            <span className="text-white">Materiais elétricos, </span>
-            <span className="text-primary">ferragens e iluminação </span>
-            <span className="text-white">com atendimento especializado na Zona Oeste de São Paulo</span>
+          <h1 className="mt-6 font-display text-4xl font-black leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
+            <span className="text-white">A referência em </span>
+            <span className="text-primary">materiais elétricos, ferragens e iluminação</span>
+            <span className="text-white"> na Zona Oeste de São Paulo</span>
           </h1>
-          <p className="mt-5 max-w-xl text-base text-white/60 sm:text-lg leading-relaxed">
-            Uma estrutura completa no Rio Pequeno, com fácil acesso pela Avenida Escola Politécnica, preparada para atender consumidores, eletricistas, empresas, condomínios e prestadores de serviço com variedade, organização e atendimento especializado.
+          <p className="mt-6 max-w-xl text-base text-white/65 sm:text-lg leading-relaxed">
+            Estrutura completa no Rio Pequeno para empresas, condomínios, construtoras, eletricistas e profissionais que não podem depender de improviso. Estoque robusto, atendimento técnico e faturamento para operações que precisam de agilidade.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-4">
+          <div className="mt-9 flex flex-wrap gap-3">
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-primary-foreground shadow-sm transition hover:bg-primary-dark"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-md bg-primary px-7 py-4 text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-[var(--shadow-red-glow)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary-dark hover:shadow-[0_25px_60px_-20px_oklch(0.55_0.22_27_/_0.7)]"
             >
+              <WhatsAppIcon className="h-4 w-4 shrink-0" />
               Solicitar orçamento
+              <span className="absolute inset-y-0 -left-6 w-6 -skew-x-12 bg-white/20 transition-transform duration-700 group-hover:translate-x-[220px]" />
             </a>
             <a
-              href={GOOGLE_MAPS_URL}
+              href={WHATSAPP_URL_ESPECIALISTA}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-white/10"
+              className="glass-industrial inline-flex items-center gap-2 rounded-md px-7 py-4 text-sm font-bold uppercase tracking-wider text-white transition hover:border-primary/40 hover:bg-white/10"
             >
-              <Navigation className="h-4 w-4 shrink-0" />
-              Como chegar
+              <Headset className="h-4 w-4 shrink-0" />
+              Falar com especialista
             </a>
           </div>
 
-          <div className="mt-8 grid grid-cols-2 gap-y-3 sm:grid-cols-4 sm:gap-4">
+          <div className="mt-9 grid grid-cols-2 gap-y-3 sm:grid-cols-4 sm:gap-4">
             {[
-              "Atendimento especializado",
-              "Variedade de produtos",
-              "Estacionamento próprio",
-              "Fácil acesso (Politécnica)",
+              "Estoque robusto",
+              "Faturamento B2B",
+              "Atendimento técnico",
+              "Av. Escola Politécnica",
             ].map((item) => (
               <div key={item} className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-white/60">
                 <ShieldCheck className="h-3 w-3 text-primary shrink-0" />
