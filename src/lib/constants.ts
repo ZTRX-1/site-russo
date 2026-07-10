@@ -3,6 +3,36 @@ export const WHATSAPP_MSG = encodeURIComponent(
   "Olá! Vim pelo site da Russo Elétrica e Ferragens e gostaria de um orçamento."
 );
 export const WHATSAPP_URL = `https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${WHATSAPP_MSG}`;
+
+/**
+ * WhatsApp segmentado por perfil do cliente.
+ * A mensagem já vai pré-preenchida para qualificar o contato antes mesmo
+ * de o vendedor responder — reduz tempo de atendimento e aumenta conversão.
+ */
+export const buildWhatsAppUrl = (message: string) =>
+  `https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${encodeURIComponent(message)}`;
+
+export const WHATSAPP_URL_EMPRESA = buildWhatsAppUrl(
+  "Olá! Sou responsável por compras de uma empresa e gostaria de um orçamento com faturamento na Russo Elétrica e Ferragens. Poderiam me atender?"
+);
+export const WHATSAPP_URL_CONDOMINIO = buildWhatsAppUrl(
+  "Olá! Represento um condomínio e preciso de orçamento para manutenção predial (elétrica/ferragens). Trabalham com faturamento e compras recorrentes?"
+);
+export const WHATSAPP_URL_CONSTRUTORA = buildWhatsAppUrl(
+  "Olá! Sou de uma construtora e quero cotar materiais elétricos e ferragens para obra. Podem me passar condições comerciais?"
+);
+export const WHATSAPP_URL_ELETRICISTA = buildWhatsAppUrl(
+  "Olá! Sou eletricista e gostaria de saber sobre condições especiais para profissionais na Russo Elétrica."
+);
+export const WHATSAPP_URL_PRESTADOR = buildWhatsAppUrl(
+  "Olá! Sou prestador de serviço e preciso de ferramentas e materiais. Poderiam me ajudar com um orçamento?"
+);
+export const WHATSAPP_URL_CONSUMIDOR = buildWhatsAppUrl(
+  "Olá! Preciso de um material para minha casa e gostaria de tirar uma dúvida antes de ir até a loja."
+);
+export const WHATSAPP_URL_ESPECIALISTA = buildWhatsAppUrl(
+  "Olá! Gostaria de falar com um especialista da Russo Elétrica sobre um projeto/necessidade específica."
+);
 export const PHONE_DISPLAY = "(11) 3766-2002";
 export const MOBILE_DISPLAY = "(11) 92232-8009";
 export const ADDRESS = "Av. Escola Politécnica, 2850 - Rio Pequeno, São Paulo - SP, 05386-130";
