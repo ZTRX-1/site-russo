@@ -63,10 +63,10 @@ export function Hero() {
             ].map((item) => (
               <div
                 key={item}
-                className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-white/60"
+                className="flex items-center gap-2 text-[11px] font-bold uppercase leading-tight tracking-wider text-white/60"
               >
                 <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-primary" />
-                <span className="truncate">{item}</span>
+                <span>{item}</span>
               </div>
             ))}
           </div>
