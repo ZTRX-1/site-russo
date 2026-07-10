@@ -126,7 +126,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             postalCode: "05386-130",
             addressCountry: "BR",
           },
-          areaServed: ["Rio Pequeno", "Butantã", "Jaguaré", "Vila Sônia", "Morumbi", "Lapa", "Osasco", "Zona Oeste de São Paulo"],
+          areaServed: ["Rio Pequeno", "Butantã", "Jaguaré", "Vila Sônia", "Morumbi", "Lapa", "Osasco", "Raposo Tavares", "Vila São Francisco", "USP", "Zona Oeste de São Paulo"],
           sameAs: [
             "https://www.instagram.com/russoeletrica/",
             "https://www.facebook.com/russoeletrica/",
