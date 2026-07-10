@@ -1,5 +1,4 @@
-import { ArrowRight } from "lucide-react";
-import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
+import { CtaButton } from "@/components/ui/CtaButton";
 
 interface CtaBarProps {
   eyebrow?: string;
@@ -41,20 +40,17 @@ export function CtaBar({
             </p>
           )}
         </div>
-        <a
+        <CtaButton
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className={`group inline-flex shrink-0 items-center gap-2 rounded-md px-8 py-4 text-sm font-bold uppercase tracking-wider transition ${
-            isDark
-              ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25 hover:bg-primary-dark"
-              : "bg-white text-primary hover:bg-white/95"
-          }`}
+          variant={isDark ? "primary" : "ghost"}
+          className={isDark ? "" : "border-transparent bg-white text-primary hover:bg-white/95 hover:text-primary"}
+          icon="whatsapp"
+          trailing
         >
-          <WhatsAppIcon className="h-4 w-4 shrink-0" />
           {cta}
-          <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" />
-        </a>
+        </CtaButton>
       </div>
     </section>
   );

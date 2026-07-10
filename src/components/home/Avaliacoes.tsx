@@ -1,0 +1,73 @@
+import { Star } from "lucide-react";
+
+const REVIEWS = [
+  {
+    name: "Carlos Mendes",
+    role: "Eletricista",
+    text: "Atendimento nota 10. Sempre encontro tudo que preciso para as obras e o preço é justo pela qualidade.",
+  },
+  {
+    name: "Juliana Souza",
+    role: "Moradora do bairro",
+    text: "Fui trocar um chuveiro e fui super bem orientada. Loja organizada, equipe atenciosa. Recomendo demais!",
+  },
+  {
+    name: "Roberto Lima",
+    role: "Construtor",
+    text: "Compro materiais elétricos aqui há anos. Variedade, qualidade e atendimento próximo. Parceiros de confiança.",
+  },
+];
+
+export function Avaliacoes() {
+  return (
+    <section id="avaliacoes" className="bg-background py-16 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
+          <div>
+            <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">Avaliações</span>
+            <h2 className="mt-3 font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
+              Nota <span className="text-primary">5.0</span> no Google
+            </h2>
+            <div className="mt-4 flex items-center gap-1.5">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} className="h-6 w-6 shrink-0 fill-gold text-gold" />
+              ))}
+            </div>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              Mais de 127 clientes avaliaram a Russo Elétrica com a nota máxima. Confiança construída no balcão, dia após dia.
+            </p>
+            <a
+              href="https://www.google.com/maps/search/Russo+Eletrica+e+Ferragens+Rio+Pequeno"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+            >
+              Ver todas as avaliações no Google →
+            </a>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {REVIEWS.map((r) => (
+              <figure
+                key={r.name}
+                className="flex h-full flex-col rounded-xl border border-border bg-card p-6 shadow-[var(--shadow-card)]"
+              >
+                <div className="flex gap-0.5">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="h-4 w-4 shrink-0 fill-gold text-gold" />
+                  ))}
+                </div>
+                <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-foreground/80">
+                  &ldquo;{r.text}&rdquo;
+                </blockquote>
+                <figcaption className="mt-4 border-t border-border pt-3">
+                  <p className="font-semibold text-foreground">{r.name}</p>
+                  <p className="text-xs text-muted-foreground">{r.role}</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
