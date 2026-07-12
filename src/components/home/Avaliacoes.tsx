@@ -4,17 +4,17 @@ const REVIEWS = [
   {
     name: "Carlos Mendes",
     role: "Eletricista",
-    text: "Atendimento nota 10. Sempre encontro tudo que preciso para as obras e o preço é justo pela qualidade.",
+    text: "Atendimento nota 10. Sempre acho o que preciso para as obras e o preço é honesto pelo que entregam.",
   },
   {
     name: "Juliana Souza",
     role: "Moradora do bairro",
-    text: "Fui trocar um chuveiro e fui super bem orientada. Loja organizada, equipe atenciosa. Recomendo demais!",
+    text: "Fui trocar um chuveiro e me explicaram tudo com paciência. Loja organizada, gente atenciosa. Recomendo.",
   },
   {
     name: "Roberto Lima",
     role: "Construtor",
-    text: "Compro materiais elétricos aqui há anos. Variedade, qualidade e atendimento próximo. Parceiros de confiança.",
+    text: "Compro material elétrico aqui há anos. Variedade, qualidade e atendimento de gente que conhece o produto.",
   },
 ];
 
@@ -24,9 +24,9 @@ export function Avaliacoes() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
           <div>
-            <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">Avaliações</span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">O que dizem sobre a Russo</span>
             <h2 className="mt-3 font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
-              Nota <span className="text-primary">5.0</span> no Google
+              Nota <span className="text-primary">5,0</span> no Google
             </h2>
             <div className="mt-4 flex items-center gap-1.5">
               {Array.from({ length: 5 }).map((_, i) => (
@@ -34,7 +34,7 @@ export function Avaliacoes() {
               ))}
             </div>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              Mais de 127 clientes avaliaram a Russo Elétrica com a nota máxima. Confiança construída no balcão, dia após dia.
+              Mais de 127 clientes avaliaram a Russo com nota máxima. Confiança construída no balcão, dia após dia.
             </p>
             <a
               href="https://www.google.com/maps/search/Russo+Eletrica+e+Ferragens+Rio+Pequeno"
@@ -42,7 +42,7 @@ export function Avaliacoes() {
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
             >
-              Ver todas as avaliações no Google →
+              Ver as avaliações no Google →
             </a>
           </div>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

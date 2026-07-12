@@ -9,13 +9,13 @@ export function Contato() {
       <div className="pointer-events-none absolute inset-x-0 top-0 red-glow-line" />
       <div className="relative mx-auto max-w-5xl px-4 text-center text-white sm:px-6 lg:px-8">
         <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
-          Fale com nossa equipe
+          Fale com a gente
         </span>
         <h2 className="mt-3 font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
-          Atendimento <span className="text-primary">especializado</span> via WhatsApp
+          A forma mais rápida de resolver é <span className="text-primary">pelo WhatsApp</span>
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
-          Precisa de materiais elétricos, ferragens ou iluminação? Nossa equipe atende com agilidade e conhecimento técnico.
+          Manda uma mensagem contando o que você precisa. A gente responde no horário comercial com o material, o preço e a disponibilidade.
         </p>
 
         <div className="mt-8 flex justify-center">
@@ -25,11 +25,11 @@ export function Contato() {
             rel="noopener noreferrer"
             variant="primary"
           >
-            Falar com especialista
+            Enviar mensagem no WhatsApp
           </CtaButton>
         </div>
         <p className="mt-3 text-[11px] uppercase tracking-widest text-white/45">
-          Atendimento durante o horário comercial
+          Respondemos dentro do horário comercial
         </p>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-3">

@@ -30,7 +30,7 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-sm leading-relaxed text-white/60">
-              Sua parceira em soluções elétricas, ferragens e iluminação na Zona Oeste. Atendimento especializado para todos os tipos de projetos.
+              Empresa familiar no Rio Pequeno. Materiais elétricos, ferragens, hidráulica e iluminação para moradores, eletricistas, condomínios e empresas da Zona Oeste de São Paulo.
             </p>
             <div className="flex gap-4">
               <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 transition hover:bg-primary hover:text-primary-foreground">
@@ -43,26 +43,26 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display text-sm font-bold uppercase tracking-widest text-white">Soluções</h4>
+            <h4 className="font-display text-sm font-bold uppercase tracking-widest text-white">Para quem atendemos</h4>
             <ul className="mt-6 space-y-3 text-sm text-white/60">
-              <li><Link to="/empresas" className="hover:text-primary transition-colors">Atendimento a Empresas</Link></li>
-              <li><Link to="/condominios" className="hover:text-primary transition-colors">Atendimento a Condomínios</Link></li>
+              <li><Link to="/empresas" className="hover:text-primary transition-colors">Empresas</Link></li>
+              <li><Link to="/condominios" className="hover:text-primary transition-colors">Condomínios</Link></li>
               <li><Link to="/rio-pequeno" className="hover:text-primary transition-colors">Loja no Rio Pequeno</Link></li>
-              <li><Link to="/#categorias" className="hover:text-primary transition-colors">Categorias de Produtos</Link></li>
+              <li><Link to="/#categorias" className="hover:text-primary transition-colors">Linhas de produto</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-display text-sm font-bold uppercase tracking-widest text-white">Conteúdo</h4>
             <ul className="mt-6 space-y-3 text-sm text-white/60">
-              <li><Link to="/blog" className="hover:text-primary transition-colors">Blog Russo</Link></li>
-              <li><Link to="/#atendemos" className="hover:text-primary transition-colors">Públicos Atendidos</Link></li>
-              <li><Link to="/#localizacao" className="hover:text-primary transition-colors">Nossa Localização</Link></li>
+              <li><Link to="/blog" className="hover:text-primary transition-colors">Blog da Russo</Link></li>
+              <li><Link to="/#atendemos" className="hover:text-primary transition-colors">Quem atendemos</Link></li>
+              <li><Link to="/#localizacao" className="hover:text-primary transition-colors">Como chegar</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-display text-sm font-bold uppercase tracking-widest text-white">Contato & Horário</h4>
+            <h4 className="font-display text-sm font-bold uppercase tracking-widest text-white">Contato e horário</h4>
             <ul className="mt-6 space-y-4 text-sm text-white/60">
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
@@ -91,17 +91,17 @@ export function Footer() {
           <div>
             <h4 className="font-display text-sm font-bold uppercase tracking-widest text-white">Institucional</h4>
             <ul className="mt-6 space-y-3 text-sm text-white/60">
-              <li><Link to="/politica-de-privacidade" className="hover:text-primary transition-colors">Política de Privacidade</Link></li>
-              <li><Link to="/termos-de-uso" className="hover:text-primary transition-colors">Termos de Uso</Link></li>
-              <li><Link to="/lgpd" className="hover:text-primary transition-colors">Conformidade LGPD</Link></li>
-              <li><Link to="/cdc" className="hover:text-primary transition-colors">Direitos do Consumidor (CDC)</Link></li>
+              <li><Link to="/politica-de-privacidade" className="hover:text-primary transition-colors">Política de privacidade</Link></li>
+              <li><Link to="/termos-de-uso" className="hover:text-primary transition-colors">Termos de uso</Link></li>
+              <li><Link to="/lgpd" className="hover:text-primary transition-colors">LGPD</Link></li>
+              <li><Link to="/cdc" className="hover:text-primary transition-colors">Código de Defesa do Consumidor</Link></li>
             </ul>
           </div>
         </div>
 
         <div className="mt-16 border-t border-white/10 pt-8 text-center text-xs text-white/40">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <p>© {currentYear} Russo Elétrica e Ferragens. CNPJ: 62.093.783/0001-52. Todos os direitos reservados.</p>
+            <p>© {currentYear} Russo Elétrica e Ferragens · CNPJ 62.093.783/0001-52 · Todos os direitos reservados.</p>
             <p>
               Desenvolvido com 💙 pela{" "}
               <a 

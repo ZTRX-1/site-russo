@@ -11,33 +11,33 @@ import {
 const OPCOES = [
   {
     label: "Empresa",
-    desc: "Compras recorrentes, faturamento e condições comerciais.",
+    desc: "Compras recorrentes, nota fiscal e condição comercial combinada.",
     icon: Building2,
     href: WHATSAPP_URL_EMPRESA,
     highlight: true,
   },
   {
     label: "Condomínio",
-    desc: "Manutenção predial e suporte para síndicos e zeladores.",
+    desc: "Materiais para manutenção predial e apoio a síndicos e zeladores.",
     icon: Building2,
     href: WHATSAPP_URL_CONDOMINIO,
     highlight: true,
   },
   {
     label: "Eletricista",
-    desc: "Estoque técnico e condições para profissionais.",
+    desc: "Estoque abastecido e condição especial para o profissional.",
     icon: Wrench,
     href: WHATSAPP_URL_ELETRICISTA,
   },
   {
-    label: "Prestador de Serviço",
-    desc: "Ferramentas e materiais para o seu dia de trabalho.",
+    label: "Prestador de serviço",
+    desc: "Ferramentas e materiais para você entregar o serviço no prazo.",
     icon: Hammer,
     href: WHATSAPP_URL_PRESTADOR,
   },
   {
-    label: "Consumidor Final",
-    desc: "Reforma, reparo ou dúvida técnica para sua casa.",
+    label: "Uso em casa",
+    desc: "Reforma, reparo ou aquela dúvida antes de comprar. Pode chamar.",
     icon: Home,
     href: WHATSAPP_URL_CONSUMIDOR,
   },
@@ -57,13 +57,13 @@ export function QuickQuote() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-primary">
-            <HardHat className="h-3 w-3 shrink-0" /> Solicite um orçamento
+            <HardHat className="h-3 w-3 shrink-0" /> Peça seu orçamento
           </span>
           <h2 className="mt-5 font-display text-3xl font-black leading-tight text-white sm:text-4xl lg:text-5xl">
-            Diga em <span className="text-primary">qual perfil</span> você se encaixa
+            Escolha o perfil que <span className="text-primary">combina com você</span>
           </h2>
           <p className="mt-4 text-base text-white/60 sm:text-lg">
-            Um clique conecta você diretamente com o atendimento certo. Mensagem já pré-preenchida — o vendedor responde sabendo exatamente do que você precisa.
+            Um clique abre o WhatsApp com a mensagem já preparada. Nossa equipe responde sabendo do que você precisa e agiliza a cotação.
           </p>
         </div>
 

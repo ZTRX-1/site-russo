@@ -3,10 +3,10 @@ import { CtaButton } from "@/components/ui/CtaButton";
 import { WHATSAPP_URL_EMPRESA, PHONE_DISPLAY } from "@/lib/constants";
 
 const BENEFICIOS = [
-  "Faturamento com nota fiscal",
-  "Vendedor dedicado à sua conta",
-  "Reposição programada",
-  "Cotação formal por escrito",
+  "Nota fiscal e faturamento",
+  "Uma pessoa fixa para atender sua conta",
+  "Reposição programada de itens recorrentes",
+  "Cotação por escrito, sem enrolação",
 ];
 
 export function OrcamentoCorporativo() {
@@ -22,14 +22,14 @@ export function OrcamentoCorporativo() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <span className="glass-industrial mb-6 inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
-            <ShieldCheck className="h-3 w-3 shrink-0" /> Compras corporativas
+            <ShieldCheck className="h-3 w-3 shrink-0" /> Compras para empresas
           </span>
           <h2 className="mb-6 font-display text-3xl font-black leading-tight tracking-tight text-white md:text-5xl">
-            Sua empresa merece um{" "}
-            <span className="text-primary">fornecedor à altura da sua operação</span>
+            Um fornecedor{" "}
+            <span className="text-primary">à altura da sua operação</span>
           </h2>
           <p className="mb-6 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
-            Empresas, condomínios, construtoras e academias contam com a Russo para o que a rotina exige e para o que a emergência não avisa. Estoque profundo, atendimento dedicado, orçamento formal e faturamento — a estrutura que transforma compra de material em processo, não em problema.
+            Empresas, condomínios, construtoras e academias contam com a Russo para o que a rotina pede e para o que a emergência não avisa. Estoque abastecido, atendimento próximo, cotação por escrito e nota fiscal em dia. Comprar material vira processo, não problema.
           </p>
 
           <ul className="mb-10 grid max-w-2xl gap-3 sm:grid-cols-2">
@@ -48,10 +48,10 @@ export function OrcamentoCorporativo() {
               rel="noopener noreferrer"
               variant="primary"
             >
-              Solicitar orçamento empresarial
+              Solicitar orçamento para empresa
             </CtaButton>
             <div className="flex flex-col">
-              <p className="text-[11px] uppercase tracking-widest text-white/50">Ou ligue diretamente</p>
+              <p className="text-[11px] uppercase tracking-widest text-white/50">Prefere falar por telefone?</p>
               <a
                 href={`tel:${PHONE_DISPLAY.replace(/\D/g, "")}`}
                 className="font-display text-lg font-bold text-white transition-colors hover:text-primary"

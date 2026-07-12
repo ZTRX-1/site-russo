@@ -1,6 +1,6 @@
 export const WHATSAPP = "5511922328009";
 export const WHATSAPP_MSG = encodeURIComponent(
-  "Olá! Vim pelo site da Russo Elétrica e Ferragens e gostaria de um orçamento."
+  "Olá! Vim pelo site da Russo e gostaria de um orçamento."
 );
 export const WHATSAPP_URL = `https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${WHATSAPP_MSG}`;
 
@@ -13,25 +13,25 @@ export const buildWhatsAppUrl = (message: string) =>
   `https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${encodeURIComponent(message)}`;
 
 export const WHATSAPP_URL_EMPRESA = buildWhatsAppUrl(
-  "Olá! Sou responsável por compras de uma empresa e gostaria de um orçamento com faturamento na Russo Elétrica e Ferragens. Poderiam me atender?"
+  "Olá! Sou responsável por compras em uma empresa e gostaria de um orçamento com nota fiscal. Podem me atender?"
 );
 export const WHATSAPP_URL_CONDOMINIO = buildWhatsAppUrl(
-  "Olá! Represento um condomínio e preciso de orçamento para manutenção predial (elétrica/ferragens). Trabalham com faturamento e compras recorrentes?"
+  "Olá! Sou de um condomínio e preciso de orçamento para manutenção predial (elétrica e ferragens). Trabalham com faturamento e compras recorrentes?"
 );
 export const WHATSAPP_URL_CONSTRUTORA = buildWhatsAppUrl(
-  "Olá! Sou de uma construtora e quero cotar materiais elétricos e ferragens para obra. Podem me passar condições comerciais?"
+  "Olá! Sou de uma construtora e queria cotar materiais elétricos e ferragens para obra. Podem me passar as condições?"
 );
 export const WHATSAPP_URL_ELETRICISTA = buildWhatsAppUrl(
-  "Olá! Sou eletricista e gostaria de saber sobre condições especiais para profissionais na Russo Elétrica."
+  "Olá! Sou eletricista e queria saber sobre condições especiais para profissionais na Russo."
 );
 export const WHATSAPP_URL_PRESTADOR = buildWhatsAppUrl(
-  "Olá! Sou prestador de serviço e preciso de ferramentas e materiais. Poderiam me ajudar com um orçamento?"
+  "Olá! Sou prestador de serviço e preciso de ferramentas e materiais. Podem me passar um orçamento?"
 );
 export const WHATSAPP_URL_CONSUMIDOR = buildWhatsAppUrl(
-  "Olá! Preciso de um material para minha casa e gostaria de tirar uma dúvida antes de ir até a loja."
+  "Olá! Preciso de um material para casa e queria tirar uma dúvida antes de passar na loja."
 );
 export const WHATSAPP_URL_ESPECIALISTA = buildWhatsAppUrl(
-  "Olá! Gostaria de falar com um especialista da Russo Elétrica sobre um projeto/necessidade específica."
+  "Olá! Queria conversar com alguém da Russo sobre um projeto específico. Podem me ajudar?"
 );
 export const PHONE_DISPLAY = "(11) 3766-2002";
 export const MOBILE_DISPLAY = "(11) 92232-8009";

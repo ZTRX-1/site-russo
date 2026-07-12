@@ -3,33 +3,33 @@ import { Headset, ShieldCheck, Truck, Navigation, ParkingSquare, Award } from "l
 const DIFERENCIAIS = [
   {
     icon: Headset,
-    title: "Atendimento especializado",
-    text: "Equipe orienta o material certo para o seu projeto — antes, durante e depois da compra.",
+    title: "Equipe que orienta a compra",
+    text: "Nossa equipe ajuda você a escolher o material certo antes, durante e depois da compra, sem pressa.",
   },
   {
     icon: ShieldCheck,
-    title: "Marcas certificadas",
-    text: "Apenas fabricantes reconhecidos. Segurança e conformidade para instalações profissionais.",
+    title: "Marcas reconhecidas",
+    text: "Trabalhamos com fabricantes conhecidos do mercado, adequados a instalações residenciais e profissionais.",
   },
   {
     icon: Truck,
-    title: "Grande variedade em estoque",
-    text: "Estoque profundo para não deixar sua obra ou operação parada por falta de material.",
+    title: "Estoque abastecido",
+    text: "Você encontra desde pequenos reparos até compras maiores, sem precisar procurar em duas ou três lojas.",
   },
   {
     icon: Navigation,
-    title: "Acesso privilegiado",
-    text: "Av. Escola Politécnica — direto para Rio Pequeno, Butantã, Jaguaré e Raposo Tavares.",
+    title: "Fácil de chegar",
+    text: "Estamos na Av. Escola Politécnica, com acesso direto para Rio Pequeno, Butantã, Jaguaré e Raposo Tavares.",
   },
   {
     icon: ParkingSquare,
     title: "Estacionamento próprio",
-    text: "Carga, descarga e retirada sem estresse — o tempo do seu profissional é dinheiro.",
+    text: "Espaço para carga, descarga e retirada com calma, sem depender de vaga na rua.",
   },
   {
     icon: Award,
-    title: "5.0 no Google",
-    text: "Mais de 127 clientes avaliaram com nota máxima. Reputação construída no balcão.",
+    title: "Nota 5,0 no Google",
+    text: "Mais de 127 clientes avaliaram com nota máxima. Uma reputação construída no balcão, cliente a cliente.",
   },
 ];
 
@@ -45,13 +45,13 @@ export function Diferenciais() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="glass-industrial inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
-            <Award className="h-3 w-3 shrink-0" /> Por que a Russo
+            <Award className="h-3 w-3 shrink-0" /> Por que comprar aqui
           </span>
           <h2 className="mt-5 font-display text-3xl font-black leading-tight tracking-tight text-white md:text-5xl">
-            Diferenciais que <span className="text-primary">viram vantagem</span> para você
+            Vantagens reais para <span className="text-primary">o seu dia a dia</span>
           </h2>
           <p className="mt-4 text-base leading-relaxed text-white/65 md:text-lg">
-            Estrutura de fornecedor de médio porte com a proximidade de uma loja de bairro. É essa combinação que faz o cliente empresarial voltar.
+            A estrutura de um fornecedor de porte, com a proximidade de uma loja de bairro. É essa combinação que faz o cliente voltar sempre.
           </p>
         </div>
 

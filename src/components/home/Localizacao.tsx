@@ -36,13 +36,13 @@ export function Localizacao() {
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
-              Conveniência & acesso
+              Como chegar
             </span>
             <h2 className="mt-3 font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
               Fácil acesso na <span className="text-primary">Zona Oeste de São Paulo</span>
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
-              Estamos na Avenida Escola Politécnica, uma das principais vias da região — facilitando o acesso para quem vem do Rio Pequeno, USP, Jaguaré, Butantã, Osasco, Raposo Tavares e bairros próximos. Estacionamento próprio e estrutura preparada para receber com conforto.
+              Estamos na Avenida Escola Politécnica, uma das principais vias da região. O acesso é direto para quem vem do Rio Pequeno, USP, Jaguaré, Butantã, Osasco e Raposo Tavares. Loja com estacionamento próprio para você parar sem correria.
             </p>
 
             <ul className="mt-6 space-y-3 text-sm">

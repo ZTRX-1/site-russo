@@ -2,10 +2,10 @@ import { Users, Hammer, ParkingSquare, Award } from "lucide-react";
 import lojaInterior from "@/assets/loja-interior.jpg";
 
 const PILLARS = [
-  { icon: Users, label: "Atendimento humano", text: "Equipe preparada para orientar sua compra com proximidade e precisão." },
-  { icon: Hammer, label: "Variedade e estrutura", text: "Ampla linha de produtos das melhores marcas, em ambiente organizado." },
-  { icon: ParkingSquare, label: "Fácil acesso", text: "Loja preparada para atendimento ágil, com estacionamento próprio." },
-  { icon: Award, label: "Tradição e confiança", text: "Empresa familiar comprometida com a solução dos seus problemas diários." },
+  { icon: Users, label: "Atendimento humano", text: "Você conversa com quem entende do produto e ajuda a escolher o certo para a sua necessidade." },
+  { icon: Hammer, label: "Variedade organizada", text: "Boa parte do que você procura está aqui, das marcas conhecidas do mercado, em ambiente organizado." },
+  { icon: ParkingSquare, label: "Fácil de chegar", text: "Loja de rua na Av. Escola Politécnica, com estacionamento próprio para você parar e ser atendido sem correria." },
+  { icon: Award, label: "Empresa familiar", text: "Um negócio de família consolidado no Rio Pequeno, com o compromisso de resolver o problema de quem entra pela porta." },
 ];
 
 export function Sobre() {
@@ -27,24 +27,24 @@ export function Sobre() {
             </div>
             <div className="absolute -bottom-6 -right-6 hidden max-w-[240px] rounded-xl bg-primary px-6 py-5 text-primary-foreground shadow-[var(--shadow-elegant)] sm:block">
               <p className="text-xs font-bold uppercase leading-tight tracking-widest">
-                Grande variedade de marcas, modelos e opções disponíveis em estoque.
+                Loja abastecida com marcas reconhecidas para reparos, obras e manutenção.
               </p>
             </div>
           </div>
 
           <div>
             <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
-              Nossa história & compromisso
+              Sobre a Russo
             </span>
             <h2 className="mt-3 font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
-              Mais do que uma loja. Um{" "}
-              <span className="text-primary">parceiro para quem precisa resolver</span>.
+              Uma loja de bairro que virou{" "}
+              <span className="text-primary">referência técnica na Zona Oeste</span>.
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground md:text-lg">
-              A Russo é ponto de apoio para quem busca resolver problemas com confiança, encontrar os produtos certos e contar com atendimento próximo e especializado — para moradores, eletricistas, empresas, condomínios e prestadores de serviço.
+              A Russo é uma empresa familiar do Rio Pequeno. Aqui, moradores resolvem o reparo da semana, eletricistas encontram o material do dia e condomínios, empresas e prestadores mantêm a rotina funcionando sem sobressaltos.
             </p>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              Com localização privilegiada no Rio Pequeno e fácil acesso pela Avenida Escola Politécnica, oferecemos estrutura organizada, estacionamento próprio e uma ampla variedade de produtos para atender do reparo do dia a dia à demanda recorrente de profissionais e empresas.
+              A localização na Avenida Escola Politécnica facilita a vida de quem vem da região, e a loja é pensada para você entrar, ser bem atendido e sair com o material certo na mão. Nada mais complicado do que isso.
             </p>
 
             <ul className="mt-8 grid gap-4 sm:grid-cols-2">
