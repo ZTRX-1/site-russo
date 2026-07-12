@@ -21,17 +21,16 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
             </span>
-            Referência na Zona Oeste de SP
+            Loja física no Rio Pequeno, Zona Oeste de SP
           </span>
 
           <h1 className="mt-6 font-display text-5xl font-black leading-[1.03] tracking-tight text-white md:text-6xl lg:text-7xl">
-            A referência em{" "}
-            <span className="text-primary">materiais elétricos, ferragens e soluções para obras</span>{" "}
-            na Zona Oeste de São Paulo
+            Materiais elétricos, ferragens e iluminação{" "}
+            <span className="text-primary">para quem precisa resolver com segurança</span>
           </h1>
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
-            Atendimento técnico, grande variedade de produtos e estrutura preparada para consumidores, empresas, condomínios e profissionais.
+            Loja de bairro no Rio Pequeno, tradicional na Zona Oeste. Atendemos do reparo doméstico à demanda recorrente de eletricistas, condomínios e empresas, com equipe pronta para orientar sua compra.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3">
@@ -56,10 +55,10 @@ export function Hero() {
           {/* Pills de confiança — legíveis em mobile */}
           <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-2 sm:grid-cols-4">
             {[
-              "Grande variedade em estoque",
-              "Faturamento B2B",
-              "Atendimento especializado",
-              "Av. Escola Politécnica",
+              "Estoque abastecido no dia a dia",
+              "Emitimos nota fiscal",
+              "Equipe que orienta a compra",
+              "Av. Escola Politécnica, 2850",
             ].map((item) => (
               <div
                 key={item}
@@ -78,25 +77,25 @@ export function Hero() {
                 <Star className="h-3.5 w-3.5 fill-gold text-gold shrink-0" /> Google
               </dt>
               <dd className="mt-1 font-display text-2xl font-black text-white">5.0</dd>
-              <dd className="text-[11px] text-white/55">+127 avaliações</dd>
+              <dd className="text-[11px] text-white/55">+127 avaliações reais</dd>
             </div>
             <div className="text-center sm:text-left">
               <dt className="flex items-center justify-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-white/55 sm:justify-start">
                 <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-primary" /> Perfil
               </dt>
               <dd className="mt-1 font-display text-base font-black leading-tight text-white sm:text-lg">
-                Empresas & Condomínios
+                Empresas e condomínios
               </dd>
-              <dd className="text-[11px] text-white/55">Faturamento NF</dd>
+              <dd className="text-[11px] text-white/55">Nota fiscal e faturamento</dd>
             </div>
             <div className="text-center sm:text-left">
               <dt className="flex items-center justify-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-white/55 sm:justify-start">
                 <Users className="h-3.5 w-3.5 shrink-0 text-primary" /> Atendimento
               </dt>
               <dd className="mt-1 font-display text-base font-black leading-tight text-white sm:text-lg">
-                Especializado
+                No balcão
               </dd>
-              <dd className="text-[11px] text-white/55">Técnico e próximo</dd>
+              <dd className="text-[11px] text-white/55">Presencial e por WhatsApp</dd>
             </div>
           </dl>
         </div>
@@ -125,8 +124,8 @@ export function Hero() {
                   <ShieldCheck className="h-4 w-4" />
                 </div>
                 <p className="text-[11px] font-medium leading-tight text-white/90">
-                  <span className="block font-bold uppercase tracking-wider text-white">Estrutura completa</span>
-                  Estoque, iluminação e atendimento técnico.
+                  <span className="block font-bold uppercase tracking-wider text-white">Loja abastecida</span>
+                  Elétrica, ferragens e iluminação num só lugar.
                 </p>
               </div>
 
@@ -136,8 +135,8 @@ export function Hero() {
                     <ShieldCheck className="h-4 w-4" />
                   </div>
                   <p className="text-[11px] font-medium leading-tight text-white/90">
-                    <span className="block font-bold uppercase tracking-wider text-white">Estrutura completa</span>
-                    Variedade e atendimento especializado.
+                    <span className="block font-bold uppercase tracking-wider text-white">Loja abastecida</span>
+                    Elétrica, ferragens e iluminação num só lugar.
                   </p>
                 </div>
               </div>

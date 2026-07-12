@@ -53,19 +53,19 @@ export const CookieConsent = () => {
             </div>
             <div>
               <h3 className="font-display text-xl font-black uppercase tracking-tight text-white leading-none">
-                Protocolo de Conexão
+                Uso de cookies
               </h3>
               <div className="mt-1 flex items-center gap-2">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-primary">Status: Seguro</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-primary">Sua privacidade</span>
                 <div className="h-1 w-1 rounded-full bg-zinc-500"></div>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Cookies Ativos</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">LGPD</span>
               </div>
             </div>
           </div>
 
           <div className="space-y-3">
             <p className="text-sm text-zinc-300 leading-relaxed font-medium">
-              Para uma navegação <span className="text-white">sem curto-circuito</span>, usamos cookies que otimizam sua experiência com materiais elétricos, hidráulicos e iluminação.
+              Usamos cookies para entender como você navega pelo site e melhorar a sua experiência. Você decide se aceita ou não.
             </p>
             
             <div className="flex flex-wrap gap-3 opacity-40">
@@ -92,7 +92,7 @@ export const CookieConsent = () => {
               {/* Brilho interno do botão */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
               <Zap className="h-4 w-4 fill-white animate-pulse" />
-              <span className="tracking-wide">LIGAR CONEXÃO (ACEITAR)</span>
+              <span className="tracking-wide">Aceitar cookies</span>
             </button>
             <button
               onClick={handleReject}

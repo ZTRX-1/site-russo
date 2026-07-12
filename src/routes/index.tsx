@@ -40,7 +40,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Loja de materiais elétricos, ferragens, hidráulica e iluminação no Rio Pequeno, Zona Oeste de SP. Atendimento para eletricistas, empresas e condomínios próximo à USP, Butantã e Jaguaré. Solicite seu orçamento pelo WhatsApp.",
+          "Loja de materiais elétricos, ferragens, hidráulica e iluminação no Rio Pequeno, Zona Oeste de São Paulo. Empresa familiar que atende moradores, eletricistas, condomínios e empresas. Peça seu orçamento pelo WhatsApp.",
       },
       {
         name: "keywords",
@@ -54,7 +54,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Soluções completas em elétrica, ferragens, hidráulica e iluminação. Para consumidores, eletricistas, empresas e condomínios na Zona Oeste de São Paulo.",
+          "Elétrica, ferragens, hidráulica e iluminação no Rio Pequeno. Empresa familiar que atende moradores, eletricistas, condomínios e empresas da Zona Oeste de São Paulo.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: SITE_URL + "/" },
@@ -66,7 +66,7 @@ export const Route = createFileRoute("/")({
       { property: "og:image:height", content: "630" },
       { property: "og:image:alt", content: "Fachada da Russo Elétrica e Ferragens no Rio Pequeno, Zona Oeste de São Paulo" },
       { name: "twitter:title", content: "Russo Elétrica e Ferragens — Rio Pequeno, Zona Oeste SP" },
-      { name: "twitter:description", content: "Materiais elétricos, ferragens, hidráulica e iluminação na Zona Oeste de SP. Atendimento para eletricistas, empresas e condomínios." },
+      { name: "twitter:description", content: "Elétrica, ferragens, hidráulica e iluminação no Rio Pequeno. Empresa familiar que atende moradores, eletricistas, condomínios e empresas." },
       { name: "twitter:image", content: SITE_URL + "/uploads/qqqq.jpg" },
     ],
     links: [
@@ -180,11 +180,11 @@ function Index() {
         <Atendemos />
         <OrcamentoCorporativo />
         <CtaBar
-          eyebrow="Atendimento técnico"
-          title="Fale agora com um especialista da Russo"
-          description="Tire dúvidas técnicas antes de comprar — nossa equipe orienta o material certo para o seu projeto. Atendimento durante o horário comercial."
+          eyebrow="Antes de comprar"
+          title="Ficou em dúvida? Fale com a nossa equipe."
+          description="A gente ajuda você a escolher o material certo para o seu projeto, sem compromisso. Atendemos no horário comercial pelo WhatsApp."
           href={WHATSAPP_URL_ESPECIALISTA}
-          cta="Falar com especialista"
+          cta="Tirar dúvida no WhatsApp"
           variant="light"
         />
         <Avaliacoes />
