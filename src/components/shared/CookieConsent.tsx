@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Zap, ShieldCheck, Droplets, Wrench } from "lucide-react";
+import { setConsent } from "@/lib/analytics";
 
 export const CookieConsent = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const consent = localStorage.getItem("cookie-consent");
-    if (!consent) {
+    if (consent === "accepted") {
+      setConsent(true);
+    } else if (!consent) {
       // Pequeno delay para não assustar no primeiro frame
       const timer = setTimeout(() => setIsVisible(true), 1500);
       return () => clearTimeout(timer);
@@ -15,6 +18,13 @@ export const CookieConsent = () => {
 
   const handleAccept = () => {
     localStorage.setItem("cookie-consent", "accepted");
+    setConsent(true);
+    setIsVisible(false);
+  };
+
+  const handleReject = () => {
+    localStorage.setItem("cookie-consent", "rejected");
+    setConsent(false);
     setIsVisible(false);
   };
 
@@ -85,7 +95,7 @@ export const CookieConsent = () => {
               <span className="tracking-wide">LIGAR CONEXÃO (ACEITAR)</span>
             </button>
             <button
-              onClick={() => setIsVisible(false)}
+              onClick={handleReject}
               className="flex-1 rounded-xl border border-white/5 bg-white/5 px-4 py-3 text-xs font-bold text-zinc-500 transition-all hover:bg-white/10 hover:text-zinc-300"
             >
               Recusar

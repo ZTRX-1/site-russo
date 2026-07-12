@@ -18,9 +18,12 @@ import { Route as LgpdRouteImport } from './routes/lgpd'
 import { Route as EmpresasRouteImport } from './routes/empresas'
 import { Route as CondominiosRouteImport } from './routes/condominios'
 import { Route as CdcRouteImport } from './routes/cdc'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AtendimentoEmpresasRouteImport } from './routes/atendimento-empresas'
 import { Route as AtendimentoCondominiosRouteImport } from './routes/atendimento-condominios'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
 const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
   id: '/termos-de-uso',
@@ -68,6 +71,11 @@ const CdcRoute = CdcRouteImport.update({
   path: '/cdc',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AtendimentoEmpresasRoute = AtendimentoEmpresasRouteImport.update({
   id: '/atendimento-empresas',
   path: '/atendimento-empresas',
@@ -83,11 +91,22 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => BlogRoute,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlogRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/atendimento-condominios': typeof AtendimentoCondominiosRoute
   '/atendimento-empresas': typeof AtendimentoEmpresasRoute
+  '/blog': typeof BlogRouteWithChildren
   '/cdc': typeof CdcRoute
   '/condominios': typeof CondominiosRoute
   '/empresas': typeof EmpresasRoute
@@ -97,6 +116,8 @@ export interface FileRoutesByFullPath {
   '/rio-pequeno': typeof RioPequenoRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -111,12 +132,15 @@ export interface FileRoutesByTo {
   '/rio-pequeno': typeof RioPequenoRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/atendimento-condominios': typeof AtendimentoCondominiosRoute
   '/atendimento-empresas': typeof AtendimentoEmpresasRoute
+  '/blog': typeof BlogRouteWithChildren
   '/cdc': typeof CdcRoute
   '/condominios': typeof CondominiosRoute
   '/empresas': typeof EmpresasRoute
@@ -126,6 +150,8 @@ export interface FileRoutesById {
   '/rio-pequeno': typeof RioPequenoRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -133,6 +159,7 @@ export interface FileRouteTypes {
     | '/'
     | '/atendimento-condominios'
     | '/atendimento-empresas'
+    | '/blog'
     | '/cdc'
     | '/condominios'
     | '/empresas'
@@ -142,6 +169,8 @@ export interface FileRouteTypes {
     | '/rio-pequeno'
     | '/sitemap.xml'
     | '/termos-de-uso'
+    | '/blog/$slug'
+    | '/blog/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -156,11 +185,14 @@ export interface FileRouteTypes {
     | '/rio-pequeno'
     | '/sitemap.xml'
     | '/termos-de-uso'
+    | '/blog/$slug'
+    | '/blog'
   id:
     | '__root__'
     | '/'
     | '/atendimento-condominios'
     | '/atendimento-empresas'
+    | '/blog'
     | '/cdc'
     | '/condominios'
     | '/empresas'
@@ -170,12 +202,15 @@ export interface FileRouteTypes {
     | '/rio-pequeno'
     | '/sitemap.xml'
     | '/termos-de-uso'
+    | '/blog/$slug'
+    | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AtendimentoCondominiosRoute: typeof AtendimentoCondominiosRoute
   AtendimentoEmpresasRoute: typeof AtendimentoEmpresasRoute
+  BlogRoute: typeof BlogRouteWithChildren
   CdcRoute: typeof CdcRoute
   CondominiosRoute: typeof CondominiosRoute
   EmpresasRoute: typeof EmpresasRoute
@@ -252,6 +287,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CdcRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/atendimento-empresas': {
       id: '/atendimento-empresas'
       path: '/atendimento-empresas'
@@ -273,13 +315,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof BlogRoute
+    }
   }
 }
+
+interface BlogRouteChildren {
+  BlogSlugRoute: typeof BlogSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogSlugRoute: BlogSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AtendimentoCondominiosRoute: AtendimentoCondominiosRoute,
   AtendimentoEmpresasRoute: AtendimentoEmpresasRoute,
+  BlogRoute: BlogRouteWithChildren,
   CdcRoute: CdcRoute,
   CondominiosRoute: CondominiosRoute,
   EmpresasRoute: EmpresasRoute,
