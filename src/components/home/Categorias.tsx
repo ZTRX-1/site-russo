@@ -4,14 +4,14 @@ import { SectionHeader } from "./SectionHeader";
 import { WHATSAPP } from "@/lib/constants";
 
 const CATEGORIAS = [
-  { icon: Zap, name: "Infraestrutura elétrica", desc: "Fios, cabos e quadros de energia." },
-  { icon: Lightbulb, name: "Iluminação", desc: "LED industrial, comercial e residencial." },
-  { icon: Droplets, name: "Hidráulica", desc: "Componentes para água e soluções de banho." },
+  { icon: Zap, name: "Infraestrutura elétrica", desc: "Fios, cabos, disjuntores e quadros de distribuição." },
+  { icon: Lightbulb, name: "Iluminação", desc: "LED para residência, comércio e ambientes industriais." },
+  { icon: Droplets, name: "Hidráulica", desc: "Conexões, tubos, registros e acessórios de banho." },
   { icon: Plug, name: "Acabamentos elétricos", desc: "Interruptores e tomadas em linhas completas." },
-  { icon: Hammer, name: "Ferramentas profissionais", desc: "Para operação, manutenção e prestação." },
-  { icon: Wrench, name: "Ferragens", desc: "Fixação, segurança e infraestrutura metálica." },
-  { icon: Cable, name: "Redes & conectividade", desc: "Materiais para dados e telecomunicações." },
-  { icon: ShieldCheck, name: "Proteção & segurança", desc: "Segurança elétrica e automação básica." },
+  { icon: Hammer, name: "Ferramentas profissionais", desc: "Marcas para o dia a dia do eletricista e do prestador." },
+  { icon: Wrench, name: "Ferragens", desc: "Fixação, segurança e itens estruturais para obra." },
+  { icon: Cable, name: "Redes e conectividade", desc: "Cabos de dados, conectores e acessórios para redes." },
+  { icon: ShieldCheck, name: "Proteção e segurança", desc: "DPS, DR e itens de segurança elétrica." },
 ];
 
 export function Categorias() {
@@ -21,12 +21,12 @@ export function Categorias() {
         <SectionHeader
           eyebrow="Linhas de produto"
           title={<>Estoque para <span className="text-primary">projetos, obras e manutenção</span></>}
-          description="Toque na categoria para falar direto no WhatsApp — sua cotação começa antes mesmo de entrar na loja."
+          description="Toque em uma categoria para falar direto pelo WhatsApp. Sua cotação começa antes mesmo de você chegar à loja."
         />
         <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
           {CATEGORIAS.map(({ icon: Icon, name, desc }) => {
             const msg = encodeURIComponent(
-              `Olá! Vim pelo site da Russo Elétrica e Ferragens e gostaria de um orçamento para ${name.toLowerCase()}.`,
+              `Olá! Vim pelo site da Russo e gostaria de um orçamento na linha de ${name.toLowerCase()}.`,
             );
             const href = `https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${msg}`;
             return (
