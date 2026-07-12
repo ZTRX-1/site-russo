@@ -11,13 +11,19 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermosDeUsoRouteImport } from './routes/termos-de-uso'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as RioPequenoRouteImport } from './routes/rio-pequeno'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as MaterialEletricoRioPequenoRouteImport } from './routes/material-eletrico-rio-pequeno'
 import { Route as LgpdRouteImport } from './routes/lgpd'
+import { Route as EmpresasRouteImport } from './routes/empresas'
+import { Route as CondominiosRouteImport } from './routes/condominios'
 import { Route as CdcRouteImport } from './routes/cdc'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AtendimentoEmpresasRouteImport } from './routes/atendimento-empresas'
 import { Route as AtendimentoCondominiosRouteImport } from './routes/atendimento-condominios'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
 const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
   id: '/termos-de-uso',
@@ -27,6 +33,11 @@ const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RioPequenoRoute = RioPequenoRouteImport.update({
+  id: '/rio-pequeno',
+  path: '/rio-pequeno',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
@@ -45,9 +56,24 @@ const LgpdRoute = LgpdRouteImport.update({
   path: '/lgpd',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EmpresasRoute = EmpresasRouteImport.update({
+  id: '/empresas',
+  path: '/empresas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CondominiosRoute = CondominiosRouteImport.update({
+  id: '/condominios',
+  path: '/condominios',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CdcRoute = CdcRouteImport.update({
   id: '/cdc',
   path: '/cdc',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AtendimentoEmpresasRoute = AtendimentoEmpresasRouteImport.update({
@@ -65,40 +91,67 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => BlogRoute,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlogRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/atendimento-condominios': typeof AtendimentoCondominiosRoute
   '/atendimento-empresas': typeof AtendimentoEmpresasRoute
+  '/blog': typeof BlogRouteWithChildren
   '/cdc': typeof CdcRoute
+  '/condominios': typeof CondominiosRoute
+  '/empresas': typeof EmpresasRoute
   '/lgpd': typeof LgpdRoute
   '/material-eletrico-rio-pequeno': typeof MaterialEletricoRioPequenoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/rio-pequeno': typeof RioPequenoRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/atendimento-condominios': typeof AtendimentoCondominiosRoute
   '/atendimento-empresas': typeof AtendimentoEmpresasRoute
   '/cdc': typeof CdcRoute
+  '/condominios': typeof CondominiosRoute
+  '/empresas': typeof EmpresasRoute
   '/lgpd': typeof LgpdRoute
   '/material-eletrico-rio-pequeno': typeof MaterialEletricoRioPequenoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/rio-pequeno': typeof RioPequenoRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/atendimento-condominios': typeof AtendimentoCondominiosRoute
   '/atendimento-empresas': typeof AtendimentoEmpresasRoute
+  '/blog': typeof BlogRouteWithChildren
   '/cdc': typeof CdcRoute
+  '/condominios': typeof CondominiosRoute
+  '/empresas': typeof EmpresasRoute
   '/lgpd': typeof LgpdRoute
   '/material-eletrico-rio-pequeno': typeof MaterialEletricoRioPequenoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/rio-pequeno': typeof RioPequenoRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -106,44 +159,65 @@ export interface FileRouteTypes {
     | '/'
     | '/atendimento-condominios'
     | '/atendimento-empresas'
+    | '/blog'
     | '/cdc'
+    | '/condominios'
+    | '/empresas'
     | '/lgpd'
     | '/material-eletrico-rio-pequeno'
     | '/politica-de-privacidade'
+    | '/rio-pequeno'
     | '/sitemap.xml'
     | '/termos-de-uso'
+    | '/blog/$slug'
+    | '/blog/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/atendimento-condominios'
     | '/atendimento-empresas'
     | '/cdc'
+    | '/condominios'
+    | '/empresas'
     | '/lgpd'
     | '/material-eletrico-rio-pequeno'
     | '/politica-de-privacidade'
+    | '/rio-pequeno'
     | '/sitemap.xml'
     | '/termos-de-uso'
+    | '/blog/$slug'
+    | '/blog'
   id:
     | '__root__'
     | '/'
     | '/atendimento-condominios'
     | '/atendimento-empresas'
+    | '/blog'
     | '/cdc'
+    | '/condominios'
+    | '/empresas'
     | '/lgpd'
     | '/material-eletrico-rio-pequeno'
     | '/politica-de-privacidade'
+    | '/rio-pequeno'
     | '/sitemap.xml'
     | '/termos-de-uso'
+    | '/blog/$slug'
+    | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AtendimentoCondominiosRoute: typeof AtendimentoCondominiosRoute
   AtendimentoEmpresasRoute: typeof AtendimentoEmpresasRoute
+  BlogRoute: typeof BlogRouteWithChildren
   CdcRoute: typeof CdcRoute
+  CondominiosRoute: typeof CondominiosRoute
+  EmpresasRoute: typeof EmpresasRoute
   LgpdRoute: typeof LgpdRoute
   MaterialEletricoRioPequenoRoute: typeof MaterialEletricoRioPequenoRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
+  RioPequenoRoute: typeof RioPequenoRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermosDeUsoRoute: typeof TermosDeUsoRoute
 }
@@ -162,6 +236,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rio-pequeno': {
+      id: '/rio-pequeno'
+      path: '/rio-pequeno'
+      fullPath: '/rio-pequeno'
+      preLoaderRoute: typeof RioPequenoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/politica-de-privacidade': {
@@ -185,11 +266,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LgpdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/empresas': {
+      id: '/empresas'
+      path: '/empresas'
+      fullPath: '/empresas'
+      preLoaderRoute: typeof EmpresasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/condominios': {
+      id: '/condominios'
+      path: '/condominios'
+      fullPath: '/condominios'
+      preLoaderRoute: typeof CondominiosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cdc': {
       id: '/cdc'
       path: '/cdc'
       fullPath: '/cdc'
       preLoaderRoute: typeof CdcRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/atendimento-empresas': {
@@ -213,17 +315,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof BlogRoute
+    }
   }
 }
+
+interface BlogRouteChildren {
+  BlogSlugRoute: typeof BlogSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogSlugRoute: BlogSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AtendimentoCondominiosRoute: AtendimentoCondominiosRoute,
   AtendimentoEmpresasRoute: AtendimentoEmpresasRoute,
+  BlogRoute: BlogRouteWithChildren,
   CdcRoute: CdcRoute,
+  CondominiosRoute: CondominiosRoute,
+  EmpresasRoute: EmpresasRoute,
   LgpdRoute: LgpdRoute,
   MaterialEletricoRioPequenoRoute: MaterialEletricoRioPequenoRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
+  RioPequenoRoute: RioPequenoRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermosDeUsoRoute: TermosDeUsoRoute,
 }

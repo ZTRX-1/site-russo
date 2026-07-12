@@ -31,10 +31,10 @@ export function Header() {
         <Logo />
         <nav className="hidden items-center gap-8 text-sm font-medium text-foreground/80 md:flex">
           <Link to="/" className="transition-colors hover:text-primary">Início</Link>
-          <Link to="/#sobre" className="transition-colors hover:text-primary">Quem Somos</Link>
-          <Link to="/#categorias" className="transition-colors hover:text-primary">Soluções</Link>
-          <Link to="/#orcamento-corporativo" className="transition-colors hover:text-primary">Corporativo</Link>
-          <Link to="/#localizacao" className="transition-colors hover:text-primary">Localização</Link>
+          <Link to="/empresas" className="transition-colors hover:text-primary">Empresas</Link>
+          <Link to="/condominios" className="transition-colors hover:text-primary">Condomínios</Link>
+          <Link to="/rio-pequeno" className="transition-colors hover:text-primary">Loja</Link>
+          <Link to="/blog" className="transition-colors hover:text-primary">Blog</Link>
           <Link to="/#contato" className="transition-colors hover:text-primary">Contato</Link>
         </nav>
         {/* WhatsApp sempre visível — pill em desktop, ícone quadrado em mobile */}

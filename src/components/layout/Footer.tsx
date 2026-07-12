@@ -20,7 +20,7 @@ export function Footer() {
   return (
     <footer className="bg-secondary pt-16 pb-8 text-secondary-foreground">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
           <div className="space-y-6">
             <Link to="/" className="flex items-center gap-3">
               <img src="/uploads/logo-russo.png" alt="Russo Elétrica" className="h-10 w-10 object-contain" />
@@ -43,11 +43,20 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display text-sm font-bold uppercase tracking-widest text-white">Navegação</h4>
+            <h4 className="font-display text-sm font-bold uppercase tracking-widest text-white">Soluções</h4>
             <ul className="mt-6 space-y-3 text-sm text-white/60">
-              <li><Link to="/#atendemos" className="hover:text-primary transition-colors">Públicos Atendidos</Link></li>
+              <li><Link to="/empresas" className="hover:text-primary transition-colors">Atendimento a Empresas</Link></li>
+              <li><Link to="/condominios" className="hover:text-primary transition-colors">Atendimento a Condomínios</Link></li>
+              <li><Link to="/rio-pequeno" className="hover:text-primary transition-colors">Loja no Rio Pequeno</Link></li>
               <li><Link to="/#categorias" className="hover:text-primary transition-colors">Categorias de Produtos</Link></li>
-              <li><Link to="/#orcamento-corporativo" className="hover:text-primary transition-colors">Vendas Corporativas</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-display text-sm font-bold uppercase tracking-widest text-white">Conteúdo</h4>
+            <ul className="mt-6 space-y-3 text-sm text-white/60">
+              <li><Link to="/blog" className="hover:text-primary transition-colors">Blog Russo</Link></li>
+              <li><Link to="/#atendemos" className="hover:text-primary transition-colors">Públicos Atendidos</Link></li>
               <li><Link to="/#localizacao" className="hover:text-primary transition-colors">Nossa Localização</Link></li>
             </ul>
           </div>

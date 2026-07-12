@@ -1,6 +1,7 @@
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { ArrowRight } from "lucide-react";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
+import { trackWhatsAppClick } from "@/lib/analytics";
 
 type Variant = "primary" | "secondary" | "ghost";
 type Size = "md" | "lg";
@@ -11,6 +12,8 @@ interface CtaButtonProps extends ComponentPropsWithoutRef<"a"> {
   icon?: "whatsapp" | "arrow" | "none" | ReactNode;
   trailing?: boolean;
   children: ReactNode;
+  /** Origem do clique — usada nos eventos do GTM/GA4 */
+  "data-analytics-source"?: string;
 }
 
 /**
@@ -24,6 +27,7 @@ export function CtaButton({
   trailing = false,
   className = "",
   children,
+  onClick,
   ...rest
 }: CtaButtonProps) {
   const base =
@@ -49,9 +53,20 @@ export function CtaButton({
     return icon;
   };
 
+  const source =
+    (rest as Record<string, unknown>)["data-analytics-source"] as string | undefined;
+  const href = (rest as { href?: string }).href;
+  const isWhats = typeof href === "string" && href.includes("whatsapp");
+
+  const handleClick: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
+    if (isWhats) trackWhatsAppClick(source || "cta_button", { href });
+    onClick?.(e);
+  };
+
   return (
     <a
       {...rest}
+      onClick={handleClick}
       className={`${base} ${sizes[size]} ${variants[variant]} ${className}`}
     >
       {!trailing && renderIcon()}

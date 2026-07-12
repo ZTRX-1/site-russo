@@ -12,6 +12,14 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CookieConsent } from "../components/shared/CookieConsent";
+import {
+  GoogleTagManagerHead,
+  GoogleTagManagerBody,
+} from "../components/analytics/GoogleTagManager";
+import { GoogleAnalytics } from "../components/analytics/GoogleAnalytics";
+import { trackPageView } from "../lib/analytics";
+
+const GSC_TOKEN = import.meta.env.VITE_GSC_VERIFICATION as string | undefined;
 
 function NotFoundComponent() {
   return (
@@ -92,6 +100,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:locale", content: "pt_BR" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      ...(GSC_TOKEN ? [{ name: "google-site-verification", content: GSC_TOKEN }] : []),
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -147,9 +156,12 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR">
       <head>
+        <GoogleTagManagerHead />
+        <GoogleAnalytics />
         <HeadContent />
       </head>
       <body>
+        <GoogleTagManagerBody />
         {children}
         <Scripts />
       </body>
@@ -159,6 +171,17 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+
+  useEffect(() => {
+    // Dispara page_view em cada mudança de rota (SPA)
+    const unsub = router.subscribe("onResolved", ({ toLocation }) => {
+      trackPageView(toLocation.pathname);
+    });
+    // Primeira carga
+    trackPageView(window.location.pathname);
+    return () => unsub();
+  }, [router]);
 
   return (
     <QueryClientProvider client={queryClient}>
