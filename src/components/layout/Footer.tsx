@@ -68,7 +68,7 @@ export function Footer() {
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                 <span>
                   Av. Escola Politécnica, 2850<br />
-                  Rio Pequeno • São Paulo/SP
+                  Rio Pequeno, São Paulo/SP
                 </span>
               </li>
               <li className="flex items-start gap-3">
@@ -81,8 +81,8 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                 <div>
-                  <p>Segunda a Sexta: 08:00 às 18:00</p>
-                  <p>Sábado: 08:00 às 13:00</p>
+                  <p>Segunda a sexta, das 8h às 18h</p>
+                  <p>Sábado, das 8h às 13h</p>
                 </div>
               </li>
             </ul>

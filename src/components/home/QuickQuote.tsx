@@ -25,7 +25,7 @@ const OPCOES = [
   },
   {
     label: "Eletricista",
-    desc: "Estoque abastecido e condição especial para o profissional.",
+    desc: "Amplo estoque e condição especial para o profissional.",
     icon: Wrench,
     href: WHATSAPP_URL_ELETRICISTA,
   },
