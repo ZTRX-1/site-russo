@@ -100,10 +100,11 @@ export function Hero() {
           </dl>
         </div>
 
-        {/* Imagem — LCP */}
+        {/* Imagem + card (bloco único, sem sobreposição) */}
         <div className="relative">
           <div className="pointer-events-none absolute -inset-4 rounded-2xl bg-primary/10 blur-2xl" />
-          <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-secondary shadow-[var(--shadow-industrial)]">
+
+          <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-secondary">
             <div className="relative aspect-[4/3] w-full sm:aspect-[16/10] lg:aspect-[4/5]">
               <img
                 src={fachada}
@@ -112,35 +113,31 @@ export function Hero() {
                 height={1000}
                 fetchPriority="high"
                 decoding="async"
-                className="h-full w-full object-cover opacity-90 lg:opacity-70"
+                className="h-full w-full object-cover"
               />
-              <div className="absolute inset-0 hidden bg-gradient-to-t from-secondary via-secondary/30 to-transparent lg:block" />
             </div>
+          </div>
 
-            {/* Card institucional — clean, confiança imediata */}
-            <div className="p-4 sm:p-6 lg:absolute lg:inset-x-0 lg:bottom-0 lg:p-8">
-              <div className="rounded-2xl border border-white/10 bg-secondary/85 p-4 backdrop-blur-xl sm:p-5">
-                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary">
-                  Por que a Russo
-                </p>
-                <ul className="mt-3 space-y-2.5">
-                  {[
-                    { icon: MapPin, text: "Loja física no Rio Pequeno" },
-                    { icon: ParkingSquare, text: "Estacionamento próprio" },
-                    { icon: FileText, text: "Emitimos Nota Fiscal" },
-                    { icon: Building2, text: "Atendimento para empresas" },
-                    { icon: Clock, text: "Segunda a sexta, das 8h às 18h" },
-                  ].map(({ icon: Icon, text }) => (
-                    <li key={text} className="flex items-center gap-2.5">
-                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary/15 text-primary">
-                        <Icon className="h-3.5 w-3.5" />
-                      </span>
-                      <span className="text-[13px] font-semibold text-white/90">{text}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+          <div className="relative mt-4 rounded-2xl border border-white/10 bg-secondary/85 p-5 shadow-[var(--shadow-industrial)] backdrop-blur-xl sm:p-6">
+            <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary">
+              Por que a Russo
+            </p>
+            <ul className="mt-3 space-y-2.5">
+              {[
+                { icon: MapPin, text: "Loja física no Rio Pequeno" },
+                { icon: ParkingSquare, text: "Estacionamento próprio" },
+                { icon: FileText, text: "Emitimos Nota Fiscal" },
+                { icon: Building2, text: "Atendimento para empresas" },
+                { icon: Clock, text: "Segunda a sexta, das 8h às 18h" },
+              ].map(({ icon: Icon, text }) => (
+                <li key={text} className="flex items-center gap-2.5">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary/15 text-primary">
+                    <Icon className="h-3.5 w-3.5" />
+                  </span>
+                  <span className="text-[13px] font-semibold text-white/90">{text}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
