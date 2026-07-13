@@ -346,6 +346,16 @@ svg {
   height: 1.5rem;
 }
 
+/* Global safeguard: never allow horizontal scroll on any device. */
+html, body {
+  overflow-x: clip;
+  max-width: 100%;
+}
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
 .h-10 { height: 2.5rem !important; }
 .w-10 { width: 2.5rem !important; }
 .h-4 { height: 1rem !important; }

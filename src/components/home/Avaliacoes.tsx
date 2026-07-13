@@ -22,8 +22,8 @@ export function Avaliacoes() {
   return (
     <section id="avaliacoes" className="bg-background py-12 md:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
-          <div>
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
+          <div className="min-w-0">
             <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">O que dizem sobre a Russo</span>
             <h2 className="mt-3 font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
               Nota <span className="text-primary">5,0</span> no Google
@@ -45,7 +45,7 @@ export function Avaliacoes() {
               Ver as avaliações no Google →
             </a>
           </div>
-          <div>
+          <div className="min-w-0">
             {/* Mobile: carrossel horizontal com snap. Desktop: grid. */}
             <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
               {REVIEWS.map((r) => (
