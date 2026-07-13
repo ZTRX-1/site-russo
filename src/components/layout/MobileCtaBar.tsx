@@ -1,12 +1,27 @@
+import { useEffect, useState } from "react";
 import { Phone } from "lucide-react";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 import { WHATSAPP_URL, PHONE_DISPLAY } from "@/lib/constants";
 
-/**
- * Barra fixa inferior mobile — CTA sempre visível.
- * Some no desktop (sm+).
- */
 export function MobileCtaBar() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const hero = document.getElementById("hero-section");
+    if (!hero) {
+      setIsVisible(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(!entry.isIntersecting),
+      { threshold: 0, rootMargin: "-10% 0px 0px 0px" },
+    );
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, []);
+
+  if (!isVisible) return null;
+
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border/60 bg-background/95 shadow-[0_-8px_24px_-12px_oklch(0_0_0_/_0.15)] backdrop-blur-md sm:hidden">
       <div className="grid grid-cols-[auto_1fr] items-center gap-2 px-3 py-2 pb-[calc(env(safe-area-inset-bottom)+8px)]">
