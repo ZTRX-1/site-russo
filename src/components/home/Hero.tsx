@@ -104,7 +104,7 @@ export function Hero() {
         <div className="relative">
           <div className="pointer-events-none absolute -inset-4 rounded-2xl bg-primary/10 blur-2xl" />
           <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-secondary shadow-[var(--shadow-industrial)]">
-            <div className="aspect-[4/5] w-full">
+            <div className="relative aspect-[4/5] w-full lg:aspect-[4/5]">
               <img
                 src={fachada}
                 alt="Fachada da Russo Elétrica e Ferragens no Rio Pequeno, Zona Oeste de São Paulo"
@@ -112,13 +112,13 @@ export function Hero() {
                 height={1000}
                 fetchPriority="high"
                 decoding="async"
-                className="h-full w-full object-cover opacity-70"
+                className="h-full w-full object-cover opacity-90 lg:opacity-70"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/30 to-transparent" />
+              <div className="absolute inset-0 hidden bg-gradient-to-t from-secondary via-secondary/30 to-transparent lg:block" />
             </div>
 
-            {/* Overlay dentro do card da imagem */}
-            <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 lg:p-8">
+            {/* Overlay: fica abaixo da imagem em mobile/tablet, sobreposto apenas em desktop */}
+            <div className="p-4 sm:p-6 lg:absolute lg:inset-x-0 lg:bottom-0 lg:p-8">
               <div className="space-y-2.5">
                 {/* Linha superior — 2 categorias principais */}
                 <div className="grid grid-cols-2 gap-2.5">
