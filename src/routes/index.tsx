@@ -182,7 +182,7 @@ function Index() {
         <CtaBar
           eyebrow="Antes de comprar"
           title="Ficou em dúvida? Fale com a nossa equipe."
-          description="A gente ajuda você a escolher o material certo para o seu projeto, sem compromisso. Atendemos no horário comercial pelo WhatsApp."
+          description="Nossa equipe ajuda você a escolher o material certo para o seu projeto, sem compromisso. Atendimento durante o horário comercial pelo WhatsApp."
           href={WHATSAPP_URL_ESPECIALISTA}
           cta="Tirar dúvida no WhatsApp"
           variant="light"
