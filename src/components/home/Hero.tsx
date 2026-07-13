@@ -107,20 +107,19 @@ export function Hero() {
           <div className="pointer-events-none absolute -inset-4 rounded-2xl bg-primary/10 blur-2xl" />
 
           <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-secondary">
-            <div className="relative aspect-[4/3] w-full sm:aspect-[16/10] lg:aspect-[4/5]">
+            <div className="relative aspect-[4/3] w-full sm:aspect-[16/10]">
               <img
                 src={fachada}
                 alt="Fachada da Russo Elétrica e Ferragens no Rio Pequeno, Zona Oeste de São Paulo"
                 width={800}
-                height={1000}
+                height={600}
                 fetchPriority="high"
                 decoding="async"
                 className="h-full w-full object-cover"
               />
             </div>
-          </div>
 
-          <div className="relative mt-4 rounded-2xl border border-white/10 bg-secondary p-5 sm:p-6">
+            <div className="border-t border-white/10 p-5 sm:p-6">
             <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary">
               Por que escolher a Russo
             </p>
@@ -155,7 +154,9 @@ export function Hero() {
               </div>
             </div>
           </div>
+          </div>
         </div>
+
       </div>
 
       {/* CARD PREMIUM DE CREDIBILIDADE — integrado ao Hero */}
