@@ -4,9 +4,9 @@ import { WHATSAPP_URL_EMPRESA, PHONE_DISPLAY } from "@/lib/constants";
 
 const BENEFICIOS = [
   "Nota fiscal e faturamento",
-  "Uma pessoa fixa para atender sua conta",
+  "Atendimento dedicado para sua empresa",
   "Reposição programada de itens recorrentes",
-  "Cotação por escrito, sem enrolação",
+  "Cotação por escrito e resposta ágil",
 ];
 
 export function OrcamentoCorporativo() {
@@ -29,7 +29,7 @@ export function OrcamentoCorporativo() {
             <span className="text-primary">à altura da sua operação</span>
           </h2>
           <p className="mb-6 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
-            Empresas, condomínios, construtoras e academias contam com a Russo para o que a rotina pede e para o que a emergência não avisa. Estoque abastecido, atendimento próximo, cotação por escrito e nota fiscal em dia. Comprar material vira processo, não problema.
+            Empresas, condomínios, construtoras e academias contam com a Russo para a rotina e para a emergência. Grande estoque disponível, atendimento especializado, cotação por escrito e nota fiscal em dia. Comprar material vira processo, não problema.
           </p>
 
           <ul className="mb-10 grid max-w-2xl gap-3 sm:grid-cols-2">
@@ -61,7 +61,7 @@ export function OrcamentoCorporativo() {
             </div>
           </div>
           <p className="mt-3 text-[11px] uppercase tracking-widest text-white/40">
-            Atendimento durante o horário comercial
+            Nossa equipe responde durante o horário comercial
           </p>
         </div>
       </div>

@@ -30,7 +30,7 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-sm leading-relaxed text-white/60">
-              Empresa familiar no Rio Pequeno. Materiais elétricos, ferragens, hidráulica e iluminação para moradores, eletricistas, condomínios e empresas da Zona Oeste de São Paulo.
+              Empresa localizada no bairro Rio Pequeno, especializada em materiais elétricos, ferragens, hidráulica e iluminação para consumidores, empresas, condomínios e profissionais da Zona Oeste de São Paulo.
             </p>
             <div className="flex gap-4">
               <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 transition hover:bg-primary hover:text-primary-foreground">

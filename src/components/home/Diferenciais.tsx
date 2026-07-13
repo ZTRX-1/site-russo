@@ -3,8 +3,8 @@ import { Headset, ShieldCheck, Truck, Navigation, ParkingSquare, Award } from "l
 const DIFERENCIAIS = [
   {
     icon: Headset,
-    title: "Equipe que orienta a compra",
-    text: "Nossa equipe ajuda você a escolher o material certo antes, durante e depois da compra, sem pressa.",
+    title: "Especialistas no balcão",
+    text: "Nossa equipe ajuda você a escolher o material certo antes, durante e depois da compra, com orientação técnica.",
   },
   {
     icon: ShieldCheck,
@@ -13,8 +13,8 @@ const DIFERENCIAIS = [
   },
   {
     icon: Truck,
-    title: "Estoque abastecido",
-    text: "Você encontra desde pequenos reparos até compras maiores, sem precisar procurar em duas ou três lojas.",
+    title: "Grande estoque disponível",
+    text: "Produtos à pronta entrega, de pequenos reparos a compras maiores, sem precisar procurar em outras lojas.",
   },
   {
     icon: Navigation,
@@ -28,8 +28,8 @@ const DIFERENCIAIS = [
   },
   {
     icon: Award,
-    title: "Nota 5,0 no Google",
-    text: "Mais de 127 clientes avaliaram com nota máxima. Uma reputação construída no balcão, cliente a cliente.",
+    title: "Nota máxima no Google",
+    text: "Avaliações reais de clientes com nota máxima. Uma reputação construída no balcão, cliente a cliente.",
   },
 ];
 
@@ -48,10 +48,10 @@ export function Diferenciais() {
             <Award className="h-3 w-3 shrink-0" /> Por que comprar aqui
           </span>
           <h2 className="mt-5 font-display text-3xl font-black leading-tight tracking-tight text-white md:text-5xl">
-            Vantagens reais para <span className="text-primary">o seu dia a dia</span>
+            Motivos para <span className="text-primary">escolher a Russo</span>
           </h2>
           <p className="mt-4 text-base leading-relaxed text-white/65 md:text-lg">
-            A estrutura de um fornecedor de porte, com a proximidade de uma loja de bairro. É essa combinação que faz o cliente voltar sempre.
+            Mais do que vender produtos, entregamos orientação técnica, disponibilidade e atendimento que facilita sua rotina.
           </p>
         </div>
 

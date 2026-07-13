@@ -34,7 +34,7 @@ export function Avaliacoes() {
               ))}
             </div>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              Mais de 127 clientes avaliaram a Russo com nota máxima. Confiança construída no balcão, dia após dia.
+              Avaliações reais de clientes com nota máxima. Confiança construída no balcão, dia após dia.
             </p>
             <a
               href="https://www.google.com/maps/search/Russo+Eletrica+e+Ferragens+Rio+Pequeno"

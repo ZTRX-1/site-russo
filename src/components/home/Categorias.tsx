@@ -21,7 +21,7 @@ export function Categorias() {
         <SectionHeader
           eyebrow="Linhas de produto"
           title={<>Estoque para <span className="text-primary">projetos, obras e manutenção</span></>}
-          description="Toque em uma categoria para falar direto pelo WhatsApp. Sua cotação começa antes mesmo de você chegar à loja."
+          description="Escolha uma categoria e fale diretamente com um especialista da Russo. Sua cotação começa antes mesmo de você chegar à loja."
         />
         <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
           {CATEGORIAS.map(({ icon: Icon, name, desc }) => {

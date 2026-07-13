@@ -37,14 +37,13 @@ export function Sobre() {
               Sobre a Russo
             </span>
             <h2 className="mt-3 font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
-              Uma loja de bairro que virou{" "}
-              <span className="text-primary">referência técnica na Zona Oeste</span>.
+              Tradição e <span className="text-primary">referência técnica na Zona Oeste</span>.
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground md:text-lg">
-              A Russo é uma empresa familiar do Rio Pequeno. Aqui, moradores resolvem o reparo da semana, eletricistas encontram o material do dia e condomínios, empresas e prestadores mantêm a rotina funcionando sem sobressaltos.
+              Há anos atendendo moradores, empresas, condomínios e profissionais da Zona Oeste de São Paulo, a Russo construiu sua reputação oferecendo atendimento próximo, produtos de qualidade e orientação técnica para cada compra.
             </p>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              A localização na Avenida Escola Politécnica facilita a vida de quem vem da região, e a loja é pensada para você entrar, ser bem atendido e sair com o material certo na mão. Nada mais complicado do que isso.
+              Nossa localização na Avenida Escola Politécnica facilita o acesso de quem vem do Rio Pequeno, Butantã, Jaguaré, Vila São Francisco, USP e Raposo Tavares — com estrutura pensada para você ser bem atendido e sair com o material certo.
             </p>
 
             <ul className="mt-8 grid gap-4 sm:grid-cols-2">
