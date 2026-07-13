@@ -10,33 +10,16 @@ export function FloatingWhats() {
   useEffect(() => {
     if (isVisible) return;
 
-    let revealed = false;
-    const reveal = () => {
-      if (revealed) return;
-      revealed = true;
-      setIsVisible(true);
-    };
-
-    const timer = window.setTimeout(reveal, 15000);
-
     const onScroll = () => {
-      const scrolled = window.scrollY;
-      const total = document.documentElement.scrollHeight - window.innerHeight;
-      if (total > 0 && scrolled / total >= 0.25) reveal();
-    };
-
-    const onMouseOut = (e: MouseEvent) => {
-      if (!e.relatedTarget && e.clientY <= 0) reveal();
+      const total =
+        document.documentElement.scrollHeight - window.innerHeight;
+      if (total > 0 && window.scrollY / total >= 0.25) {
+        setIsVisible(true);
+      }
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    document.addEventListener("mouseout", onMouseOut);
-
-    return () => {
-      window.clearTimeout(timer);
-      window.removeEventListener("scroll", onScroll);
-      document.removeEventListener("mouseout", onMouseOut);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, [isVisible]);
 
   useEffect(() => {
