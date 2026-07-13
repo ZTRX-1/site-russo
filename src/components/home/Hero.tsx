@@ -1,7 +1,7 @@
-import { ShieldCheck, Star, Headset, Check, Clock, MapPin, Phone } from "lucide-react";
+import { ShieldCheck, Star, Headset, Check, Zap, Droplets, Users, Lightbulb } from "lucide-react";
 import fachada from "/uploads/fachada-russo.png";
 import { CtaButton } from "@/components/ui/CtaButton";
-import { WHATSAPP_URL, WHATSAPP_URL_ESPECIALISTA, GOOGLE_MAPS_URL, PHONE_DISPLAY } from "@/lib/constants";
+import { WHATSAPP_URL, WHATSAPP_URL_ESPECIALISTA } from "@/lib/constants";
 
 export function Hero() {
   return (
@@ -119,53 +119,74 @@ export function Hero() {
 
             {/* Overlay dentro do card da imagem */}
             <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 lg:p-8">
-              <div className="space-y-3">
-                <div className="grid gap-2 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                  <a
-                    href={GOOGLE_MAPS_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group rounded-xl border border-white/10 bg-secondary/70 p-3 backdrop-blur-xl transition-colors hover:border-primary/40 hover:bg-secondary/80"
-                  >
-                    <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-white/55">
-                      <MapPin className="h-3.5 w-3.5 shrink-0 text-primary" /> Endereço
-                    </span>
-                    <span className="mt-1 block text-xs font-semibold leading-snug text-white group-hover:text-primary">
-                      Av. Escola Politécnica, 2850
-                    </span>
-                  </a>
-
-                  <div className="rounded-xl border border-white/10 bg-secondary/70 p-3 backdrop-blur-xl">
-                    <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-white/55">
-                      <Clock className="h-3.5 w-3.5 shrink-0 text-primary" /> Horário
-                    </span>
-                    <span className="mt-1 block text-xs font-semibold leading-snug text-white">
-                      Seg a Sex 7h30–18h
-                    </span>
-                  </div>
-
-                  <a
-                    href="tel:+551137662002"
-                    className="group rounded-xl border border-white/10 bg-secondary/70 p-3 backdrop-blur-xl transition-colors hover:border-primary/40 hover:bg-secondary/80"
-                  >
-                    <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-white/55">
-                      <Phone className="h-3.5 w-3.5 shrink-0 text-primary" /> Telefone
-                    </span>
-                    <span className="mt-1 block text-xs font-semibold leading-snug text-white group-hover:text-primary">
-                      {PHONE_DISPLAY}
-                    </span>
-                  </a>
+              <div className="space-y-2.5">
+                {/* Linha superior — 2 categorias principais */}
+                <div className="grid grid-cols-2 gap-2.5">
+                  {[
+                    { icon: Zap, title: "Elétrica", desc: "Fios, cabos, disjuntores e muito mais." },
+                    { icon: Droplets, title: "Hidráulica", desc: "Reparos, manutenção e instalações." },
+                  ].map(({ icon: Icon, title, desc }) => (
+                    <div
+                      key={title}
+                      className="rounded-xl border border-white/10 bg-secondary/75 p-3 backdrop-blur-xl sm:p-3.5"
+                    >
+                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15 text-primary">
+                        <Icon className="h-4 w-4" />
+                      </div>
+                      <p className="mt-2 text-[11px] font-bold uppercase tracking-wider text-white">
+                        {title}
+                      </p>
+                      <p className="mt-0.5 text-[11px] leading-snug text-white/65">{desc}</p>
+                    </div>
+                  ))}
                 </div>
 
-                <div className="flex items-center gap-3 rounded-xl border border-primary/30 bg-primary/10 p-3 backdrop-blur-xl">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-white">
-                    <ShieldCheck className="h-4 w-4" />
+                {/* Linhas cheias — 3 diferenciais */}
+                {[
+                  {
+                    icon: Users,
+                    title: "Atendimento especializado",
+                    desc: "Orientação para profissionais e empresas.",
+                    highlight: false,
+                  },
+                  {
+                    icon: Lightbulb,
+                    title: "Iluminação LED",
+                    desc: "Soluções para residências e condomínios.",
+                    highlight: false,
+                  },
+                  {
+                    icon: ShieldCheck,
+                    title: "Estrutura completa",
+                    desc: "Variedade de produtos e atendimento especializado.",
+                    highlight: true,
+                  },
+                ].map(({ icon: Icon, title, desc, highlight }) => (
+                  <div
+                    key={title}
+                    className={
+                      highlight
+                        ? "flex items-center gap-3 rounded-xl border border-primary/40 bg-primary/10 p-3 backdrop-blur-xl sm:p-3.5"
+                        : "flex items-center gap-3 rounded-xl border border-white/10 bg-secondary/75 p-3 backdrop-blur-xl sm:p-3.5"
+                    }
+                  >
+                    <div
+                      className={
+                        highlight
+                          ? "flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-white"
+                          : "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary"
+                      }
+                    >
+                      <Icon className="h-4 w-4" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-white">
+                        {title}
+                      </p>
+                      <p className="text-[11px] leading-snug text-white/70">{desc}</p>
+                    </div>
                   </div>
-                  <p className="text-[11px] font-medium leading-tight text-white/90">
-                    <span className="block font-bold uppercase tracking-wider text-white">Loja abastecida</span>
-                    Elétrica, ferragens e iluminação num só lugar.
-                  </p>
-                </div>
+                ))}
               </div>
             </div>
           </div>
