@@ -1,4 +1,4 @@
-import { ShieldCheck, Star, Users, Headset, Building2, Home, Truck, FileCheck2, Wrench, MapPin, ParkingCircle } from "lucide-react";
+import { ShieldCheck, Star, Headset, Check } from "lucide-react";
 import fachada from "/uploads/fachada-russo.png";
 import { CtaButton } from "@/components/ui/CtaButton";
 import { WHATSAPP_URL, WHATSAPP_URL_ESPECIALISTA } from "@/lib/constants";
