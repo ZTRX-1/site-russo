@@ -21,7 +21,7 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
             </span>
-            Loja física no Rio Pequeno, Zona Oeste de SP
+            Loja física no Rio Pequeno, Zona Oeste de São Paulo
           </span>
 
           <h1 className="mt-6 font-display text-5xl font-black leading-[1.03] tracking-tight text-white md:text-6xl lg:text-7xl">
@@ -30,7 +30,7 @@ export function Hero() {
           </h1>
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
-            Empresa localizada no bairro Rio Pequeno, referência em materiais elétricos, ferragens e iluminação para toda a Zona Oeste de São Paulo. Atendemos desde pequenos reparos até compras recorrentes de empresas, condomínios, eletricistas e profissionais.
+            Somos uma loja tradicional do Rio Pequeno, reconhecida na Zona Oeste de São Paulo por trabalhar com materiais elétricos, ferragens e iluminação. Atendemos desde pequenos reparos até compras recorrentes de empresas, condomínios, eletricistas e demais profissionais da região.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3">
@@ -217,12 +217,12 @@ export function Hero() {
 
           <div className="max-w-2xl text-center sm:text-left">
             <h2 className="font-display text-3xl font-black leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-[2.75rem]">
-              Mais do que uma loja.
+              Uma loja de tradição.
               <br />
               <span className="text-primary">Seu fornecedor de confiança.</span>
             </h2>
             <p className="mt-5 text-base leading-relaxed text-white/65 sm:text-lg">
-              Produtos originais, atendimento especializado e estrutura preparada para consumidores, empresas, condomínios e profissionais.
+              Produtos originais, atendimento próximo e estrutura preparada para receber consumidores, empresas, condomínios e profissionais da construção.
             </p>
           </div>
 

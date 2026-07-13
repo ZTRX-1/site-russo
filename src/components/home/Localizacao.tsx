@@ -48,7 +48,7 @@ export function Localizacao() {
             <ul className="mt-6 space-y-3 text-sm">
               <li className="flex items-start gap-3">
                 <Clock className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                <span>Segunda a sexta: 8h às 18h · Sábado: 8h às 13h</span>
+                <span>Segunda a sexta, das 8h às 18h. Aos sábados, das 8h às 13h.</span>
               </li>
               <li className="flex items-start gap-3">
                 <ParkingSquare className="mt-0.5 h-5 w-5 shrink-0 text-primary" />

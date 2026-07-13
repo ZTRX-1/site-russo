@@ -12,10 +12,10 @@ export function Contato() {
           Fale com a gente
         </span>
         <h2 className="mt-3 font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
-          A forma mais rápida de resolver é <span className="text-primary">pelo WhatsApp</span>
+          Se preferir, fale conosco <span className="text-primary">pelo WhatsApp</span>
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
-          Manda uma mensagem contando o que você precisa. A gente responde no horário comercial com o material, o preço e a disponibilidade.
+          Envie uma mensagem contando o que você precisa. Nossa equipe responde durante o horário comercial e informa disponibilidade, preços e orientações técnicas para a sua compra.
         </p>
 
         <div className="mt-8 flex justify-center">
@@ -52,7 +52,7 @@ export function Contato() {
               <MapPin className="h-5 w-5" strokeWidth={1.75} />
             </span>
             <p className="mt-3 text-[11px] uppercase tracking-widest text-white/55">Localização</p>
-            <p className="mt-1 font-semibold leading-tight">Rio Pequeno · Próximo à USP</p>
+          <p className="mt-1 font-semibold leading-tight">Rio Pequeno, próximo à USP</p>
             <p className="mt-1 text-xs text-white/60">Av. Escola Politécnica, 2850</p>
           </div>
           <div className="rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur-sm">
@@ -60,8 +60,8 @@ export function Contato() {
               <Clock className="h-5 w-5" strokeWidth={1.75} />
             </span>
             <p className="mt-3 text-[11px] uppercase tracking-widest text-white/55">Horário</p>
-            <p className="mt-1 font-semibold leading-tight">Seg–Sex: 8h às 18h</p>
-            <p className="text-sm font-semibold">Sáb: 8h às 13h</p>
+          <p className="mt-1 font-semibold leading-tight">Segunda a sexta, das 8h às 18h</p>
+          <p className="text-sm font-semibold">Aos sábados, das 8h às 13h</p>
           </div>
         </div>
       </div>

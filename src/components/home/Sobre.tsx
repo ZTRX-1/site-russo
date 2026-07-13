@@ -43,7 +43,7 @@ export function Sobre() {
               Há anos atendendo moradores, empresas, condomínios e profissionais da Zona Oeste de São Paulo, a Russo construiu sua reputação oferecendo atendimento próximo, produtos de qualidade e orientação técnica para cada compra.
             </p>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              Nossa localização na Avenida Escola Politécnica facilita o acesso de quem vem do Rio Pequeno, Butantã, Jaguaré, Vila São Francisco, USP e Raposo Tavares — com estrutura pensada para você ser bem atendido e sair com o material certo.
+              Nossa localização na Avenida Escola Politécnica facilita o acesso de quem vem do Rio Pequeno, Butantã, Jaguaré, Vila São Francisco, USP e Raposo Tavares. A estrutura foi pensada para que você seja bem atendido e saia da loja com o material certo em mãos.
             </p>
 
             <ul className="mt-8 grid gap-4 sm:grid-cols-2">

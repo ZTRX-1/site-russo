@@ -101,7 +101,7 @@ export function Footer() {
 
         <div className="mt-16 border-t border-white/10 pt-8 text-center text-xs text-white/40">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <p>© {currentYear} Russo Elétrica e Ferragens · CNPJ 62.093.783/0001-52 · Todos os direitos reservados.</p>
+            <p>© {currentYear} Russo Elétrica e Ferragens, CNPJ 62.093.783/0001-52. Todos os direitos reservados.</p>
             <p>
               Desenvolvido com 💙 pela{" "}
               <a 

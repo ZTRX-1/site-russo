@@ -51,7 +51,7 @@ export function Diferenciais() {
             Motivos para <span className="text-primary">escolher a Russo</span>
           </h2>
           <p className="mt-4 text-base leading-relaxed text-white/65 md:text-lg">
-            Mais do que vender produtos, entregamos orientação técnica, disponibilidade e atendimento que facilita sua rotina.
+            Além dos produtos, oferecemos orientação técnica, disponibilidade real de estoque e um atendimento pensado para facilitar a sua rotina.
           </p>
         </div>
 
