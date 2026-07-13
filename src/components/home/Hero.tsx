@@ -25,12 +25,14 @@ export function Hero() {
           </span>
 
           <h1 className="mt-6 font-display text-5xl font-black leading-[1.03] tracking-tight text-white md:text-6xl lg:text-7xl">
-            Materiais elétricos, ferragens e iluminação{" "}
-            <span className="text-primary">para residências, empresas, condomínios e profissionais da Zona Oeste de São Paulo.</span>
+            Materiais elétricos, ferragens e iluminação para residências,{" "}
+            <span className="text-primary">empresas</span>,{" "}
+            <span className="text-primary">condomínios</span> e{" "}
+            <span className="text-primary">profissionais</span> da Zona Oeste de São Paulo.
           </h1>
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
-            Localizada no bairro Rio Pequeno, a Russo é referência na Zona Oeste de São Paulo quando o assunto é materiais elétricos, ferragens e iluminação. Atendemos desde pequenos reparos até compras recorrentes de empresas, condomínios, eletricistas e profissionais.
+            A Russo é uma empresa familiar localizada no bairro Rio Pequeno e referência em materiais elétricos, ferragens e iluminação para toda a Zona Oeste de São Paulo. Atendemos desde pequenos reparos até compras recorrentes de empresas, condomínios, eletricistas e profissionais.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3">
