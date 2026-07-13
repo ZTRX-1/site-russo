@@ -1,7 +1,7 @@
-import { ShieldCheck, Star, Headset, Check } from "lucide-react";
+import { ShieldCheck, Star, Headset, Check, Clock, MapPin, Phone } from "lucide-react";
 import fachada from "/uploads/fachada-russo.png";
 import { CtaButton } from "@/components/ui/CtaButton";
-import { WHATSAPP_URL, WHATSAPP_URL_ESPECIALISTA } from "@/lib/constants";
+import { WHATSAPP_URL, WHATSAPP_URL_ESPECIALISTA, GOOGLE_MAPS_URL, PHONE_DISPLAY } from "@/lib/constants";
 
 export function Hero() {
   return (
@@ -141,6 +141,52 @@ export function Hero() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Cartão de visita — preenche o espaço abaixo da foto com info útil */}
+          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+            <a
+              href={GOOGLE_MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-4 transition-colors hover:border-primary/40 hover:bg-white/[0.04]"
+            >
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary">
+                <MapPin className="h-4 w-4" />
+              </span>
+              <div className="min-w-0">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-white/50">Endereço</p>
+                <p className="mt-0.5 text-xs font-semibold leading-snug text-white group-hover:text-primary">
+                  Av. Escola Politécnica, 2850
+                </p>
+                <p className="text-[11px] text-white/55">Rio Pequeno · SP</p>
+              </div>
+            </a>
+            <div className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-4">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary">
+                <Clock className="h-4 w-4" />
+              </span>
+              <div className="min-w-0">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-white/50">Horário</p>
+                <p className="mt-0.5 text-xs font-semibold leading-snug text-white">Seg a Sex · 7h30–18h</p>
+                <p className="text-[11px] text-white/55">Sáb · 8h–13h</p>
+              </div>
+            </div>
+            <a
+              href={`tel:+551137662002`}
+              className="group flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-4 transition-colors hover:border-primary/40 hover:bg-white/[0.04]"
+            >
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary">
+                <Phone className="h-4 w-4" />
+              </span>
+              <div className="min-w-0">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-white/50">Telefone</p>
+                <p className="mt-0.5 text-xs font-semibold leading-snug text-white group-hover:text-primary">
+                  {PHONE_DISPLAY}
+                </p>
+                <p className="text-[11px] text-white/55">Atendimento no balcão</p>
+              </div>
+            </a>
           </div>
         </div>
       </div>
