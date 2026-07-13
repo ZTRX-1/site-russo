@@ -44,20 +44,20 @@ export function Footer() {
 
           <div>
             <h4 className="font-display text-sm font-bold uppercase tracking-widest text-white">Para quem atendemos</h4>
-            <ul className="mt-6 space-y-3 text-sm text-white/60">
-              <li><Link to="/empresas" className="hover:text-primary transition-colors">Empresas</Link></li>
-              <li><Link to="/condominios" className="hover:text-primary transition-colors">Condomínios</Link></li>
-              <li><Link to="/rio-pequeno" className="hover:text-primary transition-colors">Loja no Rio Pequeno</Link></li>
-              <li><Link to="/#categorias" className="hover:text-primary transition-colors">Linhas de produto</Link></li>
+            <ul className="mt-6 space-y-1 text-sm text-white/60">
+              <li><Link to="/empresas" className="inline-block py-1.5 hover:text-primary transition-colors">Empresas</Link></li>
+              <li><Link to="/condominios" className="inline-block py-1.5 hover:text-primary transition-colors">Condomínios</Link></li>
+              <li><Link to="/rio-pequeno" className="inline-block py-1.5 hover:text-primary transition-colors">Loja no Rio Pequeno</Link></li>
+              <li><Link to="/#categorias" className="inline-block py-1.5 hover:text-primary transition-colors">Linhas de produto</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-display text-sm font-bold uppercase tracking-widest text-white">Conteúdo</h4>
-            <ul className="mt-6 space-y-3 text-sm text-white/60">
-              <li><Link to="/blog" className="hover:text-primary transition-colors">Blog da Russo</Link></li>
-              <li><Link to="/#atendemos" className="hover:text-primary transition-colors">Quem atendemos</Link></li>
-              <li><Link to="/#localizacao" className="hover:text-primary transition-colors">Como chegar</Link></li>
+            <ul className="mt-6 space-y-1 text-sm text-white/60">
+              <li><Link to="/blog" className="inline-block py-1.5 hover:text-primary transition-colors">Blog da Russo</Link></li>
+              <li><Link to="/#atendemos" className="inline-block py-1.5 hover:text-primary transition-colors">Quem atendemos</Link></li>
+              <li><Link to="/#localizacao" className="inline-block py-1.5 hover:text-primary transition-colors">Como chegar</Link></li>
             </ul>
           </div>
 
@@ -90,11 +90,11 @@ export function Footer() {
 
           <div>
             <h4 className="font-display text-sm font-bold uppercase tracking-widest text-white">Institucional</h4>
-            <ul className="mt-6 space-y-3 text-sm text-white/60">
-              <li><Link to="/politica-de-privacidade" className="hover:text-primary transition-colors">Política de privacidade</Link></li>
-              <li><Link to="/termos-de-uso" className="hover:text-primary transition-colors">Termos de uso</Link></li>
-              <li><Link to="/lgpd" className="hover:text-primary transition-colors">LGPD</Link></li>
-              <li><Link to="/cdc" className="hover:text-primary transition-colors">Código de Defesa do Consumidor</Link></li>
+            <ul className="mt-6 space-y-1 text-sm text-white/60">
+              <li><Link to="/politica-de-privacidade" className="inline-block py-1.5 hover:text-primary transition-colors">Política de privacidade</Link></li>
+              <li><Link to="/termos-de-uso" className="inline-block py-1.5 hover:text-primary transition-colors">Termos de uso</Link></li>
+              <li><Link to="/lgpd" className="inline-block py-1.5 hover:text-primary transition-colors">LGPD</Link></li>
+              <li><Link to="/cdc" className="inline-block py-1.5 hover:text-primary transition-colors">Código de Defesa do Consumidor</Link></li>
             </ul>
           </div>
         </div>

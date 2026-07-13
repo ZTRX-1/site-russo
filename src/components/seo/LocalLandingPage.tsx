@@ -91,11 +91,11 @@ export function LocalLandingPage(props: LocalLandingPageProps) {
           aria-label="Breadcrumb"
           className="border-b border-border/60 bg-secondary/95 text-secondary-foreground"
         >
-          <ol className="mx-auto flex max-w-7xl items-center gap-2 px-4 py-3 text-[11px] font-medium uppercase tracking-widest text-white/60 sm:px-6 lg:px-8">
+          <ol className="mx-auto flex max-w-7xl items-center gap-2 px-4 py-2 text-[11px] font-medium uppercase tracking-widest text-white/60 sm:px-6 lg:px-8">
             <li>
-              <Link to="/" className="hover:text-primary">Home</Link>
+              <Link to="/" className="inline-flex items-center py-2 hover:text-primary">Home</Link>
             </li>
-            <ChevronRight className="h-3 w-3 text-white/30" />
+            <ChevronRight className="h-3 w-3 shrink-0 text-white/30" />
             <li className="text-white">{breadcrumbLabel}</li>
           </ol>
         </nav>
