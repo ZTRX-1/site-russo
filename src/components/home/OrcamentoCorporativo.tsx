@@ -29,7 +29,7 @@ export function OrcamentoCorporativo() {
             <span className="text-primary">à altura da sua operação</span>
           </h2>
           <p className="mb-6 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
-            Empresas, condomínios, construtoras e academias contam com a Russo para a rotina e para a emergência. Grande estoque disponível, atendimento especializado, cotação por escrito e nota fiscal em dia. Comprar material vira processo, não problema.
+            Empresas, condomínios, construtoras e academias contam com a Russo para a rotina e para a emergência. Ampla variedade de produtos, orientação técnica, cotação por escrito e nota fiscal em dia. Comprar material vira processo, não problema.
           </p>
 
           <ul className="mb-10 grid max-w-2xl gap-3 sm:grid-cols-2">

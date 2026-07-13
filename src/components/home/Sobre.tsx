@@ -34,7 +34,7 @@ export function Sobre() {
 
           <div>
             <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
-              Sobre a Russo
+              Nossa história
             </span>
             <h2 className="mt-3 font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
               Tradição e <span className="text-primary">referência técnica na Zona Oeste</span>.

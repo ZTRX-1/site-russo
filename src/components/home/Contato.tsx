@@ -9,7 +9,7 @@ export function Contato() {
       <div className="pointer-events-none absolute inset-x-0 top-0 red-glow-line" />
       <div className="relative mx-auto max-w-5xl px-4 text-center text-white sm:px-6 lg:px-8">
         <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
-          Fale com a gente
+          Fale com nossa equipe
         </span>
         <h2 className="mt-3 font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
           Se preferir, fale conosco <span className="text-primary">pelo WhatsApp</span>

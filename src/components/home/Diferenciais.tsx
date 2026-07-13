@@ -3,7 +3,7 @@ import { Headset, ShieldCheck, Truck, Navigation, ParkingSquare, Award } from "l
 const DIFERENCIAIS = [
   {
     icon: Headset,
-    title: "Especialistas no balcão",
+    title: "Orientação técnica no balcão",
     text: "Nossa equipe ajuda você a escolher o material certo antes, durante e depois da compra, com orientação técnica.",
   },
   {
@@ -13,7 +13,7 @@ const DIFERENCIAIS = [
   },
   {
     icon: Truck,
-    title: "Grande estoque disponível",
+    title: "Amplo estoque",
     text: "Produtos à pronta entrega, de pequenos reparos a compras maiores, sem precisar procurar em outras lojas.",
   },
   {
@@ -51,7 +51,7 @@ export function Diferenciais() {
             Motivos para <span className="text-primary">escolher a Russo</span>
           </h2>
           <p className="mt-4 text-base leading-relaxed text-white/65 md:text-lg">
-            Além dos produtos, oferecemos orientação técnica, disponibilidade real de estoque e um atendimento pensado para facilitar a sua rotina.
+            Quem compra na Russo encontra orientação técnica, disponibilidade de produtos e um atendimento pensado para facilitar cada compra.
           </p>
         </div>
 

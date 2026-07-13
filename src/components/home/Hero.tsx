@@ -26,11 +26,11 @@ export function Hero() {
 
           <h1 className="mt-6 font-display text-5xl font-black leading-[1.03] tracking-tight text-white md:text-6xl lg:text-7xl">
             Materiais elétricos, ferragens e iluminação{" "}
-            <span className="text-primary">para quem precisa resolver com segurança</span>
+            <span className="text-primary">para residências, empresas, condomínios e profissionais da Zona Oeste de São Paulo.</span>
           </h1>
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
-            Somos uma loja tradicional do Rio Pequeno, reconhecida na Zona Oeste de São Paulo por trabalhar com materiais elétricos, ferragens e iluminação. Atendemos desde pequenos reparos até compras recorrentes de empresas, condomínios, eletricistas e demais profissionais da região.
+            Localizada no bairro Rio Pequeno, a Russo é referência na Zona Oeste de São Paulo quando o assunto é materiais elétricos, ferragens e iluminação. Atendemos desde pequenos reparos até compras recorrentes de empresas, condomínios, eletricistas e profissionais.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3">
@@ -55,9 +55,9 @@ export function Hero() {
           {/* Pills de confiança — legíveis em mobile */}
           <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-2 sm:grid-cols-4">
             {[
-              "Grande estoque disponível",
+              "Produtos à pronta entrega",
               "Emitimos nota fiscal",
-              "Especialistas no balcão",
+              "Orientação técnica no balcão",
               "Av. Escola Politécnica, 2850",
             ].map((item) => (
               <div
@@ -217,12 +217,12 @@ export function Hero() {
 
           <div className="max-w-2xl text-center sm:text-left">
             <h2 className="font-display text-3xl font-black leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-[2.75rem]">
-              Uma loja de tradição.
+              Tradição que gera confiança.
               <br />
               <span className="text-primary">Seu fornecedor de confiança.</span>
             </h2>
             <p className="mt-5 text-base leading-relaxed text-white/65 sm:text-lg">
-              Produtos originais, atendimento próximo e estrutura preparada para receber consumidores, empresas, condomínios e profissionais da construção.
+              Produtos originais, orientação técnica e estrutura preparada para consumidores, empresas, condomínios e profissionais da Zona Oeste.
             </p>
           </div>
 
