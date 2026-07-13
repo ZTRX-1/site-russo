@@ -47,7 +47,7 @@ export function QuickQuote() {
   return (
     <section
       id="solicitar-orcamento"
-      className="relative overflow-hidden bg-gradient-to-br from-secondary via-secondary to-secondary/95 py-20 text-secondary-foreground sm:py-24"
+      className="relative overflow-hidden bg-gradient-to-br from-secondary via-secondary to-secondary/95 py-14 text-secondary-foreground sm:py-20"
     >
       {/* linha vermelha iluminada — reforço da identidade industrial */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
@@ -60,14 +60,14 @@ export function QuickQuote() {
             <HardHat className="h-3 w-3 shrink-0" /> Peça seu orçamento
           </span>
           <h2 className="mt-5 font-display text-3xl font-black leading-tight text-white sm:text-4xl lg:text-5xl">
-            Como <span className="text-primary">podemos ajudar?</span>
+            Como podemos ajudar?
           </h2>
           <p className="mt-4 text-base text-white/60 sm:text-lg">
             Escolha seu perfil e fale diretamente com nossa equipe pelo WhatsApp. A mensagem já é enviada com as informações necessárias para agilizar seu atendimento.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-10 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-5">
           {OPCOES.map(({ label, desc, icon: Icon, href, highlight }) => (
             <a
               key={label}

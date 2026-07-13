@@ -1,5 +1,6 @@
-import { Users, Hammer, ParkingSquare, Award } from "lucide-react";
+import { Users, Hammer, ParkingSquare, Award, Navigation } from "lucide-react";
 import lojaInterior from "@/assets/loja-interior.jpg";
+import { CtaButton } from "@/components/ui/CtaButton";
 
 const PILLARS = [
   { icon: Users, label: "Atendimento humano", text: "Você conversa com quem entende do produto e ajuda a escolher o certo para a sua necessidade." },
@@ -10,7 +11,7 @@ const PILLARS = [
 
 export function Sobre() {
   return (
-    <section id="sobre" className="py-16 md:py-24">
+    <section id="sobre" className="py-12 md:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="relative">
@@ -37,7 +38,7 @@ export function Sobre() {
               Nossa história
             </span>
             <h2 className="mt-3 font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
-              Tradição e <span className="text-primary">referência técnica na Zona Oeste</span>.
+              Tradição e referência técnica na Zona Oeste.
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground md:text-lg">
               Há anos atendendo moradores, empresas, condomínios e profissionais da Zona Oeste de São Paulo, a Russo construiu sua reputação oferecendo atendimento próximo, produtos de qualidade e orientação técnica para cada compra.
@@ -62,6 +63,16 @@ export function Sobre() {
                 </li>
               ))}
             </ul>
+
+            <div className="mt-8">
+              <CtaButton
+                href="#localizacao"
+                variant="ghost"
+                icon={<Navigation className="h-4 w-4 shrink-0" />}
+              >
+                Como chegar até a loja
+              </CtaButton>
+            </div>
           </div>
         </div>
       </div>
