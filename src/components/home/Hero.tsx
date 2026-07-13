@@ -120,9 +120,9 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="relative mt-4 rounded-2xl border border-white/10 bg-secondary/85 p-5 shadow-[var(--shadow-industrial)] backdrop-blur-xl sm:p-6">
+          <div className="relative mt-4 rounded-2xl border border-white/10 bg-secondary p-5 sm:p-6">
             <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary">
-              Por que a Russo
+              Por que escolher a Russo
             </p>
             <ul className="mt-3 space-y-2.5">
               {[
@@ -133,13 +133,27 @@ export function Hero() {
                 { icon: Clock, text: "Segunda a sexta, das 8h às 18h" },
               ].map(({ icon: Icon, text }) => (
                 <li key={text} className="flex items-center gap-2.5">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary/15 text-primary">
-                    <Icon className="h-3.5 w-3.5" />
-                  </span>
+                  <Icon className="h-4 w-4 shrink-0 text-primary" strokeWidth={1.75} />
                   <span className="text-[13px] font-semibold text-white/90">{text}</span>
                 </li>
               ))}
             </ul>
+
+            <div className="mt-5 border-t border-white/10 pt-4">
+              <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-white/55">
+                Trabalhamos com as principais marcas
+              </p>
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {["WEG", "Schneider", "Pial", "Intelbras", "Lorenzetti", "Legrand", "Steck", "Tramontina"].map((brand) => (
+                  <span
+                    key={brand}
+                    className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/70"
+                  >
+                    {brand}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
