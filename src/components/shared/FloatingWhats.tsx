@@ -2,20 +2,48 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { WHATSAPP_URL } from "@/lib/constants";
 
-/**
- * Botão flutuante do WhatsApp — usa o mascote da Russo em vez do círculo padrão.
- * Diferencia a marca e reforça identidade visual.
- */
 export function FloatingWhats() {
+  const [isVisible, setIsVisible] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => {
-      if (!isDismissed) setShowPopup(true);
-    }, 5000);
+    if (isVisible) return;
+
+    let revealed = false;
+    const reveal = () => {
+      if (revealed) return;
+      revealed = true;
+      setIsVisible(true);
+    };
+
+    const timer = window.setTimeout(reveal, 15000);
+
+    const onScroll = () => {
+      const scrolled = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      if (total > 0 && scrolled / total >= 0.25) reveal();
+    };
+
+    const onMouseOut = (e: MouseEvent) => {
+      if (!e.relatedTarget && e.clientY <= 0) reveal();
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    document.addEventListener("mouseout", onMouseOut);
+
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("mouseout", onMouseOut);
+    };
+  }, [isVisible]);
+
+  useEffect(() => {
+    if (!isVisible || isDismissed) return;
+    const timer = window.setTimeout(() => setShowPopup(true), 800);
     return () => window.clearTimeout(timer);
-  }, [isDismissed]);
+  }, [isVisible, isDismissed]);
 
   const handleDismiss = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -24,10 +52,12 @@ export function FloatingWhats() {
     setIsDismissed(true);
   };
 
+  if (!isVisible) return null;
+
   return (
-    <div className="fixed bottom-20 right-4 z-50 flex flex-col items-end gap-3 sm:bottom-5 sm:right-5">
+    <div className="fixed bottom-24 right-3 z-50 flex flex-col items-end gap-3 sm:bottom-6 sm:right-6">
       {showPopup && !isDismissed && (
-        <div className="relative mr-2 max-w-[220px] animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="relative mr-1 max-w-[200px] animate-in fade-in slide-in-from-bottom-4 duration-500">
           <button
             onClick={handleDismiss}
             className="absolute -right-2 -top-2 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-black/5 hover:bg-gray-100"
@@ -40,21 +70,15 @@ export function FloatingWhats() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="relative block rounded-2xl bg-white p-3 text-xs font-bold text-secondary shadow-xl ring-1 ring-black/5 transition-transform after:absolute after:bottom-[-8px] after:right-6 after:h-4 after:w-4 after:rotate-45 after:bg-white after:content-[''] hover:scale-[1.02] active:scale-95"
+            className="relative block rounded-2xl bg-white p-3 text-[12px] font-semibold leading-snug text-secondary shadow-xl ring-1 ring-black/5 transition-transform after:absolute after:bottom-[-8px] after:right-6 after:h-4 after:w-4 after:rotate-45 after:bg-white after:content-[''] hover:scale-[1.02] active:scale-95"
           >
-            <div className="flex items-start gap-2 text-left">
-              <img
-                src="/uploads/mascote.png"
-                alt="Mascote Russo"
-                width={40}
-                height={40}
-                className="h-10 w-10 shrink-0 rounded-full border-2 border-primary bg-secondary object-contain p-0.5"
-              />
-              <p className="leading-tight">
-                Olá, sou o <span className="text-primary">Russo</span>!<br />
-                Precisa de ajuda com seu orçamento?
-              </p>
-            </div>
+            <p className="text-left">
+              <span aria-hidden>👋</span> Posso ajudar?
+              <br />
+              <span className="font-normal text-secondary/80">
+                Informe o material que procura e nossa equipe responde pelo WhatsApp.
+              </span>
+            </p>
           </a>
         </div>
       )}
