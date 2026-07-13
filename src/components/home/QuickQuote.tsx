@@ -106,7 +106,7 @@ export function QuickQuote() {
         </div>
 
         <p className="mt-8 text-center text-xs uppercase tracking-widest text-white/40">
-          Atendimento humano · Loja física no Rio Pequeno · Zona Oeste de São Paulo
+          Atendimento humano, loja física no Rio Pequeno e fácil acesso para toda a Zona Oeste de São Paulo
         </p>
       </div>
     </section>
