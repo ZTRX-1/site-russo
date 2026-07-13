@@ -1,4 +1,4 @@
-import { ShieldCheck, Star, Headset, Check, Zap, Droplets, Users, Lightbulb } from "lucide-react";
+import { ShieldCheck, Star, Headset, Check, MapPin, ParkingSquare, FileText, Building2, Clock } from "lucide-react";
 import fachada from "/uploads/fachada-russo.png";
 import { CtaButton } from "@/components/ui/CtaButton";
 import { WHATSAPP_URL, WHATSAPP_URL_ESPECIALISTA } from "@/lib/constants";
@@ -117,76 +117,28 @@ export function Hero() {
               <div className="absolute inset-0 hidden bg-gradient-to-t from-secondary via-secondary/30 to-transparent lg:block" />
             </div>
 
-            {/* Overlay: fica abaixo da imagem em mobile/tablet, sobreposto apenas em desktop */}
+            {/* Card institucional — clean, confiança imediata */}
             <div className="p-4 sm:p-6 lg:absolute lg:inset-x-0 lg:bottom-0 lg:p-8">
-              <div className="space-y-2.5">
-                {/* Linha superior — 2 categorias principais */}
-                <div className="grid grid-cols-2 gap-2.5">
+              <div className="rounded-2xl border border-white/10 bg-secondary/85 p-4 backdrop-blur-xl sm:p-5">
+                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary">
+                  Por que a Russo
+                </p>
+                <ul className="mt-3 space-y-2.5">
                   {[
-                    { icon: Zap, title: "Elétrica", desc: "Fios, cabos, disjuntores e muito mais." },
-                    { icon: Droplets, title: "Hidráulica", desc: "Reparos, manutenção e instalações." },
-                  ].map(({ icon: Icon, title, desc }) => (
-                    <div
-                      key={title}
-                      className="rounded-xl border border-white/10 bg-secondary/75 p-3 backdrop-blur-xl sm:p-3.5"
-                    >
-                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15 text-primary">
-                        <Icon className="h-4 w-4" />
-                      </div>
-                      <p className="mt-2 text-[11px] font-bold uppercase tracking-wider text-white">
-                        {title}
-                      </p>
-                      <p className="mt-0.5 text-[11px] leading-snug text-white/65">{desc}</p>
-                    </div>
+                    { icon: MapPin, text: "Loja física no Rio Pequeno" },
+                    { icon: ParkingSquare, text: "Estacionamento próprio" },
+                    { icon: FileText, text: "Emitimos Nota Fiscal" },
+                    { icon: Building2, text: "Atendimento para empresas" },
+                    { icon: Clock, text: "Segunda a sexta, das 8h às 18h" },
+                  ].map(({ icon: Icon, text }) => (
+                    <li key={text} className="flex items-center gap-2.5">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary/15 text-primary">
+                        <Icon className="h-3.5 w-3.5" />
+                      </span>
+                      <span className="text-[13px] font-semibold text-white/90">{text}</span>
+                    </li>
                   ))}
-                </div>
-
-                {/* Linhas cheias — 3 diferenciais */}
-                {[
-                  {
-                    icon: Users,
-                    title: "Atendimento especializado",
-                    desc: "Orientação para profissionais e empresas.",
-                    highlight: false,
-                  },
-                  {
-                    icon: Lightbulb,
-                    title: "Iluminação LED",
-                    desc: "Soluções para residências e condomínios.",
-                    highlight: false,
-                  },
-                  {
-                    icon: ShieldCheck,
-                    title: "Estrutura completa",
-                    desc: "Variedade de produtos e atendimento especializado.",
-                    highlight: true,
-                  },
-                ].map(({ icon: Icon, title, desc, highlight }) => (
-                  <div
-                    key={title}
-                    className={
-                      highlight
-                        ? "flex items-center gap-3 rounded-xl border border-primary/40 bg-primary/10 p-3 backdrop-blur-xl sm:p-3.5"
-                        : "flex items-center gap-3 rounded-xl border border-white/10 bg-secondary/75 p-3 backdrop-blur-xl sm:p-3.5"
-                    }
-                  >
-                    <div
-                      className={
-                        highlight
-                          ? "flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-white"
-                          : "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary"
-                      }
-                    >
-                      <Icon className="h-4 w-4" />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-[11px] font-bold uppercase tracking-wider text-white">
-                        {title}
-                      </p>
-                      <p className="text-[11px] leading-snug text-white/70">{desc}</p>
-                    </div>
-                  </div>
-                ))}
+                </ul>
               </div>
             </div>
           </div>

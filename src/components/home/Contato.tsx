@@ -4,7 +4,7 @@ import { WHATSAPP_URL, PHONE_DISPLAY, MOBILE_DISPLAY } from "@/lib/constants";
 
 export function Contato() {
   return (
-    <section id="contato" className="relative overflow-hidden py-16 md:py-24">
+    <section id="contato" className="relative overflow-hidden py-12 md:py-20">
       <div className="absolute inset-0 bg-secondary" />
       <div className="pointer-events-none absolute inset-x-0 top-0 red-glow-line" />
       <div className="relative mx-auto max-w-5xl px-4 text-center text-white sm:px-6 lg:px-8">
@@ -12,7 +12,7 @@ export function Contato() {
           Fale com nossa equipe
         </span>
         <h2 className="mt-3 font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
-          Se preferir, fale conosco <span className="text-primary">pelo WhatsApp</span>
+          Se preferir, fale conosco pelo WhatsApp
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
           Envie uma mensagem contando o que você precisa. Nossa equipe responde durante o horário comercial e informa disponibilidade, preços e orientações técnicas para a sua compra.

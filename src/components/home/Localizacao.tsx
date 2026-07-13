@@ -5,9 +5,19 @@ import { ADDRESS, GOOGLE_MAPS_URL, MAPS_EMBED, WHATSAPP_URL } from "@/lib/consta
 
 export function Localizacao() {
   const [showMap, setShowMap] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mq.matches);
+    const onChange = () => setIsMobile(mq.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return; // mobile: só carrega ao clicar
     if (typeof IntersectionObserver === "undefined") {
       setShowMap(true);
       return;
@@ -28,10 +38,10 @@ export function Localizacao() {
     );
     io.observe(el);
     return () => io.disconnect();
-  }, []);
+  }, [isMobile]);
 
   return (
-    <section id="localizacao" className="bg-muted/40 py-16 md:py-24">
+    <section id="localizacao" className="bg-muted/40 py-12 md:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
@@ -39,7 +49,7 @@ export function Localizacao() {
               Como chegar
             </span>
             <h2 className="mt-3 font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
-              Fácil acesso na <span className="text-primary">Zona Oeste de São Paulo</span>
+              Fácil acesso na Zona Oeste de São Paulo
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
               Estamos na Avenida Escola Politécnica, uma das principais vias da região. O acesso é direto para quem vem do Rio Pequeno, USP, Jaguaré, Butantã, Osasco e Raposo Tavares. Loja com estacionamento próprio para você parar sem correria.
@@ -93,10 +103,19 @@ export function Localizacao() {
                 height="450"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="block h-[420px] w-full border-0"
+                className="block h-[280px] w-full border-0 sm:h-[420px]"
               />
             ) : (
-              <div className="h-[420px] w-full animate-pulse bg-muted" aria-hidden />
+              <button
+                type="button"
+                onClick={() => setShowMap(true)}
+                className="flex h-[220px] w-full flex-col items-center justify-center gap-3 bg-muted text-center transition-colors hover:bg-muted/70 sm:h-[420px]"
+                aria-label="Carregar mapa da loja"
+              >
+                <MapPin className="h-8 w-8 text-primary" />
+                <span className="font-display text-lg font-bold text-foreground">Toque para ver o mapa</span>
+                <span className="text-xs text-muted-foreground">Carrega apenas quando você quiser</span>
+              </button>
             )}
           </div>
         </div>

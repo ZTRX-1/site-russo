@@ -13,7 +13,7 @@ export function OrcamentoCorporativo() {
   return (
     <section
       id="orcamento-corporativo"
-      className="relative overflow-hidden py-16 text-secondary-foreground md:py-24"
+      className="relative overflow-hidden py-12 text-secondary-foreground md:py-20"
       style={{ background: "var(--gradient-industrial)" }}
     >
       <div className="pointer-events-none absolute -left-40 top-1/4 h-96 w-96 rounded-full bg-primary/15 blur-[80px]" />
@@ -25,8 +25,7 @@ export function OrcamentoCorporativo() {
             <ShieldCheck className="h-3 w-3 shrink-0" /> Compras para empresas
           </span>
           <h2 className="mb-6 font-display text-3xl font-black leading-tight tracking-tight text-white md:text-5xl">
-            Um fornecedor{" "}
-            <span className="text-primary">à altura da sua operação</span>
+            Um fornecedor à altura da sua operação
           </h2>
           <p className="mb-6 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
             Empresas, condomínios, construtoras e academias contam com a Russo para a rotina e para a emergência. Ampla variedade de produtos, orientação técnica, cotação por escrito e nota fiscal em dia. Comprar material vira processo, não problema.

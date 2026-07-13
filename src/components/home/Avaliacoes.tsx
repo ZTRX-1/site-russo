@@ -20,7 +20,7 @@ const REVIEWS = [
 
 export function Avaliacoes() {
   return (
-    <section id="avaliacoes" className="bg-background py-16 md:py-24">
+    <section id="avaliacoes" className="bg-background py-12 md:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
           <div>
@@ -45,26 +45,32 @@ export function Avaliacoes() {
               Ver as avaliações no Google →
             </a>
           </div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {REVIEWS.map((r) => (
-              <figure
-                key={r.name}
-                className="flex h-full flex-col rounded-xl border border-border bg-card p-6 shadow-[var(--shadow-card)]"
-              >
-                <div className="flex gap-0.5">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="h-4 w-4 shrink-0 fill-gold text-gold" />
-                  ))}
-                </div>
-                <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-foreground/80">
-                  &ldquo;{r.text}&rdquo;
-                </blockquote>
-                <figcaption className="mt-4 border-t border-border pt-3">
-                  <p className="font-semibold text-foreground">{r.name}</p>
-                  <p className="text-xs text-muted-foreground">{r.role}</p>
-                </figcaption>
-              </figure>
-            ))}
+          <div>
+            {/* Mobile: carrossel horizontal com snap. Desktop: grid. */}
+            <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
+              {REVIEWS.map((r) => (
+                <figure
+                  key={r.name}
+                  className="flex h-full min-w-[85%] shrink-0 snap-center flex-col rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-card)] sm:min-w-0 sm:shrink sm:snap-align-none sm:p-6"
+                >
+                  <div className="flex gap-0.5">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} className="h-4 w-4 shrink-0 fill-gold text-gold" />
+                    ))}
+                  </div>
+                  <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-foreground/80">
+                    &ldquo;{r.text}&rdquo;
+                  </blockquote>
+                  <figcaption className="mt-4 border-t border-border pt-3">
+                    <p className="font-semibold text-foreground">{r.name}</p>
+                    <p className="text-xs text-muted-foreground">{r.role}</p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+            <p className="mt-2 text-center text-[10px] uppercase tracking-widest text-muted-foreground/70 sm:hidden">
+              Arraste para o lado →
+            </p>
           </div>
         </div>
       </div>
