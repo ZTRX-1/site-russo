@@ -117,19 +117,46 @@ export function Hero() {
               <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/30 to-transparent" />
             </div>
 
-            {/* Overlay: apenas 1 selo em mobile, cards completos só em lg */}
+            {/* Overlay dentro do card da imagem */}
             <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 lg:p-8">
-              <div className="flex items-center gap-3 rounded-xl border border-primary/30 bg-primary/10 p-3 backdrop-blur-xl lg:hidden">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-white">
-                  <ShieldCheck className="h-4 w-4" />
-                </div>
-                <p className="text-[11px] font-medium leading-tight text-white/90">
-                  <span className="block font-bold uppercase tracking-wider text-white">Loja abastecida</span>
-                  Elétrica, ferragens e iluminação num só lugar.
-                </p>
-              </div>
+              <div className="space-y-3">
+                <div className="grid gap-2 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+                  <a
+                    href={GOOGLE_MAPS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group rounded-xl border border-white/10 bg-secondary/70 p-3 backdrop-blur-xl transition-colors hover:border-primary/40 hover:bg-secondary/80"
+                  >
+                    <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-white/55">
+                      <MapPin className="h-3.5 w-3.5 shrink-0 text-primary" /> Endereço
+                    </span>
+                    <span className="mt-1 block text-xs font-semibold leading-snug text-white group-hover:text-primary">
+                      Av. Escola Politécnica, 2850
+                    </span>
+                  </a>
 
-              <div className="hidden lg:block">
+                  <div className="rounded-xl border border-white/10 bg-secondary/70 p-3 backdrop-blur-xl">
+                    <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-white/55">
+                      <Clock className="h-3.5 w-3.5 shrink-0 text-primary" /> Horário
+                    </span>
+                    <span className="mt-1 block text-xs font-semibold leading-snug text-white">
+                      Seg a Sex 7h30–18h
+                    </span>
+                  </div>
+
+                  <a
+                    href="tel:+551137662002"
+                    className="group rounded-xl border border-white/10 bg-secondary/70 p-3 backdrop-blur-xl transition-colors hover:border-primary/40 hover:bg-secondary/80"
+                  >
+                    <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-white/55">
+                      <Phone className="h-3.5 w-3.5 shrink-0 text-primary" /> Telefone
+                    </span>
+                    <span className="mt-1 block text-xs font-semibold leading-snug text-white group-hover:text-primary">
+                      {PHONE_DISPLAY}
+                    </span>
+                  </a>
+                </div>
+
                 <div className="flex items-center gap-3 rounded-xl border border-primary/30 bg-primary/10 p-3 backdrop-blur-xl">
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-white">
                     <ShieldCheck className="h-4 w-4" />
@@ -141,52 +168,6 @@ export function Hero() {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Cartão de visita — preenche o espaço abaixo da foto com info útil */}
-          <div className="mt-5 grid gap-3 sm:grid-cols-3">
-            <a
-              href={GOOGLE_MAPS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-4 transition-colors hover:border-primary/40 hover:bg-white/[0.04]"
-            >
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary">
-                <MapPin className="h-4 w-4" />
-              </span>
-              <div className="min-w-0">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-white/50">Endereço</p>
-                <p className="mt-0.5 text-xs font-semibold leading-snug text-white group-hover:text-primary">
-                  Av. Escola Politécnica, 2850
-                </p>
-                <p className="text-[11px] text-white/55">Rio Pequeno · SP</p>
-              </div>
-            </a>
-            <div className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-4">
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary">
-                <Clock className="h-4 w-4" />
-              </span>
-              <div className="min-w-0">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-white/50">Horário</p>
-                <p className="mt-0.5 text-xs font-semibold leading-snug text-white">Seg a Sex · 7h30–18h</p>
-                <p className="text-[11px] text-white/55">Sáb · 8h–13h</p>
-              </div>
-            </div>
-            <a
-              href={`tel:+551137662002`}
-              className="group flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-4 transition-colors hover:border-primary/40 hover:bg-white/[0.04]"
-            >
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary">
-                <Phone className="h-4 w-4" />
-              </span>
-              <div className="min-w-0">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-white/50">Telefone</p>
-                <p className="mt-0.5 text-xs font-semibold leading-snug text-white group-hover:text-primary">
-                  {PHONE_DISPLAY}
-                </p>
-                <p className="text-[11px] text-white/55">Atendimento no balcão</p>
-              </div>
-            </a>
           </div>
         </div>
       </div>
