@@ -30,7 +30,7 @@ export function Hero() {
           </h1>
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
-            Loja de bairro no Rio Pequeno, tradicional na Zona Oeste. Atendemos do reparo doméstico à demanda recorrente de eletricistas, condomínios e empresas, com equipe pronta para orientar sua compra.
+            Empresa localizada no bairro Rio Pequeno, referência em materiais elétricos, ferragens e iluminação para toda a Zona Oeste de São Paulo. Atendemos desde pequenos reparos até compras recorrentes de empresas, condomínios, eletricistas e profissionais.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3">
@@ -49,15 +49,15 @@ export function Hero() {
           </div>
 
           <p className="mt-3 text-[11px] uppercase tracking-widest text-white/45">
-            Atendimento durante o horário comercial
+            Nossa equipe responde durante o horário comercial
           </p>
 
           {/* Pills de confiança — legíveis em mobile */}
           <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-2 sm:grid-cols-4">
             {[
-              "Estoque abastecido no dia a dia",
+              "Grande estoque disponível",
               "Emitimos nota fiscal",
-              "Equipe que orienta a compra",
+              "Especialistas no balcão",
               "Av. Escola Politécnica, 2850",
             ].map((item) => (
               <div
