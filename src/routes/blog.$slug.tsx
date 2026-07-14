@@ -1,83 +1,30 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, Calendar, Clock } from "lucide-react";
+import { useServerFn } from "@tanstack/react-start";
+import { useQuery } from "@tanstack/react-query";
+import { ArrowLeft, Calendar } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingWhats } from "@/components/shared/FloatingWhats";
 import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
 import { CtaButton } from "@/components/ui/CtaButton";
-import {
-  getPostBySlug,
-  getRelatedPosts,
-  formatDatePtBr,
-  type BlogPost,
-} from "@/lib/blog";
+import { getPublishedPost, formatDatePtBr } from "@/lib/blog.functions";
 import { SITE_URL, WHATSAPP_URL, WHATSAPP_URL_ESPECIALISTA } from "@/lib/constants";
 
 export const Route = createFileRoute("/blog/$slug")({
-  loader: ({ params }) => {
-    const post = getPostBySlug(params.slug);
-    if (!post) throw notFound();
-    return { post };
-  },
+  ssr: false,
   head: ({ loaderData, params }) => {
-    const post = loaderData?.post;
+    const post = loaderData as unknown as null;
     if (!post) {
+      const url = `${SITE_URL}/blog/${params.slug}`;
       return {
         meta: [
-          { title: "Artigo não encontrado — Blog Russo" },
-          { name: "robots", content: "noindex" },
+          { title: `Artigo — Blog Russo Elétrica` },
+          { property: "og:url", content: url },
         ],
+        links: [{ rel: "canonical", href: url }],
       };
     }
-    const url = `${SITE_URL}/blog/${params.slug}`;
-    return {
-      meta: [
-        { title: `${post.title} — Blog Russo Elétrica` },
-        { name: "description", content: post.description },
-        { property: "og:title", content: post.title },
-        { property: "og:description", content: post.description },
-        { property: "og:type", content: "article" },
-        { property: "og:url", content: url },
-        ...(post.cover ? [{ property: "og:image" as const, content: post.cover }] : []),
-        { property: "article:published_time", content: post.date },
-        { property: "article:section", content: post.category },
-      ],
-      links: [{ rel: "canonical", href: url }],
-      scripts: [
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: post.title,
-            description: post.description,
-            datePublished: post.date,
-            author: { "@type": "Organization", name: post.author },
-            publisher: {
-              "@type": "Organization",
-              name: "Russo Elétrica e Ferragens",
-              logo: {
-                "@type": "ImageObject",
-                url: `${SITE_URL}/uploads/logo-russo.png`,
-              },
-            },
-            mainEntityOfPage: url,
-          }),
-        },
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
-              { "@type": "ListItem", position: 2, name: "Blog", item: SITE_URL + "/blog" },
-              { "@type": "ListItem", position: 3, name: post.title, item: url },
-            ],
-          }),
-        },
-      ],
-    };
+    return { meta: [] };
   },
   component: BlogPostPage,
   notFoundComponent: () => (
@@ -102,8 +49,29 @@ export const Route = createFileRoute("/blog/$slug")({
 });
 
 function BlogPostPage() {
-  const { post } = Route.useLoaderData();
-  const related = getRelatedPosts(post.slug);
+  const { slug } = Route.useParams();
+  const fn = useServerFn(getPublishedPost);
+  const { data, isLoading } = useQuery({
+    queryKey: ["public-post", slug],
+    queryFn: () => fn({ data: { slug } }),
+  });
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="mx-auto max-w-3xl px-4 py-24 text-center text-muted-foreground">
+          Carregando artigo...
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  const post = data?.post;
+  if (!post) {
+    throw notFound();
+  }
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -124,17 +92,18 @@ function BlogPostPage() {
           </h1>
           <div className="mt-5 flex flex-wrap items-center gap-4 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
             <span className="inline-flex items-center gap-1.5">
-              <Calendar className="h-3.5 w-3.5" /> {formatDatePtBr(post.date)}
+              <Calendar className="h-3.5 w-3.5" /> {formatDatePtBr(post.published_at)}
             </span>
-            <span className="inline-flex items-center gap-1.5">
-              <Clock className="h-3.5 w-3.5" /> {post.readingMinutes} min de leitura
-            </span>
-            <span>Por {post.author}</span>
+            {post.author_name && <span>Por {post.author_name}</span>}
           </div>
+
+          {post.cover_url && (
+            <img src={post.cover_url} alt={post.title} className="mt-8 w-full rounded-2xl object-cover" />
+          )}
 
           <div
             className="prose prose-slate mt-10 max-w-none prose-headings:font-display prose-headings:font-black prose-h2:mt-10 prose-h2:text-2xl prose-h3:text-xl prose-a:text-primary prose-strong:text-foreground"
-            dangerouslySetInnerHTML={{ __html: post.html }}
+            dangerouslySetInnerHTML={{ __html: post.content_html }}
           />
 
           <div className="mt-14 rounded-2xl border border-primary/30 bg-secondary p-8 text-secondary-foreground">
@@ -169,34 +138,6 @@ function BlogPostPage() {
             </div>
           </div>
         </article>
-
-        {related.length > 0 && (
-          <section className="mx-auto mt-20 max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="font-display text-2xl font-black text-foreground">
-              Continue lendo
-            </h2>
-            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {related.map((r: BlogPost) => (
-                <Link
-                  key={r.slug}
-                  to="/blog/$slug"
-                  params={{ slug: r.slug }}
-                  className="group rounded-2xl border border-border bg-card p-6 transition hover:border-primary/40"
-                >
-                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-primary">
-                    {r.category}
-                  </span>
-                  <h3 className="mt-3 font-display text-lg font-black text-foreground group-hover:text-primary">
-                    {r.title}
-                  </h3>
-                  <p className="mt-3 text-sm text-muted-foreground line-clamp-3">
-                    {r.description}
-                  </p>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
       </main>
       <Footer />
       <FloatingWhats />
