@@ -86,7 +86,7 @@ function AdminLayout() {
             return (
               <Link
                 key={n.to}
-                to={n.to}
+                to={n.to as "/admin"}
                 className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm transition ${
                   active ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-accent"
                 }`}
@@ -121,7 +121,7 @@ function AdminLayout() {
           {navItems.map((n) => {
             const active = n.exact ? loc.pathname === n.to : loc.pathname.startsWith(n.to);
             return (
-              <Link key={n.to} to={n.to}
+              <Link key={n.to} to={n.to as "/admin"}
                 className={`shrink-0 rounded-md px-3 py-1.5 text-xs font-medium ${
                   active ? "bg-primary text-primary-foreground" : "hover:bg-accent"
                 }`}>{n.label}</Link>
