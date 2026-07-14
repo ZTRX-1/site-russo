@@ -31,7 +31,7 @@ export const Route = createFileRoute("/blog/")({
 
 function BlogIndex() {
   const fn = useServerFn(listPublishedPosts);
-  const { data } = useQuery({ queryKey: ["public-posts"], queryFn: () => fn() });
+  const { data, isLoading } = useQuery({ queryKey: ["public-posts"], queryFn: () => fn() });
   const posts = data?.posts ?? [];
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -54,7 +54,16 @@ function BlogIndex() {
         </section>
 
         <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          {posts.length === 0 ? (
+          {isLoading ? (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {[0, 1, 2].map((i) => (
+                <div
+                  key={i}
+                  className="h-72 animate-pulse rounded-2xl border border-border bg-card/50"
+                />
+              ))}
+            </div>
+          ) : posts.length === 0 ? (
             <p className="text-muted-foreground">Novos conteúdos em breve.</p>
           ) : (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

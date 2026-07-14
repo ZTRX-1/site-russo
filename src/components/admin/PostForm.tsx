@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { RichTextEditor } from "./RichTextEditor";
 import { createPost, updatePost, deletePost } from "@/lib/posts.functions";
+import { supabase } from "@/integrations/supabase/client";
+import { Upload, X, Loader2 } from "lucide-react";
 
 interface Post {
   id?: string;
@@ -23,8 +25,42 @@ export function PostForm({ initial }: { initial: Post }) {
   const deleteFn = useServerFn(deletePost);
   const [form, setForm] = useState<Post>(initial);
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const isEdit = !!form.id;
+
+  async function handleFileUpload(file: File) {
+    if (!file.type.startsWith("image/")) {
+      toast.error("Selecione um arquivo de imagem.");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("Imagem muito grande. Máximo: 5MB.");
+      return;
+    }
+    setUploading(true);
+    try {
+      const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
+      const path = `${crypto.randomUUID()}.${ext}`;
+      const { error: upErr } = await supabase.storage
+        .from("blog-covers")
+        .upload(path, file, { cacheControl: "31536000", upsert: false });
+      if (upErr) throw upErr;
+      // Bucket é privado (política do workspace), então usamos URL assinada de longa duração.
+      const { data: signed, error: sErr } = await supabase.storage
+        .from("blog-covers")
+        .createSignedUrl(path, 60 * 60 * 24 * 365 * 10); // 10 anos
+      if (sErr || !signed?.signedUrl) throw sErr ?? new Error("Falha ao gerar URL da imagem.");
+      setForm({ ...form, cover_url: signed.signedUrl });
+      toast.success("Capa enviada!");
+    } catch (e) {
+      toast.error("Falha no upload: " + (e as Error).message);
+    } finally {
+      setUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
+  }
 
   async function save(status: "draft" | "published") {
     if (!form.title.trim()) {
@@ -101,14 +137,76 @@ export function PostForm({ initial }: { initial: Post }) {
           />
         </div>
         <div className="sm:col-span-2">
-          <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">URL da imagem de capa (opcional)</label>
-          <input
-            type="url"
-            value={form.cover_url ?? ""}
-            onChange={(e) => setForm({ ...form, cover_url: e.target.value })}
-            className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary"
-            placeholder="https://..."
-          />
+          <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+            Imagem de capa
+          </label>
+          <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:items-start">
+            {form.cover_url ? (
+              <div className="relative w-full overflow-hidden rounded-md border border-border sm:w-64">
+                <img src={form.cover_url} alt="Capa" className="aspect-[16/9] w-full object-cover" />
+                <button
+                  type="button"
+                  onClick={() => setForm({ ...form, cover_url: null })}
+                  className="absolute right-2 top-2 rounded-full bg-black/70 p-1 text-white hover:bg-black"
+                  aria-label="Remover capa"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={uploading}
+                className="flex aspect-[16/9] w-full flex-col items-center justify-center gap-2 rounded-md border-2 border-dashed border-border bg-background/50 text-sm text-muted-foreground transition hover:border-primary hover:text-primary disabled:opacity-60 sm:w-64"
+              >
+                {uploading ? (
+                  <Loader2 className="h-6 w-6 animate-spin" />
+                ) : (
+                  <>
+                    <Upload className="h-6 w-6" />
+                    <span>Enviar imagem</span>
+                    <span className="text-[10px] uppercase tracking-wider">JPG, PNG · até 5MB</span>
+                  </>
+                )}
+              </button>
+            )}
+            <div className="flex flex-1 flex-col gap-2">
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => {
+                  const f = e.target.files?.[0];
+                  if (f) handleFileUpload(f);
+                }}
+              />
+              {form.cover_url && (
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={uploading}
+                  className="inline-flex items-center gap-2 self-start rounded-md border border-border px-3 py-1.5 text-xs font-medium hover:bg-accent disabled:opacity-60"
+                >
+                  {uploading ? <Loader2 className="h-3 w-3 animate-spin" /> : <Upload className="h-3 w-3" />}
+                  Substituir imagem
+                </button>
+              )}
+              <div>
+                <label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                  Ou cole uma URL
+                </label>
+                <input
+                  type="url"
+                  value={form.cover_url ?? ""}
+                  onChange={(e) => setForm({ ...form, cover_url: e.target.value || null })}
+                  className="mt-1 w-full rounded-md border border-border bg-background px-3 py-1.5 text-xs outline-none focus:border-primary"
+                  placeholder="https://..."
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
