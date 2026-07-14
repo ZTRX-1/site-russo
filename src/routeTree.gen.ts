@@ -19,6 +19,7 @@ import { Route as EmpresasRouteImport } from './routes/empresas'
 import { Route as CondominiosRouteImport } from './routes/condominios'
 import { Route as CdcRouteImport } from './routes/cdc'
 import { Route as BlogRouteImport } from './routes/blog'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AtendimentoEmpresasRouteImport } from './routes/atendimento-empresas'
 import { Route as AtendimentoCondominiosRouteImport } from './routes/atendimento-condominios'
 import { Route as IndexRouteImport } from './routes/index'
@@ -76,6 +77,11 @@ const BlogRoute = BlogRouteImport.update({
   path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AtendimentoEmpresasRoute = AtendimentoEmpresasRouteImport.update({
   id: '/atendimento-empresas',
   path: '/atendimento-empresas',
@@ -106,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/atendimento-condominios': typeof AtendimentoCondominiosRoute
   '/atendimento-empresas': typeof AtendimentoEmpresasRoute
+  '/auth': typeof AuthRoute
   '/blog': typeof BlogRouteWithChildren
   '/cdc': typeof CdcRoute
   '/condominios': typeof CondominiosRoute
@@ -123,6 +130,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/atendimento-condominios': typeof AtendimentoCondominiosRoute
   '/atendimento-empresas': typeof AtendimentoEmpresasRoute
+  '/auth': typeof AuthRoute
   '/cdc': typeof CdcRoute
   '/condominios': typeof CondominiosRoute
   '/empresas': typeof EmpresasRoute
@@ -140,6 +148,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/atendimento-condominios': typeof AtendimentoCondominiosRoute
   '/atendimento-empresas': typeof AtendimentoEmpresasRoute
+  '/auth': typeof AuthRoute
   '/blog': typeof BlogRouteWithChildren
   '/cdc': typeof CdcRoute
   '/condominios': typeof CondominiosRoute
@@ -159,6 +168,7 @@ export interface FileRouteTypes {
     | '/'
     | '/atendimento-condominios'
     | '/atendimento-empresas'
+    | '/auth'
     | '/blog'
     | '/cdc'
     | '/condominios'
@@ -176,6 +186,7 @@ export interface FileRouteTypes {
     | '/'
     | '/atendimento-condominios'
     | '/atendimento-empresas'
+    | '/auth'
     | '/cdc'
     | '/condominios'
     | '/empresas'
@@ -192,6 +203,7 @@ export interface FileRouteTypes {
     | '/'
     | '/atendimento-condominios'
     | '/atendimento-empresas'
+    | '/auth'
     | '/blog'
     | '/cdc'
     | '/condominios'
@@ -210,6 +222,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AtendimentoCondominiosRoute: typeof AtendimentoCondominiosRoute
   AtendimentoEmpresasRoute: typeof AtendimentoEmpresasRoute
+  AuthRoute: typeof AuthRoute
   BlogRoute: typeof BlogRouteWithChildren
   CdcRoute: typeof CdcRoute
   CondominiosRoute: typeof CondominiosRoute
@@ -294,6 +307,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/atendimento-empresas': {
       id: '/atendimento-empresas'
       path: '/atendimento-empresas'
@@ -348,6 +368,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AtendimentoCondominiosRoute: AtendimentoCondominiosRoute,
   AtendimentoEmpresasRoute: AtendimentoEmpresasRoute,
+  AuthRoute: AuthRoute,
   BlogRoute: BlogRouteWithChildren,
   CdcRoute: CdcRoute,
   CondominiosRoute: CondominiosRoute,
