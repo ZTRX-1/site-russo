@@ -102,16 +102,26 @@ export function Footer() {
         <div className="mt-16 border-t border-white/10 pt-8 text-center text-xs text-white/40">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <p>© {currentYear} Russo Elétrica e Ferragens, CNPJ 62.093.783/0001-52. Todos os direitos reservados.</p>
-            <p>
-              Desenvolvido com 💙 pela{" "}
-              <a 
-                href="https://vexxoncompany.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="font-bold text-white transition hover:text-primary"
+            <p className="flex items-center gap-3">
+              <Link
+                to="/auth"
+                className="text-white/30 transition hover:text-white/70"
+                aria-label="Área restrita"
               >
-                Vexxon Company
-              </a>
+                Área restrita
+              </Link>
+              <span className="text-white/20">•</span>
+              <span>
+                Desenvolvido com 💙 pela{" "}
+                <a
+                  href="https://vexxoncompany.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-white transition hover:text-primary"
+                >
+                  Vexxon Company
+                </a>
+              </span>
             </p>
           </div>
         </div>
