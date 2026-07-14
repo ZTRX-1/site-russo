@@ -68,11 +68,11 @@ function AdminLayout() {
     );
   }
 
-  const navItems = [
+  const navItems: { to: string; label: string; icon: typeof FileText; exact?: boolean }[] = [
     { to: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
     { to: "/admin/posts", label: "Posts", icon: FileText },
     ...(me?.isAdmin ? [{ to: "/admin/users", label: "Equipe", icon: Users }] : []),
-  ] as const;
+  ];
 
   return (
     <div className="flex min-h-screen bg-muted/30">
