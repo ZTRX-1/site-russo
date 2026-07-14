@@ -1,0 +1,149 @@
+import { useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
+import { toast } from "sonner";
+import { RichTextEditor } from "./RichTextEditor";
+import { createPost, updatePost, deletePost } from "@/lib/posts.functions";
+
+interface Post {
+  id?: string;
+  title: string;
+  slug: string;
+  description: string;
+  content_html: string;
+  category: string;
+  cover_url: string | null;
+  status: "draft" | "published";
+}
+
+export function PostForm({ initial }: { initial: Post }) {
+  const navigate = useNavigate();
+  const createFn = useServerFn(createPost);
+  const updateFn = useServerFn(updatePost);
+  const deleteFn = useServerFn(deletePost);
+  const [form, setForm] = useState<Post>(initial);
+  const [saving, setSaving] = useState(false);
+
+  const isEdit = !!form.id;
+
+  async function save(status: "draft" | "published") {
+    if (!form.title.trim()) {
+      toast.error("Título é obrigatório.");
+      return;
+    }
+    setSaving(true);
+    try {
+      const payload = { ...form, status };
+      if (isEdit && form.id) {
+        await updateFn({ data: { ...payload, id: form.id } });
+        toast.success(status === "published" ? "Post publicado!" : "Rascunho salvo.");
+        setForm({ ...form, status });
+      } else {
+        const created = await createFn({ data: payload });
+        toast.success(status === "published" ? "Post publicado!" : "Rascunho salvo.");
+        navigate({ to: "/admin/posts/$id", params: { id: created.id } });
+      }
+    } catch (e) {
+      toast.error((e as Error).message);
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function onDelete() {
+    if (!form.id || !confirm("Apagar este post? Não pode ser desfeito.")) return;
+    try {
+      await deleteFn({ data: { id: form.id } });
+      toast.success("Post apagado.");
+      navigate({ to: "/admin/posts" });
+    } catch (e) {
+      toast.error((e as Error).message);
+    }
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="sm:col-span-2">
+          <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Título</label>
+          <input
+            value={form.title}
+            onChange={(e) => setForm({ ...form, title: e.target.value })}
+            className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-lg font-semibold outline-none focus:border-primary"
+            placeholder="Como escolher o disjuntor certo..."
+          />
+        </div>
+        <div>
+          <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Slug (URL)</label>
+          <input
+            value={form.slug}
+            onChange={(e) => setForm({ ...form, slug: e.target.value })}
+            className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary"
+            placeholder="deixe em branco para gerar do título"
+          />
+        </div>
+        <div>
+          <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Categoria</label>
+          <input
+            value={form.category}
+            onChange={(e) => setForm({ ...form, category: e.target.value })}
+            className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary"
+          />
+        </div>
+        <div className="sm:col-span-2">
+          <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Resumo (aparece na listagem e no Google)</label>
+          <textarea
+            rows={2}
+            value={form.description}
+            onChange={(e) => setForm({ ...form, description: e.target.value })}
+            className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary"
+            maxLength={500}
+          />
+        </div>
+        <div className="sm:col-span-2">
+          <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">URL da imagem de capa (opcional)</label>
+          <input
+            type="url"
+            value={form.cover_url ?? ""}
+            onChange={(e) => setForm({ ...form, cover_url: e.target.value })}
+            className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary"
+            placeholder="https://..."
+          />
+        </div>
+      </div>
+
+      <div>
+        <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Conteúdo</label>
+        <div className="mt-1">
+          <RichTextEditor
+            value={form.content_html}
+            onChange={(html) => setForm({ ...form, content_html: html })}
+          />
+        </div>
+      </div>
+
+      <div className="sticky bottom-0 -mx-4 flex flex-wrap items-center justify-between gap-3 border-t border-border bg-background/90 px-4 py-4 backdrop-blur sm:mx-0 sm:rounded-md sm:border sm:px-6">
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+          <span className={`inline-flex h-2 w-2 rounded-full ${form.status === "published" ? "bg-green-500" : "bg-yellow-500"}`} />
+          {form.status === "published" ? "Publicado" : "Rascunho"}
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {isEdit && (
+            <button
+              type="button" onClick={onDelete}
+              className="rounded-md border border-border px-4 py-2 text-sm font-medium text-destructive hover:bg-destructive/10"
+            >Apagar</button>
+          )}
+          <button
+            type="button" disabled={saving} onClick={() => save("draft")}
+            className="rounded-md border border-border px-4 py-2 text-sm font-medium hover:bg-accent disabled:opacity-60"
+          >Salvar rascunho</button>
+          <button
+            type="button" disabled={saving} onClick={() => save("published")}
+            className="rounded-md bg-primary px-4 py-2 text-sm font-bold uppercase tracking-wider text-primary-foreground disabled:opacity-60"
+          >Publicar</button>
+        </div>
+      </div>
+    </div>
+  );
+}
