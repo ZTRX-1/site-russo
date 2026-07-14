@@ -1,10 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Calendar, Clock } from "lucide-react";
+import { useServerFn } from "@tanstack/react-start";
+import { useQuery } from "@tanstack/react-query";
+import { ArrowRight, Calendar } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingWhats } from "@/components/shared/FloatingWhats";
 import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
-import { getAllPosts, formatDatePtBr } from "@/lib/blog";
+import { listPublishedPosts, formatDatePtBr } from "@/lib/blog.functions";
 import { SITE_URL } from "@/lib/constants";
 
 const TITLE = "Blog Russo Elétrica — Dicas técnicas e guias para a Zona Oeste de SP";
@@ -12,6 +14,7 @@ const DESCRIPTION =
   "Conteúdo prático sobre materiais elétricos, manutenção predial, dimensionamento, iluminação e obras na Zona Oeste de São Paulo. Escrito por quem atende o Rio Pequeno todos os dias.";
 
 export const Route = createFileRoute("/blog/")({
+  ssr: false,
   head: () => ({
     meta: [
       { title: TITLE },
@@ -27,7 +30,9 @@ export const Route = createFileRoute("/blog/")({
 });
 
 function BlogIndex() {
-  const posts = getAllPosts();
+  const fn = useServerFn(listPublishedPosts);
+  const { data } = useQuery({ queryKey: ["public-posts"], queryFn: () => fn() });
+  const posts = data?.posts ?? [];
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
@@ -60,6 +65,9 @@ function BlogIndex() {
                   params={{ slug: p.slug }}
                   className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition hover:border-primary/40 hover:shadow-[var(--shadow-industrial)]"
                 >
+                  {p.cover_url && (
+                    <img src={p.cover_url} alt={p.title} className="h-48 w-full object-cover" loading="lazy" />
+                  )}
                   <div className="flex flex-1 flex-col p-6">
                     <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-primary">
                       {p.category}
@@ -73,11 +81,7 @@ function BlogIndex() {
                     <div className="mt-6 flex items-center justify-between text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
                       <span className="inline-flex items-center gap-1.5">
                         <Calendar className="h-3.5 w-3.5" />
-                        {formatDatePtBr(p.date)}
-                      </span>
-                      <span className="inline-flex items-center gap-1.5">
-                        <Clock className="h-3.5 w-3.5" />
-                        {p.readingMinutes} min
+                        {formatDatePtBr(p.published_at)}
                       </span>
                     </div>
                     <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-primary">

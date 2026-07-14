@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
+import { createClient } from "@supabase/supabase-js";
 import { SITE_URL } from "@/lib/constants";
-import { getAllPosts } from "@/lib/blog";
 
 interface SitemapEntry {
   path: string;
@@ -24,12 +24,28 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/lgpd", changefreq: "yearly", priority: "0.3" },
           { path: "/cdc", changefreq: "yearly", priority: "0.3" },
         ];
-        for (const post of getAllPosts()) {
-          entries.push({
-            path: `/blog/${post.slug}`,
-            changefreq: "monthly",
-            priority: "0.7",
-          });
+        try {
+          const url = process.env.SUPABASE_URL;
+          const key = process.env.SUPABASE_PUBLISHABLE_KEY;
+          if (url && key) {
+            const sb = createClient(url, key, {
+              auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
+              global: {
+                fetch: (input, init) => {
+                  const h = new Headers(init?.headers);
+                  if ((key.startsWith("sb_publishable_") || key.startsWith("sb_secret_")) && h.get("Authorization") === `Bearer ${key}`) h.delete("Authorization");
+                  h.set("apikey", key);
+                  return fetch(input, { ...init, headers: h });
+                },
+              },
+            });
+            const { data } = await sb.from("posts").select("slug").eq("status", "published");
+            for (const p of data ?? []) {
+              entries.push({ path: `/blog/${p.slug}`, changefreq: "monthly", priority: "0.7" });
+            }
+          }
+        } catch {
+          // sitemap sem posts é aceitável
         }
         const today = new Date().toISOString().split("T")[0];
         const urls = entries
