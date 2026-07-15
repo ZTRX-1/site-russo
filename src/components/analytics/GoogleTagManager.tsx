@@ -2,7 +2,7 @@
  * Google Tag Manager — carrega apenas se VITE_GTM_ID estiver definido.
  * Enquanto vazio, o site fica limpo (zero requisições ao Google).
  */
-const GTM_ID = import.meta.env.VITE_GTM_ID as string | undefined;
+const GTM_ID = (import.meta.env.VITE_GTM_ID as string | undefined) || "GTM-5DH6MZ8F";
 
 export function GoogleTagManagerHead() {
   if (!GTM_ID) return null;
