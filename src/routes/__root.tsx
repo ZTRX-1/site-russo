@@ -86,8 +86,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Russo Elétrica e Ferragens — Materiais Elétricos no Rio Pequeno, Zona Oeste SP" },
-      { name: "description", content: "Loja de materiais elétricos, ferragens, hidráulica e iluminação no Rio Pequeno, Zona Oeste de São Paulo. Atendimento para consumidores, eletricistas, empresas e condomínios." },
+      { title: "Russo Elétrica e Ferragens | Materiais Elétricos no Rio Pequeno" },
+      { name: "description", content: "Loja de materiais elétricos e ferragens no Rio Pequeno, Zona Oeste de São Paulo. Atendimento para empresas, condomínios, eletricistas e consumidores, com grande variedade em estoque, emissão de nota fiscal e fácil acesso pela Av. Escola Politécnica." },
       { name: "author", content: "Russo Elétrica e Ferragens" },
       { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
       { name: "googlebot", content: "index, follow" },
@@ -100,6 +100,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:locale", content: "pt_BR" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:description", content: "Loja de materiais elétricos e ferragens no Rio Pequeno, Zona Oeste de São Paulo. Atendimento para empresas, condomínios, eletricistas e consumidores, com grande variedade em estoque, emissão de nota fiscal e fácil acesso pela Av. Escola Politécnica." },
+      { name: "twitter:description", content: "Loja de materiais elétricos e ferragens no Rio Pequeno, Zona Oeste de São Paulo. Atendimento para empresas, condomínios, eletricistas e consumidores." },
       ...(GSC_TOKEN ? [{ name: "google-site-verification", content: GSC_TOKEN }] : []),
     ],
     links: [
@@ -107,6 +109,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "dns-prefetch", href: "https://www.google.com" },
       { rel: "dns-prefetch", href: "https://maps.googleapis.com" },
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png" },
+      { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@400;600&display=swap",
