@@ -44,7 +44,7 @@ export const Route = createFileRoute("/")({
       {
         name: "keywords",
         content:
-          "material elétrico Rio Pequeno, loja de elétrica Zona Oeste SP, ferragens Rio Pequeno, materiais elétricos Butantã, loja de ferragens Jaguaré, iluminação Zona Oeste, fios e cabos São Paulo, hidráulica Rio Pequeno, eletricista Zona Oeste, material elétrico USP, material elétrico Raposo Tavares, material elétrico Vila São Francisco, fornecedor material elétrico condomínios, orçamento elétrica empresa SP, fornecedor B2B elétrica, Av. Escola Politécnica",
+          "material elétrico Rio Pequeno, loja de materiais elétricos, materiais elétricos Zona Oeste, ferragens Rio Pequeno, loja de ferragens, ferramentas profissionais, cabos elétricos, disjuntores, quadros elétricos, iluminação LED, material elétrico Butantã, material elétrico Jaguaré, material elétrico USP, material elétrico Vila São Francisco, material elétrico Raposo Tavares, atendimento para empresas, atendimento para condomínios, Av. Escola Politécnica, Zona Oeste de São Paulo",
       },
       {
         property: "og:title",
@@ -116,11 +116,6 @@ export const Route = createFileRoute("/")({
             { "@type": "Place", name: "Osasco" },
             { "@type": "Place", name: "Zona Oeste de São Paulo" },
           ],
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: "5.0",
-            reviewCount: "127",
-          },
           openingHoursSpecification: [
             { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "08:00", closes: "18:00" },
             { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "08:00", closes: "13:00" },
@@ -133,7 +128,7 @@ export const Route = createFileRoute("/")({
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Materiais Elétricos" } },
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Ferragens e Ferramentas" } },
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Iluminação Residencial e Comercial" } },
-            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Materiais Hidráulicos" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Ferramentas Profissionais" } },
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Atendimento para Condomínios e Empresas" } },
           ],
         }),

@@ -156,7 +156,7 @@ export function LocalLandingPage(props: LocalLandingPageProps) {
                     <Star className="h-3.5 w-3.5 fill-gold text-gold shrink-0" /> Google
                   </dt>
                   <dd className="mt-1 font-display text-xl font-bold text-white sm:text-2xl">5.0</dd>
-                  <dd className="text-[10px] text-white/60 sm:text-xs">+127 avaliações</dd>
+                  <dd className="text-[10px] text-white/60 sm:text-xs">Avaliações reais</dd>
                 </div>
                 <div className="flex flex-col items-center text-center">
                   <dt className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-white/55">
@@ -196,10 +196,10 @@ export function LocalLandingPage(props: LocalLandingPageProps) {
                     <p className="mt-2 font-display text-lg font-bold leading-tight text-white">
                       Av. Escola Politécnica, 2850
                     </p>
-                    <p className="text-sm text-white/70">Rio Pequeno · Zona Oeste de SP</p>
+                    <p className="text-sm text-white/70">Rio Pequeno, Zona Oeste de SP</p>
                     <div className="mt-3 flex items-center gap-2 text-[11px] text-white/60">
                       <Clock className="h-3.5 w-3.5 text-primary shrink-0" />
-                      Seg a Sex 08h–18h · Sáb 08h–13h
+                      Segunda a sexta, 8h às 18h. Sábado, 8h às 13h.
                     </div>
                   </div>
                 </div>
@@ -248,7 +248,7 @@ export function LocalLandingPage(props: LocalLandingPageProps) {
                   Por que empresas escolhem a <span className="text-primary">Russo</span>?
                 </h2>
                 <p className="mt-4 text-base text-white/65 sm:text-lg">
-                  Fornecedores fáceis existem em todo canto — o difícil é achar um que sustente o ritmo da sua operação sem quebrar entrega, faturamento ou atendimento.
+                  Lojas fáceis existem em todo canto — o difícil é achar uma que sustente o ritmo da sua operação sem quebrar entrega, faturamento ou atendimento.
                 </p>
               </div>
               <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -280,7 +280,7 @@ export function LocalLandingPage(props: LocalLandingPageProps) {
                 Diferenciais Russo
               </span>
               <h2 className="mt-3 font-display text-3xl font-black leading-tight text-foreground sm:text-4xl">
-                A diferença entre <span className="text-primary">um fornecedor comum</span> e a Russo
+                A diferença entre <span className="text-primary">uma loja comum</span> e a Russo
               </h2>
             </div>
             <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -315,11 +315,11 @@ export function LocalLandingPage(props: LocalLandingPageProps) {
                 </li>
                 <li className="flex items-start gap-3">
                   <Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  {PHONE_DISPLAY} · {MOBILE_DISPLAY}
+                  {PHONE_DISPLAY}, {MOBILE_DISPLAY}
                 </li>
                 <li className="flex items-start gap-3">
                   <Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  Segunda a Sexta · 08h às 18h · Sábado · 08h às 13h
+                  Segunda a sexta, das 8h às 18h. Sábado, das 8h às 13h.
                 </li>
               </ul>
               <div className="mt-8 flex flex-wrap gap-3">

@@ -10,7 +10,7 @@ import {
 const URL_PATH = "/rio-pequeno";
 const TITLE = "Material Elétrico no Rio Pequeno | Loja na Av. Escola Politécnica — Russo";
 const DESCRIPTION =
-  "Loja de material elétrico, ferragens, iluminação e hidráulica no Rio Pequeno, Zona Oeste de SP. Av. Escola Politécnica, próxima à USP, Butantã e Raposo Tavares. Atendimento técnico e orçamento pelo WhatsApp.";
+  "Loja de material elétrico, ferragens, iluminação e ferramentas no Rio Pequeno, Zona Oeste de São Paulo. Av. Escola Politécnica, próxima à USP, Butantã e Raposo Tavares. Atendimento técnico e orçamento pelo WhatsApp.";
 
 export const Route = createFileRoute("/rio-pequeno")({
   head: () => ({
@@ -66,7 +66,6 @@ export const Route = createFileRoute("/rio-pequeno")({
             { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "08:00", closes: "18:00" },
             { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "08:00", closes: "13:00" },
           ],
-          aggregateRating: { "@type": "AggregateRating", ratingValue: "5.0", reviewCount: "127" },
         }),
       },
       {
@@ -90,7 +89,7 @@ export const Route = createFileRoute("/rio-pequeno")({
 function MaterialEletricoRioPequeno() {
   return (
     <LocalLandingPage
-      eyebrow="Rio Pequeno · Zona Oeste"
+      eyebrow="Rio Pequeno, Zona Oeste"
       breadcrumbLabel="Material Elétrico no Rio Pequeno"
       h1={
         <>
@@ -99,7 +98,7 @@ function MaterialEletricoRioPequeno() {
           <span className="text-white">, direto no balcão da Escola Politécnica</span>
         </>
       }
-      intro="Loja física completa em elétrica, ferragens, iluminação e hidráulica na Av. Escola Politécnica, 2850. Você vai encontrar o item que precisa — e um atendimento que explica, sem enrolar, o que serve para o seu projeto. A referência do bairro para quem trabalha com elétrica."
+      intro="Loja física completa em elétrica, ferragens, iluminação e ferramentas na Av. Escola Politécnica, 2850. Você vai encontrar o item que precisa e um atendimento que explica, sem enrolar, o que serve para o seu projeto. A referência do bairro para quem trabalha com elétrica."
       primaryCta={{ href: WHATSAPP_URL, label: "Solicitar orçamento" }}
       secondaryCta={{ href: WHATSAPP_URL_ESPECIALISTA, label: "Falar com especialista" }}
       benefits={[
@@ -116,8 +115,8 @@ function MaterialEletricoRioPequeno() {
           desc: "Parafusos, dobradiças, fechaduras, cadeados, ferramentas manuais e itens de acabamento para obras e reparos domésticos.",
         },
         {
-          title: "Hidráulica básica",
-          desc: "Conexões, registros, tubos, engates e reparos para consertos rápidos — tudo no mesmo lugar, sem precisar rodar a Zona Oeste inteira.",
+          title: "Proteção elétrica",
+          desc: "DPS, DR, disjuntores termomagnéticos e itens de segurança elétrica para proteger a instalação, do quadro à tomada.",
         },
         {
           title: "Materiais para eletricistas",
@@ -139,7 +138,7 @@ function MaterialEletricoRioPequeno() {
         },
         {
           title: "Prova social do bairro",
-          desc: "5.0 no Google com mais de 127 avaliações — a maioria de moradores, eletricistas e empresas da própria Zona Oeste.",
+          desc: "Nota 5.0 no Google, com avaliações reais de moradores, eletricistas e empresas da própria Zona Oeste.",
         },
       ]}
       midCta={{

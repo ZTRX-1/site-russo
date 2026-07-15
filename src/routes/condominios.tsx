@@ -10,7 +10,7 @@ import {
 const URL_PATH = "/condominios";
 const TITLE = "Atendimento para Condomínios | Manutenção Predial Elétrica — Russo Zona Oeste SP";
 const DESCRIPTION =
-  "Fornecedor de materiais elétricos, ferragens e iluminação para condomínios da Zona Oeste de SP. Suporte para síndicos, zeladores e administradoras. Faturamento em nota, atendimento técnico e reposição rápida no Rio Pequeno.";
+  "Loja especializada em materiais elétricos, ferragens, iluminação e ferramentas para condomínios da Zona Oeste de São Paulo. Suporte para síndicos, zeladores e administradoras. Faturamento em nota fiscal, atendimento técnico e reposição rápida no Rio Pequeno.";
 
 export const Route = createFileRoute("/condominios")({
   head: () => ({
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/condominios")({
       {
         name: "keywords",
         content:
-          "material elétrico condomínio, fornecedor condomínio Zona Oeste, manutenção predial elétrica SP, síndico material elétrico, iluminação condomínio Rio Pequeno, faturamento condomínio material elétrico",
+          "material elétrico para condomínio, atendimento a condomínios Zona Oeste, manutenção predial elétrica São Paulo, síndico material elétrico, iluminação de condomínio Rio Pequeno, cabos, disjuntores, quadros elétricos, faturamento para condomínio",
       },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
@@ -39,7 +39,7 @@ export const Route = createFileRoute("/condominios")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Service",
-          serviceType: "Fornecimento de material elétrico e ferragens para condomínios",
+          serviceType: "Atendimento em material elétrico e ferragens para condomínios",
           provider: { "@type": "LocalBusiness", name: COMPANY_NAME, url: SITE_URL },
           areaServed: [
             { "@type": "Place", name: "Rio Pequeno" },
@@ -107,8 +107,8 @@ function AtendimentoCondominios() {
           desc: "Cadeados, dobradiças, fechaduras, parafusos e ferramentas manuais para a manutenção geral que o zelador precisa ter à mão.",
         },
         {
-          title: "Hidráulica básica",
-          desc: "Conexões, registros, reparos e acessórios para consertos rápidos em áreas comuns — sem precisar acionar mais um fornecedor.",
+          title: "Cabos, extensões e conectores",
+          desc: "Cabos elétricos, extensões, adaptadores e conectores para pequenos reparos e ajustes do dia a dia do prédio.",
         },
       ]}
       whyChoose={[
@@ -148,7 +148,7 @@ function AtendimentoCondominios() {
         },
         {
           title: "Prova social de síndicos e zeladores",
-          desc: "5.0 no Google com mais de 127 avaliações de clientes recorrentes — muitos deles gestores prediais da Zona Oeste.",
+          desc: "Nota 5.0 no Google, com avaliações reais de clientes recorrentes, muitos deles gestores prediais da região.",
         },
       ]}
       midCta={{
@@ -186,7 +186,7 @@ function AtendimentoCondominios() {
         },
       ]}
       internalLinks={[
-        { to: "/empresas", label: "Atendimento para Empresas", desc: "Fornecedor B2B com faturamento e vendedor dedicado." },
+        { to: "/empresas", label: "Atendimento para Empresas", desc: "Atendimento corporativo com faturamento e vendedor dedicado." },
         { to: "/rio-pequeno", label: "Material Elétrico no Rio Pequeno", desc: "Loja física na Zona Oeste de SP." },
         { to: "/", label: "Voltar para a Home", desc: "Conheça toda a estrutura da Russo." },
       ]}

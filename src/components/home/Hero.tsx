@@ -185,7 +185,7 @@ export function Hero() {
             <h2 className="font-display text-3xl font-black leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-[2.75rem]">
               Tradição que gera confiança.
               <br />
-              <span className="text-primary">Seu fornecedor de confiança.</span>
+              <span className="text-primary">Sua loja especializada de confiança.</span>
             </h2>
             <p className="mt-5 text-base leading-relaxed text-white/65 sm:text-lg">
               Produtos originais, orientação técnica e estrutura preparada para consumidores, empresas, condomínios e profissionais da Zona Oeste.

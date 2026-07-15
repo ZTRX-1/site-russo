@@ -25,7 +25,7 @@ export function OrcamentoCorporativo() {
             <ShieldCheck className="h-3 w-3 shrink-0" /> Compras para empresas
           </span>
           <h2 className="mb-6 font-display text-3xl font-black leading-tight tracking-tight text-white md:text-5xl">
-            Um fornecedor à altura da sua operação
+            Um parceiro comercial à altura da sua operação
           </h2>
           <p className="mb-6 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
             Empresas, condomínios, construtoras e academias contam com a Russo para a rotina e para a emergência. Ampla variedade de produtos, orientação técnica, cotação por escrito e nota fiscal em dia. Comprar material vira processo, não problema.

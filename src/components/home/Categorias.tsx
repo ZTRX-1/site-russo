@@ -1,4 +1,4 @@
-import { Zap, Lightbulb, Droplets, Plug, Hammer, Wrench, Cable, ShieldCheck } from "lucide-react";
+import { Zap, Lightbulb, Radio, Plug, Hammer, Wrench, Cable, ShieldCheck } from "lucide-react";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 import { SectionHeader } from "./SectionHeader";
 import { WHATSAPP } from "@/lib/constants";
@@ -6,7 +6,7 @@ import { WHATSAPP } from "@/lib/constants";
 const CATEGORIAS = [
   { icon: Zap, name: "Infraestrutura elétrica", desc: "Fios, cabos, disjuntores e quadros de distribuição." },
   { icon: Lightbulb, name: "Iluminação", desc: "LED para residência, comércio e ambientes industriais." },
-  { icon: Droplets, name: "Hidráulica", desc: "Conexões, tubos, registros e acessórios de banho." },
+  { icon: Radio, name: "Automação e sensores", desc: "Sensores de presença, timers, minuterias e módulos para instalações." },
   { icon: Plug, name: "Acabamentos elétricos", desc: "Interruptores e tomadas em linhas completas." },
   { icon: Hammer, name: "Ferramentas profissionais", desc: "Marcas para o dia a dia do eletricista e do prestador." },
   { icon: Wrench, name: "Ferragens", desc: "Fixação, segurança e itens estruturais para obra." },
