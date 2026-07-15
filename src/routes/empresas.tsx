@@ -8,9 +8,9 @@ import {
 } from "@/lib/constants";
 
 const URL_PATH = "/empresas";
-const TITLE = "Atendimento para Empresas | Fornecedor de Material Elétrico com Faturamento — Russo";
+const TITLE = "Atendimento para Empresas | Loja Especializada em Material Elétrico com Faturamento — Russo";
 const DESCRIPTION =
-  "Fornecedor de materiais elétricos, ferragens e iluminação para empresas na Zona Oeste de SP. Faturamento em NF, vendedor dedicado, compras recorrentes e reposição rápida. Solicite orçamento pelo WhatsApp.";
+  "Loja especializada em materiais elétricos, ferragens, iluminação e ferramentas para empresas na Zona Oeste de São Paulo. Faturamento em nota fiscal, vendedor dedicado, compras recorrentes e reposição rápida. Solicite orçamento pelo WhatsApp.";
 
 export const Route = createFileRoute("/empresas")({
   head: () => ({
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/empresas")({
       {
         name: "keywords",
         content:
-          "fornecedor material elétrico empresa, atendimento empresas elétrica, faturamento NF material elétrico SP, compras corporativas elétrica, fornecedor B2B ferragens São Paulo, material elétrico Zona Oeste empresas",
+          "material elétrico para empresas, atendimento corporativo elétrica, faturamento em nota fiscal, compras corporativas elétrica, ferragens para empresas São Paulo, material elétrico Zona Oeste empresas, cabos, disjuntores, quadros elétricos, Av. Escola Politécnica",
       },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
@@ -39,7 +39,7 @@ export const Route = createFileRoute("/empresas")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Service",
-          serviceType: "Fornecimento de material elétrico e ferragens para empresas",
+          serviceType: "Atendimento em material elétrico e ferragens para empresas",
           provider: { "@type": "LocalBusiness", name: COMPANY_NAME, url: SITE_URL },
           areaServed: [
             { "@type": "Place", name: "Rio Pequeno" },
@@ -82,7 +82,7 @@ function AtendimentoEmpresas() {
       breadcrumbLabel="Atendimento para Empresas"
       h1={
         <>
-          <span className="text-white">O fornecedor de material elétrico que sua </span>
+          <span className="text-white">A loja de material elétrico que sua </span>
           <span className="text-primary">empresa precisa ter no radar</span>
         </>
       }
@@ -103,8 +103,8 @@ function AtendimentoEmpresas() {
           desc: "Enviamos orçamentos completos, com marcas, quantidades e prazos, prontos para aprovação da diretoria ou processo de compras.",
         },
         {
-          title: "Estoque robusto",
-          desc: "Fios, cabos, disjuntores, iluminação, ferragens e hidráulica em estoque real — o que reduz o risco da sua obra ou manutenção parar.",
+          title: "Grande variedade em estoque",
+          desc: "Fios, cabos, disjuntores, iluminação, ferragens e ferramentas em estoque real, o que reduz o risco da sua obra ou manutenção parar.",
         },
         {
           title: "Reposição rápida",
@@ -143,8 +143,8 @@ function AtendimentoEmpresas() {
       ]}
       differentials={[
         {
-          title: "Fornecedor de médio porte com proximidade de loja de bairro",
-          desc: "Você tem a estrutura de um grande fornecedor, mas com a agilidade de quem atende no balcão e conhece o cliente pelo nome.",
+          title: "Loja especializada com proximidade de bairro",
+          desc: "Você conta com a estrutura de uma loja especializada e, ao mesmo tempo, com a agilidade de quem atende no balcão e conhece o cliente pelo nome.",
         },
         {
           title: "Marcas reconhecidas",
@@ -152,7 +152,7 @@ function AtendimentoEmpresas() {
         },
         {
           title: "Prova social real",
-          desc: "Nota 5.0 no Google com mais de 127 avaliações de empresas, condomínios e profissionais da Zona Oeste.",
+          desc: "Nota 5.0 no Google, com avaliações reais de empresas, condomínios e profissionais da região.",
         },
       ]}
       midCta={{
