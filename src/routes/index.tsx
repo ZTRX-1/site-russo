@@ -34,13 +34,12 @@ export const Route = createFileRoute("/")({
         content: "width=device-width, initial-scale=1, maximum-scale=5",
       },
       {
-        title:
-          "Russo Elétrica e Ferragens | Materiais Elétricos no Rio Pequeno - Zona Oeste SP",
+        title: "Russo Elétrica e Ferragens | Materiais Elétricos no Rio Pequeno",
       },
       {
         name: "description",
         content:
-          "Loja de materiais elétricos, ferragens, hidráulica e iluminação no Rio Pequeno, Zona Oeste de São Paulo. Empresa familiar que atende moradores, eletricistas, condomínios e empresas. Peça seu orçamento pelo WhatsApp.",
+          "Loja de materiais elétricos e ferragens no Rio Pequeno, Zona Oeste de São Paulo. Atendimento para empresas, condomínios, eletricistas e consumidores, com grande variedade em estoque, emissão de nota fiscal e fácil acesso pela Av. Escola Politécnica.",
       },
       {
         name: "keywords",
@@ -49,25 +48,29 @@ export const Route = createFileRoute("/")({
       },
       {
         property: "og:title",
-        content: "Russo Elétrica e Ferragens — Materiais Elétricos no Rio Pequeno, Zona Oeste SP",
+        content: "Russo Elétrica e Ferragens | Materiais Elétricos no Rio Pequeno",
       },
       {
         property: "og:description",
         content:
-          "Elétrica, ferragens, hidráulica e iluminação no Rio Pequeno. Empresa familiar que atende moradores, eletricistas, condomínios e empresas da Zona Oeste de São Paulo.",
+          "Loja de materiais elétricos e ferragens no Rio Pequeno, Zona Oeste de São Paulo. Atendimento para empresas, condomínios, eletricistas e consumidores, com grande variedade em estoque, emissão de nota fiscal e fácil acesso pela Av. Escola Politécnica.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "pt_BR" },
       { property: "og:url", content: SITE_URL + "/" },
       {
         property: "og:image",
-        content: SITE_URL + "/uploads/qqqq.jpg",
+        content: SITE_URL + "/uploads/og-russo.jpg?v=2",
       },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: "Fachada da Russo Elétrica e Ferragens no Rio Pequeno, Zona Oeste de São Paulo" },
-      { name: "twitter:title", content: "Russo Elétrica e Ferragens — Rio Pequeno, Zona Oeste SP" },
-      { name: "twitter:description", content: "Elétrica, ferragens, hidráulica e iluminação no Rio Pequeno. Empresa familiar que atende moradores, eletricistas, condomínios e empresas." },
-      { name: "twitter:image", content: SITE_URL + "/uploads/qqqq.jpg" },
+      { property: "og:image:type", content: "image/jpeg" },
+      { property: "og:image:alt", content: "Russo Elétrica e Ferragens — fachada da loja no Rio Pequeno, Zona Oeste de São Paulo" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Russo Elétrica e Ferragens | Materiais Elétricos no Rio Pequeno" },
+      { name: "twitter:description", content: "Loja de materiais elétricos e ferragens no Rio Pequeno, Zona Oeste de São Paulo. Atendimento para empresas, condomínios, eletricistas e consumidores." },
+      { name: "twitter:image", content: SITE_URL + "/uploads/og-russo.jpg?v=2" },
+      { name: "twitter:image:alt", content: "Fachada da Russo Elétrica e Ferragens" },
     ],
     links: [
       { rel: "canonical", href: SITE_URL + "/" },
