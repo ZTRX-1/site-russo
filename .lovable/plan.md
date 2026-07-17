@@ -1,119 +1,112 @@
+# Plano — Sistema Interno Russo (fase 2)
 
-# Ajustes estratégicos: SEO, Analytics e Blog
+Vou entregar em 4 frentes. Antes de começar, 2 pontos importantes que preciso alinhar (respondo abaixo com as decisões que vou tomar se você não disser o contrário):
 
-Três frentes, executadas em uma leva só. Zero formulário — todo caminho de conversão termina no WhatsApp.
+**Decisões que vou assumir (me avise se quiser mudar):**
 
----
-
-## 1. Reposicionamento das landing pages (SEO Local)
-
-Hoje existem 3 rotas órfãs — criadas, mas sem link em lugar nenhum do site:
-- `/atendimento-empresas`
-- `/atendimento-condominios`
-- `/material-eletrico-rio-pequeno`
-
-Google até indexa, mas sem link interno elas viram "ilhas" — pesam pouco no ranking e não capturam o tráfego que já chega na home.
-
-**Decisão:** transformar em **páginas de verdade**, integradas à arquitetura do site.
-
-**O que muda:**
-- **Renomear e reposicionar:**
-  - `/atendimento-empresas` → **`/empresas`** (mais curto, mais forte comercialmente)
-  - `/atendimento-condominios` → **`/condominios`**
-  - `/material-eletrico-rio-pequeno` → **`/rio-pequeno`** (âncora geográfica, ranqueia igual mas fica limpa no menu)
-  - Redirect 301 das rotas antigas → sem perda de SEO.
-- **Menu do Header:** adicionar link direto para **Empresas** e **Condomínios** (públicos B2B de maior ticket).
-- **Footer:** bloco "Soluções" linkando todas as 3 páginas + âncoras da home.
-- **Home:** cards da seção `Atendemos` viram links reais para `/empresas` e `/condominios` (hoje só rolam para uma âncora).
-- **CTA de cada landing:** só WhatsApp (mensagem pré-preenchida segmentada por perfil — "Olá, sou responsável por um condomínio…"). Sem formulário.
-- **Interlinking:** cada landing referencia as outras duas + home. Estrutura de link interno bem feita = Google entende que é um site institucional coeso, não um portal de landing pages.
-
-**Por que isso é melhor que criar mais landings:**
-- Concentra autoridade nas páginas certas (menos, mas mais fortes).
-- Cada página vira parte real da navegação → tempo de sessão sobe → sinal de qualidade para o Google.
-- URLs mais curtas ranqueiam melhor e são mais fáceis de compartilhar.
+1. **Login sem Google** → passa a ser **apenas email + senha**. Como o primeiro admin (`vexxoncompany@gmail.com`) hoje só existe via Google, vou criar um fluxo onde você define uma senha na primeira entrada (ou eu já crio o usuário admin com uma senha temporária que você troca depois). **Sugiro:** eu crio agora `vexxoncompany@gmail.com` com senha temporária `Russo@2026` e você troca no primeiro login.
+2. **Tracking** → será **first-party** (armazenado no seu próprio banco, sem depender de Google). Coletamos: página, referrer, UTM (source/medium/campaign/term/content), gclid/fbclid, user-agent, país/cidade aproximados (via IP → geoip leve), dispositivo, cliques em CTAs (WhatsApp, telefone, formulário), duração e origem do lead. **Sem coleta de dado sensível — em conformidade com LGPD**, respeitando o consentimento de cookies que já existe no site.
 
 ---
 
-## 2. Analytics & Tag Manager — infraestrutura pronta para o Ricardo colar as tags
+## 1. Autenticação — remover Google
 
-Preparar tudo tecnicamente, sem tag ativa ainda. Quando o Ricardo passar os IDs, você só cola em 2 lugares.
+- Desabilitar provider Google no Supabase Auth.
+- Remover botão "Continuar com Google" da tela `/auth` e o wrapper `lovable.auth.signInWithOAuth`.
+- Manter só o formulário email + senha.
+- Criar/atualizar o usuário `vexxoncompany@gmail.com` com senha temporária e promover a admin no mesmo momento (via Auth Admin API server-side).
+- Ajustar copy da tela para "Acesso restrito da equipe Russo".
 
-**O que fica montado:**
-- **`GoogleTagManager` component** carregado no `__root.tsx` — lê `VITE_GTM_ID` do env. Se vazio, não injeta nada (zero impacto em dev/preview). Quando você preencher o ID, GTM aparece automaticamente em `<head>` + `<noscript>` no body, no padrão oficial.
-- **`GoogleAnalytics` component** (GA4) — mesma lógica com `VITE_GA_ID`. Suporta rota-a-rota (SPA precisa disparar `page_view` manual em cada navegação — vou wire isso no router).
-- **Camada de eventos (`trackEvent`)** — um helper único que dispara para GTM `dataLayer` e GA4. Todos os CTAs do site (WhatsApp header, hero, cards, floating, mobile bar, landing pages) passam a chamar `trackEvent('whatsapp_click', { source: 'hero' })`. Quando o GA estiver ativo, você já tem métricas por origem do clique — sem tocar em nenhum componente depois.
-- **Google Search Console + verificação:** adicionar `<meta name="google-site-verification">` no `<head>` do root, controlado por env `VITE_GSC_VERIFICATION`. Ricardo cola o token, deploy, verifica.
-- **Consentimento (LGPD):** o `CookieConsent` já existe — vou plugar nele o "Consent Mode v2" do Google (`gtag('consent', 'default', ...)`). Sem consentimento, tags carregam em modo anônimo. Com consentimento, viram tracking completo. Compliance nativa.
+## 2. Blog público — corrigir "3 cards vazios"
 
-**Arquivos:**
-- `src/lib/analytics.ts` — helper `trackEvent`, `pageView`, `setConsent`.
-- `src/components/analytics/GoogleTagManager.tsx`
-- `src/components/analytics/GoogleAnalytics.tsx`
-- `.env.example` documentando `VITE_GTM_ID`, `VITE_GA_ID`, `VITE_GSC_VERIFICATION`.
+Investigar por que `/blog` mostra containers em branco. Causas prováveis:
 
----
+- Loader isomorfico chamando função com bearer (falha em SSR anônimo).
+- `ssr:false` mostrando skeleton permanente porque `useQuery` está com `enabled:false` ou key errada.
+- RLS: policy `TO anon` faltando em `posts` (Data API retorna vazio).
 
-## 3. Blog — estrutura pronta, conteúdo depois
+**Correções previstas:**
 
-Blog institucional focado em intenção local + autoridade técnica. Ricardo escreve, você publica.
+- Garantir policy pública de SELECT em `posts` para status `published` (via migração se faltar).
+- Ajustar `blog.index.tsx` para SSR real: loader usa `listPublishedPosts` (função pública com publishable key) via `ensureQueryData`, e componente usa `useSuspenseQuery`. Isso deixa o HTML já vir com os posts (bom para SEO também).
+- Idem para `blog.$slug.tsx`.
+- Adicionar estado de "nenhum post publicado ainda" só quando a query realmente retorna array vazio.
 
-**Arquitetura simples e escalável (sem CMS externo):**
-- **Rota `/blog`** — listagem com cards (título, resumo, imagem, categoria, data, tempo de leitura).
-- **Rota `/blog/$slug`** — post individual com H1, sumário, corpo em markdown, autor, CTA final para WhatsApp segmentado pelo tema do post.
-- **Fonte de conteúdo:** arquivos `.md` em `src/content/blog/`. Cada post tem frontmatter (título, slug, data, categoria, resumo, cover, keyword-alvo). Zero backend, zero banco. Adicionar post = adicionar arquivo.
-- **SEO on-page automático:** `head()` de cada post gera title, description, `og:image`, JSON-LD `Article`, canonical.
-- **Sitemap:** posts entram automaticamente no `sitemap.xml`.
-- **Sidebar/Related:** últimos 3 posts + link para landing relacionada (post sobre "disjuntor em condomínio" → link para `/condominios`).
-- **Menu:** "Blog" no header desktop + no footer.
+## 3. Editor de posts — capa + UX
 
-**Pauta sugerida para o Ricardo** (2-3 posts iniciais para você mostrar a ele):
-- "Como escolher o disjuntor certo para o seu apartamento no Rio Pequeno"
-- "Manutenção elétrica preventiva em condomínios: checklist do síndico"
-- "Materiais elétricos para reforma na Zona Oeste: o que comprar antes de começar"
+- **Upload de imagens** via Supabase Storage:
+  - Bucket público `blog-media` (criar via tool).
+  - Componente de upload no `PostForm` (drag & drop + botão) → salva em `blog-media/covers/<uuid>.<ext>` → retorna URL pública para `cover_url`.
+  - Mesmo componente disponível dentro do `RichTextEditor` para inserir imagens no corpo do post.
+- **UX do painel:**
+  - Preview lado-a-lado do post enquanto edita.
+  - Botão claro de "Publicar / Despublicar / Voltar para rascunho" (pausar = mudar status para `draft`).
+  - Badge de status colorido, contagem de palavras, tempo estimado de leitura.
+  - Auto-save de rascunho a cada 20s (opcional; ligado por padrão).
+  - Campo de "categoria" com autocomplete das categorias já usadas.
+  - Slug editável com preview da URL final.
 
-Cada post vem com CTA final direto para WhatsApp com mensagem contextualizada.
+## 4. Módulo de Analytics interno (estilo UTMfy) + Relatórios PDF
 
----
+### Coleta (client → server)
 
-## 4. Auditoria SEO final (junto com as mudanças)
+- Script leve `src/lib/tracker.ts` (respeita consentimento de cookies existente).
+- Captura em cada page view:
+  - path, referrer, UTM completos, gclid/fbclid, viewport, device, sessão (uuid em `sessionStorage`), visitor id (uuid em `localStorage`).
+- Captura em eventos:
+  - `whatsapp_click` (já existe no `analytics.ts`, ligar ao endpoint interno também).
+  - `phone_click`, `form_submit`, `cta_click` (Hero, Contato, QuickQuote, MobileCtaBar, FloatingWhats), `outbound_click`.
+- Envio para `POST /api/public/track` (server route) em batch com `navigator.sendBeacon`.
 
-- Confirmar `canonical` self-referencing em todas as rotas.
-- `hreflang` = pt-BR consistente.
-- `robots.txt` já OK, mas incluir `Sitemap:` (já tá).
-- Adicionar `BreadcrumbList` JSON-LD em landings e posts do blog.
-- Schema `LocalBusiness` estendido com `areaServed` (Rio Pequeno, Butantã, Vila São Francisco, Raposo Tavares, USP).
+### Banco (nova migração)
 
----
+- `analytics_visitors` — id anônimo, primeira visita, primeiro referrer/UTM, país/cidade (via header `cf-ipcountry` quando disponível).
+- `analytics_sessions` — sessão, visitor_id, início/fim, dispositivo, UTM daquela sessão.
+- `analytics_events` — session_id, tipo (`page_view` | `click` | `conversion`), path, target, meta jsonb, created_at.
+- `analytics_leads` — quando envia formulário ou clica WhatsApp: registra origem completa (UTM + referrer + primeiro touch + last touch).
+- Índices por `created_at`, `session_id`, `event_type`, `utm_source`.
+- RLS: escrita só via server route (service_role); leitura só para admin.
 
-## Entrega técnica
+### Dashboard interna (`/admin/analytics`)
 
-**Novos:**
-- `src/components/analytics/GoogleTagManager.tsx`
-- `src/components/analytics/GoogleAnalytics.tsx`
-- `src/lib/analytics.ts`
-- `src/routes/empresas.tsx` + `src/routes/condominios.tsx` + `src/routes/rio-pequeno.tsx`
-- `src/routes/atendimento-empresas.tsx` etc. → **redirect 301** para as novas.
-- `src/routes/blog.tsx` (listagem) + `src/routes/blog.$slug.tsx` (post)
-- `src/content/blog/*.md` (2-3 posts iniciais de exemplo)
-- `src/lib/blog.ts` (loader/parser dos markdowns)
-- `.env.example`
+- Cards principais: visitantes únicos, sessões, page views, conversões (WhatsApp + form), taxa de conversão, tempo médio.
+- Filtros: intervalo (hoje / 7d / 30d / mês / trimestre / semestre / ano / custom).
+- Gráficos (recharts, já disponível): série temporal, top páginas, top fontes de tráfego, top UTMs, top palavras-chave (via `utm_term` + `q` de referrers Google), mapa de dispositivos, funil (visita → clique CTA → conversão).
+- Tabela de leads recentes com origem detalhada de cada um.
 
-**Editados:**
-- `src/components/layout/Header.tsx` — links Empresas, Condomínios, Blog
-- `src/components/layout/Footer.tsx` — bloco Soluções + Blog
-- `src/components/home/Atendemos.tsx` — cards viram links
-- `src/routes/__root.tsx` — inject GTM/GA/GSC via env
-- `src/components/shared/CookieConsent.tsx` — Consent Mode v2
-- Todos os CTAs de WhatsApp → passam a chamar `trackEvent`
-- `src/routes/sitemap[.]xml.ts` — inclui blog posts + novas rotas
-- `src/router.tsx` — hook de `pageView` no route change
+### Relatórios em PDF
 
-**Verificação:**
-- `tsgo` typecheck.
-- Playwright: navegar home → clicar "Empresas" no menu → verificar landing → clicar CTA → confirmar `dataLayer.push` no console.
-- Confirmar que sem `VITE_GTM_ID` nada é injetado (dev limpo).
+- Página `/admin/analytics/report` com seletor de período (diário, semanal, mensal, trimestral, semestral, anual, custom).
+- Botão "Gerar PDF" → chama server function que:
+  - Agrega dados do período.
+  - Renderiza PDF server-side com `pdf-lib` (Worker-compat) — capa com logo Russo, KPIs, gráficos (renderizados como SVG → embutidos), tabela de leads, principais campanhas.
+  - Retorna download direto.
+- Layout do PDF alinhado à identidade visual (preto/branco/vermelho, tipografia display).
 
 ---
 
-**Confirma que posso executar?** Assim que aprovar, entrego tudo em uma leva. Blog vai com 2 posts de exemplo (você depois substitui pelos do Ricardo).
+## Ordem de execução
+
+1. **Fix urgente**: blog público (RLS + loader) e remover Google login. Isso destrava você imediatamente.
+2. **Upload de capas + UX editor**.
+3. **Módulo de tracking** (banco + coleta + endpoint).
+4. **Dashboard `/admin/analytics**`.
+5. **Relatórios PDF**.
+
+## Detalhes técnicos (para referência)
+
+- Google Provider: `supabase--configure_social_auth` com `disable_providers: ["google"]`.
+- Storage: bucket público `blog-media` via `supabase--storage_create_bucket`; policies só de INSERT para `authenticated` staff.
+- Tracker: endpoint em `src/routes/api/public/track.ts`, valida payload com Zod, escreve com `supabaseAdmin` (dentro do handler).
+- Consentimento: se `CookieConsent` = denied, só grava `page_view` sem cookies persistentes (id de sessão volátil).
+- Geolocalização: sem serviço externo pago — usar cabeçalhos `x-vercel-ip-country` / `cf-ipcountry` quando existirem; caso contrário deixar `unknown`.
+- PDF: `pdf-lib` (compatível com Cloudflare Worker), sem dependências nativas.
+- Papel `editor` continua podendo publicar posts; só admin acessa `/admin/analytics` e relatórios.
+
+## Fora do escopo (para depois)
+
+- Estoque / código de barras / ERP interno.
+- Comparativo A/B de campanhas.
+- Email marketing.
+
+**Confirma que posso seguir com a senha temporária `Russo@2026` para `vexxoncompany@gmail.com` e com essas premissas de tracking?** Se sim, sigo direto pela ordem acima. Se preferir outra senha ou outro escopo de tracking, me diz antes que eu ajusto.
