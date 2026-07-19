@@ -30,7 +30,7 @@ export const listPublishedPosts = createServerFn({ method: "GET" }).handler(asyn
     .select("id, slug, title, description, category, cover_url, author_name, published_at")
     .eq("status", "published")
     .order("published_at", { ascending: false });
-  if (error) return { posts: [] as never[], error: error.message };
+  if (error) throw new Error(error.message);
   return { posts: data ?? [], error: null as string | null };
 });
 
@@ -44,7 +44,7 @@ export const getPublishedPost = createServerFn({ method: "GET" })
       .eq("status", "published")
       .eq("slug", data.slug)
       .maybeSingle();
-    if (error) return { post: null, error: error.message };
+    if (error) throw new Error(error.message);
     return { post, error: null as string | null };
   });
 
