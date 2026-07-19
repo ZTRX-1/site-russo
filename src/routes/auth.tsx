@@ -5,6 +5,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { toast } from "sonner";
+import { useServerFn } from "@tanstack/react-start";
+import { bootstrapVexxonPassword } from "@/lib/admin.functions";
 
 const searchSchema = z.object({ redirect: z.string().optional() });
 
@@ -26,6 +28,8 @@ function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [resetting, setResetting] = useState(false);
+  const bootstrap = useServerFn(bootstrapVexxonPassword);
 
   const redirectTo = (search.redirect && search.redirect.startsWith("/")) ? search.redirect : "/admin";
 
@@ -45,6 +49,20 @@ function AuthPage() {
     const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
     setSubmitting(false);
     if (error) toast.error("Falha no login: " + error.message);
+  }
+
+  async function handleResetAdmin() {
+    setResetting(true);
+    try {
+      await bootstrap({});
+      toast.success("Senha do admin redefinida. Use Dev2712 para entrar.");
+      setEmail("vexxoncompany@gmail.com");
+      setPassword("Dev2712");
+    } catch (err) {
+      toast.error("Falha: " + (err instanceof Error ? err.message : String(err)));
+    } finally {
+      setResetting(false);
+    }
   }
 
   return (
@@ -86,6 +104,15 @@ function AuthPage() {
             O acesso é por convite. Se você é do time, peça ao administrador para adicioná-lo em
             <Link to="/admin/users" className="ml-1 text-primary hover:underline">Equipe</Link>.
           </p>
+
+          <button
+            type="button"
+            onClick={handleResetAdmin}
+            disabled={resetting}
+            className="mt-4 w-full rounded-md border border-border bg-background py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:border-primary hover:text-foreground disabled:opacity-60"
+          >
+            {resetting ? "Redefinindo..." : "Redefinir senha do admin (vexxoncompany)"}
+          </button>
         </div>
       </main>
       <Footer />
