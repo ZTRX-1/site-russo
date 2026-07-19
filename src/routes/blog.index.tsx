@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
-import { useQuery } from "@tanstack/react-query";
+import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { ArrowRight, Calendar } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -13,8 +12,13 @@ const TITLE = "Blog Russo Elétrica — Dicas técnicas e guias para a Zona Oest
 const DESCRIPTION =
   "Conteúdo prático sobre materiais elétricos, manutenção predial, dimensionamento, iluminação e obras na Zona Oeste de São Paulo. Escrito por quem atende o Rio Pequeno todos os dias.";
 
+const publishedPostsQueryOptions = queryOptions({
+  queryKey: ["public-posts"],
+  queryFn: () => listPublishedPosts(),
+});
+
 export const Route = createFileRoute("/blog/")({
-  ssr: false,
+  loader: ({ context }) => context.queryClient.ensureQueryData(publishedPostsQueryOptions),
   head: () => ({
     meta: [
       { title: TITLE },
@@ -26,12 +30,30 @@ export const Route = createFileRoute("/blog/")({
     ],
     links: [{ rel: "canonical", href: SITE_URL + "/blog" }],
   }),
+  errorComponent: ({ error }) => (
+    <div className="min-h-screen bg-background text-foreground">
+      <Header />
+      <main className="mx-auto max-w-3xl px-4 py-24 text-center">
+        <h1 className="font-display text-3xl font-black">Não foi possível carregar o blog</h1>
+        <p className="mt-3 text-sm text-muted-foreground">{error.message}</p>
+      </main>
+      <Footer />
+    </div>
+  ),
+  notFoundComponent: () => (
+    <div className="min-h-screen bg-background text-foreground">
+      <Header />
+      <main className="mx-auto max-w-3xl px-4 py-24 text-center">
+        <h1 className="font-display text-3xl font-black">Blog não encontrado</h1>
+      </main>
+      <Footer />
+    </div>
+  ),
   component: BlogIndex,
 });
 
 function BlogIndex() {
-  const fn = useServerFn(listPublishedPosts);
-  const { data, isLoading } = useQuery({ queryKey: ["public-posts"], queryFn: () => fn() });
+  const { data } = useSuspenseQuery(publishedPostsQueryOptions);
   const posts = data?.posts ?? [];
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -54,16 +76,7 @@ function BlogIndex() {
         </section>
 
         <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          {isLoading ? (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {[0, 1, 2].map((i) => (
-                <div
-                  key={i}
-                  className="h-72 animate-pulse rounded-2xl border border-border bg-card/50"
-                />
-              ))}
-            </div>
-          ) : posts.length === 0 ? (
+          {posts.length === 0 ? (
             <p className="text-muted-foreground">Novos conteúdos em breve.</p>
           ) : (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

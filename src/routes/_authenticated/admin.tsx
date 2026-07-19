@@ -1,6 +1,6 @@
 import { createFileRoute, Outlet, Link, useRouter, useLocation } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { LogOut, FileText, Users, LayoutDashboard, ShieldAlert, Home } from "lucide-react";
 import { getMyRoles, claimFirstAdmin } from "@/lib/admin.functions";
 import { signOut } from "@/lib/auth/useAuth";
@@ -15,6 +15,7 @@ function AdminLayout() {
   const claim = useServerFn(claimFirstAdmin);
   const router = useRouter();
   const loc = useLocation();
+  const queryClient = useQueryClient();
 
   const { data: me, isLoading, refetch } = useQuery({
     queryKey: ["me-roles"],
@@ -22,6 +23,8 @@ function AdminLayout() {
   });
 
   async function handleSignOut() {
+    await queryClient.cancelQueries();
+    queryClient.clear();
     await signOut();
     router.navigate({ to: "/auth", replace: true });
   }
