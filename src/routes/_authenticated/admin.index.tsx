@@ -235,7 +235,7 @@ function AdminDashboard() {
             </div>
           ) : (
             <ul className="mt-3 space-y-2">
-              {data.recentPageviews.map((p, i) => (
+              {data.recentPageviews.map((p: { path: string; title: string | null; when: string }, i: number) => (
                 <li key={i} className="flex items-start gap-2 border-b border-border/40 pb-2 text-xs last:border-0">
                   <MousePointerClick className="mt-0.5 h-3 w-3 shrink-0 text-primary" />
                   <div className="min-w-0 flex-1">
