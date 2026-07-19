@@ -122,7 +122,7 @@ function AnalyticsPage() {
 
         {/* Range presets */}
         <div className="mt-6 flex flex-wrap items-center gap-2">
-          {PRESETS.map((p) => (
+          {PRESETS.map((p: any) => (
             <button
               key={p.id}
               onClick={() => setPreset(p.id)}
@@ -244,7 +244,7 @@ function AnalyticsPage() {
         <div className="rounded-2xl border border-border bg-card p-5">
           <h2 className="font-display text-lg font-bold">Páginas mais visitadas</h2>
           <div className="mt-4 space-y-2">
-            {(data?.topPages ?? []).map((p) => {
+            {(data?.topPages ?? []).map((p: any) => {
               const max = data?.topPages[0]?.views ?? 1;
               const pct = (p.views / max) * 100;
               return (
@@ -267,7 +267,7 @@ function AnalyticsPage() {
         <div className="rounded-2xl border border-border bg-card p-5">
           <h2 className="font-display text-lg font-bold">Eventos e cliques</h2>
           <div className="mt-4 space-y-2">
-            {(data?.topCtas ?? []).map((c) => (
+            {(data?.topCtas ?? []).map((c: any) => (
               <div key={c.target} className="flex items-center justify-between rounded-md border border-border/60 bg-muted/30 px-3 py-2 text-xs">
                 <span className="truncate font-medium">{c.target}</span>
                 <span className="ml-2 rounded bg-primary/10 px-2 py-0.5 font-bold text-primary tabular-nums">{c.count}</span>
@@ -298,7 +298,7 @@ function AnalyticsPage() {
               </tr>
             </thead>
             <tbody>
-              {(data?.recentLeads ?? []).map((l) => (
+              {(data?.recentLeads ?? []).map((l: any) => (
                 <tr key={l.id} className="border-t border-border/60">
                   <td className="px-4 py-2 text-xs tabular-nums">{new Date(l.created_at).toLocaleString("pt-BR")}</td>
                   <td className="px-4 py-2"><span className="rounded bg-primary/10 px-2 py-0.5 text-[11px] font-bold text-primary">{l.source_event}</span></td>
