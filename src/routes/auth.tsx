@@ -6,7 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { toast } from "sonner";
 import { useServerFn } from "@tanstack/react-start";
-import { bootstrapVexxonPassword } from "@/lib/admin.functions";
+import { loginWithIdentifier } from "@/lib/auth.functions";
 
 const searchSchema = z.object({ redirect: z.string().optional() });
 
@@ -25,11 +25,10 @@ export const Route = createFileRoute("/auth")({
 function AuthPage() {
   const navigate = useNavigate();
   const search = useSearch({ from: "/auth" });
-  const [email, setEmail] = useState("");
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const [resetting, setResetting] = useState(false);
-  const bootstrap = useServerFn(bootstrapVexxonPassword);
+  const doLogin = useServerFn(loginWithIdentifier);
 
   const redirectTo = (search.redirect && search.redirect.startsWith("/")) ? search.redirect : "/admin";
 
@@ -46,22 +45,18 @@ function AuthPage() {
   async function handleEmailLogin(e: React.FormEvent) {
     e.preventDefault();
     setSubmitting(true);
-    const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
-    setSubmitting(false);
-    if (error) toast.error("Falha no login: " + error.message);
-  }
-
-  async function handleResetAdmin() {
-    setResetting(true);
     try {
-      await bootstrap();
-      toast.success("Senha do admin redefinida. Use Dev2712 para entrar.");
-      setEmail("vexxoncompany@gmail.com");
-      setPassword("Dev2712");
+      const tokens = await doLogin({ data: { identifier: identifier.trim(), password } });
+      const { error } = await supabase.auth.setSession({
+        access_token: tokens.access_token,
+        refresh_token: tokens.refresh_token,
+      });
+      if (error) throw error;
+      // onAuthStateChange redireciona
     } catch (err) {
-      toast.error("Falha: " + (err instanceof Error ? err.message : String(err)));
+      toast.error(err instanceof Error ? err.message : "Falha no login.");
     } finally {
-      setResetting(false);
+      setSubmitting(false);
     }
   }
 
@@ -72,15 +67,15 @@ function AuthPage() {
         <div className="rounded-2xl border border-border bg-card p-8 shadow-lg">
           <h1 className="font-display text-3xl font-black text-foreground">Acesso restrito da equipe Russo</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            Entre com email e senha para administrar posts, equipe e conteúdo do site.
+            Entre com seu usuário ou email e senha para administrar o site.
           </p>
 
           <form onSubmit={handleEmailLogin} className="mt-6 space-y-3">
             <div>
-              <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Email</label>
+              <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Usuário ou email</label>
               <input
-                type="email" required autoComplete="email"
-                value={email} onChange={(e) => setEmail(e.target.value)}
+                type="text" required autoComplete="username"
+                value={identifier} onChange={(e) => setIdentifier(e.target.value)}
                 className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary"
               />
             </div>
@@ -101,18 +96,9 @@ function AuthPage() {
           </form>
 
           <p className="mt-6 text-xs text-muted-foreground">
-            O acesso é por convite. Se você é do time, peça ao administrador para adicioná-lo em
-            <Link to="/admin/users" className="ml-1 text-primary hover:underline">Equipe</Link>.
+            O acesso é apenas para membros autorizados. Se ainda não há administrador cadastrado, use
+            <Link to="/setup" className="ml-1 text-primary hover:underline">o cadastro inicial</Link>.
           </p>
-
-          <button
-            type="button"
-            onClick={handleResetAdmin}
-            disabled={resetting}
-            className="mt-4 w-full rounded-md border border-border bg-background py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:border-primary hover:text-foreground disabled:opacity-60"
-          >
-            {resetting ? "Redefinindo..." : "Redefinir senha do admin (vexxoncompany)"}
-          </button>
         </div>
       </main>
       <Footer />
