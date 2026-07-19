@@ -9,6 +9,14 @@ import { Upload, X, Loader2 } from "lucide-react";
 
 const BLOG_MEDIA_BUCKET = "blog-media";
 
+function toLocalInput(iso: string) {
+  try {
+    const d = new Date(iso);
+    const pad = (n: number) => String(n).padStart(2, "0");
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  } catch { return ""; }
+}
+
 interface Post {
   id?: string;
   title: string;
