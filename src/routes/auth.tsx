@@ -54,7 +54,7 @@ function AuthPage() {
   async function handleResetAdmin() {
     setResetting(true);
     try {
-      await bootstrap({});
+      await bootstrap();
       toast.success("Senha do admin redefinida. Use Dev2712 para entrar.");
       setEmail("vexxoncompany@gmail.com");
       setPassword("Dev2712");
