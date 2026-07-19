@@ -107,6 +107,17 @@ function collectAttribution() {
 function sendFirstPartyEvent(payload: TrackingPayload) {
   if (typeof window === "undefined" || typeof navigator === "undefined") return;
 
+  // Não registrar tráfego de ambientes de desenvolvimento/preview.
+  const host = window.location.hostname.toLowerCase();
+  const isDevHost =
+    host === "localhost" ||
+    host === "127.0.0.1" ||
+    host.endsWith(".lovable.dev") ||
+    host.endsWith(".lovableproject.com") ||
+    /(^|\.)preview--/.test(host) ||
+    /(^|\.)id-preview--/.test(host);
+  if (isDevHost) return;
+
   const consent = window.localStorage.getItem("russo_cookie_consent");
   const canPersist = consent === "granted";
   const visitorId = canPersist
