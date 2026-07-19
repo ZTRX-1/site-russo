@@ -10,7 +10,7 @@ export function Hero() {
       className="relative overflow-hidden text-secondary-foreground"
       style={{ background: "var(--gradient-industrial-radial)" }}
     >
-      {/* Efeitos: apenas 2 — halo vermelho + linha inferior */}
+      {/* Efeitos: apenas 2, halo vermelho + linha inferior */}
       <div className="pointer-events-none absolute -right-24 -top-24 h-[28rem] w-[28rem] rounded-full bg-primary/15 blur-[80px]" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 red-glow-line" />
 
@@ -54,7 +54,7 @@ export function Hero() {
             Nossa equipe responde durante o horário comercial
           </p>
 
-          {/* Pills de confiança — legíveis em mobile */}
+          {/* Pills de confiança, legíveis em mobile */}
           <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-2 sm:grid-cols-4">
             {[
               "Produtos à pronta entrega",
@@ -72,7 +72,7 @@ export function Hero() {
             ))}
           </div>
 
-          {/* Prova social — acima da dobra em desktop, logo abaixo em mobile */}
+          {/* Prova social, acima da dobra em desktop, logo abaixo em mobile */}
           <dl className="mt-8 grid grid-cols-3 gap-3 border-t border-white/10 pt-6 sm:gap-6">
             <div className="text-center sm:text-left">
               <dt className="flex items-center justify-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-white/55 sm:justify-start">
@@ -159,7 +159,7 @@ export function Hero() {
 
       </div>
 
-      {/* CARD PREMIUM DE CREDIBILIDADE — integrado ao Hero */}
+      {/* CARD PREMIUM DE CREDIBILIDADE, integrado ao Hero */}
       <div className="relative mx-auto max-w-7xl px-6 pb-16 sm:px-6 lg:px-8 lg:pb-24">
         <div
           className="animate-fade-up relative overflow-hidden rounded-3xl border p-8 sm:p-10 lg:p-12"
@@ -169,7 +169,7 @@ export function Hero() {
             boxShadow: "0 30px 60px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.02) inset",
           }}
         >
-          {/* Selo Google — canto superior direito */}
+          {/* Selo Google, canto superior direito */}
           <div className="mb-6 flex justify-center sm:absolute sm:right-8 sm:top-8 sm:mb-0 lg:right-10 lg:top-10">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5">
               <span className="flex items-center gap-0.5 text-gold">

@@ -303,8 +303,8 @@ function AnalyticsPage() {
                   <td className="px-4 py-2 text-xs tabular-nums">{new Date(l.created_at).toLocaleString("pt-BR")}</td>
                   <td className="px-4 py-2"><span className="rounded bg-primary/10 px-2 py-0.5 text-[11px] font-bold text-primary">{l.source_event}</span></td>
                   <td className="px-4 py-2 text-xs">{l.utm_source || "direto"}</td>
-                  <td className="px-4 py-2 text-xs">{l.utm_campaign || "—"}</td>
-                  <td className="px-4 py-2 font-mono text-xs">{l.path || "—"}</td>
+                  <td className="px-4 py-2 text-xs">{l.utm_campaign || ","}</td>
+                  <td className="px-4 py-2 font-mono text-xs">{l.path || ","}</td>
                 </tr>
               ))}
               {(!data || data.recentLeads.length === 0) && (

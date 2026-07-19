@@ -7,7 +7,7 @@ export const WHATSAPP_URL = `https://api.whatsapp.com/send?phone=${WHATSAPP}&tex
 /**
  * WhatsApp segmentado por perfil do cliente.
  * A mensagem já vai pré-preenchida para qualificar o contato antes mesmo
- * de o vendedor responder — reduz tempo de atendimento e aumenta conversão.
+ * de o vendedor responder, reduz tempo de atendimento e aumenta conversão.
  */
 export const buildWhatsAppUrl = (message: string) =>
   `https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${encodeURIComponent(message)}`;

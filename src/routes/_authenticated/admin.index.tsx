@@ -79,7 +79,7 @@ function AdminDashboard() {
             {data.activeNow} {data.activeNow === 1 ? "usuário ativo agora" : "usuários ativos agora"}
           </div>
           <h1 className="mt-1 font-display text-3xl font-black text-foreground sm:text-4xl">Painel Russo</h1>
-          <p className="text-sm text-muted-foreground">Visão geral da operação — dados em tempo real do site.</p>
+          <p className="text-sm text-muted-foreground">Visão geral da operação, dados em tempo real do site.</p>
         </div>
         <div className="flex items-center gap-1 rounded-lg border border-border bg-card p-1 text-xs">
           {(["d7", "d30", "d90"] as Preset[]).map((p) => (

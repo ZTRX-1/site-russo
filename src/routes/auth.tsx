@@ -14,7 +14,7 @@ export const Route = createFileRoute("/auth")({
   validateSearch: searchSchema,
   head: () => ({
     meta: [
-      { title: "Entrar — Painel Russo" },
+      { title: "Entrar, Painel Russo" },
       { name: "description", content: "Área restrita do time editorial da Russo Elétrica." },
       { name: "robots", content: "noindex, nofollow" },
     ],

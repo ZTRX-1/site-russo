@@ -228,7 +228,7 @@
   }
 }
 
-/* Linha vermelha iluminada — divisor premium entre seções */
+/* Linha vermelha iluminada, divisor premium entre seções */
 @utility red-glow-line {
   height: 1px;
   background: var(--gradient-red-glow);

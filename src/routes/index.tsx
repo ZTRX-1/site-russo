@@ -65,7 +65,7 @@ export const Route = createFileRoute("/")({
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { property: "og:image:type", content: "image/jpeg" },
-      { property: "og:image:alt", content: "Russo Elétrica e Ferragens — fachada da loja no Rio Pequeno, Zona Oeste de São Paulo" },
+      { property: "og:image:alt", content: "Russo Elétrica e Ferragens, fachada da loja no Rio Pequeno, Zona Oeste de São Paulo" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Russo Elétrica e Ferragens | Materiais Elétricos no Rio Pequeno" },
       { name: "twitter:description", content: "Loja de materiais elétricos e ferragens no Rio Pequeno, Zona Oeste de São Paulo. Atendimento para empresas, condomínios, eletricistas e consumidores." },

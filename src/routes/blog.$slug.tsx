@@ -27,7 +27,7 @@ export const Route = createFileRoute("/blog/$slug")({
       const url = `${SITE_URL}/blog/${params.slug}`;
       return {
         meta: [
-          { title: `Artigo — Blog Russo Elétrica` },
+          { title: `Artigo, Blog Russo Elétrica` },
           { property: "og:url", content: url },
         ],
         links: [{ rel: "canonical", href: url }],
@@ -36,9 +36,9 @@ export const Route = createFileRoute("/blog/$slug")({
     const url = `${SITE_URL}/blog/${post.slug}`;
     return {
       meta: [
-        { title: `${post.title} — Blog Russo Elétrica` },
+        { title: `${post.title}, Blog Russo Elétrica` },
         { name: "description", content: post.description || "Artigo técnico da Russo Elétrica e Ferragens." },
-        { property: "og:title", content: `${post.title} — Blog Russo Elétrica` },
+        { property: "og:title", content: `${post.title}, Blog Russo Elétrica` },
         { property: "og:description", content: post.description || "Artigo técnico da Russo Elétrica e Ferragens." },
         { property: "og:type", content: "article" },
         { property: "og:url", content: url },

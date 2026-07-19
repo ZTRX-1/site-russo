@@ -351,9 +351,9 @@ export const generateAnalyticsPdf = createServerFn({ method: "POST" })
       ensureSpace(16);
       drawText(fmtDate(l.created_at), M, y, { size: 8, maxWidth: 80 });
       drawText(l.utm_source || "direto", M + 90, y, { size: 8, maxWidth: 120 });
-      drawText(l.utm_campaign || "—", M + 220, y, { size: 8, maxWidth: 110 });
+      drawText(l.utm_campaign || ",", M + 220, y, { size: 8, maxWidth: 110 });
       drawText(l.source_event, M + 340, y, { size: 8, bold: true, color: RED, maxWidth: 70 });
-      drawText(l.path || "—", M + 420, y, { size: 8, maxWidth: 130 });
+      drawText(l.path || ",", M + 420, y, { size: 8, maxWidth: 130 });
       y -= 13;
     });
     if (leads.length === 0) { drawText("Nenhuma conversão no período.", M, y, { size: 9, color: GREY }); y -= 16; }

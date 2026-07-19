@@ -49,7 +49,7 @@ function CDC() {
         </p>
 
         <p className="mt-12 text-sm italic border-t pt-4">
-          Russo Elétrica e Ferragens — Tradição e respeito ao consumidor.
+          Russo Elétrica e Ferragens, Tradição e respeito ao consumidor.
         </p>
       </section>
     </LegalLayout>
