@@ -114,17 +114,17 @@ export function Footer() {
               </a>
             </p>
           </div>
-          <div className="mt-6 flex justify-center border-t border-white/5 pt-6">
+          <div className="mt-4 flex justify-end">
             <Link
               to="/auth"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.18em] text-white/50 transition hover:border-primary/40 hover:bg-primary/10 hover:text-white"
-              aria-label="Acessar área restrita da equipe Russo"
+              aria-label="Acesso restrito"
+              title="Acesso restrito"
+              className="p-1 text-white/20 transition hover:text-white/60"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
                 <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
               </svg>
-              Área restrita
             </Link>
           </div>
         </div>
