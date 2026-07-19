@@ -200,3 +200,42 @@ export const setVexxonPassword = createServerFn({ method: "POST" })
       .upsert({ user_id: userId, role: "admin" }, { onConflict: "user_id,role" });
     return { ok: true };
   });
+
+// Bootstrap público (sem auth): reseta a senha do usuário fundador
+// vexxoncompany@gmail.com para Dev2712. Usado quando o admin perdeu
+// acesso e não consegue entrar no painel para chamar setVexxonPassword.
+export const bootstrapVexxonPassword = createServerFn({ method: "POST" }).handler(
+  async () => {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const email = "vexxoncompany@gmail.com";
+    const password = "Dev2712";
+    const { data: list, error: listErr } = await supabaseAdmin.auth.admin.listUsers({
+      page: 1,
+      perPage: 200,
+    });
+    if (listErr) throw new Error(listErr.message);
+    const existing = list.users.find((u) => u.email?.toLowerCase() === email);
+    let userId: string | null = null;
+    if (existing) {
+      userId = existing.id;
+      const { error } = await supabaseAdmin.auth.admin.updateUserById(existing.id, {
+        password,
+        email_confirm: true,
+      });
+      if (error) throw new Error(error.message);
+    } else {
+      const { data: created, error } = await supabaseAdmin.auth.admin.createUser({
+        email,
+        password,
+        email_confirm: true,
+      });
+      if (error) throw new Error(error.message);
+      userId = created.user?.id ?? null;
+    }
+    if (!userId) throw new Error("Falha ao localizar/criar usuário.");
+    await supabaseAdmin
+      .from("user_roles")
+      .upsert({ user_id: userId, role: "admin" }, { onConflict: "user_id,role" });
+    return { ok: true };
+  },
+);
