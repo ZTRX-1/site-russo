@@ -42,6 +42,7 @@ function EditPost() {
           category: post.category,
           cover_url: post.cover_url,
           status: post.status as "draft" | "published",
+          published_at: post.published_at ?? null,
         }}
       />
     </div>

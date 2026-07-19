@@ -20,8 +20,17 @@ const postSchema = z.object({
   description: z.string().max(500).default(""),
   content_html: z.string().max(200_000).default(""),
   category: z.string().min(1).max(80).default("Geral"),
-  cover_url: z.string().url().max(1000).optional().nullable(),
+  // aceita URL absoluta ou caminho relativo (ex.: /__l5e/assets-v1/...)
+  cover_url: z
+    .string()
+    .max(1000)
+    .refine((v) => v === "" || v.startsWith("/") || /^https?:\/\//i.test(v), {
+      message: "Informe uma URL http(s) ou um caminho iniciado com /",
+    })
+    .optional()
+    .nullable(),
   status: z.enum(["draft", "published"]).default("draft"),
+  published_at: z.string().datetime().optional().nullable(),
 });
 
 export const listAdminPosts = createServerFn({ method: "GET" })
@@ -60,7 +69,10 @@ export const createPost = createServerFn({ method: "POST" })
       .eq("id", context.userId)
       .maybeSingle();
     const authorName = profile?.display_name || profile?.email || "Equipe Russo";
-    const publishedAt = data.status === "published" ? new Date().toISOString() : null;
+    const publishedAt =
+      data.status === "published"
+        ? data.published_at || new Date().toISOString()
+        : data.published_at || null;
     const { data: created, error } = await context.supabase
       .from("posts")
       .insert({
@@ -96,8 +108,8 @@ export const updatePost = createServerFn({ method: "POST" })
       .maybeSingle();
     const publishedAt =
       data.status === "published"
-        ? existing?.published_at ?? new Date().toISOString()
-        : null;
+        ? data.published_at || existing?.published_at || new Date().toISOString()
+        : data.published_at || null;
     const { error } = await context.supabase
       .from("posts")
       .update({

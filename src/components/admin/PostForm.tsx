@@ -9,6 +9,14 @@ import { Upload, X, Loader2 } from "lucide-react";
 
 const BLOG_MEDIA_BUCKET = "blog-media";
 
+function toLocalInput(iso: string) {
+  try {
+    const d = new Date(iso);
+    const pad = (n: number) => String(n).padStart(2, "0");
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  } catch { return ""; }
+}
+
 interface Post {
   id?: string;
   title: string;
@@ -18,6 +26,7 @@ interface Post {
   category: string;
   cover_url: string | null;
   status: "draft" | "published";
+  published_at?: string | null;
 }
 
 export function PostForm({ initial }: { initial: Post }) {
@@ -123,6 +132,25 @@ export function PostForm({ initial }: { initial: Post }) {
             onChange={(e) => setForm({ ...form, category: e.target.value })}
             className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary"
           />
+        </div>
+        <div className="sm:col-span-2">
+          <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+            Data de publicação
+          </label>
+          <input
+            type="datetime-local"
+            value={form.published_at ? toLocalInput(form.published_at) : ""}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                published_at: e.target.value ? new Date(e.target.value).toISOString() : null,
+              })
+            }
+            className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary sm:w-72"
+          />
+          <p className="mt-1 text-[11px] text-muted-foreground">
+            Deixe em branco para usar a data atual no momento da publicação.
+          </p>
         </div>
         <div className="sm:col-span-2">
           <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Resumo (aparece na listagem e no Google)</label>

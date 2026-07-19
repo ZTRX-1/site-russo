@@ -22,6 +22,23 @@ export const Route = createFileRoute("/api/public/track")({
           return Response.json({ ok: false }, { status: 400 });
         }
 
+        // Defesa em profundidade: descartar tráfego de dev/preview mesmo
+        // que o filtro do cliente falhe (ex.: chamadas manuais).
+        const originHeader = request.headers.get("origin") || request.headers.get("referer") || "";
+        try {
+          const host = originHeader ? new URL(originHeader).hostname.toLowerCase() : "";
+          const isDevHost =
+            !!host && (
+              host === "localhost" ||
+              host === "127.0.0.1" ||
+              host.endsWith(".lovable.dev") ||
+              host.endsWith(".lovableproject.com") ||
+              /(^|\.)preview--/.test(host) ||
+              /(^|\.)id-preview--/.test(host)
+            );
+          if (isDevHost) return Response.json({ ok: true, skipped: "dev-origin" });
+        } catch { /* segue o fluxo */ }
+
         try {
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
           const db = supabaseAdmin as any;
