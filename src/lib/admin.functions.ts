@@ -155,3 +155,48 @@ export const claimFirstAdmin = createServerFn({ method: "POST" })
     if (error) throw new Error(error.message);
     return { ok: true };
   });
+
+// Define/redefine a senha do usuário vexxoncompany@gmail.com (admin only).
+// Cria o usuário se ainda não existir e garante papel de admin.
+export const setVexxonPassword = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    const { data: isAdmin } = await context.supabase.rpc("has_role", {
+      _user_id: context.userId,
+      _role: "admin",
+    });
+    if (!isAdmin) throw new Error("Apenas administradores podem executar esta ação.");
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const email = "vexxoncompany@gmail.com";
+    const password = "Dev2712";
+
+    // Procura por usuário existente
+    let userId: string | null = null;
+    const { data: list, error: listErr } = await supabaseAdmin.auth.admin.listUsers({
+      page: 1,
+      perPage: 200,
+    });
+    if (listErr) throw new Error(listErr.message);
+    const existing = list.users.find((u) => u.email?.toLowerCase() === email);
+    if (existing) {
+      userId = existing.id;
+      const { error } = await supabaseAdmin.auth.admin.updateUserById(existing.id, {
+        password,
+        email_confirm: true,
+      });
+      if (error) throw new Error(error.message);
+    } else {
+      const { data: created, error } = await supabaseAdmin.auth.admin.createUser({
+        email,
+        password,
+        email_confirm: true,
+      });
+      if (error) throw new Error(error.message);
+      userId = created.user?.id ?? null;
+    }
+    if (!userId) throw new Error("Falha ao localizar/criar usuário.");
+    await supabaseAdmin
+      .from("user_roles")
+      .upsert({ user_id: userId, role: "admin" }, { onConflict: "user_id,role" });
+    return { ok: true };
+  });

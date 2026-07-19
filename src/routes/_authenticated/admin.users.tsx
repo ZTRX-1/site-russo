@@ -9,6 +9,7 @@ import {
   inviteTeamMember,
   setUserRole,
   removeTeamMember,
+  setVexxonPassword,
 } from "@/lib/admin.functions";
 
 export const Route = createFileRoute("/_authenticated/admin/users")({
@@ -20,6 +21,7 @@ function UsersPage() {
   const inviteFn = useServerFn(inviteTeamMember);
   const roleFn = useServerFn(setUserRole);
   const removeFn = useServerFn(removeTeamMember);
+  const setVexxonFn = useServerFn(setVexxonPassword);
   const qc = useQueryClient();
 
   const { data: members } = useQuery({ queryKey: ["team-members"], queryFn: () => listFn() });
@@ -27,6 +29,21 @@ function UsersPage() {
   const [name, setName] = useState("");
   const [role, setRole] = useState<"admin" | "editor">("editor");
   const [inviting, setInviting] = useState(false);
+  const [settingPwd, setSettingPwd] = useState(false);
+
+  async function onSetVexxon() {
+    if (!confirm("Definir a senha de vexxoncompany@gmail.com como Dev2712?")) return;
+    setSettingPwd(true);
+    try {
+      await setVexxonFn();
+      toast.success("Senha definida: Dev2712");
+      qc.invalidateQueries({ queryKey: ["team-members"] });
+    } catch (e) {
+      toast.error((e as Error).message);
+    } finally {
+      setSettingPwd(false);
+    }
+  }
 
   async function onInvite(e: React.FormEvent) {
     e.preventDefault();
@@ -67,6 +84,17 @@ function UsersPage() {
       <div>
         <h1 className="font-display text-3xl font-black">Equipe</h1>
         <p className="text-sm text-muted-foreground">Convide editores e administradores para o painel.</p>
+      </div>
+
+      <div className="flex items-center justify-between rounded-2xl border border-border bg-card p-4">
+        <div className="text-sm">
+          <div className="font-medium">Senha de vexxoncompany@gmail.com</div>
+          <div className="text-xs text-muted-foreground">Redefine a senha do admin principal para <code className="font-mono">Dev2712</code>.</div>
+        </div>
+        <button onClick={onSetVexxon} disabled={settingPwd}
+          className="rounded-md border border-border bg-background px-4 py-2 text-xs font-bold uppercase tracking-wider hover:bg-muted disabled:opacity-60">
+          {settingPwd ? "Aplicando..." : "Definir senha"}
+        </button>
       </div>
 
       <form onSubmit={onInvite} className="grid gap-3 rounded-2xl border border-border bg-card p-6 sm:grid-cols-[1fr_1fr_140px_auto]">
