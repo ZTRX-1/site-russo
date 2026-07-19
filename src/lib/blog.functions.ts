@@ -8,8 +8,21 @@ function isNewKey(v: string) {
 }
 
 function serverPublicClient() {
-  const url = process.env.SUPABASE_URL!;
-  const key = process.env.SUPABASE_PUBLISHABLE_KEY!;
+  const url =
+    process.env.SUPABASE_URL ||
+    process.env.VITE_SUPABASE_URL ||
+    (import.meta as any).env?.VITE_SUPABASE_URL ||
+    (import.meta as any).env?.SUPABASE_URL;
+  const key =
+    process.env.SUPABASE_PUBLISHABLE_KEY ||
+    process.env.VITE_SUPABASE_PUBLISHABLE_KEY ||
+    (import.meta as any).env?.VITE_SUPABASE_PUBLISHABLE_KEY ||
+    (import.meta as any).env?.SUPABASE_PUBLISHABLE_KEY;
+  if (!url || !key) {
+    throw new Error(
+      "Configuração do backend indisponível. Tente novamente em instantes."
+    );
+  }
   return createClient<Database>(url, key, {
     auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
     global: {
