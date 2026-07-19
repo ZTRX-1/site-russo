@@ -97,7 +97,7 @@ export function Localizacao() {
           >
             {showMap ? (
               <iframe
-                title="Mapa Russo Elétrica e Ferragens — Rio Pequeno, SP"
+                title="Mapa Russo Elétrica e Ferragens, Rio Pequeno, SP"
                 src={MAPS_EMBED}
                 width="100%"
                 height="450"

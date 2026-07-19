@@ -8,7 +8,7 @@ import {
 } from "@/lib/constants";
 
 const URL_PATH = "/rio-pequeno";
-const TITLE = "Material Elétrico no Rio Pequeno | Loja na Av. Escola Politécnica — Russo";
+const TITLE = "Material Elétrico no Rio Pequeno | Loja na Av. Escola Politécnica, Russo";
 const DESCRIPTION =
   "Loja de material elétrico, ferragens, iluminação e ferramentas no Rio Pequeno, Zona Oeste de São Paulo. Av. Escola Politécnica, próxima à USP, Butantã e Raposo Tavares. Atendimento técnico e orçamento pelo WhatsApp.";
 
@@ -108,7 +108,7 @@ function MaterialEletricoRioPequeno() {
         },
         {
           title: "Iluminação residencial e comercial",
-          desc: "Lâmpadas LED, luminárias, spots, plafons, refletores e sensores de presença — para reforma, projeto novo ou reposição.",
+          desc: "Lâmpadas LED, luminárias, spots, plafons, refletores e sensores de presença, para reforma, projeto novo ou reposição.",
         },
         {
           title: "Ferragens e ferramentas",
@@ -124,7 +124,7 @@ function MaterialEletricoRioPequeno() {
         },
         {
           title: "Retirada no mesmo dia",
-          desc: "Loja física com estoque real — em geral, o que você precisa hoje pode ser retirado hoje. Sem promessa vazia de prazo.",
+          desc: "Loja física com estoque real, em geral, o que você precisa hoje pode ser retirado hoje. Sem promessa vazia de prazo.",
         },
       ]}
       differentials={[
@@ -145,14 +145,14 @@ function MaterialEletricoRioPequeno() {
         eyebrow: "Loja no Rio Pequeno",
         title: "Está por perto? Passe na loja ou peça pelo WhatsApp",
         description:
-          "Av. Escola Politécnica, 2850 — próxima à USP, Butantã, Vila São Francisco e Raposo Tavares. Se preferir, envie a lista pelo WhatsApp que já separamos.",
+          "Av. Escola Politécnica, 2850, próxima à USP, Butantã, Vila São Francisco e Raposo Tavares. Se preferir, envie a lista pelo WhatsApp que já separamos.",
         href: WHATSAPP_URL,
         cta: "Solicitar orçamento",
       }}
       faq={[
         {
           q: "Onde fica a loja da Russo no Rio Pequeno?",
-          a: "Estamos na Av. Escola Politécnica, 2850, Rio Pequeno — Zona Oeste de São Paulo. Referência para quem vem de Butantã, Vila São Francisco, Jaguaré, USP e Raposo Tavares.",
+          a: "Estamos na Av. Escola Politécnica, 2850, Rio Pequeno, Zona Oeste de São Paulo. Referência para quem vem de Butantã, Vila São Francisco, Jaguaré, USP e Raposo Tavares.",
         },
         {
           q: "Qual o horário de funcionamento?",
@@ -180,7 +180,7 @@ function MaterialEletricoRioPequeno() {
         { to: "/condominios", label: "Atendimento para Condomínios", desc: "Manutenção predial no mesmo dia." },
         { to: "/", label: "Voltar para a Home", desc: "Conheça a estrutura completa da Russo." },
       ]}
-      localContext="A loja fica na Av. Escola Politécnica, 2850 — coração do Rio Pequeno, ao lado de Butantã, Vila São Francisco, Jaguaré, USP e Raposo Tavares. Um endereço fácil para quem trabalha, mora ou faz obra na Zona Oeste de São Paulo e não pode perder o dia caçando material em várias lojas."
+      localContext="A loja fica na Av. Escola Politécnica, 2850, coração do Rio Pequeno, ao lado de Butantã, Vila São Francisco, Jaguaré, USP e Raposo Tavares. Um endereço fácil para quem trabalha, mora ou faz obra na Zona Oeste de São Paulo e não pode perder o dia caçando material em várias lojas."
     />
   );
 }

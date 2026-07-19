@@ -1,5 +1,5 @@
 /**
- * GA4 direto (opcional — só usado se você preferir GA sem GTM).
+ * GA4 direto (opcional, só usado se você preferir GA sem GTM).
  * Se você já usa GTM com tag de GA4 dentro, pode deixar VITE_GA_ID vazio.
  */
 const GA_ID = (import.meta.env.VITE_GA_ID as string | undefined) || "G-3287FV6725";

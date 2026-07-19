@@ -8,7 +8,7 @@ import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
 import { listPublishedPosts, formatDatePtBr } from "@/lib/blog.functions";
 import { SITE_URL } from "@/lib/constants";
 
-const TITLE = "Blog Russo Elétrica — Dicas técnicas e guias para a Zona Oeste de SP";
+const TITLE = "Blog Russo Elétrica, Dicas técnicas e guias para a Zona Oeste de SP";
 const DESCRIPTION =
   "Conteúdo prático sobre materiais elétricos, manutenção predial, dimensionamento, iluminação e obras na Zona Oeste de São Paulo. Escrito por quem atende o Rio Pequeno todos os dias.";
 
@@ -70,7 +70,7 @@ function BlogIndex() {
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/70">
               Guias práticos, checklists e dicas de quem atende a Zona Oeste de São Paulo
-              todos os dias — sem promessa vazia, com o que realmente resolve.
+              todos os dias, sem promessa vazia, com o que realmente resolve.
             </p>
           </div>
         </section>

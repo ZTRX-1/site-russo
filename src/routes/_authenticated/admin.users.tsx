@@ -127,7 +127,7 @@ function UsersPage() {
             {(members ?? []).map((m) => (
               <tr key={m.id}>
                 <td className="px-4 py-3">
-                  <div className="font-medium">{m.display_name || "—"}</div>
+                  <div className="font-medium">{m.display_name || ","}</div>
                   <div className="text-xs text-muted-foreground">{m.email}</div>
                 </td>
                 <td className="px-4 py-3">

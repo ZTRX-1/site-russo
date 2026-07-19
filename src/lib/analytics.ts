@@ -1,5 +1,5 @@
 /**
- * Camada única de analytics. Segue rodando mesmo sem GTM/GA carregado —
+ * Camada única de analytics. Segue rodando mesmo sem GTM/GA carregado ,
  * eventos são empilhados em window.dataLayer e serão consumidos assim
  * que o Google Tag Manager entrar em ação.
  */
@@ -61,7 +61,7 @@ export function trackPageView(path: string, title?: string) {
   sendFirstPartyEvent({ event_type: "page_view", path, title: title ?? document.title });
 }
 
-/** Consent Mode v2 — chamado pelo CookieConsent quando o usuário decide */
+/** Consent Mode v2, chamado pelo CookieConsent quando o usuário decide */
 export function setConsent(granted: boolean) {
   if (typeof window === "undefined") return;
   window.dataLayer = window.dataLayer || [];

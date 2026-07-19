@@ -12,12 +12,12 @@ interface CtaButtonProps extends ComponentPropsWithoutRef<"a"> {
   icon?: "whatsapp" | "arrow" | "none" | ReactNode;
   trailing?: boolean;
   children: ReactNode;
-  /** Origem do clique — usada nos eventos do GTM/GA4 */
+  /** Origem do clique, usada nos eventos do GTM/GA4 */
   "data-analytics-source"?: string;
 }
 
 /**
- * CTA único do site — padroniza estados, tamanhos e ícones.
+ * CTA único do site, padroniza estados, tamanhos e ícones.
  * Toda ação de conversão da Home passa por aqui.
  */
 export function CtaButton({

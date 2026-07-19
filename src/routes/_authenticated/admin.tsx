@@ -53,7 +53,7 @@ function AdminLayout() {
           <h1 className="mt-4 font-display text-2xl font-black text-foreground">Sem permissão</h1>
           <p className="mt-2 text-sm text-muted-foreground">
             Sua conta não tem acesso ao painel editorial. Peça a um administrador para te adicionar
-            à equipe, ou — se este é o primeiro acesso ao painel e ainda não há nenhum admin —
+            à equipe, ou, se este é o primeiro acesso ao painel e ainda não há nenhum admin ,
             você pode se promover automaticamente abaixo.
           </p>
           <div className="mt-6 flex flex-col gap-2">

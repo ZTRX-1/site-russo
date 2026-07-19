@@ -8,7 +8,7 @@ import {
 } from "@/lib/constants";
 
 const URL_PATH = "/condominios";
-const TITLE = "Atendimento para Condomínios | Manutenção Predial Elétrica — Russo Zona Oeste SP";
+const TITLE = "Atendimento para Condomínios | Manutenção Predial Elétrica, Russo Zona Oeste SP";
 const DESCRIPTION =
   "Loja especializada em materiais elétricos, ferragens, iluminação e ferramentas para condomínios da Zona Oeste de São Paulo. Suporte para síndicos, zeladores e administradoras. Faturamento em nota fiscal, atendimento técnico e reposição rápida no Rio Pequeno.";
 
@@ -82,13 +82,13 @@ function AtendimentoCondominios() {
           <span className="text-white"> esperando o material chegar</span>
         </>
       }
-      intro="Reator queimado na garagem, disjuntor disparando, refletor da fachada apagado. Síndicos, zeladores e administradoras da Zona Oeste contam com a Russo para resolver a manutenção elétrica no mesmo dia — com nota fiscal e atendimento técnico direto no WhatsApp."
+      intro="Reator queimado na garagem, disjuntor disparando, refletor da fachada apagado. Síndicos, zeladores e administradoras da Zona Oeste contam com a Russo para resolver a manutenção elétrica no mesmo dia, com nota fiscal e atendimento técnico direto no WhatsApp."
       primaryCta={{ href: WHATSAPP_URL_CONDOMINIO, label: "Falar sobre meu condomínio" }}
       secondaryCta={{ href: WHATSAPP_URL_ESPECIALISTA, label: "Falar com especialista" }}
       benefits={[
         {
           title: "Iluminação de áreas comuns",
-          desc: "Lâmpadas LED, refletores, luminárias de garagem, sensores de presença e reatores em estoque — o essencial para hall, escada, fachada e garagem.",
+          desc: "Lâmpadas LED, refletores, luminárias de garagem, sensores de presença e reatores em estoque, o essencial para hall, escada, fachada e garagem.",
         },
         {
           title: "Quadros e proteção",
@@ -100,7 +100,7 @@ function AtendimentoCondominios() {
         },
         {
           title: "Interfones e portaria",
-          desc: "Reposição de itens de baixa tensão que fazem o dia a dia da portaria funcionar — botoeiras, campainhas, cabos e acessórios.",
+          desc: "Reposição de itens de baixa tensão que fazem o dia a dia da portaria funcionar, botoeiras, campainhas, cabos e acessórios.",
         },
         {
           title: "Ferragens e ferramentas",
@@ -122,15 +122,15 @@ function AtendimentoCondominios() {
         },
         {
           title: "Estoque disponível",
-          desc: "Loja física com giro alto — o item de manutenção do prédio quase sempre já está no balcão.",
+          desc: "Loja física com giro alto, o item de manutenção do prédio quase sempre já está no balcão.",
         },
         {
           title: "Agilidade na reposição",
-          desc: "Loja no Rio Pequeno, a poucos minutos dos principais condomínios da Zona Oeste — retirada no mesmo dia.",
+          desc: "Loja no Rio Pequeno, a poucos minutos dos principais condomínios da Zona Oeste, retirada no mesmo dia.",
         },
         {
           title: "Atendimento especializado",
-          desc: "Nossa equipe orienta o síndico e o zelador sobre o material certo — sem enrolação técnica.",
+          desc: "Nossa equipe orienta o síndico e o zelador sobre o material certo, sem enrolação técnica.",
         },
         {
           title: "Facilidade para orçamentos",
@@ -153,7 +153,7 @@ function AtendimentoCondominios() {
       ]}
       midCta={{
         eyebrow: "Manutenção do condomínio",
-        title: "Mande a foto do que está queimado — respondemos com o item certo",
+        title: "Mande a foto do que está queimado, respondemos com o item certo",
         description:
           "Zelador, síndico ou administradora: envie a foto ou descrição da peça pelo WhatsApp e devolvemos com disponibilidade, preço e nota fiscal.",
         href: WHATSAPP_URL_CONDOMINIO,
@@ -174,11 +174,11 @@ function AtendimentoCondominios() {
         },
         {
           q: "Vocês têm iluminação de áreas comuns em estoque?",
-          a: "Sim. Trabalhamos com lâmpadas LED, refletores, luminárias de garagem, sensores de presença, reatores e demais itens de iluminação predial — todos em estoque real.",
+          a: "Sim. Trabalhamos com lâmpadas LED, refletores, luminárias de garagem, sensores de presença, reatores e demais itens de iluminação predial, todos em estoque real.",
         },
         {
           q: "É possível cadastrar o condomínio para compras recorrentes?",
-          a: "Sim. Fazemos o cadastro do condomínio (ou da administradora) para agilizar pedidos futuros — histórico consolidado e faturamento recorrente sem retrabalho.",
+          a: "Sim. Fazemos o cadastro do condomínio (ou da administradora) para agilizar pedidos futuros, histórico consolidado e faturamento recorrente sem retrabalho.",
         },
         {
           q: "Quais formas de pagamento aceitam?",
@@ -190,7 +190,7 @@ function AtendimentoCondominios() {
         { to: "/rio-pequeno", label: "Material Elétrico no Rio Pequeno", desc: "Loja física na Zona Oeste de SP." },
         { to: "/", label: "Voltar para a Home", desc: "Conheça toda a estrutura da Russo." },
       ]}
-      localContext="Nossa loja fica na Av. Escola Politécnica, no Rio Pequeno — dentro de raio curto para os principais condomínios de Butantã, Vila São Francisco, Vila Sônia, Morumbi, Jaguaré e proximidades da USP e Raposo Tavares. Isso significa reposição no mesmo dia quando algo essencial do prédio para."
+      localContext="Nossa loja fica na Av. Escola Politécnica, no Rio Pequeno, dentro de raio curto para os principais condomínios de Butantã, Vila São Francisco, Vila Sônia, Morumbi, Jaguaré e proximidades da USP e Raposo Tavares. Isso significa reposição no mesmo dia quando algo essencial do prédio para."
     />
   );
 }

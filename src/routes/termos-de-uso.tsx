@@ -5,7 +5,7 @@ export const Route = createFileRoute("/termos-de-uso")({
   head: () => ({
     meta: [
       { title: "Termos de Uso | Russo Elétrica e Ferragens" },
-      { name: "description", content: "Termos e condições de uso do site da Russo Elétrica e Ferragens — orçamentos, estoque, propriedade intelectual e responsabilidades." },
+      { name: "description", content: "Termos e condições de uso do site da Russo Elétrica e Ferragens, orçamentos, estoque, propriedade intelectual e responsabilidades." },
       { name: "robots", content: "index, follow" },
       { property: "og:title", content: "Termos de Uso | Russo Elétrica e Ferragens" },
       { property: "og:url", content: "https://russoeletrofer.com.br/termos-de-uso" },

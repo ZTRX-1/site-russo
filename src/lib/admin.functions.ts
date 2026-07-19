@@ -117,7 +117,7 @@ export const setUserRole = createServerFn({ method: "POST" })
     return { ok: true };
   });
 
-// Remove user (admin only, only removes role — auth user preserved)
+// Remove user (admin only, only removes role, auth user preserved)
 export const removeTeamMember = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input: { userId: string }) =>

@@ -92,7 +92,7 @@ function PostsList() {
                   </span>
                 </td>
                 <td className="px-4 py-3 hidden sm:table-cell text-muted-foreground">
-                  {p.updated_at ? new Date(p.updated_at).toLocaleDateString("pt-BR") : "—"}
+                  {p.updated_at ? new Date(p.updated_at).toLocaleDateString("pt-BR") : ","}
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center justify-end gap-1">

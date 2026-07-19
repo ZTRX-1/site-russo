@@ -8,7 +8,7 @@ import {
 } from "@/lib/constants";
 
 const URL_PATH = "/empresas";
-const TITLE = "Atendimento para Empresas | Loja Especializada em Material Elétrico com Faturamento — Russo";
+const TITLE = "Atendimento para Empresas | Loja Especializada em Material Elétrico com Faturamento, Russo";
 const DESCRIPTION =
   "Loja especializada em materiais elétricos, ferragens, iluminação e ferramentas para empresas na Zona Oeste de São Paulo. Faturamento em nota fiscal, vendedor dedicado, compras recorrentes e reposição rápida. Solicite orçamento pelo WhatsApp.";
 
@@ -92,11 +92,11 @@ function AtendimentoEmpresas() {
       benefits={[
         {
           title: "Faturamento em NF-e",
-          desc: "Emissão fiscal correta, com dados da sua empresa, para compras recorrentes ou pontuais — sem burocracia adicional para o financeiro.",
+          desc: "Emissão fiscal correta, com dados da sua empresa, para compras recorrentes ou pontuais, sem burocracia adicional para o financeiro.",
         },
         {
           title: "Vendedor dedicado",
-          desc: "Um ponto de contato fixo que já conhece o padrão da sua obra, do seu prédio ou da sua manutenção — nada de recomeçar a explicação todo pedido.",
+          desc: "Um ponto de contato fixo que já conhece o padrão da sua obra, do seu prédio ou da sua manutenção, nada de recomeçar a explicação todo pedido.",
         },
         {
           title: "Cotação formal por escrito",
@@ -108,7 +108,7 @@ function AtendimentoEmpresas() {
         },
         {
           title: "Reposição rápida",
-          desc: "Loja física na Av. Escola Politécnica, no Rio Pequeno — a poucos minutos de Butantã, Jaguaré, USP e Raposo Tavares.",
+          desc: "Loja física na Av. Escola Politécnica, no Rio Pequeno, a poucos minutos de Butantã, Jaguaré, USP e Raposo Tavares.",
         },
         {
           title: "Atendimento técnico",
@@ -122,7 +122,7 @@ function AtendimentoEmpresas() {
         },
         {
           title: "Atendimento rápido",
-          desc: "Contato direto pelo WhatsApp com quem realmente resolve — não passa por 3 níveis até chegar uma resposta.",
+          desc: "Contato direto pelo WhatsApp com quem realmente resolve, não passa por 3 níveis até chegar uma resposta.",
         },
         {
           title: "Estoque disponível",
@@ -130,7 +130,7 @@ function AtendimentoEmpresas() {
         },
         {
           title: "Agilidade na reposição",
-          desc: "Emergência de manutenção? Estamos na Av. Escola Politécnica — retirada no mesmo dia é comum.",
+          desc: "Emergência de manutenção? Estamos na Av. Escola Politécnica, retirada no mesmo dia é comum.",
         },
         {
           title: "Atendimento especializado",
@@ -148,7 +148,7 @@ function AtendimentoEmpresas() {
         },
         {
           title: "Marcas reconhecidas",
-          desc: "Trabalhamos com fabricantes consolidados no mercado elétrico brasileiro — nada de material de origem duvidosa em obra crítica.",
+          desc: "Trabalhamos com fabricantes consolidados no mercado elétrico brasileiro, nada de material de origem duvidosa em obra crítica.",
         },
         {
           title: "Prova social real",
@@ -157,7 +157,7 @@ function AtendimentoEmpresas() {
       ]}
       midCta={{
         eyebrow: "Pronto para comprar",
-        title: "Envie sua lista de material — devolvemos o orçamento",
+        title: "Envie sua lista de material, devolvemos o orçamento",
         description:
           "Pedidos de empresa recebem atendimento prioritário. Mande a lista pelo WhatsApp e o comercial responde com preço, prazo e nota.",
         href: WHATSAPP_URL_EMPRESA,
@@ -166,7 +166,7 @@ function AtendimentoEmpresas() {
       faq={[
         {
           q: "A Russo emite nota fiscal para empresa?",
-          a: "Sim. Emitimos NF-e com os dados da sua empresa em todos os pedidos — pontuais ou recorrentes — para que o financeiro registre a compra sem retrabalho.",
+          a: "Sim. Emitimos NF-e com os dados da sua empresa em todos os pedidos, pontuais ou recorrentes, para que o financeiro registre a compra sem retrabalho.",
         },
         {
           q: "Vocês atendem empresas em toda a Zona Oeste de SP?",
@@ -178,7 +178,7 @@ function AtendimentoEmpresas() {
         },
         {
           q: "É possível abrir cadastro de faturamento?",
-          a: "Sim. Fazemos o cadastro da sua empresa para operar com faturamento recorrente e histórico de pedidos consolidado — assim as próximas compras rodam ainda mais rápido.",
+          a: "Sim. Fazemos o cadastro da sua empresa para operar com faturamento recorrente e histórico de pedidos consolidado, assim as próximas compras rodam ainda mais rápido.",
         },
         {
           q: "Vocês têm estoque para pedidos maiores?",
@@ -186,7 +186,7 @@ function AtendimentoEmpresas() {
         },
         {
           q: "Quais formas de pagamento aceitam para empresa?",
-          a: "Dinheiro, Pix, débito, crédito e faturamento — as condições comerciais são combinadas de acordo com o volume e o histórico do cliente corporativo.",
+          a: "Dinheiro, Pix, débito, crédito e faturamento, as condições comerciais são combinadas de acordo com o volume e o histórico do cliente corporativo.",
         },
       ]}
       internalLinks={[
@@ -194,7 +194,7 @@ function AtendimentoEmpresas() {
         { to: "/rio-pequeno", label: "Material Elétrico no Rio Pequeno", desc: "Loja física na Av. Escola Politécnica." },
         { to: "/", label: "Voltar para a Home", desc: "Conheça a estrutura completa da Russo." },
       ]}
-      localContext="Estamos na Av. Escola Politécnica, no Rio Pequeno — ponto estratégico para atender empresas de Butantã, Jaguaré, Vila São Francisco, USP, Raposo Tavares e toda a Zona Oeste de São Paulo. Reposição rápida quando cada hora parada da sua operação conta."
+      localContext="Estamos na Av. Escola Politécnica, no Rio Pequeno, ponto estratégico para atender empresas de Butantã, Jaguaré, Vila São Francisco, USP, Raposo Tavares e toda a Zona Oeste de São Paulo. Reposição rápida quando cada hora parada da sua operação conta."
     />
   );
 }

@@ -10,7 +10,7 @@ interface CtaBarProps {
 }
 
 /**
- * Barra de CTA contextual — colocada entre seções para não depender
+ * Barra de CTA contextual, colocada entre seções para não depender
  * apenas do botão principal. Redireciona para WhatsApp segmentado.
  */
 export function CtaBar({

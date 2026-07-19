@@ -50,7 +50,7 @@ export interface LocalLandingPageProps {
   primaryCta: { href: string; label: string };
   secondaryCta?: { href: string; label: string };
   benefits: Benefit[];
-  /** "Por que empresas escolhem a Russo" — mostrado quando fornecido */
+  /** "Por que empresas escolhem a Russo", mostrado quando fornecido */
   whyChoose?: Benefit[];
   differentials: Benefit[];
   midCta: {
@@ -248,7 +248,7 @@ export function LocalLandingPage(props: LocalLandingPageProps) {
                   Por que empresas escolhem a <span className="text-primary">Russo</span>?
                 </h2>
                 <p className="mt-4 text-base text-white/65 sm:text-lg">
-                  Lojas fáceis existem em todo canto — o difícil é achar uma que sustente o ritmo da sua operação sem quebrar entrega, faturamento ou atendimento.
+                  Lojas fáceis existem em todo canto, o difícil é achar uma que sustente o ritmo da sua operação sem quebrar entrega, faturamento ou atendimento.
                 </p>
               </div>
               <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -408,7 +408,7 @@ export function LocalLandingPage(props: LocalLandingPageProps) {
               Fale agora com a <span className="text-primary">Russo</span> e receba seu orçamento
             </h2>
             <p className="mt-4 text-base text-white/65 sm:text-lg">
-              Atendimento humano, técnico e rápido — direto pelo WhatsApp da loja.
+              Atendimento humano, técnico e rápido, direto pelo WhatsApp da loja.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <a
