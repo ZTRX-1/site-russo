@@ -24,6 +24,7 @@ export const Route = createFileRoute("/api/public/track")({
 
         try {
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const db = supabaseAdmin as any;
           const now = new Date().toISOString();
           const country = request.headers.get("cf-ipcountry") || request.headers.get("x-vercel-ip-country");
           const city = request.headers.get("x-vercel-ip-city");
@@ -37,7 +38,7 @@ export const Route = createFileRoute("/api/public/track")({
           const gclid = typeof payload.meta?.gclid === "string" ? payload.meta.gclid : null;
           const fbclid = typeof payload.meta?.fbclid === "string" ? payload.meta.fbclid : null;
 
-          await supabaseAdmin.from("analytics_visitors").upsert(
+          await db.from("analytics_visitors").upsert(
             {
               id: payload.visitor_id,
               first_seen_at: now,
@@ -52,7 +53,7 @@ export const Route = createFileRoute("/api/public/track")({
             { onConflict: "id", ignoreDuplicates: false },
           );
 
-          await supabaseAdmin.from("analytics_sessions").upsert(
+          await db.from("analytics_sessions").upsert(
             {
               id: payload.session_id,
               visitor_id: payload.visitor_id,
@@ -72,7 +73,7 @@ export const Route = createFileRoute("/api/public/track")({
             { onConflict: "id", ignoreDuplicates: false },
           );
 
-          await supabaseAdmin.from("analytics_events").insert({
+          await db.from("analytics_events").insert({
             visitor_id: payload.visitor_id,
             session_id: payload.session_id,
             event_type: payload.event_type,
@@ -83,7 +84,7 @@ export const Route = createFileRoute("/api/public/track")({
           });
 
           if (payload.event_type === "conversion") {
-            await supabaseAdmin.from("analytics_leads").insert({
+            await db.from("analytics_leads").insert({
               visitor_id: payload.visitor_id,
               session_id: payload.session_id,
               source_event: payload.target ?? "conversion",
