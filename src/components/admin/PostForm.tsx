@@ -7,6 +7,8 @@ import { createPost, updatePost, deletePost } from "@/lib/posts.functions";
 import { supabase } from "@/integrations/supabase/client";
 import { Upload, X, Loader2 } from "lucide-react";
 
+const BLOG_MEDIA_BUCKET = "blog-media";
+
 interface Post {
   id?: string;
   title: string;
@@ -42,17 +44,13 @@ export function PostForm({ initial }: { initial: Post }) {
     setUploading(true);
     try {
       const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
-      const path = `${crypto.randomUUID()}.${ext}`;
+      const path = `covers/${crypto.randomUUID()}.${ext}`;
       const { error: upErr } = await supabase.storage
-        .from("blog-covers")
+        .from(BLOG_MEDIA_BUCKET)
         .upload(path, file, { cacheControl: "31536000", upsert: false });
       if (upErr) throw upErr;
-      // Bucket é privado (política do workspace), então usamos URL assinada de longa duração.
-      const { data: signed, error: sErr } = await supabase.storage
-        .from("blog-covers")
-        .createSignedUrl(path, 60 * 60 * 24 * 365 * 10); // 10 anos
-      if (sErr || !signed?.signedUrl) throw sErr ?? new Error("Falha ao gerar URL da imagem.");
-      setForm({ ...form, cover_url: signed.signedUrl });
+      const { data: publicUrl } = supabase.storage.from(BLOG_MEDIA_BUCKET).getPublicUrl(path);
+      setForm({ ...form, cover_url: publicUrl.publicUrl });
       toast.success("Capa enviada!");
     } catch (e) {
       toast.error("Falha no upload: " + (e as Error).message);

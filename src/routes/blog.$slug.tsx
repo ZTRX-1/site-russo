@@ -1,6 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
-import { useQuery } from "@tanstack/react-query";
+import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { ArrowLeft, Calendar } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -10,10 +9,20 @@ import { CtaButton } from "@/components/ui/CtaButton";
 import { getPublishedPost, formatDatePtBr } from "@/lib/blog.functions";
 import { SITE_URL, WHATSAPP_URL, WHATSAPP_URL_ESPECIALISTA } from "@/lib/constants";
 
+const publishedPostQueryOptions = (slug: string) =>
+  queryOptions({
+    queryKey: ["public-post", slug],
+    queryFn: () => getPublishedPost({ data: { slug } }),
+  });
+
 export const Route = createFileRoute("/blog/$slug")({
-  ssr: false,
+  loader: async ({ context, params }) => {
+    const data = await context.queryClient.ensureQueryData(publishedPostQueryOptions(params.slug));
+    if (!data.post) throw notFound();
+    return data;
+  },
   head: ({ loaderData, params }) => {
-    const post = loaderData as unknown as null;
+    const post = loaderData?.post;
     if (!post) {
       const url = `${SITE_URL}/blog/${params.slug}`;
       return {
@@ -24,7 +33,20 @@ export const Route = createFileRoute("/blog/$slug")({
         links: [{ rel: "canonical", href: url }],
       };
     }
-    return { meta: [] };
+    const url = `${SITE_URL}/blog/${post.slug}`;
+    return {
+      meta: [
+        { title: `${post.title} — Blog Russo Elétrica` },
+        { name: "description", content: post.description || "Artigo técnico da Russo Elétrica e Ferragens." },
+        { property: "og:title", content: `${post.title} — Blog Russo Elétrica` },
+        { property: "og:description", content: post.description || "Artigo técnico da Russo Elétrica e Ferragens." },
+        { property: "og:type", content: "article" },
+        { property: "og:url", content: url },
+        ...(post.cover_url ? [{ property: "og:image", content: post.cover_url }] : []),
+        { name: "twitter:card", content: post.cover_url ? "summary_large_image" : "summary" },
+      ],
+      links: [{ rel: "canonical", href: url }],
+    };
   },
   component: BlogPostPage,
   notFoundComponent: () => (
@@ -50,23 +72,7 @@ export const Route = createFileRoute("/blog/$slug")({
 
 function BlogPostPage() {
   const { slug } = Route.useParams();
-  const fn = useServerFn(getPublishedPost);
-  const { data, isLoading } = useQuery({
-    queryKey: ["public-post", slug],
-    queryFn: () => fn({ data: { slug } }),
-  });
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-background">
-        <Header />
-        <main className="mx-auto max-w-3xl px-4 py-24 text-center text-muted-foreground">
-          Carregando artigo...
-        </main>
-        <Footer />
-      </div>
-    );
-  }
+  const { data } = useSuspenseQuery(publishedPostQueryOptions(slug));
 
   const post = data?.post;
   if (!post) {
