@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermosDeUsoRouteImport } from './routes/termos-de-uso'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SetupRouteImport } from './routes/setup'
 import { Route as RioPequenoRouteImport } from './routes/rio-pequeno'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as MaterialEletricoRioPequenoRouteImport } from './routes/material-eletrico-rio-pequeno'
@@ -43,6 +44,11 @@ const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetupRoute = SetupRouteImport.update({
+  id: '/setup',
+  path: '/setup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RioPequenoRoute = RioPequenoRouteImport.update({
@@ -178,6 +184,7 @@ export interface FileRoutesByFullPath {
   '/material-eletrico-rio-pequeno': typeof MaterialEletricoRioPequenoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/rio-pequeno': typeof RioPequenoRoute
+  '/setup': typeof SetupRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
@@ -203,6 +210,7 @@ export interface FileRoutesByTo {
   '/material-eletrico-rio-pequeno': typeof MaterialEletricoRioPequenoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/rio-pequeno': typeof RioPequenoRoute
+  '/setup': typeof SetupRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -230,6 +238,7 @@ export interface FileRoutesById {
   '/material-eletrico-rio-pequeno': typeof MaterialEletricoRioPequenoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/rio-pequeno': typeof RioPequenoRoute
+  '/setup': typeof SetupRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
@@ -258,6 +267,7 @@ export interface FileRouteTypes {
     | '/material-eletrico-rio-pequeno'
     | '/politica-de-privacidade'
     | '/rio-pequeno'
+    | '/setup'
     | '/sitemap.xml'
     | '/termos-de-uso'
     | '/admin'
@@ -283,6 +293,7 @@ export interface FileRouteTypes {
     | '/material-eletrico-rio-pequeno'
     | '/politica-de-privacidade'
     | '/rio-pequeno'
+    | '/setup'
     | '/sitemap.xml'
     | '/termos-de-uso'
     | '/blog/$slug'
@@ -309,6 +320,7 @@ export interface FileRouteTypes {
     | '/material-eletrico-rio-pequeno'
     | '/politica-de-privacidade'
     | '/rio-pequeno'
+    | '/setup'
     | '/sitemap.xml'
     | '/termos-de-uso'
     | '/_authenticated/admin'
@@ -337,6 +349,7 @@ export interface RootRouteChildren {
   MaterialEletricoRioPequenoRoute: typeof MaterialEletricoRioPequenoRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   RioPequenoRoute: typeof RioPequenoRoute
+  SetupRoute: typeof SetupRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermosDeUsoRoute: typeof TermosDeUsoRoute
   ApiPublicTrackRoute: typeof ApiPublicTrackRoute
@@ -356,6 +369,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/setup': {
+      id: '/setup'
+      path: '/setup'
+      fullPath: '/setup'
+      preLoaderRoute: typeof SetupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/rio-pequeno': {
@@ -580,6 +600,7 @@ const rootRouteChildren: RootRouteChildren = {
   MaterialEletricoRioPequenoRoute: MaterialEletricoRioPequenoRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   RioPequenoRoute: RioPequenoRoute,
+  SetupRoute: SetupRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermosDeUsoRoute: TermosDeUsoRoute,
   ApiPublicTrackRoute: ApiPublicTrackRoute,
