@@ -2,9 +2,9 @@ import { createFileRoute, Outlet, Link, useRouter, useLocation } from "@tanstack
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { LogOut, FileText, Users, LayoutDashboard, ShieldAlert, Home, BarChart3 } from "lucide-react";
-import { getMyRoles, claimFirstAdmin } from "@/lib/admin.functions";
+import { getMyRoles } from "@/lib/admin.functions";
 import { signOut } from "@/lib/auth/useAuth";
-import { toast } from "sonner";
+
 
 export const Route = createFileRoute("/_authenticated/admin")({
   component: AdminLayout,
@@ -12,12 +12,11 @@ export const Route = createFileRoute("/_authenticated/admin")({
 
 function AdminLayout() {
   const getRoles = useServerFn(getMyRoles);
-  const claim = useServerFn(claimFirstAdmin);
   const router = useRouter();
   const loc = useLocation();
   const queryClient = useQueryClient();
 
-  const { data: me, isLoading, refetch } = useQuery({
+  const { data: me, isLoading } = useQuery({
     queryKey: ["me-roles"],
     queryFn: () => getRoles(),
   });
@@ -27,16 +26,6 @@ function AdminLayout() {
     queryClient.clear();
     await signOut();
     router.navigate({ to: "/auth", replace: true });
-  }
-
-  async function handleClaim() {
-    try {
-      await claim();
-      toast.success("Você agora é administrador!");
-      refetch();
-    } catch (e) {
-      toast.error((e as Error).message);
-    }
   }
 
   if (isLoading) {
@@ -52,15 +41,9 @@ function AdminLayout() {
           <ShieldAlert className="mx-auto h-10 w-10 text-primary" />
           <h1 className="mt-4 font-display text-2xl font-black text-foreground">Sem permissão</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            Sua conta não tem acesso ao painel editorial. Peça a um administrador para te adicionar
-            à equipe, ou, se este é o primeiro acesso ao painel e ainda não há nenhum admin ,
-            você pode se promover automaticamente abaixo.
+            Sua conta não tem acesso ao painel. Peça a um administrador para te adicionar à equipe.
           </p>
           <div className="mt-6 flex flex-col gap-2">
-            <button
-              onClick={handleClaim}
-              className="rounded-md bg-primary px-4 py-3 text-sm font-bold uppercase tracking-wider text-primary-foreground"
-            >Sou o primeiro admin</button>
             <button
               onClick={handleSignOut}
               className="rounded-md border border-border px-4 py-2 text-sm font-medium hover:bg-accent"
