@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate, useSearch, Link } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { Header } from "@/components/layout/Header";
@@ -27,25 +27,35 @@ function AuthPage() {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const redirectedRef = useRef(false);
 
   const redirectTo = (search.redirect && search.redirect.startsWith("/")) ? search.redirect : "/admin";
 
   useEffect(() => {
+    const go = () => {
+      if (redirectedRef.current) return;
+      redirectedRef.current = true;
+      navigate({ to: redirectTo, replace: true });
+    };
     supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate({ to: redirectTo, replace: true });
+      if (data.session) go();
     });
     const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === "SIGNED_IN" && session) navigate({ to: redirectTo, replace: true });
+      if (event === "SIGNED_IN" && session) go();
     });
     return () => sub.subscription.unsubscribe();
   }, [navigate, redirectTo]);
 
   async function handleEmailLogin(e: React.FormEvent) {
     e.preventDefault();
+    if (submitting) return;
     setSubmitting(true);
     try {
       await loginWithIdentifier({ identifier: identifier.trim(), password });
-      navigate({ to: redirectTo, replace: true });
+      if (!redirectedRef.current) {
+        redirectedRef.current = true;
+        navigate({ to: redirectTo, replace: true });
+      }
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Falha no login.");
     } finally {
