@@ -1,5 +1,5 @@
-import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { Link, useRouterState } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { WHATSAPP_URL } from "@/lib/constants";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
@@ -27,6 +27,22 @@ export function Logo({ className = "" }: { className?: string }) {
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isHome = pathname === "/";
+
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const body = document.body;
+    const apply = () => {
+      const scrolled = !isHome || window.scrollY > 24;
+      body.classList.toggle("scrolled", scrolled);
+    };
+    apply();
+    if (!isHome) return;
+    window.addEventListener("scroll", apply, { passive: true });
+    return () => window.removeEventListener("scroll", apply);
+  }, [isHome]);
+
   const links = [
     { to: "/", label: "Início" },
     { to: "/empresas", label: "Empresas" },
