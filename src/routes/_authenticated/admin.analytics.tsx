@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 import { getAnalyticsOverview, generateAnalyticsPdf } from "@/lib/analytics.functions";
@@ -51,19 +50,16 @@ function AnalyticsPage() {
     return { start: isoDaysAgo(p.days), end: new Date().toISOString(), label: p.label };
   }, [preset, customStart, customEnd]);
 
-  const fetchOverview = useServerFn(getAnalyticsOverview);
-  const fetchPdf = useServerFn(generateAnalyticsPdf);
-
   const { data, isLoading, isFetching } = useQuery({
     queryKey: ["analytics", range.start, range.end],
-    queryFn: () => fetchOverview({ data: { start: range.start, end: range.end } }),
+    queryFn: () => getAnalyticsOverview({ start: range.start, end: range.end }),
     staleTime: 60_000,
   });
 
   async function handleExport() {
     setGenerating(true);
     try {
-      const res = await fetchPdf({ data: { start: range.start, end: range.end, label: `Período: ${range.label}` } });
+      const res = await generateAnalyticsPdf({ start: range.start, end: range.end, label: `Período: ${range.label}` });
       const blob = await (await fetch(`data:application/pdf;base64,${res.base64}`)).blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");

@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import {
@@ -39,10 +38,9 @@ function fmtRelative(iso: string) {
 
 function AdminDashboard() {
   const [preset, setPreset] = useState<Preset>("d7");
-  const fn = useServerFn(getDashboardOverview);
   const { data, isLoading } = useQuery({
     queryKey: ["dashboard-overview"],
-    queryFn: () => fn(),
+    queryFn: () => getDashboardOverview(),
     staleTime: 60_000,
   });
 

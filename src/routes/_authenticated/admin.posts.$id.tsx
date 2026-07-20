@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { getAdminPost } from "@/lib/posts.functions";
@@ -11,10 +10,9 @@ export const Route = createFileRoute("/_authenticated/admin/posts/$id")({
 
 function EditPost() {
   const { id } = Route.useParams();
-  const fn = useServerFn(getAdminPost);
   const { data: post, isLoading } = useQuery({
     queryKey: ["admin-post", id],
-    queryFn: () => fn({ data: { id } }),
+    queryFn: () => getAdminPost({ id }),
   });
 
   if (isLoading || !post) return <div>Carregando...</div>;

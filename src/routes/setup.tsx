@@ -1,12 +1,10 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { createSuperAdmin, hasAnyAdmin, loginWithIdentifier } from "@/lib/auth.functions";
+import { createSuperAdmin, hasAnyAdmin } from "@/lib/auth.functions";
 
 export const Route = createFileRoute("/setup")({
   head: () => ({
@@ -20,13 +18,10 @@ export const Route = createFileRoute("/setup")({
 
 function SetupPage() {
   const navigate = useNavigate();
-  const check = useServerFn(hasAnyAdmin);
-  const create = useServerFn(createSuperAdmin);
-  const doLogin = useServerFn(loginWithIdentifier);
 
   const { data: status, isLoading } = useQuery({
     queryKey: ["setup-status"],
-    queryFn: () => check(),
+    queryFn: () => hasAnyAdmin(),
   });
 
   const [form, setForm] = useState({
@@ -46,21 +41,11 @@ function SetupPage() {
     }
     setSubmitting(true);
     try {
-      await create({
-        data: {
-          email: form.email.trim(),
-          username: form.username.trim(),
-          password: form.password,
-          displayName: form.displayName.trim() || undefined,
-        },
-      });
-      // login automático
-      const tokens = await doLogin({
-        data: { identifier: form.username.trim(), password: form.password },
-      });
-      await supabase.auth.setSession({
-        access_token: tokens.access_token,
-        refresh_token: tokens.refresh_token,
+      await createSuperAdmin({
+        email: form.email.trim(),
+        username: form.username.trim(),
+        password: form.password,
+        displayName: form.displayName.trim() || undefined,
       });
       toast.success("Super administrador criado com sucesso.");
       navigate({ to: "/admin", replace: true });

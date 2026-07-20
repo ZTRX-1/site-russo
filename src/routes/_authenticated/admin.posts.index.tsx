@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { Plus, Pencil, Trash2, ExternalLink, ImageOff, Loader2 } from "lucide-react";
@@ -11,17 +10,15 @@ export const Route = createFileRoute("/_authenticated/admin/posts/")({
 });
 
 function PostsList() {
-  const fn = useServerFn(listAdminPosts);
-  const delFn = useServerFn(deletePost);
   const qc = useQueryClient();
-  const { data, isLoading } = useQuery({ queryKey: ["admin-posts"], queryFn: () => fn() });
+  const { data, isLoading } = useQuery({ queryKey: ["admin-posts"], queryFn: () => listAdminPosts() });
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
   async function handleDelete(id: string, title: string) {
     if (!confirm(`Apagar "${title}"?\n\nEssa ação não pode ser desfeita.`)) return;
     setDeletingId(id);
     try {
-      await delFn({ data: { id } });
+      await deletePost({ id });
       toast.success("Post apagado.");
       qc.invalidateQueries({ queryKey: ["admin-posts"] });
       qc.invalidateQueries({ queryKey: ["dashboard-overview"] });

@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -16,13 +15,9 @@ export const Route = createFileRoute("/_authenticated/admin/users")({
 });
 
 function UsersPage() {
-  const listFn = useServerFn(listTeamMembers);
-  const inviteFn = useServerFn(inviteTeamMember);
-  const roleFn = useServerFn(setUserRole);
-  const removeFn = useServerFn(removeTeamMember);
   const qc = useQueryClient();
 
-  const { data: members } = useQuery({ queryKey: ["team-members"], queryFn: () => listFn() });
+  const { data: members } = useQuery({ queryKey: ["team-members"], queryFn: () => listTeamMembers() });
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [role, setRole] = useState<"admin" | "editor">("editor");
@@ -32,7 +27,7 @@ function UsersPage() {
     e.preventDefault();
     setInviting(true);
     try {
-      await inviteFn({ data: { email: email.trim(), role, displayName: name.trim() || undefined } });
+      await inviteTeamMember({ email: email.trim(), role, displayName: name.trim() || undefined });
       toast.success("Convite enviado por email!");
       setEmail(""); setName("");
       qc.invalidateQueries({ queryKey: ["team-members"] });
@@ -45,7 +40,7 @@ function UsersPage() {
 
   async function toggleRole(userId: string, r: "admin" | "editor", enable: boolean) {
     try {
-      await roleFn({ data: { userId, role: r, enable } });
+      await setUserRole({ userId, role: r, enable });
       qc.invalidateQueries({ queryKey: ["team-members"] });
     } catch (e) {
       toast.error((e as Error).message);
@@ -55,7 +50,7 @@ function UsersPage() {
   async function remove(userId: string) {
     if (!confirm("Remover papéis desse membro? Ele perde o acesso ao painel.")) return;
     try {
-      await removeFn({ data: { userId } });
+      await removeTeamMember({ userId });
       qc.invalidateQueries({ queryKey: ["team-members"] });
     } catch (e) {
       toast.error((e as Error).message);
