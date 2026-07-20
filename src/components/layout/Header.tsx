@@ -1,5 +1,5 @@
-import { Link, useRouterState } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { WHATSAPP_URL } from "@/lib/constants";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
@@ -14,10 +14,10 @@ export function Logo({ className = "" }: { className?: string }) {
         className="h-10 w-10 object-contain shrink-0"
       />
       <span className="flex flex-col leading-none">
-        <span className="font-display text-lg font-extrabold tracking-tight text-white transition-colors duration-300 scrolled:text-foreground">
+        <span className="font-display text-lg font-extrabold tracking-tight text-foreground">
           RUSSO
         </span>
-        <span className="text-[10px] uppercase tracking-[0.18em] text-white/70 transition-colors duration-300 scrolled:text-muted-foreground">
+        <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
           Elétrica & Ferragens
         </span>
       </span>
@@ -27,22 +27,6 @@ export function Logo({ className = "" }: { className?: string }) {
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const isHome = pathname === "/";
-
-  useEffect(() => {
-    if (typeof document === "undefined") return;
-    const body = document.body;
-    const apply = () => {
-      const scrolled = !isHome || window.scrollY > 24;
-      body.classList.toggle("scrolled", scrolled);
-    };
-    apply();
-    if (!isHome) return;
-    window.addEventListener("scroll", apply, { passive: true });
-    return () => window.removeEventListener("scroll", apply);
-  }, [isHome]);
-
   const links = [
     { to: "/", label: "Início" },
     { to: "/empresas", label: "Empresas" },
@@ -54,11 +38,11 @@ export function Header() {
   return (
     <header
       id="top"
-      className="sticky top-0 z-40 w-full border-b border-transparent bg-transparent transition-all duration-300 scrolled:bg-white/90 scrolled:backdrop-blur-md scrolled:border-border/60"
+      className="sticky top-0 z-40 w-full border-b border-border/60 bg-white/95 backdrop-blur-md"
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
         <Logo />
-        <nav className="hidden items-center gap-6 text-sm font-medium text-white/85 transition-colors duration-300 scrolled:text-foreground/80 lg:flex xl:gap-8">
+        <nav className="hidden items-center gap-6 text-sm font-semibold text-foreground lg:flex xl:gap-8">
           {links.map((l) => (
             <Link
               key={l.to}
@@ -85,7 +69,7 @@ export function Header() {
             aria-label={open ? "Fechar menu" : "Abrir menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-white/20 bg-white/10 text-white backdrop-blur-md transition-colors hover:bg-white/20 scrolled:border-border/60 scrolled:bg-white/70 scrolled:text-foreground scrolled:hover:bg-white lg:hidden"
+            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-border/60 bg-white/70 text-foreground transition-colors hover:bg-white lg:hidden"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
