@@ -163,8 +163,8 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR">
       <head>
+        {/* GA4/Ads são carregados via container do GTM para evitar hits duplicados. */}
         <GoogleTagManagerHead />
-        <GoogleAnalytics />
         <HeadContent />
       </head>
       <body>
