@@ -34,7 +34,7 @@ export async function listTeamMembers() {
   return (profiles ?? []).map((p) => ({ ...p, roles: roleMap.get(p.id) ?? [] }));
 }
 
-export async function inviteTeamMember() {
+export async function inviteTeamMember(_input: { email: string; role: "admin" | "editor"; displayName?: string }) {
   throw new Error("Convites por e-mail exigem publicação no Lovable. Por enquanto, use o setup inicial para o super administrador.");
 }
 
