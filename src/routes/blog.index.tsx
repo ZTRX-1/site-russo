@@ -85,22 +85,29 @@ function BlogIndex() {
                   key={p.slug}
                   to="/blog/$slug"
                   params={{ slug: p.slug }}
-                  className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition hover:border-primary/40 hover:shadow-[var(--shadow-industrial)]"
+                  className="card-premium group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-primary/40 hover:shadow-[var(--shadow-card)]"
                 >
                   {p.cover_url && (
-                    <img src={p.cover_url} alt={p.title} className="h-48 w-full object-cover" loading="lazy" />
+                    <div className="aspect-[16/10] overflow-hidden">
+                      <img
+                        src={p.cover_url}
+                        alt={p.title}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        loading="lazy"
+                      />
+                    </div>
                   )}
                   <div className="flex flex-1 flex-col p-6">
                     <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-primary">
                       {p.category}
                     </span>
-                    <h2 className="mt-3 font-display text-xl font-black leading-tight text-foreground group-hover:text-primary">
+                    <h2 className="mt-3 font-display text-xl font-black leading-[1.15] text-foreground transition-colors group-hover:text-primary">
                       {p.title}
                     </h2>
                     <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
                       {p.description}
                     </p>
-                    <div className="mt-6 flex items-center justify-between text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+                    <div className="mt-6 flex items-center justify-between text-[11px] font-medium uppercase tracking-wider text-muted-foreground text-numeric">
                       <span className="inline-flex items-center gap-1.5">
                         <Calendar className="h-3.5 w-3.5" />
                         {formatDatePtBr(p.published_at)}

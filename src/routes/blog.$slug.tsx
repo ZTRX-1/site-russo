@@ -96,7 +96,7 @@ function BlogPostPage() {
           <h1 className="mt-3 font-display text-4xl font-black leading-tight text-foreground md:text-5xl">
             {post.title}
           </h1>
-          <div className="mt-5 flex flex-wrap items-center gap-4 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+          <div className="mt-5 flex flex-wrap items-center gap-4 text-[11px] font-medium uppercase tracking-wider text-muted-foreground text-numeric">
             <span className="inline-flex items-center gap-1.5">
               <Calendar className="h-3.5 w-3.5" /> {formatDatePtBr(post.published_at)}
             </span>
@@ -104,11 +104,13 @@ function BlogPostPage() {
           </div>
 
           {post.cover_url && (
-            <img src={post.cover_url} alt={post.title} className="mt-8 w-full rounded-2xl object-cover" />
+            <div className="mt-8 overflow-hidden rounded-2xl shadow-[var(--shadow-card)]">
+              <img src={post.cover_url} alt={post.title} className="aspect-[16/9] w-full object-cover" />
+            </div>
           )}
 
           <div
-            className="prose prose-slate mt-10 max-w-none prose-headings:font-display prose-headings:font-black prose-h2:mt-10 prose-h2:text-2xl prose-h3:text-xl prose-a:text-primary prose-strong:text-foreground"
+            className="prose prose-slate mt-10 max-w-none prose-headings:font-display prose-headings:font-black prose-headings:tracking-tight prose-h2:mt-12 prose-h2:text-3xl prose-h3:text-xl prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground prose-img:rounded-xl"
             dangerouslySetInnerHTML={{ __html: post.content_html }}
           />
 

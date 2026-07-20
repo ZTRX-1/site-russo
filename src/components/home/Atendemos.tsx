@@ -44,7 +44,7 @@ export function Atendemos() {
               </>
             );
             const className =
-              "card-premium group rounded-2xl border border-border bg-card p-5 transition-colors hover:border-primary/40 hover:shadow-[var(--shadow-card)] sm:p-8";
+              "card-premium group rounded-2xl border border-border bg-card p-5 transition-all hover:border-primary/40 hover:shadow-[var(--shadow-card)] sm:p-8";
             return to ? (
               <Link key={title} to={to} className={className}>
                 {inner}

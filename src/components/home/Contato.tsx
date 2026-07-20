@@ -33,12 +33,12 @@ export function Contato() {
         </p>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-3">
-          <div className="rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur-sm">
+          <div className="hover-lift rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur-sm hover:border-primary/40">
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground">
               <Phone className="h-5 w-5" strokeWidth={1.75} />
             </span>
             <p className="mt-3 text-[11px] uppercase tracking-widest text-white/55">Telefones</p>
-            <div className="mt-1 flex flex-col font-semibold">
+            <div className="mt-1 flex flex-col font-semibold text-numeric">
               <a href={`tel:${PHONE_DISPLAY.replace(/\D/g, "")}`} className="transition-colors hover:text-primary">
                 {PHONE_DISPLAY}
               </a>
@@ -47,7 +47,7 @@ export function Contato() {
               </a>
             </div>
           </div>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur-sm">
+          <div className="hover-lift rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur-sm hover:border-primary/40">
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground">
               <MapPin className="h-5 w-5" strokeWidth={1.75} />
             </span>
@@ -55,13 +55,13 @@ export function Contato() {
           <p className="mt-1 font-semibold leading-tight">Rio Pequeno, próximo à USP</p>
             <p className="mt-1 text-xs text-white/60">Av. Escola Politécnica, 2850</p>
           </div>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur-sm">
+          <div className="hover-lift rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur-sm hover:border-primary/40">
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground">
               <Clock className="h-5 w-5" strokeWidth={1.75} />
             </span>
             <p className="mt-3 text-[11px] uppercase tracking-widest text-white/55">Horário</p>
-          <p className="mt-1 font-semibold leading-tight">Segunda a sexta, das 8h às 18h</p>
-          <p className="text-sm font-semibold">Aos sábados, das 8h às 13h</p>
+          <p className="mt-1 font-semibold leading-tight text-numeric">Segunda a sexta, das 8h às 18h</p>
+          <p className="text-sm font-semibold text-numeric">Aos sábados, das 8h às 13h</p>
           </div>
         </div>
       </div>

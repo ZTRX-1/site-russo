@@ -36,14 +36,14 @@ export function Categorias() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="card-premium group relative flex h-full min-h-[148px] flex-col overflow-hidden rounded-2xl border border-border bg-card p-4 transition-colors hover:border-primary hover:shadow-[var(--shadow-card)] sm:min-h-[168px] sm:p-5"
+                className="card-premium group relative flex h-full min-h-[148px] flex-col overflow-hidden rounded-2xl border border-border bg-card p-4 transition-all hover:border-primary hover:shadow-[var(--shadow-card)] sm:min-h-[168px] sm:p-5"
               >
-                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground sm:h-12 sm:w-12">
+                <span className="icon-lift flex h-10 w-10 items-center justify-center rounded-lg bg-secondary text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground sm:h-12 sm:w-12">
                   <Icon className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={1.75} />
                 </span>
                 <h3 className="mt-3 font-display text-base font-black tracking-tight sm:mt-4 sm:text-lg">{name}</h3>
                 <p className="mt-1 grow text-xs leading-snug text-muted-foreground sm:text-sm">{desc}</p>
-                <span className="mt-3 inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-primary sm:mt-4 sm:text-[11px]">
+                <span className="mt-3 inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-primary transition-transform group-hover:translate-x-0.5 sm:mt-4 sm:text-[11px]">
                   Consultar <WhatsAppIcon className="h-3.5 w-3.5 shrink-0" />
                 </span>
               </a>
