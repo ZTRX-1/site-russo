@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { RichTextEditor } from "./RichTextEditor";
 import { createPost, updatePost, deletePost } from "@/lib/posts.functions";
@@ -30,12 +31,20 @@ interface Post {
 
 export function PostForm({ initial }: { initial: Post }) {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [form, setForm] = useState<Post>(initial);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const isEdit = !!form.id;
+
+  function invalidatePostCaches(postId?: string) {
+    queryClient.invalidateQueries({ queryKey: ["admin-posts"] });
+    queryClient.invalidateQueries({ queryKey: ["dashboard-overview"] });
+    queryClient.invalidateQueries({ queryKey: ["published-posts"] });
+    if (postId) queryClient.invalidateQueries({ queryKey: ["admin-post", postId] });
+  }
 
   async function handleFileUpload(file: File) {
     if (!file.type.startsWith("image/")) {
@@ -77,9 +86,11 @@ export function PostForm({ initial }: { initial: Post }) {
         await updatePost({ ...payload, id: form.id });
         toast.success(status === "published" ? "Post publicado!" : "Rascunho salvo.");
         setForm({ ...form, status });
+        invalidatePostCaches(form.id);
       } else {
         const created = await createPost(payload);
         toast.success(status === "published" ? "Post publicado!" : "Rascunho salvo.");
+        invalidatePostCaches(created.id);
         navigate({ to: "/admin/posts/$id", params: { id: created.id } });
       }
     } catch (e) {
@@ -94,6 +105,7 @@ export function PostForm({ initial }: { initial: Post }) {
     try {
       await deletePost({ id: form.id });
       toast.success("Post apagado.");
+      invalidatePostCaches(form.id);
       navigate({ to: "/admin/posts" });
     } catch (e) {
       toast.error((e as Error).message);
