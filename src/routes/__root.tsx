@@ -16,7 +16,6 @@ import {
   GoogleTagManagerHead,
   GoogleTagManagerBody,
 } from "../components/analytics/GoogleTagManager";
-import { GoogleAnalytics } from "../components/analytics/GoogleAnalytics";
 import { trackPageView } from "../lib/analytics";
 
 const GSC_TOKEN = import.meta.env.VITE_GSC_VERIFICATION as string | undefined;
