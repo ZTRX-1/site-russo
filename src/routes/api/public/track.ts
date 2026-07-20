@@ -55,7 +55,9 @@ export const Route = createFileRoute("/api/public/track")({
           const gclid = typeof payload.meta?.gclid === "string" ? payload.meta.gclid : null;
           const fbclid = typeof payload.meta?.fbclid === "string" ? payload.meta.fbclid : null;
 
-          await db.from("analytics_visitors").upsert(
+          // Preserva "first_seen_at"/"started_at" e o primeiro referrer/UTM:
+          // insere apenas se novo; caso contrário só atualiza o "last_seen_at".
+          const visitorInsert = await db.from("analytics_visitors").upsert(
             {
               id: payload.visitor_id,
               first_seen_at: now,
@@ -67,10 +69,16 @@ export const Route = createFileRoute("/api/public/track")({
               country,
               city,
             },
-            { onConflict: "id", ignoreDuplicates: false },
+            { onConflict: "id", ignoreDuplicates: true },
           );
+          if (visitorInsert.error) throw visitorInsert.error;
+          const visitorTouch = await db
+            .from("analytics_visitors")
+            .update({ last_seen_at: now })
+            .eq("id", payload.visitor_id);
+          if (visitorTouch.error) throw visitorTouch.error;
 
-          await db.from("analytics_sessions").upsert(
+          const sessionInsert = await db.from("analytics_sessions").upsert(
             {
               id: payload.session_id,
               visitor_id: payload.visitor_id,
@@ -87,8 +95,14 @@ export const Route = createFileRoute("/api/public/track")({
               fbclid,
               user_agent: userAgent,
             },
-            { onConflict: "id", ignoreDuplicates: false },
+            { onConflict: "id", ignoreDuplicates: true },
           );
+          if (sessionInsert.error) throw sessionInsert.error;
+          const sessionTouch = await db
+            .from("analytics_sessions")
+            .update({ last_seen_at: now })
+            .eq("id", payload.session_id);
+          if (sessionTouch.error) throw sessionTouch.error;
 
           await db.from("analytics_events").insert({
             visitor_id: payload.visitor_id,
