@@ -16,7 +16,6 @@ import {
   GoogleTagManagerHead,
   GoogleTagManagerBody,
 } from "../components/analytics/GoogleTagManager";
-import { GoogleAnalytics } from "../components/analytics/GoogleAnalytics";
 import { trackPageView } from "../lib/analytics";
 
 const GSC_TOKEN = import.meta.env.VITE_GSC_VERIFICATION as string | undefined;
@@ -163,8 +162,8 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR">
       <head>
+        {/* GA4/Ads são carregados via container do GTM para evitar hits duplicados. */}
         <GoogleTagManagerHead />
-        <GoogleAnalytics />
         <HeadContent />
       </head>
       <body>
