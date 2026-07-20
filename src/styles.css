@@ -331,6 +331,32 @@
   }
 }
 
+/* Sublinhado premium animado para links inline em texto corrido */
+@utility link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  &:hover, &:focus-visible {
+    background-size: 100% 1px;
+  }
+}
+
+/* Tabular numerals para preços, telefones, horários */
+@utility text-numeric {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum", "ss01";
+}
+
+/* Zoom sutil em ícones dentro de cards no hover do grupo */
+@utility icon-lift {
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  .group:hover & {
+    transform: translateY(-2px) scale(1.04);
+  }
+}
+
 /* Fix for screenshot showing unstyled content or huge icons */
 header {
   transition: background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
