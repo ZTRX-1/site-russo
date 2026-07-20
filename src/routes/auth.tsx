@@ -5,7 +5,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { toast } from "sonner";
-import { useServerFn } from "@tanstack/react-start";
 import { loginWithIdentifier } from "@/lib/auth.functions";
 
 const searchSchema = z.object({ redirect: z.string().optional() });
@@ -28,7 +27,6 @@ function AuthPage() {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const doLogin = useServerFn(loginWithIdentifier);
 
   const redirectTo = (search.redirect && search.redirect.startsWith("/")) ? search.redirect : "/admin";
 
@@ -46,13 +44,8 @@ function AuthPage() {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const tokens = await doLogin({ data: { identifier: identifier.trim(), password } });
-      const { error } = await supabase.auth.setSession({
-        access_token: tokens.access_token,
-        refresh_token: tokens.refresh_token,
-      });
-      if (error) throw error;
-      // onAuthStateChange redireciona
+      await loginWithIdentifier({ identifier: identifier.trim(), password });
+      navigate({ to: redirectTo, replace: true });
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Falha no login.");
     } finally {

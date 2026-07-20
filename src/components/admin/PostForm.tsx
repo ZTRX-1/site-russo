@@ -1,6 +1,5 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { RichTextEditor } from "./RichTextEditor";
 import { createPost, updatePost, deletePost } from "@/lib/posts.functions";
@@ -31,9 +30,6 @@ interface Post {
 
 export function PostForm({ initial }: { initial: Post }) {
   const navigate = useNavigate();
-  const createFn = useServerFn(createPost);
-  const updateFn = useServerFn(updatePost);
-  const deleteFn = useServerFn(deletePost);
   const [form, setForm] = useState<Post>(initial);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -78,11 +74,11 @@ export function PostForm({ initial }: { initial: Post }) {
     try {
       const payload = { ...form, status };
       if (isEdit && form.id) {
-        await updateFn({ data: { ...payload, id: form.id } });
+        await updatePost({ ...payload, id: form.id });
         toast.success(status === "published" ? "Post publicado!" : "Rascunho salvo.");
         setForm({ ...form, status });
       } else {
-        const created = await createFn({ data: payload });
+        const created = await createPost(payload);
         toast.success(status === "published" ? "Post publicado!" : "Rascunho salvo.");
         navigate({ to: "/admin/posts/$id", params: { id: created.id } });
       }
@@ -96,7 +92,7 @@ export function PostForm({ initial }: { initial: Post }) {
   async function onDelete() {
     if (!form.id || !confirm("Apagar este post? Não pode ser desfeito.")) return;
     try {
-      await deleteFn({ data: { id: form.id } });
+      await deletePost({ id: form.id });
       toast.success("Post apagado.");
       navigate({ to: "/admin/posts" });
     } catch (e) {
