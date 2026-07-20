@@ -71,14 +71,14 @@ export function Footer() {
                   Rio Pequeno, São Paulo/SP
                 </span>
               </li>
-              <li className="flex items-start gap-3">
+              <li className="flex items-start gap-3 text-numeric">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                 <div className="flex flex-col">
                   <a href={`tel:${PHONE_DISPLAY.replace(/\D/g, '')}`} className="hover:text-white transition-colors">{PHONE_DISPLAY}</a>
                   <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">WhatsApp: (11) 92232-8009</a>
                 </div>
               </li>
-              <li className="flex items-start gap-3">
+              <li className="flex items-start gap-3 text-numeric">
                 <Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                 <div>
                   <p>Segunda a sexta, das 8h às 18h</p>
