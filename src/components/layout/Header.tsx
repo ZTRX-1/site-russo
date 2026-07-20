@@ -14,8 +14,10 @@ export function Logo({ className = "" }: { className?: string }) {
         className="h-10 w-10 object-contain shrink-0"
       />
       <span className="flex flex-col leading-none">
-        <span className="font-display text-lg font-extrabold tracking-tight">RUSSO</span>
-        <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+        <span className="font-display text-lg font-extrabold tracking-tight text-white transition-colors duration-300 scrolled:text-foreground">
+          RUSSO
+        </span>
+        <span className="text-[10px] uppercase tracking-[0.18em] text-white/70 transition-colors duration-300 scrolled:text-muted-foreground">
           Elétrica & Ferragens
         </span>
       </span>
@@ -40,9 +42,13 @@ export function Header() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
         <Logo />
-        <nav className="hidden items-center gap-6 text-sm font-medium text-foreground/80 lg:flex xl:gap-8">
+        <nav className="hidden items-center gap-6 text-sm font-medium text-white/85 transition-colors duration-300 scrolled:text-foreground/80 lg:flex xl:gap-8">
           {links.map((l) => (
-            <Link key={l.to} to={l.to} className="transition-colors hover:text-primary">
+            <Link
+              key={l.to}
+              to={l.to}
+              className="relative py-1 transition-colors hover:text-primary after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:scale-x-100"
+            >
               {l.label}
             </Link>
           ))}
@@ -63,7 +69,7 @@ export function Header() {
             aria-label={open ? "Fechar menu" : "Abrir menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-border/60 bg-white/70 text-foreground backdrop-blur-md transition-colors hover:bg-white lg:hidden"
+            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-white/20 bg-white/10 text-white backdrop-blur-md transition-colors hover:bg-white/20 scrolled:border-border/60 scrolled:bg-white/70 scrolled:text-foreground scrolled:hover:bg-white lg:hidden"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
