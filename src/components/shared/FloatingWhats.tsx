@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { WHATSAPP_URL } from "@/lib/constants";
+import { trackWhatsAppClick } from "@/lib/analytics";
 
 export function FloatingWhats() {
   const [isVisible, setIsVisible] = useState(false);
@@ -53,6 +54,7 @@ export function FloatingWhats() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackWhatsAppClick("floating_popup", { href: WHATSAPP_URL })}
             className="relative block rounded-2xl bg-white p-3 text-[12px] font-semibold leading-snug text-secondary shadow-xl ring-1 ring-black/5 transition-transform after:absolute after:bottom-[-8px] after:right-6 after:h-4 after:w-4 after:rotate-45 after:bg-white after:content-[''] hover:scale-[1.02] active:scale-95"
           >
             <p className="text-left">
@@ -71,6 +73,7 @@ export function FloatingWhats() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Falar no WhatsApp"
+        onClick={() => trackWhatsAppClick("floating_bubble", { href: WHATSAPP_URL })}
         className="group relative flex h-16 w-16 items-center justify-center rounded-full bg-primary shadow-[0_12px_30px_-8px_oklch(0.55_0.22_27_/_0.55)] ring-2 ring-white transition-transform hover:scale-110 active:scale-95"
       >
         <img
