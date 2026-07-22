@@ -33,6 +33,7 @@ import { Route as ApiPublicTrackRouteImport } from './routes/api/public/track'
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
 import { Route as AuthenticatedAdminAnalyticsRouteImport } from './routes/_authenticated/admin.analytics'
 import { Route as AuthenticatedAdminPostsIndexRouteImport } from './routes/_authenticated/admin.posts.index'
+import { Route as AuthenticatedAdminCatalogIndexRouteImport } from './routes/_authenticated/admin.catalog.index'
 import { Route as AuthenticatedAdminPostsNewRouteImport } from './routes/_authenticated/admin.posts.new'
 import { Route as AuthenticatedAdminPostsIdRouteImport } from './routes/_authenticated/admin.posts.$id'
 
@@ -158,6 +159,12 @@ const AuthenticatedAdminPostsIndexRoute =
     path: '/posts/',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminCatalogIndexRoute =
+  AuthenticatedAdminCatalogIndexRouteImport.update({
+    id: '/catalog/',
+    path: '/catalog/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminPostsNewRoute =
   AuthenticatedAdminPostsNewRouteImport.update({
     id: '/posts/new',
@@ -196,6 +203,7 @@ export interface FileRoutesByFullPath {
   '/admin/': typeof AuthenticatedAdminIndexRoute
   '/admin/posts/$id': typeof AuthenticatedAdminPostsIdRoute
   '/admin/posts/new': typeof AuthenticatedAdminPostsNewRoute
+  '/admin/catalog/': typeof AuthenticatedAdminCatalogIndexRoute
   '/admin/posts/': typeof AuthenticatedAdminPostsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -221,6 +229,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AuthenticatedAdminIndexRoute
   '/admin/posts/$id': typeof AuthenticatedAdminPostsIdRoute
   '/admin/posts/new': typeof AuthenticatedAdminPostsNewRoute
+  '/admin/catalog': typeof AuthenticatedAdminCatalogIndexRoute
   '/admin/posts': typeof AuthenticatedAdminPostsIndexRoute
 }
 export interface FileRoutesById {
@@ -250,6 +259,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/_authenticated/admin/posts/$id': typeof AuthenticatedAdminPostsIdRoute
   '/_authenticated/admin/posts/new': typeof AuthenticatedAdminPostsNewRoute
+  '/_authenticated/admin/catalog/': typeof AuthenticatedAdminCatalogIndexRoute
   '/_authenticated/admin/posts/': typeof AuthenticatedAdminPostsIndexRoute
 }
 export interface FileRouteTypes {
@@ -279,6 +289,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/admin/posts/$id'
     | '/admin/posts/new'
+    | '/admin/catalog/'
     | '/admin/posts/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -304,6 +315,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/admin/posts/$id'
     | '/admin/posts/new'
+    | '/admin/catalog'
     | '/admin/posts'
   id:
     | '__root__'
@@ -332,6 +344,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/'
     | '/_authenticated/admin/posts/$id'
     | '/_authenticated/admin/posts/new'
+    | '/_authenticated/admin/catalog/'
     | '/_authenticated/admin/posts/'
   fileRoutesById: FileRoutesById
 }
@@ -525,6 +538,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminPostsIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/catalog/': {
+      id: '/_authenticated/admin/catalog/'
+      path: '/catalog'
+      fullPath: '/admin/catalog/'
+      preLoaderRoute: typeof AuthenticatedAdminCatalogIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/posts/new': {
       id: '/_authenticated/admin/posts/new'
       path: '/posts/new'
@@ -548,6 +568,7 @@ interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
   AuthenticatedAdminPostsIdRoute: typeof AuthenticatedAdminPostsIdRoute
   AuthenticatedAdminPostsNewRoute: typeof AuthenticatedAdminPostsNewRoute
+  AuthenticatedAdminCatalogIndexRoute: typeof AuthenticatedAdminCatalogIndexRoute
   AuthenticatedAdminPostsIndexRoute: typeof AuthenticatedAdminPostsIndexRoute
 }
 
@@ -557,6 +578,7 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
   AuthenticatedAdminPostsIdRoute: AuthenticatedAdminPostsIdRoute,
   AuthenticatedAdminPostsNewRoute: AuthenticatedAdminPostsNewRoute,
+  AuthenticatedAdminCatalogIndexRoute: AuthenticatedAdminCatalogIndexRoute,
   AuthenticatedAdminPostsIndexRoute: AuthenticatedAdminPostsIndexRoute,
 }
 
