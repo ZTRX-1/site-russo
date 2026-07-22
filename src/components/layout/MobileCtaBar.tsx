@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Phone } from "lucide-react";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 import { WHATSAPP_URL, PHONE_DISPLAY } from "@/lib/constants";
+import { trackWhatsAppClick, trackEvent } from "@/lib/analytics";
 
 export function MobileCtaBar() {
   const [isVisible, setIsVisible] = useState(false);
@@ -28,6 +29,7 @@ export function MobileCtaBar() {
         <a
           href={`tel:${PHONE_DISPLAY.replace(/\D/g, "")}`}
           aria-label="Ligar para a loja"
+          onClick={() => trackEvent("phone_click", { source: "mobile_cta_bar" })}
           className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border border-border text-foreground transition-all hover:border-primary hover:text-primary active:scale-95"
         >
           <Phone className="h-5 w-5" strokeWidth={1.75} />
@@ -36,6 +38,7 @@ export function MobileCtaBar() {
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackWhatsAppClick("mobile_cta_bar", { href: WHATSAPP_URL })}
           className="inline-flex h-12 min-w-0 items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-[var(--shadow-red-glow)] transition-all hover:brightness-110 active:scale-[0.98]"
         >
           <WhatsAppIcon className="h-4 w-4 shrink-0" />

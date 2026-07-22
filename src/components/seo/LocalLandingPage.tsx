@@ -16,6 +16,7 @@ import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CtaBar } from "@/components/home/CtaBar";
+import { trackWhatsAppClick } from "@/lib/analytics";
 import {
   ADDRESS,
   MAPS_EMBED,
@@ -415,6 +416,7 @@ export function LocalLandingPage(props: LocalLandingPageProps) {
                 href={primaryCta.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick("local_landing_primary", { href: primaryCta.href })}
                 className="inline-flex items-center gap-2 rounded-md bg-primary px-8 py-4 text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-[var(--shadow-red-glow)] transition hover:bg-primary-dark"
               >
                 <WhatsAppIcon className="h-4 w-4 shrink-0" />
@@ -424,6 +426,7 @@ export function LocalLandingPage(props: LocalLandingPageProps) {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick("local_landing_geral", { href: WHATSAPP_URL })}
                 className="glass-industrial inline-flex items-center gap-2 rounded-md px-8 py-4 text-sm font-bold uppercase tracking-wider text-white transition hover:border-primary/40 hover:bg-white/10"
               >
                 Enviar mensagem geral

@@ -13,6 +13,7 @@ import {
   MOBILE_DISPLAY, 
   ADDRESS 
 } from "@/lib/constants";
+import { trackWhatsAppClick } from "@/lib/analytics";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -75,7 +76,15 @@ export function Footer() {
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                 <div className="flex flex-col">
                   <a href={`tel:${PHONE_DISPLAY.replace(/\D/g, '')}`} className="hover:text-white transition-colors">{PHONE_DISPLAY}</a>
-                  <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">WhatsApp: (11) 92232-8009</a>
+                  <a
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackWhatsAppClick("footer", { href: WHATSAPP_URL })}
+                    className="hover:text-white transition-colors"
+                  >
+                    WhatsApp: (11) 92232-8009
+                  </a>
                 </div>
               </li>
               <li className="flex items-start gap-3 text-numeric">
