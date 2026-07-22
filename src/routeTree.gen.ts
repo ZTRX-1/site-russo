@@ -38,6 +38,7 @@ import { Route as AuthenticatedAdminPostsNewRouteImport } from './routes/_authen
 import { Route as AuthenticatedAdminPostsIdRouteImport } from './routes/_authenticated/admin.posts.$id'
 import { Route as AuthenticatedAdminCatalogNewRouteImport } from './routes/_authenticated/admin.catalog.new'
 import { Route as AuthenticatedAdminCatalogCategoriesRouteImport } from './routes/_authenticated/admin.catalog.categories'
+import { Route as AuthenticatedAdminCatalogBrandsRouteImport } from './routes/_authenticated/admin.catalog.brands'
 import { Route as AuthenticatedAdminCatalogIdRouteImport } from './routes/_authenticated/admin.catalog.$id'
 
 const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
@@ -192,6 +193,12 @@ const AuthenticatedAdminCatalogCategoriesRoute =
     path: '/catalog/categories',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminCatalogBrandsRoute =
+  AuthenticatedAdminCatalogBrandsRouteImport.update({
+    id: '/catalog/brands',
+    path: '/catalog/brands',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminCatalogIdRoute =
   AuthenticatedAdminCatalogIdRouteImport.update({
     id: '/catalog/$id',
@@ -223,6 +230,7 @@ export interface FileRoutesByFullPath {
   '/api/public/track': typeof ApiPublicTrackRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
   '/admin/catalog/$id': typeof AuthenticatedAdminCatalogIdRoute
+  '/admin/catalog/brands': typeof AuthenticatedAdminCatalogBrandsRoute
   '/admin/catalog/categories': typeof AuthenticatedAdminCatalogCategoriesRoute
   '/admin/catalog/new': typeof AuthenticatedAdminCatalogNewRoute
   '/admin/posts/$id': typeof AuthenticatedAdminPostsIdRoute
@@ -252,6 +260,7 @@ export interface FileRoutesByTo {
   '/api/public/track': typeof ApiPublicTrackRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
   '/admin/catalog/$id': typeof AuthenticatedAdminCatalogIdRoute
+  '/admin/catalog/brands': typeof AuthenticatedAdminCatalogBrandsRoute
   '/admin/catalog/categories': typeof AuthenticatedAdminCatalogCategoriesRoute
   '/admin/catalog/new': typeof AuthenticatedAdminCatalogNewRoute
   '/admin/posts/$id': typeof AuthenticatedAdminPostsIdRoute
@@ -285,6 +294,7 @@ export interface FileRoutesById {
   '/api/public/track': typeof ApiPublicTrackRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/_authenticated/admin/catalog/$id': typeof AuthenticatedAdminCatalogIdRoute
+  '/_authenticated/admin/catalog/brands': typeof AuthenticatedAdminCatalogBrandsRoute
   '/_authenticated/admin/catalog/categories': typeof AuthenticatedAdminCatalogCategoriesRoute
   '/_authenticated/admin/catalog/new': typeof AuthenticatedAdminCatalogNewRoute
   '/_authenticated/admin/posts/$id': typeof AuthenticatedAdminPostsIdRoute
@@ -318,6 +328,7 @@ export interface FileRouteTypes {
     | '/api/public/track'
     | '/admin/'
     | '/admin/catalog/$id'
+    | '/admin/catalog/brands'
     | '/admin/catalog/categories'
     | '/admin/catalog/new'
     | '/admin/posts/$id'
@@ -347,6 +358,7 @@ export interface FileRouteTypes {
     | '/api/public/track'
     | '/admin'
     | '/admin/catalog/$id'
+    | '/admin/catalog/brands'
     | '/admin/catalog/categories'
     | '/admin/catalog/new'
     | '/admin/posts/$id'
@@ -379,6 +391,7 @@ export interface FileRouteTypes {
     | '/api/public/track'
     | '/_authenticated/admin/'
     | '/_authenticated/admin/catalog/$id'
+    | '/_authenticated/admin/catalog/brands'
     | '/_authenticated/admin/catalog/categories'
     | '/_authenticated/admin/catalog/new'
     | '/_authenticated/admin/posts/$id'
@@ -612,6 +625,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminCatalogCategoriesRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/catalog/brands': {
+      id: '/_authenticated/admin/catalog/brands'
+      path: '/catalog/brands'
+      fullPath: '/admin/catalog/brands'
+      preLoaderRoute: typeof AuthenticatedAdminCatalogBrandsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/catalog/$id': {
       id: '/_authenticated/admin/catalog/$id'
       path: '/catalog/$id'
@@ -627,6 +647,7 @@ interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminUsersRoute: typeof AuthenticatedAdminUsersRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
   AuthenticatedAdminCatalogIdRoute: typeof AuthenticatedAdminCatalogIdRoute
+  AuthenticatedAdminCatalogBrandsRoute: typeof AuthenticatedAdminCatalogBrandsRoute
   AuthenticatedAdminCatalogCategoriesRoute: typeof AuthenticatedAdminCatalogCategoriesRoute
   AuthenticatedAdminCatalogNewRoute: typeof AuthenticatedAdminCatalogNewRoute
   AuthenticatedAdminPostsIdRoute: typeof AuthenticatedAdminPostsIdRoute
@@ -640,6 +661,7 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminUsersRoute: AuthenticatedAdminUsersRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
   AuthenticatedAdminCatalogIdRoute: AuthenticatedAdminCatalogIdRoute,
+  AuthenticatedAdminCatalogBrandsRoute: AuthenticatedAdminCatalogBrandsRoute,
   AuthenticatedAdminCatalogCategoriesRoute:
     AuthenticatedAdminCatalogCategoriesRoute,
   AuthenticatedAdminCatalogNewRoute: AuthenticatedAdminCatalogNewRoute,
