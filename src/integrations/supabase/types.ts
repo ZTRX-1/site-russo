@@ -200,6 +200,80 @@ export type Database = {
         }
         Relationships: []
       }
+      brands: {
+        Row: {
+          active: boolean
+          created_at: string
+          id: string
+          logo_url: string | null
+          name: string
+          slug: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          logo_url?: string | null
+          name: string
+          slug: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          logo_url?: string | null
+          name?: string
+          slug?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      categories: {
+        Row: {
+          active: boolean
+          created_at: string
+          icon: string | null
+          id: string
+          name: string
+          parent_id: string | null
+          slug: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          icon?: string | null
+          id?: string
+          name: string
+          parent_id?: string | null
+          slug: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          icon?: string | null
+          id?: string
+          name?: string
+          parent_id?: string | null
+          slug?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "categories_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       posts: {
         Row: {
           author_id: string | null
@@ -247,6 +321,181 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      product_barcodes: {
+        Row: {
+          code: string
+          created_at: string
+          id: string
+          label: string | null
+          pack_size: number
+          product_id: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          id?: string
+          label?: string | null
+          pack_size?: number
+          product_id: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          id?: string
+          label?: string | null
+          pack_size?: number
+          product_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_barcodes_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      product_images: {
+        Row: {
+          alt: string | null
+          created_at: string
+          id: string
+          is_primary: boolean
+          product_id: string
+          sort_order: number
+          url: string
+        }
+        Insert: {
+          alt?: string | null
+          created_at?: string
+          id?: string
+          is_primary?: boolean
+          product_id: string
+          sort_order?: number
+          url: string
+        }
+        Update: {
+          alt?: string | null
+          created_at?: string
+          id?: string
+          is_primary?: boolean
+          product_id?: string
+          sort_order?: number
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_images_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      products: {
+        Row: {
+          brand_id: string | null
+          category_id: string | null
+          cost_price: number | null
+          cover_image_url: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          featured: boolean
+          height_cm: number | null
+          id: string
+          length_cm: number | null
+          min_stock: number | null
+          name: string
+          ncm: string | null
+          promo_ends_at: string | null
+          promo_price: number | null
+          promo_starts_at: string | null
+          sale_price: number | null
+          short_description: string | null
+          sku: string
+          slug: string
+          status: Database["public"]["Enums"]["product_status"]
+          unit: string
+          updated_at: string
+          weight_kg: number | null
+          width_cm: number | null
+        }
+        Insert: {
+          brand_id?: string | null
+          category_id?: string | null
+          cost_price?: number | null
+          cover_image_url?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          featured?: boolean
+          height_cm?: number | null
+          id?: string
+          length_cm?: number | null
+          min_stock?: number | null
+          name: string
+          ncm?: string | null
+          promo_ends_at?: string | null
+          promo_price?: number | null
+          promo_starts_at?: string | null
+          sale_price?: number | null
+          short_description?: string | null
+          sku: string
+          slug: string
+          status?: Database["public"]["Enums"]["product_status"]
+          unit?: string
+          updated_at?: string
+          weight_kg?: number | null
+          width_cm?: number | null
+        }
+        Update: {
+          brand_id?: string | null
+          category_id?: string | null
+          cost_price?: number | null
+          cover_image_url?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          featured?: boolean
+          height_cm?: number | null
+          id?: string
+          length_cm?: number | null
+          min_stock?: number | null
+          name?: string
+          ncm?: string | null
+          promo_ends_at?: string | null
+          promo_price?: number | null
+          promo_starts_at?: string | null
+          sale_price?: number | null
+          short_description?: string | null
+          sku?: string
+          slug?: string
+          status?: Database["public"]["Enums"]["product_status"]
+          unit?: string
+          updated_at?: string
+          weight_kg?: number | null
+          width_cm?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "products_brand_id_fkey"
+            columns: ["brand_id"]
+            isOneToOne: false
+            referencedRelation: "brands"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "products_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {
@@ -315,9 +564,12 @@ export type Database = {
       }
       is_staff: { Args: { _user_id: string }; Returns: boolean }
       resolve_login_email: { Args: { _identifier: string }; Returns: string }
+      show_limit: { Args: never; Returns: number }
+      show_trgm: { Args: { "": string }; Returns: string[] }
     }
     Enums: {
       app_role: "admin" | "editor"
+      product_status: "draft" | "active" | "inactive" | "discontinued"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -446,6 +698,7 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "editor"],
+      product_status: ["draft", "active", "inactive", "discontinued"],
     },
   },
 } as const

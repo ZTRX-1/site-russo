@@ -33,8 +33,13 @@ import { Route as ApiPublicTrackRouteImport } from './routes/api/public/track'
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
 import { Route as AuthenticatedAdminAnalyticsRouteImport } from './routes/_authenticated/admin.analytics'
 import { Route as AuthenticatedAdminPostsIndexRouteImport } from './routes/_authenticated/admin.posts.index'
+import { Route as AuthenticatedAdminCatalogIndexRouteImport } from './routes/_authenticated/admin.catalog.index'
 import { Route as AuthenticatedAdminPostsNewRouteImport } from './routes/_authenticated/admin.posts.new'
 import { Route as AuthenticatedAdminPostsIdRouteImport } from './routes/_authenticated/admin.posts.$id'
+import { Route as AuthenticatedAdminCatalogNewRouteImport } from './routes/_authenticated/admin.catalog.new'
+import { Route as AuthenticatedAdminCatalogCategoriesRouteImport } from './routes/_authenticated/admin.catalog.categories'
+import { Route as AuthenticatedAdminCatalogBrandsRouteImport } from './routes/_authenticated/admin.catalog.brands'
+import { Route as AuthenticatedAdminCatalogIdRouteImport } from './routes/_authenticated/admin.catalog.$id'
 
 const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
   id: '/termos-de-uso',
@@ -158,6 +163,12 @@ const AuthenticatedAdminPostsIndexRoute =
     path: '/posts/',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminCatalogIndexRoute =
+  AuthenticatedAdminCatalogIndexRouteImport.update({
+    id: '/catalog/',
+    path: '/catalog/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminPostsNewRoute =
   AuthenticatedAdminPostsNewRouteImport.update({
     id: '/posts/new',
@@ -168,6 +179,30 @@ const AuthenticatedAdminPostsIdRoute =
   AuthenticatedAdminPostsIdRouteImport.update({
     id: '/posts/$id',
     path: '/posts/$id',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminCatalogNewRoute =
+  AuthenticatedAdminCatalogNewRouteImport.update({
+    id: '/catalog/new',
+    path: '/catalog/new',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminCatalogCategoriesRoute =
+  AuthenticatedAdminCatalogCategoriesRouteImport.update({
+    id: '/catalog/categories',
+    path: '/catalog/categories',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminCatalogBrandsRoute =
+  AuthenticatedAdminCatalogBrandsRouteImport.update({
+    id: '/catalog/brands',
+    path: '/catalog/brands',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminCatalogIdRoute =
+  AuthenticatedAdminCatalogIdRouteImport.update({
+    id: '/catalog/$id',
+    path: '/catalog/$id',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
 
@@ -194,8 +229,13 @@ export interface FileRoutesByFullPath {
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/api/public/track': typeof ApiPublicTrackRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/admin/catalog/$id': typeof AuthenticatedAdminCatalogIdRoute
+  '/admin/catalog/brands': typeof AuthenticatedAdminCatalogBrandsRoute
+  '/admin/catalog/categories': typeof AuthenticatedAdminCatalogCategoriesRoute
+  '/admin/catalog/new': typeof AuthenticatedAdminCatalogNewRoute
   '/admin/posts/$id': typeof AuthenticatedAdminPostsIdRoute
   '/admin/posts/new': typeof AuthenticatedAdminPostsNewRoute
+  '/admin/catalog/': typeof AuthenticatedAdminCatalogIndexRoute
   '/admin/posts/': typeof AuthenticatedAdminPostsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -219,8 +259,13 @@ export interface FileRoutesByTo {
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/api/public/track': typeof ApiPublicTrackRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
+  '/admin/catalog/$id': typeof AuthenticatedAdminCatalogIdRoute
+  '/admin/catalog/brands': typeof AuthenticatedAdminCatalogBrandsRoute
+  '/admin/catalog/categories': typeof AuthenticatedAdminCatalogCategoriesRoute
+  '/admin/catalog/new': typeof AuthenticatedAdminCatalogNewRoute
   '/admin/posts/$id': typeof AuthenticatedAdminPostsIdRoute
   '/admin/posts/new': typeof AuthenticatedAdminPostsNewRoute
+  '/admin/catalog': typeof AuthenticatedAdminCatalogIndexRoute
   '/admin/posts': typeof AuthenticatedAdminPostsIndexRoute
 }
 export interface FileRoutesById {
@@ -248,8 +293,13 @@ export interface FileRoutesById {
   '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
   '/api/public/track': typeof ApiPublicTrackRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/admin/catalog/$id': typeof AuthenticatedAdminCatalogIdRoute
+  '/_authenticated/admin/catalog/brands': typeof AuthenticatedAdminCatalogBrandsRoute
+  '/_authenticated/admin/catalog/categories': typeof AuthenticatedAdminCatalogCategoriesRoute
+  '/_authenticated/admin/catalog/new': typeof AuthenticatedAdminCatalogNewRoute
   '/_authenticated/admin/posts/$id': typeof AuthenticatedAdminPostsIdRoute
   '/_authenticated/admin/posts/new': typeof AuthenticatedAdminPostsNewRoute
+  '/_authenticated/admin/catalog/': typeof AuthenticatedAdminCatalogIndexRoute
   '/_authenticated/admin/posts/': typeof AuthenticatedAdminPostsIndexRoute
 }
 export interface FileRouteTypes {
@@ -277,8 +327,13 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/api/public/track'
     | '/admin/'
+    | '/admin/catalog/$id'
+    | '/admin/catalog/brands'
+    | '/admin/catalog/categories'
+    | '/admin/catalog/new'
     | '/admin/posts/$id'
     | '/admin/posts/new'
+    | '/admin/catalog/'
     | '/admin/posts/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -302,8 +357,13 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/api/public/track'
     | '/admin'
+    | '/admin/catalog/$id'
+    | '/admin/catalog/brands'
+    | '/admin/catalog/categories'
+    | '/admin/catalog/new'
     | '/admin/posts/$id'
     | '/admin/posts/new'
+    | '/admin/catalog'
     | '/admin/posts'
   id:
     | '__root__'
@@ -330,8 +390,13 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/users'
     | '/api/public/track'
     | '/_authenticated/admin/'
+    | '/_authenticated/admin/catalog/$id'
+    | '/_authenticated/admin/catalog/brands'
+    | '/_authenticated/admin/catalog/categories'
+    | '/_authenticated/admin/catalog/new'
     | '/_authenticated/admin/posts/$id'
     | '/_authenticated/admin/posts/new'
+    | '/_authenticated/admin/catalog/'
     | '/_authenticated/admin/posts/'
   fileRoutesById: FileRoutesById
 }
@@ -525,6 +590,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminPostsIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/catalog/': {
+      id: '/_authenticated/admin/catalog/'
+      path: '/catalog'
+      fullPath: '/admin/catalog/'
+      preLoaderRoute: typeof AuthenticatedAdminCatalogIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/posts/new': {
       id: '/_authenticated/admin/posts/new'
       path: '/posts/new'
@@ -539,6 +611,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminPostsIdRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/catalog/new': {
+      id: '/_authenticated/admin/catalog/new'
+      path: '/catalog/new'
+      fullPath: '/admin/catalog/new'
+      preLoaderRoute: typeof AuthenticatedAdminCatalogNewRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/catalog/categories': {
+      id: '/_authenticated/admin/catalog/categories'
+      path: '/catalog/categories'
+      fullPath: '/admin/catalog/categories'
+      preLoaderRoute: typeof AuthenticatedAdminCatalogCategoriesRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/catalog/brands': {
+      id: '/_authenticated/admin/catalog/brands'
+      path: '/catalog/brands'
+      fullPath: '/admin/catalog/brands'
+      preLoaderRoute: typeof AuthenticatedAdminCatalogBrandsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/catalog/$id': {
+      id: '/_authenticated/admin/catalog/$id'
+      path: '/catalog/$id'
+      fullPath: '/admin/catalog/$id'
+      preLoaderRoute: typeof AuthenticatedAdminCatalogIdRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
   }
 }
 
@@ -546,8 +646,13 @@ interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminAnalyticsRoute: typeof AuthenticatedAdminAnalyticsRoute
   AuthenticatedAdminUsersRoute: typeof AuthenticatedAdminUsersRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+  AuthenticatedAdminCatalogIdRoute: typeof AuthenticatedAdminCatalogIdRoute
+  AuthenticatedAdminCatalogBrandsRoute: typeof AuthenticatedAdminCatalogBrandsRoute
+  AuthenticatedAdminCatalogCategoriesRoute: typeof AuthenticatedAdminCatalogCategoriesRoute
+  AuthenticatedAdminCatalogNewRoute: typeof AuthenticatedAdminCatalogNewRoute
   AuthenticatedAdminPostsIdRoute: typeof AuthenticatedAdminPostsIdRoute
   AuthenticatedAdminPostsNewRoute: typeof AuthenticatedAdminPostsNewRoute
+  AuthenticatedAdminCatalogIndexRoute: typeof AuthenticatedAdminCatalogIndexRoute
   AuthenticatedAdminPostsIndexRoute: typeof AuthenticatedAdminPostsIndexRoute
 }
 
@@ -555,8 +660,14 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminAnalyticsRoute: AuthenticatedAdminAnalyticsRoute,
   AuthenticatedAdminUsersRoute: AuthenticatedAdminUsersRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+  AuthenticatedAdminCatalogIdRoute: AuthenticatedAdminCatalogIdRoute,
+  AuthenticatedAdminCatalogBrandsRoute: AuthenticatedAdminCatalogBrandsRoute,
+  AuthenticatedAdminCatalogCategoriesRoute:
+    AuthenticatedAdminCatalogCategoriesRoute,
+  AuthenticatedAdminCatalogNewRoute: AuthenticatedAdminCatalogNewRoute,
   AuthenticatedAdminPostsIdRoute: AuthenticatedAdminPostsIdRoute,
   AuthenticatedAdminPostsNewRoute: AuthenticatedAdminPostsNewRoute,
+  AuthenticatedAdminCatalogIndexRoute: AuthenticatedAdminCatalogIndexRoute,
   AuthenticatedAdminPostsIndexRoute: AuthenticatedAdminPostsIndexRoute,
 }
 
