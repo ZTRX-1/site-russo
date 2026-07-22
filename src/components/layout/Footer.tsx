@@ -100,8 +100,18 @@ export function Footer() {
         </div>
 
         <div className="mt-16 border-t border-white/10 pt-8 text-xs text-white/40">
-          <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-left">
-            <p>© {currentYear} Russo Elétrica e Ferragens, CNPJ 62.093.783/0001-52. Todos os direitos reservados.</p>
+          <div className="flex flex-col items-center gap-4 pb-20 text-center sm:flex-row sm:justify-between sm:pb-0 sm:text-left">
+            <p>
+              <Link
+                to="/auth"
+                aria-label="Acesso interno"
+                title="Acesso interno"
+                className="cursor-default text-white/40 no-underline transition hover:text-white/60"
+              >
+                ©
+              </Link>{" "}
+              {currentYear} Russo Elétrica e Ferragens, CNPJ 62.093.783/0001-52. Todos os direitos reservados.
+            </p>
             <p>
               Desenvolvido com 💙 pela{" "}
               <a
@@ -113,19 +123,6 @@ export function Footer() {
                 Vexxon Company
               </a>
             </p>
-          </div>
-          <div className="mt-4 flex justify-end">
-            <Link
-              to="/auth"
-              aria-label="Acesso restrito"
-              title="Acesso restrito"
-              className="p-1 text-white/20 transition hover:text-white/60"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-              </svg>
-            </Link>
           </div>
         </div>
       </div>
