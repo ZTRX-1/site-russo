@@ -1,88 +1,98 @@
-# Refino do Painel Administrativo — Russo Elétrica & Ferragens
+# Plano estratégico — Russo Elétrica & Ferragens
 
-Vou evoluir o painel em 4 frentes, sem quebrar nada existente nem sair do escopo pedido.
-
----
-
-## 1. Dashboard operacional (novo)
-
-Substituir o dashboard atual (só do blog) por uma central de gestão estilo SaaS moderno, usando os dados reais que já são coletados pelo tracking (`analytics_visitors`, `analytics_sessions`, `analytics_events`, `analytics_leads`) + tabela `posts`.
-
-**Cards e indicadores (com dados reais quando existirem):**
-- Visitantes únicos (7d)
-- Sessões ativas nas últimas 24h ("usuários ativos")
-- Cliques no botão do WhatsApp (eventos `target = whatsapp_*`)
-- Total de posts publicados
-- Total de visualizações de artigos (`page_view` em `/blog/*`)
-- Origem do tráfego (Google Ads, Orgânico, Direto, Referência) — gráfico donut
-- Últimos acessos (últimos 8 pageviews)
-- Comparativo 7d / 30d / 90d com **variação % vs. período anterior**
-- Placeholder "Produtos/categorias mais acessadas" já estruturado para quando existir catálogo
-
-**Ações Rápidas:** botões para Criar post, Gerenciar posts, Ver Analytics, Gerenciar equipe, Configurações (as futuras já pré-linkadas).
-
-Toda a lógica fica em uma nova server function `getDashboardOverview()` reaproveitando padrão existente. Layout responsivo, mesma identidade visual do admin atual.
+Três frentes, executadas **uma por vez**, na ordem que você pediu. Nada é aplicado agora; este documento é só o mapa. Aprove e eu inicio pela Fase 1.
 
 ---
 
-## 2. Posts (Blog)
+## Fase 1 — PRIORIDADE: Corrigir o tracking (analytics interno)
 
-O formulário de edição (`PostForm.tsx`) **já suporta** título, slug, categoria, conteúdo, meta descrição, capa e status. Vou complementar com:
+**Sintoma:** 14 conversões vieram pelo site e nenhuma apareceu no `/admin/analytics`.
 
-- Campo **"Data de publicação"** editável (novo).
-- Ação de **excluir** direto na listagem (`admin/posts`) — sem precisar abrir cada post.
-- Botão de **editar rápido** na listagem.
-- Coluna com **capa em miniatura** na tabela.
+### Diagnóstico provável (a confirmar com logs reais)
+1. O filtro de "dev/preview" no `src/routes/api/public/track.ts` pode estar descartando tráfego legítimo do domínio publicado (falso positivo em `Origin`/`Referer`).
+2. O cliente (`src/lib/analytics.ts`) pode estar bloqueando o envio no domínio de produção por causa da heurística de hostname.
+3. Possível falha silenciosa na escrita no banco (o `catch` só faz `console.warn`, o retorno continua `ok:true` e a gente nunca fica sabendo).
+4. Eventos de conversão (clique WhatsApp, envio de formulário) podem não estar sendo disparados nos handlers dos botões/forms.
 
-**Server functions:** adicionar `published_at` no schema `updatePost`/`createPost`.
+### O que farei na Fase 1
+- Auditar cada CTA que deveria contar conversão (WhatsApp header/hero/floating, formulário de orçamento, telefones) e garantir chamada de `track('conversion', ...)` com `target` padronizado.
+- Revisar `src/routes/api/public/track.ts`: reduzir o filtro a `localhost` puro; nunca bloquear `russoeletrofer.com.br`; logar no console do servidor quando pular.
+- Revisar `src/lib/analytics.ts`: só suprimir em `localhost`/`127.0.0.1`. Domínios `.lovable.app`/`.lovable.dev` só suprimir em preview do editor, não no publicado.
+- Consultar `analytics_events` e `analytics_leads` das últimas 72h para validar de onde veio a perda (chegou request? gravou visitor mas não event? etc.).
+- Corrigir a causa real com base nesses dados e validar via Playwright disparando conversão de produção-like.
+- Backfill não é possível (dados perdidos), mas deixarei um alerta visual no dashboard caso a taxa de escrita caia a zero por >6h.
 
-**Imagens dos 5 posts existentes sem capa** + **5 novos posts:**
-- Gerar 10 imagens de capa 1600×900 com identidade visual da Russo (vermelho `#e11d2e`, tipografia bold, tema técnico/elétrico), salvas via `lovable-assets`.
-- Fazer UPDATE nos 5 posts sem capa com as novas URLs.
-- Criar 5 novos posts SEO-first (~800-1200 palavras cada) com H2/H3, CTA e palavras-chave, sobre:
-  1. Como economizar energia em condomínios
-  2. Principais erros em instalações elétricas comerciais
-  3. Como escolher materiais elétricos de qualidade
-  4. Quando trocar disjuntores e componentes elétricos
-  5. Como empresas reduzem custos com manutenção elétrica
-- Publicados via `supabase--insert` com `status='published'`, autor "Equipe Russo".
+**Entrega:** conversões voltando a contar em tempo real + guarda anti-regressão.
 
 ---
 
-## 3. Analytics — filtrar tráfego de desenvolvimento
+## Fase 2 — Reposicionamento do acesso à área interna
 
-Hoje o endpoint `/api/public/track` aceita qualquer origem. Vou:
+Objetivo: acesso invisível para o visitante comum, óbvio para você, sem conflitar com o balão do WhatsApp/CTA mobile.
 
-- No **cliente** (`src/lib/analytics.ts`): não disparar tracking quando `window.location.hostname` for `localhost`, `127.0.0.1`, terminar em `.lovable.dev`, `.lovable.app` (preview), ou conter `preview--`.
-- No **servidor** (`src/routes/api/public/track.ts`): defesa em profundidade — inspecionar `Origin`/`Referer` do request e descartar (200 OK sem gravar) quando vier dessas mesmas origens de dev/preview.
-- Os relatórios existentes (`getAnalyticsOverview`, PDF) não mudam — passam a receber só dados reais automaticamente.
+**Solução proposta:** remover o cadeado. Transformar o próprio símbolo **©** do rodapé em link para `/auth` — mesma cor do texto legal, sem sublinhado, sem tooltip. Além disso, adicionar um "atalho de teclado" (ex.: `Ctrl+Shift+A`) que abre `/auth` de qualquer página — útil para você no dia a dia.
 
-Só **novos** eventos serão filtrados. Registros antigos ficam no banco (posso adicionar uma limpeza opcional se você pedir).
+Fallback alternativo (se preferir): dot `•` clicável entre os itens de menu do rodapé.
 
----
-
-## 4. Código
-
-- Não mexer em componentes fora dos arquivos citados.
-- Manter responsividade e tokens de design atuais.
-- Reaproveitar `useServerFn` + TanStack Query no padrão que já existe.
-- Nenhuma alteração de auth, layout público, home, ou site externo.
+Aplicação: `src/components/layout/Footer.tsx` + pequeno hook global de atalho.
 
 ---
 
-## Arquivos afetados
+## Fase 3 — Catálogo / Estoque / Loja (base do futuro ERP interno)
 
-**Novos**
-- `src/lib/dashboard.functions.ts` — server fn de agregação para o Dashboard
-- 10 imagens de capa via `lovable-assets`
-- Migração `supabase--insert` com 5 novos posts + UPDATE das 5 capas faltantes
+Fundação pensada para escalar até virar o sistema interno oficial da Russo.
 
-**Modificados**
-- `src/routes/_authenticated/admin.index.tsx` — dashboard reformulado
-- `src/routes/_authenticated/admin.posts.index.tsx` — miniatura, editar rápido, excluir
-- `src/components/admin/PostForm.tsx` — campo data de publicação
-- `src/lib/posts.functions.ts` — aceitar `published_at`
-- `src/lib/analytics.ts` — filtro de origens dev/preview
-- `src/routes/api/public/track.ts` — filtro server-side de origens dev/preview
+### Escopo do módulo (público)
+- Página `/loja` (grade de produtos com busca, filtro por categoria, ordenação).
+- Página `/loja/categoria/:slug`.
+- Página `/loja/produto/:slug` com galeria, ficha técnica, preço (ou "consultar"), botão "Pedir no WhatsApp" que já leva a mensagem pronta com nome/SKU.
+- SEO por produto (title, description, OG, JSON-LD `Product`).
+- Sem checkout — conversão via WhatsApp/orçamento (compatível com a operação atual).
 
-Confirma que posso seguir?
+### Escopo do módulo (interno — `/admin/catalogo`)
+- CRUD de **Categorias** (nome, slug, ícone, ordem).
+- CRUD de **Produtos**: nome, slug, SKU, código de barras (EAN), categoria, marca, descrição rica, especificações (chave/valor), preço, preço promocional, unidade (un, m, kg, cx), imagens múltiplas (Supabase Storage), status (rascunho/publicado/inativo).
+- **Estoque**: quantidade atual, estoque mínimo, localização (prateleira/gôndola), histórico de movimentações (entrada, saída, ajuste, motivo, usuário, data).
+- **Leitor de código de barras**: input focado + biblioteca `@zxing/browser` para ler pela câmera do celular/webcam. Fluxos:
+  - Buscar produto rapidamente (bipa e abre).
+  - Dar entrada em estoque (bipa + quantidade).
+  - Dar baixa (venda balcão / consumo).
+- **Importação em massa** por CSV (para popular o catálogo inicial rápido).
+- **Relatórios**: produtos mais vistos, mais pedidos via WhatsApp, estoque baixo, valor total do estoque.
+
+### Arquitetura de dados (a criar quando aprovado)
+```text
+categories(id, name, slug, icon, sort_order, created_at)
+brands(id, name, slug)
+products(id, sku, barcode, name, slug, category_id, brand_id,
+        description, specs jsonb, price_cents, sale_price_cents,
+        unit, status, cover_url, created_at, updated_at)
+product_images(id, product_id, url, sort_order)
+stock_items(product_id PK, quantity, min_quantity, location, updated_at)
+stock_movements(id, product_id, delta, reason, note, user_id, created_at)
+product_events(id, product_id, event_type, visitor_id, created_at)
+```
+Tudo com RLS: leitura pública apenas de `status='published'`, escrita só para roles `admin`/`editor` (já existe `is_staff`).
+
+### Integração com o resto
+- WhatsApp: cada produto gera link `wa.me/...?text=Olá, quero orçamento do produto <NOME> (SKU <SKU>)`.
+- Analytics: `product_view` e `product_whatsapp_click` já entram no funil do dashboard.
+- Blog: possibilidade de linkar produtos dentro de artigos ("materiais recomendados").
+
+### Faseamento sugerido do módulo
+1. Schema + CRUD admin básico (categorias, produtos, imagens).
+2. Página pública `/loja` + produto individual.
+3. Estoque + movimentações + leitor de código de barras.
+4. Importação CSV + relatórios internos.
+
+Cada sub-fase é entregue e revisada antes da próxima.
+
+---
+
+## Ordem de execução aprovada
+
+1. **Fase 1 — Tracking** (começamos por aqui assim que você aprovar).
+2. **Fase 2 — Acesso discreto** (pequeno, entra junto ou logo depois).
+3. **Fase 3 — Catálogo/Estoque** (dividido nas 4 sub-fases acima).
+
+Confirma que posso iniciar pela Fase 1?
