@@ -33,6 +33,7 @@ import { Route as ApiPublicTrackRouteImport } from './routes/api/public/track'
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
 import { Route as AuthenticatedAdminStockRouteImport } from './routes/_authenticated/admin.stock'
 import { Route as AuthenticatedAdminAnalyticsRouteImport } from './routes/_authenticated/admin.analytics'
+import { Route as AuthenticatedAdminStockIndexRouteImport } from './routes/_authenticated/admin.stock.index'
 import { Route as AuthenticatedAdminPostsIndexRouteImport } from './routes/_authenticated/admin.posts.index'
 import { Route as AuthenticatedAdminCatalogIndexRouteImport } from './routes/_authenticated/admin.catalog.index'
 import { Route as AuthenticatedAdminPostsNewRouteImport } from './routes/_authenticated/admin.posts.new'
@@ -163,6 +164,12 @@ const AuthenticatedAdminAnalyticsRoute =
     path: '/analytics',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminStockIndexRoute =
+  AuthenticatedAdminStockIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedAdminStockRoute,
+  } as any)
 const AuthenticatedAdminPostsIndexRoute =
   AuthenticatedAdminPostsIndexRouteImport.update({
     id: '/posts/',
@@ -232,7 +239,7 @@ export interface FileRoutesByFullPath {
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
-  '/admin/stock': typeof AuthenticatedAdminStockRoute
+  '/admin/stock': typeof AuthenticatedAdminStockRouteWithChildren
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/api/public/track': typeof ApiPublicTrackRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
@@ -244,6 +251,7 @@ export interface FileRoutesByFullPath {
   '/admin/posts/new': typeof AuthenticatedAdminPostsNewRoute
   '/admin/catalog/': typeof AuthenticatedAdminCatalogIndexRoute
   '/admin/posts/': typeof AuthenticatedAdminPostsIndexRoute
+  '/admin/stock/': typeof AuthenticatedAdminStockIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -263,7 +271,6 @@ export interface FileRoutesByTo {
   '/blog/$slug': typeof BlogSlugRoute
   '/blog': typeof BlogIndexRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
-  '/admin/stock': typeof AuthenticatedAdminStockRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/api/public/track': typeof ApiPublicTrackRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
@@ -275,6 +282,7 @@ export interface FileRoutesByTo {
   '/admin/posts/new': typeof AuthenticatedAdminPostsNewRoute
   '/admin/catalog': typeof AuthenticatedAdminCatalogIndexRoute
   '/admin/posts': typeof AuthenticatedAdminPostsIndexRoute
+  '/admin/stock': typeof AuthenticatedAdminStockIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -298,7 +306,7 @@ export interface FileRoutesById {
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/_authenticated/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
-  '/_authenticated/admin/stock': typeof AuthenticatedAdminStockRoute
+  '/_authenticated/admin/stock': typeof AuthenticatedAdminStockRouteWithChildren
   '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
   '/api/public/track': typeof ApiPublicTrackRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
@@ -310,6 +318,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/posts/new': typeof AuthenticatedAdminPostsNewRoute
   '/_authenticated/admin/catalog/': typeof AuthenticatedAdminCatalogIndexRoute
   '/_authenticated/admin/posts/': typeof AuthenticatedAdminPostsIndexRoute
+  '/_authenticated/admin/stock/': typeof AuthenticatedAdminStockIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -345,6 +354,7 @@ export interface FileRouteTypes {
     | '/admin/posts/new'
     | '/admin/catalog/'
     | '/admin/posts/'
+    | '/admin/stock/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -364,7 +374,6 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/blog'
     | '/admin/analytics'
-    | '/admin/stock'
     | '/admin/users'
     | '/api/public/track'
     | '/admin'
@@ -376,6 +385,7 @@ export interface FileRouteTypes {
     | '/admin/posts/new'
     | '/admin/catalog'
     | '/admin/posts'
+    | '/admin/stock'
   id:
     | '__root__'
     | '/'
@@ -410,6 +420,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/posts/new'
     | '/_authenticated/admin/catalog/'
     | '/_authenticated/admin/posts/'
+    | '/_authenticated/admin/stock/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -602,6 +613,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminAnalyticsRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/stock/': {
+      id: '/_authenticated/admin/stock/'
+      path: '/'
+      fullPath: '/admin/stock/'
+      preLoaderRoute: typeof AuthenticatedAdminStockIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminStockRoute
+    }
     '/_authenticated/admin/posts/': {
       id: '/_authenticated/admin/posts/'
       path: '/posts'
@@ -661,9 +679,23 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedAdminStockRouteChildren {
+  AuthenticatedAdminStockIndexRoute: typeof AuthenticatedAdminStockIndexRoute
+}
+
+const AuthenticatedAdminStockRouteChildren: AuthenticatedAdminStockRouteChildren =
+  {
+    AuthenticatedAdminStockIndexRoute: AuthenticatedAdminStockIndexRoute,
+  }
+
+const AuthenticatedAdminStockRouteWithChildren =
+  AuthenticatedAdminStockRoute._addFileChildren(
+    AuthenticatedAdminStockRouteChildren,
+  )
+
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminAnalyticsRoute: typeof AuthenticatedAdminAnalyticsRoute
-  AuthenticatedAdminStockRoute: typeof AuthenticatedAdminStockRoute
+  AuthenticatedAdminStockRoute: typeof AuthenticatedAdminStockRouteWithChildren
   AuthenticatedAdminUsersRoute: typeof AuthenticatedAdminUsersRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
   AuthenticatedAdminCatalogIdRoute: typeof AuthenticatedAdminCatalogIdRoute
@@ -678,7 +710,7 @@ interface AuthenticatedAdminRouteChildren {
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminAnalyticsRoute: AuthenticatedAdminAnalyticsRoute,
-  AuthenticatedAdminStockRoute: AuthenticatedAdminStockRoute,
+  AuthenticatedAdminStockRoute: AuthenticatedAdminStockRouteWithChildren,
   AuthenticatedAdminUsersRoute: AuthenticatedAdminUsersRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
   AuthenticatedAdminCatalogIdRoute: AuthenticatedAdminCatalogIdRoute,
