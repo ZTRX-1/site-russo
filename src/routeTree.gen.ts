@@ -43,6 +43,7 @@ import { Route as AuthenticatedAdminStockMovementsRouteImport } from './routes/_
 import { Route as AuthenticatedAdminStockLocationsRouteImport } from './routes/_authenticated/admin.stock.locations'
 import { Route as AuthenticatedAdminPurchasesSuppliersRouteImport } from './routes/_authenticated/admin.purchases.suppliers'
 import { Route as AuthenticatedAdminPurchasesNewRouteImport } from './routes/_authenticated/admin.purchases.new'
+import { Route as AuthenticatedAdminPurchasesIdRouteImport } from './routes/_authenticated/admin.purchases.$id'
 import { Route as AuthenticatedAdminPostsNewRouteImport } from './routes/_authenticated/admin.posts.new'
 import { Route as AuthenticatedAdminPostsIdRouteImport } from './routes/_authenticated/admin.posts.$id'
 import { Route as AuthenticatedAdminCatalogNewRouteImport } from './routes/_authenticated/admin.catalog.new'
@@ -231,6 +232,12 @@ const AuthenticatedAdminPurchasesNewRoute =
     path: '/new',
     getParentRoute: () => AuthenticatedAdminPurchasesRoute,
   } as any)
+const AuthenticatedAdminPurchasesIdRoute =
+  AuthenticatedAdminPurchasesIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => AuthenticatedAdminPurchasesRoute,
+  } as any)
 const AuthenticatedAdminPostsNewRoute =
   AuthenticatedAdminPostsNewRouteImport.update({
     id: '/posts/new',
@@ -299,6 +306,7 @@ export interface FileRoutesByFullPath {
   '/admin/catalog/new': typeof AuthenticatedAdminCatalogNewRoute
   '/admin/posts/$id': typeof AuthenticatedAdminPostsIdRoute
   '/admin/posts/new': typeof AuthenticatedAdminPostsNewRoute
+  '/admin/purchases/$id': typeof AuthenticatedAdminPurchasesIdRoute
   '/admin/purchases/new': typeof AuthenticatedAdminPurchasesNewRoute
   '/admin/purchases/suppliers': typeof AuthenticatedAdminPurchasesSuppliersRoute
   '/admin/stock/locations': typeof AuthenticatedAdminStockLocationsRoute
@@ -336,6 +344,7 @@ export interface FileRoutesByTo {
   '/admin/catalog/new': typeof AuthenticatedAdminCatalogNewRoute
   '/admin/posts/$id': typeof AuthenticatedAdminPostsIdRoute
   '/admin/posts/new': typeof AuthenticatedAdminPostsNewRoute
+  '/admin/purchases/$id': typeof AuthenticatedAdminPurchasesIdRoute
   '/admin/purchases/new': typeof AuthenticatedAdminPurchasesNewRoute
   '/admin/purchases/suppliers': typeof AuthenticatedAdminPurchasesSuppliersRoute
   '/admin/stock/locations': typeof AuthenticatedAdminStockLocationsRoute
@@ -379,6 +388,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/catalog/new': typeof AuthenticatedAdminCatalogNewRoute
   '/_authenticated/admin/posts/$id': typeof AuthenticatedAdminPostsIdRoute
   '/_authenticated/admin/posts/new': typeof AuthenticatedAdminPostsNewRoute
+  '/_authenticated/admin/purchases/$id': typeof AuthenticatedAdminPurchasesIdRoute
   '/_authenticated/admin/purchases/new': typeof AuthenticatedAdminPurchasesNewRoute
   '/_authenticated/admin/purchases/suppliers': typeof AuthenticatedAdminPurchasesSuppliersRoute
   '/_authenticated/admin/stock/locations': typeof AuthenticatedAdminStockLocationsRoute
@@ -422,6 +432,7 @@ export interface FileRouteTypes {
     | '/admin/catalog/new'
     | '/admin/posts/$id'
     | '/admin/posts/new'
+    | '/admin/purchases/$id'
     | '/admin/purchases/new'
     | '/admin/purchases/suppliers'
     | '/admin/stock/locations'
@@ -459,6 +470,7 @@ export interface FileRouteTypes {
     | '/admin/catalog/new'
     | '/admin/posts/$id'
     | '/admin/posts/new'
+    | '/admin/purchases/$id'
     | '/admin/purchases/new'
     | '/admin/purchases/suppliers'
     | '/admin/stock/locations'
@@ -501,6 +513,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/catalog/new'
     | '/_authenticated/admin/posts/$id'
     | '/_authenticated/admin/posts/new'
+    | '/_authenticated/admin/purchases/$id'
     | '/_authenticated/admin/purchases/new'
     | '/_authenticated/admin/purchases/suppliers'
     | '/_authenticated/admin/stock/locations'
@@ -772,6 +785,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminPurchasesNewRouteImport
       parentRoute: typeof AuthenticatedAdminPurchasesRoute
     }
+    '/_authenticated/admin/purchases/$id': {
+      id: '/_authenticated/admin/purchases/$id'
+      path: '/$id'
+      fullPath: '/admin/purchases/$id'
+      preLoaderRoute: typeof AuthenticatedAdminPurchasesIdRouteImport
+      parentRoute: typeof AuthenticatedAdminPurchasesRoute
+    }
     '/_authenticated/admin/posts/new': {
       id: '/_authenticated/admin/posts/new'
       path: '/posts/new'
@@ -818,6 +838,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedAdminPurchasesRouteChildren {
+  AuthenticatedAdminPurchasesIdRoute: typeof AuthenticatedAdminPurchasesIdRoute
   AuthenticatedAdminPurchasesNewRoute: typeof AuthenticatedAdminPurchasesNewRoute
   AuthenticatedAdminPurchasesSuppliersRoute: typeof AuthenticatedAdminPurchasesSuppliersRoute
   AuthenticatedAdminPurchasesIndexRoute: typeof AuthenticatedAdminPurchasesIndexRoute
@@ -825,6 +846,7 @@ interface AuthenticatedAdminPurchasesRouteChildren {
 
 const AuthenticatedAdminPurchasesRouteChildren: AuthenticatedAdminPurchasesRouteChildren =
   {
+    AuthenticatedAdminPurchasesIdRoute: AuthenticatedAdminPurchasesIdRoute,
     AuthenticatedAdminPurchasesNewRoute: AuthenticatedAdminPurchasesNewRoute,
     AuthenticatedAdminPurchasesSuppliersRoute:
       AuthenticatedAdminPurchasesSuppliersRoute,
