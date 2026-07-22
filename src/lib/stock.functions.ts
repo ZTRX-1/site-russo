@@ -150,8 +150,8 @@ export async function listBalances(filters: { locationId?: string; lowStockOnly?
     product: { id: string; sku: string; name: string; min_stock: number | null; sale_price: number | null } | null;
     location: { id: string; name: string } | null;
   }>;
-  const productIds = Array.from(new Set(rows.map((r) => r.product_id)));
-  const locationIds = Array.from(new Set(rows.map((r) => r.location_id)));
+  const productIds = Array.from(new Set(rows.map((r) => r.product_id).filter((x): x is string => !!x)));
+  const locationIds = Array.from(new Set(rows.map((r) => r.location_id).filter((x): x is string => !!x)));
   const [{ data: products }, { data: locations }] = await Promise.all([
     supabase.from("products").select("id, sku, name, min_stock, sale_price").in("id", productIds),
     supabase.from("stock_locations").select("id, name").in("id", locationIds),
@@ -160,9 +160,9 @@ export async function listBalances(filters: { locationId?: string; lowStockOnly?
   const lMap = new Map((locations ?? []).map((l) => [l.id, l]));
   const merged = rows.map((r) => ({
     ...r,
-    balance: Number(r.balance),
-    product: pMap.get(r.product_id) ?? null,
-    location: lMap.get(r.location_id) ?? null,
+    balance: Number(r.balance ?? 0),
+    product: r.product_id ? pMap.get(r.product_id) ?? null : null,
+    location: r.location_id ? lMap.get(r.location_id) ?? null : null,
   }));
   if (filters.lowStockOnly) {
     return merged.filter((r) => {
