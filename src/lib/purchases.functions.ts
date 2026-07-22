@@ -168,8 +168,8 @@ export async function receivePurchaseOrderItem(itemId: string, quantity: number,
   const { error } = await supabase.rpc("receive_purchase_order_item", {
     _item_id: itemId,
     _quantity: quantity,
-    _location_id: locationId,
-  });
+    _location_id: locationId ?? undefined,
+  } as never);
   if (error) throw new Error(error.message);
 }
 
