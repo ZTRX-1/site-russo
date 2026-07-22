@@ -35,6 +35,7 @@ import { Route as AuthenticatedAdminStockRouteImport } from './routes/_authentic
 import { Route as AuthenticatedAdminPurchasesRouteImport } from './routes/_authenticated/admin.purchases'
 import { Route as AuthenticatedAdminAnalyticsRouteImport } from './routes/_authenticated/admin.analytics'
 import { Route as AuthenticatedAdminStockIndexRouteImport } from './routes/_authenticated/admin.stock.index'
+import { Route as AuthenticatedAdminPurchasesIndexRouteImport } from './routes/_authenticated/admin.purchases.index'
 import { Route as AuthenticatedAdminPostsIndexRouteImport } from './routes/_authenticated/admin.posts.index'
 import { Route as AuthenticatedAdminCatalogIndexRouteImport } from './routes/_authenticated/admin.catalog.index'
 import { Route as AuthenticatedAdminStockScanRouteImport } from './routes/_authenticated/admin.stock.scan'
@@ -180,6 +181,12 @@ const AuthenticatedAdminStockIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedAdminStockRoute,
   } as any)
+const AuthenticatedAdminPurchasesIndexRoute =
+  AuthenticatedAdminPurchasesIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedAdminPurchasesRoute,
+  } as any)
 const AuthenticatedAdminPostsIndexRoute =
   AuthenticatedAdminPostsIndexRouteImport.update({
     id: '/posts/',
@@ -267,7 +274,7 @@ export interface FileRoutesByFullPath {
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
-  '/admin/purchases': typeof AuthenticatedAdminPurchasesRoute
+  '/admin/purchases': typeof AuthenticatedAdminPurchasesRouteWithChildren
   '/admin/stock': typeof AuthenticatedAdminStockRouteWithChildren
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/api/public/track': typeof ApiPublicTrackRoute
@@ -283,6 +290,7 @@ export interface FileRoutesByFullPath {
   '/admin/stock/scan': typeof AuthenticatedAdminStockScanRoute
   '/admin/catalog/': typeof AuthenticatedAdminCatalogIndexRoute
   '/admin/posts/': typeof AuthenticatedAdminPostsIndexRoute
+  '/admin/purchases/': typeof AuthenticatedAdminPurchasesIndexRoute
   '/admin/stock/': typeof AuthenticatedAdminStockIndexRoute
 }
 export interface FileRoutesByTo {
@@ -303,7 +311,6 @@ export interface FileRoutesByTo {
   '/blog/$slug': typeof BlogSlugRoute
   '/blog': typeof BlogIndexRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
-  '/admin/purchases': typeof AuthenticatedAdminPurchasesRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/api/public/track': typeof ApiPublicTrackRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
@@ -318,6 +325,7 @@ export interface FileRoutesByTo {
   '/admin/stock/scan': typeof AuthenticatedAdminStockScanRoute
   '/admin/catalog': typeof AuthenticatedAdminCatalogIndexRoute
   '/admin/posts': typeof AuthenticatedAdminPostsIndexRoute
+  '/admin/purchases': typeof AuthenticatedAdminPurchasesIndexRoute
   '/admin/stock': typeof AuthenticatedAdminStockIndexRoute
 }
 export interface FileRoutesById {
@@ -342,7 +350,7 @@ export interface FileRoutesById {
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/_authenticated/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
-  '/_authenticated/admin/purchases': typeof AuthenticatedAdminPurchasesRoute
+  '/_authenticated/admin/purchases': typeof AuthenticatedAdminPurchasesRouteWithChildren
   '/_authenticated/admin/stock': typeof AuthenticatedAdminStockRouteWithChildren
   '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
   '/api/public/track': typeof ApiPublicTrackRoute
@@ -358,6 +366,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/stock/scan': typeof AuthenticatedAdminStockScanRoute
   '/_authenticated/admin/catalog/': typeof AuthenticatedAdminCatalogIndexRoute
   '/_authenticated/admin/posts/': typeof AuthenticatedAdminPostsIndexRoute
+  '/_authenticated/admin/purchases/': typeof AuthenticatedAdminPurchasesIndexRoute
   '/_authenticated/admin/stock/': typeof AuthenticatedAdminStockIndexRoute
 }
 export interface FileRouteTypes {
@@ -398,6 +407,7 @@ export interface FileRouteTypes {
     | '/admin/stock/scan'
     | '/admin/catalog/'
     | '/admin/posts/'
+    | '/admin/purchases/'
     | '/admin/stock/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -418,7 +428,6 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/blog'
     | '/admin/analytics'
-    | '/admin/purchases'
     | '/admin/users'
     | '/api/public/track'
     | '/admin'
@@ -433,6 +442,7 @@ export interface FileRouteTypes {
     | '/admin/stock/scan'
     | '/admin/catalog'
     | '/admin/posts'
+    | '/admin/purchases'
     | '/admin/stock'
   id:
     | '__root__'
@@ -472,6 +482,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/stock/scan'
     | '/_authenticated/admin/catalog/'
     | '/_authenticated/admin/posts/'
+    | '/_authenticated/admin/purchases/'
     | '/_authenticated/admin/stock/'
   fileRoutesById: FileRoutesById
 }
@@ -679,6 +690,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminStockIndexRouteImport
       parentRoute: typeof AuthenticatedAdminStockRoute
     }
+    '/_authenticated/admin/purchases/': {
+      id: '/_authenticated/admin/purchases/'
+      path: '/'
+      fullPath: '/admin/purchases/'
+      preLoaderRoute: typeof AuthenticatedAdminPurchasesIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminPurchasesRoute
+    }
     '/_authenticated/admin/posts/': {
       id: '/_authenticated/admin/posts/'
       path: '/posts'
@@ -759,6 +777,21 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedAdminPurchasesRouteChildren {
+  AuthenticatedAdminPurchasesIndexRoute: typeof AuthenticatedAdminPurchasesIndexRoute
+}
+
+const AuthenticatedAdminPurchasesRouteChildren: AuthenticatedAdminPurchasesRouteChildren =
+  {
+    AuthenticatedAdminPurchasesIndexRoute:
+      AuthenticatedAdminPurchasesIndexRoute,
+  }
+
+const AuthenticatedAdminPurchasesRouteWithChildren =
+  AuthenticatedAdminPurchasesRoute._addFileChildren(
+    AuthenticatedAdminPurchasesRouteChildren,
+  )
+
 interface AuthenticatedAdminStockRouteChildren {
   AuthenticatedAdminStockLocationsRoute: typeof AuthenticatedAdminStockLocationsRoute
   AuthenticatedAdminStockMovementsRoute: typeof AuthenticatedAdminStockMovementsRoute
@@ -783,7 +816,7 @@ const AuthenticatedAdminStockRouteWithChildren =
 
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminAnalyticsRoute: typeof AuthenticatedAdminAnalyticsRoute
-  AuthenticatedAdminPurchasesRoute: typeof AuthenticatedAdminPurchasesRoute
+  AuthenticatedAdminPurchasesRoute: typeof AuthenticatedAdminPurchasesRouteWithChildren
   AuthenticatedAdminStockRoute: typeof AuthenticatedAdminStockRouteWithChildren
   AuthenticatedAdminUsersRoute: typeof AuthenticatedAdminUsersRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
@@ -799,7 +832,8 @@ interface AuthenticatedAdminRouteChildren {
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminAnalyticsRoute: AuthenticatedAdminAnalyticsRoute,
-  AuthenticatedAdminPurchasesRoute: AuthenticatedAdminPurchasesRoute,
+  AuthenticatedAdminPurchasesRoute:
+    AuthenticatedAdminPurchasesRouteWithChildren,
   AuthenticatedAdminStockRoute: AuthenticatedAdminStockRouteWithChildren,
   AuthenticatedAdminUsersRoute: AuthenticatedAdminUsersRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
