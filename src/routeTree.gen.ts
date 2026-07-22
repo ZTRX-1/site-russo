@@ -36,6 +36,7 @@ import { Route as AuthenticatedAdminAnalyticsRouteImport } from './routes/_authe
 import { Route as AuthenticatedAdminStockIndexRouteImport } from './routes/_authenticated/admin.stock.index'
 import { Route as AuthenticatedAdminPostsIndexRouteImport } from './routes/_authenticated/admin.posts.index'
 import { Route as AuthenticatedAdminCatalogIndexRouteImport } from './routes/_authenticated/admin.catalog.index'
+import { Route as AuthenticatedAdminStockScanRouteImport } from './routes/_authenticated/admin.stock.scan'
 import { Route as AuthenticatedAdminStockMovementsRouteImport } from './routes/_authenticated/admin.stock.movements'
 import { Route as AuthenticatedAdminPostsNewRouteImport } from './routes/_authenticated/admin.posts.new'
 import { Route as AuthenticatedAdminPostsIdRouteImport } from './routes/_authenticated/admin.posts.$id'
@@ -183,6 +184,12 @@ const AuthenticatedAdminCatalogIndexRoute =
     path: '/catalog/',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminStockScanRoute =
+  AuthenticatedAdminStockScanRouteImport.update({
+    id: '/scan',
+    path: '/scan',
+    getParentRoute: () => AuthenticatedAdminStockRoute,
+  } as any)
 const AuthenticatedAdminStockMovementsRoute =
   AuthenticatedAdminStockMovementsRouteImport.update({
     id: '/movements',
@@ -257,6 +264,7 @@ export interface FileRoutesByFullPath {
   '/admin/posts/$id': typeof AuthenticatedAdminPostsIdRoute
   '/admin/posts/new': typeof AuthenticatedAdminPostsNewRoute
   '/admin/stock/movements': typeof AuthenticatedAdminStockMovementsRoute
+  '/admin/stock/scan': typeof AuthenticatedAdminStockScanRoute
   '/admin/catalog/': typeof AuthenticatedAdminCatalogIndexRoute
   '/admin/posts/': typeof AuthenticatedAdminPostsIndexRoute
   '/admin/stock/': typeof AuthenticatedAdminStockIndexRoute
@@ -289,6 +297,7 @@ export interface FileRoutesByTo {
   '/admin/posts/$id': typeof AuthenticatedAdminPostsIdRoute
   '/admin/posts/new': typeof AuthenticatedAdminPostsNewRoute
   '/admin/stock/movements': typeof AuthenticatedAdminStockMovementsRoute
+  '/admin/stock/scan': typeof AuthenticatedAdminStockScanRoute
   '/admin/catalog': typeof AuthenticatedAdminCatalogIndexRoute
   '/admin/posts': typeof AuthenticatedAdminPostsIndexRoute
   '/admin/stock': typeof AuthenticatedAdminStockIndexRoute
@@ -326,6 +335,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/posts/$id': typeof AuthenticatedAdminPostsIdRoute
   '/_authenticated/admin/posts/new': typeof AuthenticatedAdminPostsNewRoute
   '/_authenticated/admin/stock/movements': typeof AuthenticatedAdminStockMovementsRoute
+  '/_authenticated/admin/stock/scan': typeof AuthenticatedAdminStockScanRoute
   '/_authenticated/admin/catalog/': typeof AuthenticatedAdminCatalogIndexRoute
   '/_authenticated/admin/posts/': typeof AuthenticatedAdminPostsIndexRoute
   '/_authenticated/admin/stock/': typeof AuthenticatedAdminStockIndexRoute
@@ -363,6 +373,7 @@ export interface FileRouteTypes {
     | '/admin/posts/$id'
     | '/admin/posts/new'
     | '/admin/stock/movements'
+    | '/admin/stock/scan'
     | '/admin/catalog/'
     | '/admin/posts/'
     | '/admin/stock/'
@@ -395,6 +406,7 @@ export interface FileRouteTypes {
     | '/admin/posts/$id'
     | '/admin/posts/new'
     | '/admin/stock/movements'
+    | '/admin/stock/scan'
     | '/admin/catalog'
     | '/admin/posts'
     | '/admin/stock'
@@ -431,6 +443,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/posts/$id'
     | '/_authenticated/admin/posts/new'
     | '/_authenticated/admin/stock/movements'
+    | '/_authenticated/admin/stock/scan'
     | '/_authenticated/admin/catalog/'
     | '/_authenticated/admin/posts/'
     | '/_authenticated/admin/stock/'
@@ -647,6 +660,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminCatalogIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/stock/scan': {
+      id: '/_authenticated/admin/stock/scan'
+      path: '/scan'
+      fullPath: '/admin/stock/scan'
+      preLoaderRoute: typeof AuthenticatedAdminStockScanRouteImport
+      parentRoute: typeof AuthenticatedAdminStockRoute
+    }
     '/_authenticated/admin/stock/movements': {
       id: '/_authenticated/admin/stock/movements'
       path: '/movements'
@@ -701,6 +721,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedAdminStockRouteChildren {
   AuthenticatedAdminStockMovementsRoute: typeof AuthenticatedAdminStockMovementsRoute
+  AuthenticatedAdminStockScanRoute: typeof AuthenticatedAdminStockScanRoute
   AuthenticatedAdminStockIndexRoute: typeof AuthenticatedAdminStockIndexRoute
 }
 
@@ -708,6 +729,7 @@ const AuthenticatedAdminStockRouteChildren: AuthenticatedAdminStockRouteChildren
   {
     AuthenticatedAdminStockMovementsRoute:
       AuthenticatedAdminStockMovementsRoute,
+    AuthenticatedAdminStockScanRoute: AuthenticatedAdminStockScanRoute,
     AuthenticatedAdminStockIndexRoute: AuthenticatedAdminStockIndexRoute,
   }
 
