@@ -166,7 +166,7 @@ export async function createProduct(input: ProductInput) {
   const parsed = productSchema.parse(input);
   const slug = parsed.slug?.trim() ? slugify(parsed.slug) : slugify(parsed.name);
   const { data: userData } = await supabase.auth.getUser();
-  const payload: Record<string, unknown> = {
+  const payload = {
     ...parsed,
     slug,
     category_id: parsed.category_id || null,
@@ -181,7 +181,7 @@ export async function createProduct(input: ProductInput) {
 export async function updateProduct(id: string, input: ProductInput) {
   const parsed = productSchema.parse(input);
   const slug = parsed.slug?.trim() ? slugify(parsed.slug) : slugify(parsed.name);
-  const payload: Record<string, unknown> = {
+  const payload = {
     ...parsed,
     slug,
     category_id: parsed.category_id || null,
