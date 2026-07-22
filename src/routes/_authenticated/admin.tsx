@@ -1,6 +1,6 @@
 import { createFileRoute, Outlet, Link, useRouter, useLocation } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { LogOut, FileText, Users, LayoutDashboard, ShieldAlert, Home, BarChart3, Package } from "lucide-react";
+import { LogOut, FileText, Users, LayoutDashboard, ShieldAlert, Home, BarChart3, Package, Boxes } from "lucide-react";
 import { getMyRoles } from "@/lib/admin.functions";
 import { signOut } from "@/lib/auth/useAuth";
 
@@ -56,6 +56,7 @@ function AdminLayout() {
     { to: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
     { to: "/admin/posts", label: "Posts", icon: FileText },
     { to: "/admin/catalog", label: "Catálogo", icon: Package },
+    { to: "/admin/stock", label: "Estoque", icon: Boxes },
     ...(me?.isAdmin ? [{ to: "/admin/analytics", label: "Analytics", icon: BarChart3 }] : []),
     ...(me?.isAdmin ? [{ to: "/admin/users", label: "Equipe", icon: Users }] : []),
   ];
