@@ -77,10 +77,12 @@ export function FloatingWhats() {
         className="group relative flex h-16 w-16 items-center justify-center rounded-full bg-primary shadow-[0_12px_30px_-8px_oklch(0.55_0.22_27_/_0.55)] ring-2 ring-white transition-transform hover:scale-110 active:scale-95"
       >
         <img
-          src="/uploads/mascote.png"
+          src="/uploads/mascote.webp"
           alt=""
           width={64}
           height={64}
+          loading="lazy"
+          decoding="async"
           className="h-14 w-14 rounded-full object-contain"
         />
         <span className="pointer-events-none absolute inset-0 -z-10 animate-ping rounded-full bg-primary/40" />

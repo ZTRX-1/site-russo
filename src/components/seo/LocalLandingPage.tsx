@@ -25,7 +25,7 @@ import {
   WHATSAPP_URL,
   WHATSAPP_URL_ESPECIALISTA,
 } from "@/lib/constants";
-import fachada from "/uploads/fachada-russo.png";
+import fachada from "/uploads/fachada.webp";
 
 export interface FaqItem {
   q: string;
