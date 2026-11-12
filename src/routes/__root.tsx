@@ -132,7 +132,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           name: "Russo Elétrica e Ferragens",
           url: "https://russoeletrofer.com.br",
           logo: "https://russoeletrofer.com.br/uploads/logo-russo.png",
-          image: "https://russoeletrofer.com.br/uploads/fachada.webp",
+          image: "https://russoeletrofer.com.br/uploads/fachada-russo.jpg",
           telephone: "+551137662002",
           email: "contato@russoeletrofer.com.br",
           address: {

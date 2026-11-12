@@ -143,7 +143,7 @@ export function Hero() {
                 Trabalhamos com as principais marcas
               </p>
               <div className="mt-3 flex flex-wrap gap-1.5">
-                {["WEG", "Schneider", "Pial", "Intelbras", "Lorenzetti", "Legrand", "Steck", "Tramontina"].map((brand) => (
+                {["Pial", "Intelbras", "Lorenzetti", "Legrand", "Steck", "Tramontina"].map((brand) => (
                   <span
                     key={brand}
                     className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/70"

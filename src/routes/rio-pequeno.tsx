@@ -42,7 +42,7 @@ export const Route = createFileRoute("/rio-pequeno")({
           "@id": SITE_URL + URL_PATH + "#localbusiness",
           name: COMPANY_NAME,
           url: SITE_URL + URL_PATH,
-          image: SITE_URL + "/uploads/fachada.webp",
+          image: SITE_URL + "/uploads/fachada-russo.jpg",
           telephone: "+551137662002",
           priceRange: "$$",
           address: {

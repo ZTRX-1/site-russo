@@ -1,7 +1,5 @@
 export function ClientesParceiros() {
   const marcas = [
-    "WEG",
-    "Schneider",
     "Intelbras",
     "Lorenzetti",
     "Steck",
