@@ -1,0 +1,2338 @@
+{
+  "enums": [
+    {
+      "nome": "app_role",
+      "valores": [
+        "admin",
+        "editor"
+      ]
+    },
+    {
+      "nome": "product_status",
+      "valores": [
+        "draft",
+        "active",
+        "inactive",
+        "discontinued"
+      ]
+    },
+    {
+      "nome": "purchase_order_status",
+      "valores": [
+        "draft",
+        "placed",
+        "partial",
+        "received",
+        "canceled"
+      ]
+    }
+  ],
+  "funcoes": [
+    {
+      "nome": "claim_initial_admin",
+      "retorno": "boolean",
+      "definicao": "CREATE OR REPLACE FUNCTION public.claim_initial_admin(_username text, _display_name text DEFAULT NULL::text)\n RETURNS boolean\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO 'public'\nAS $function$\nDECLARE\n  current_user_id uuid := auth.uid();\n  current_email text := lower(coalesce(auth.jwt() ->> 'email', ''));\n  cleaned_username text := lower(trim(coalesce(_username, '')));\n  final_display_name text := nullif(trim(coalesce(_display_name, '')), '');\nBEGIN\n  IF current_user_id IS NULL THEN\n    RAISE EXCEPTION 'Faça login para concluir o cadastro inicial.';\n  END IF;\n\n  IF EXISTS (SELECT 1 FROM public.user_roles WHERE role = 'admin') THEN\n    RAISE EXCEPTION 'O super administrador já foi criado. Cadastro bloqueado.';\n  END IF;\n\n  IF cleaned_username !~ '^[a-z0-9_.-]{3,40}$' THEN\n    RAISE EXCEPTION 'Use um usuário de 3 a 40 caracteres com letras, números, ponto, hífen ou underline.';\n  END IF;\n\n  IF current_email = '' THEN\n    RAISE EXCEPTION 'Não foi possível identificar o e-mail da conta.';\n  END IF;\n\n  IF EXISTS (\n    SELECT 1\n    FROM public.profiles\n    WHERE lower(username) = cleaned_username\n      AND id <> current_user_id\n  ) THEN\n    RAISE EXCEPTION 'Este nome de usuário já está em uso.';\n  END IF;\n\n  INSERT INTO public.profiles (id, email, display_name, username)\n  VALUES (\n    current_user_id,\n    current_email,\n    coalesce(final_display_name, cleaned_username),\n    cleaned_username\n  )\n  ON CONFLICT (id) DO UPDATE SET\n    email = excluded.email,\n    display_name = excluded.display_name,\n    username = excluded.username,\n    updated_at = now();\n\n  INSERT INTO public.user_roles (user_id, role)\n  VALUES (current_user_id, 'admin')\n  ON CONFLICT (user_id, role) DO NOTHING;\n\n  RETURN true;\nEND;\n$function$\n",
+      "argumentos": "_username text, _display_name text DEFAULT NULL::text"
+    },
+    {
+      "nome": "gin_extract_query_trgm",
+      "retorno": "internal",
+      "definicao": "CREATE OR REPLACE FUNCTION public.gin_extract_query_trgm(text, internal, smallint, internal, internal, internal, internal)\n RETURNS internal\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$gin_extract_query_trgm$function$\n",
+      "argumentos": "text, internal, smallint, internal, internal, internal, internal"
+    },
+    {
+      "nome": "gin_extract_value_trgm",
+      "retorno": "internal",
+      "definicao": "CREATE OR REPLACE FUNCTION public.gin_extract_value_trgm(text, internal)\n RETURNS internal\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$gin_extract_value_trgm$function$\n",
+      "argumentos": "text, internal"
+    },
+    {
+      "nome": "gin_trgm_consistent",
+      "retorno": "boolean",
+      "definicao": "CREATE OR REPLACE FUNCTION public.gin_trgm_consistent(internal, smallint, text, integer, internal, internal, internal, internal)\n RETURNS boolean\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$gin_trgm_consistent$function$\n",
+      "argumentos": "internal, smallint, text, integer, internal, internal, internal, internal"
+    },
+    {
+      "nome": "gin_trgm_triconsistent",
+      "retorno": "\"char\"",
+      "definicao": "CREATE OR REPLACE FUNCTION public.gin_trgm_triconsistent(internal, smallint, text, integer, internal, internal, internal)\n RETURNS \"char\"\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$gin_trgm_triconsistent$function$\n",
+      "argumentos": "internal, smallint, text, integer, internal, internal, internal"
+    },
+    {
+      "nome": "gtrgm_compress",
+      "retorno": "internal",
+      "definicao": "CREATE OR REPLACE FUNCTION public.gtrgm_compress(internal)\n RETURNS internal\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$gtrgm_compress$function$\n",
+      "argumentos": "internal"
+    },
+    {
+      "nome": "gtrgm_consistent",
+      "retorno": "boolean",
+      "definicao": "CREATE OR REPLACE FUNCTION public.gtrgm_consistent(internal, text, smallint, oid, internal)\n RETURNS boolean\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$gtrgm_consistent$function$\n",
+      "argumentos": "internal, text, smallint, oid, internal"
+    },
+    {
+      "nome": "gtrgm_decompress",
+      "retorno": "internal",
+      "definicao": "CREATE OR REPLACE FUNCTION public.gtrgm_decompress(internal)\n RETURNS internal\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$gtrgm_decompress$function$\n",
+      "argumentos": "internal"
+    },
+    {
+      "nome": "gtrgm_distance",
+      "retorno": "double precision",
+      "definicao": "CREATE OR REPLACE FUNCTION public.gtrgm_distance(internal, text, smallint, oid, internal)\n RETURNS double precision\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$gtrgm_distance$function$\n",
+      "argumentos": "internal, text, smallint, oid, internal"
+    },
+    {
+      "nome": "gtrgm_in",
+      "retorno": "gtrgm",
+      "definicao": "CREATE OR REPLACE FUNCTION public.gtrgm_in(cstring)\n RETURNS gtrgm\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$gtrgm_in$function$\n",
+      "argumentos": "cstring"
+    },
+    {
+      "nome": "gtrgm_options",
+      "retorno": "void",
+      "definicao": "CREATE OR REPLACE FUNCTION public.gtrgm_options(internal)\n RETURNS void\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE\nAS '$libdir/pg_trgm', $function$gtrgm_options$function$\n",
+      "argumentos": "internal"
+    },
+    {
+      "nome": "gtrgm_out",
+      "retorno": "cstring",
+      "definicao": "CREATE OR REPLACE FUNCTION public.gtrgm_out(gtrgm)\n RETURNS cstring\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$gtrgm_out$function$\n",
+      "argumentos": "gtrgm"
+    },
+    {
+      "nome": "gtrgm_penalty",
+      "retorno": "internal",
+      "definicao": "CREATE OR REPLACE FUNCTION public.gtrgm_penalty(internal, internal, internal)\n RETURNS internal\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$gtrgm_penalty$function$\n",
+      "argumentos": "internal, internal, internal"
+    },
+    {
+      "nome": "gtrgm_picksplit",
+      "retorno": "internal",
+      "definicao": "CREATE OR REPLACE FUNCTION public.gtrgm_picksplit(internal, internal)\n RETURNS internal\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$gtrgm_picksplit$function$\n",
+      "argumentos": "internal, internal"
+    },
+    {
+      "nome": "gtrgm_same",
+      "retorno": "internal",
+      "definicao": "CREATE OR REPLACE FUNCTION public.gtrgm_same(gtrgm, gtrgm, internal)\n RETURNS internal\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$gtrgm_same$function$\n",
+      "argumentos": "gtrgm, gtrgm, internal"
+    },
+    {
+      "nome": "gtrgm_union",
+      "retorno": "gtrgm",
+      "definicao": "CREATE OR REPLACE FUNCTION public.gtrgm_union(internal, internal)\n RETURNS gtrgm\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$gtrgm_union$function$\n",
+      "argumentos": "internal, internal"
+    },
+    {
+      "nome": "handle_new_user",
+      "retorno": "trigger",
+      "definicao": "CREATE OR REPLACE FUNCTION public.handle_new_user()\n RETURNS trigger\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO 'public'\nAS $function$\nBEGIN\n  INSERT INTO public.profiles (id, email, display_name, username)\n  VALUES (\n    NEW.id,\n    NEW.email,\n    COALESCE(NEW.raw_user_meta_data->>'display_name', split_part(NEW.email,'@',1)),\n    NEW.raw_user_meta_data->>'username'\n  );\n  RETURN NEW;\nEND;\n$function$\n",
+      "argumentos": ""
+    },
+    {
+      "nome": "has_any_admin",
+      "retorno": "boolean",
+      "definicao": "CREATE OR REPLACE FUNCTION public.has_any_admin()\n RETURNS boolean\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO 'public'\nAS $function$\n  SELECT EXISTS (\n    SELECT 1\n    FROM public.user_roles\n    WHERE role = 'admin'\n  );\n$function$\n",
+      "argumentos": ""
+    },
+    {
+      "nome": "has_role",
+      "retorno": "boolean",
+      "definicao": "CREATE OR REPLACE FUNCTION public.has_role(_user_id uuid, _role app_role)\n RETURNS boolean\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO 'public'\nAS $function$\n  SELECT EXISTS (SELECT 1 FROM public.user_roles WHERE user_id = _user_id AND role = _role);\n$function$\n",
+      "argumentos": "_user_id uuid, _role app_role"
+    },
+    {
+      "nome": "is_staff",
+      "retorno": "boolean",
+      "definicao": "CREATE OR REPLACE FUNCTION public.is_staff(_user_id uuid)\n RETURNS boolean\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO 'public'\nAS $function$\n  SELECT EXISTS (SELECT 1 FROM public.user_roles WHERE user_id = _user_id AND role IN ('admin','editor'));\n$function$\n",
+      "argumentos": "_user_id uuid"
+    },
+    {
+      "nome": "receive_purchase_order_item",
+      "retorno": "void",
+      "definicao": "CREATE OR REPLACE FUNCTION public.receive_purchase_order_item(_item_id uuid, _quantity numeric, _location_id uuid)\n RETURNS void\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO 'public'\nAS $function$\nDECLARE\n  v_item public.purchase_order_items%ROWTYPE;\n  v_po public.purchase_orders%ROWTYPE;\n  v_pending numeric;\n  v_total_qty numeric;\n  v_total_recv numeric;\nBEGIN\n  IF NOT public.is_staff(auth.uid()) THEN\n    RAISE EXCEPTION 'Sem permissão.';\n  END IF;\n  IF _quantity <= 0 THEN\n    RAISE EXCEPTION 'Quantidade deve ser positiva.';\n  END IF;\n\n  SELECT * INTO v_item FROM public.purchase_order_items WHERE id = _item_id FOR UPDATE;\n  IF NOT FOUND THEN RAISE EXCEPTION 'Item não encontrado.'; END IF;\n\n  SELECT * INTO v_po FROM public.purchase_orders WHERE id = v_item.purchase_order_id FOR UPDATE;\n  IF v_po.status = 'canceled' THEN RAISE EXCEPTION 'Pedido cancelado.'; END IF;\n\n  v_pending := v_item.quantity - v_item.received_quantity;\n  IF _quantity > v_pending THEN\n    RAISE EXCEPTION 'Quantidade acima do pendente (%.).', v_pending;\n  END IF;\n\n  -- stock entry\n  INSERT INTO public.stock_movements (product_id, location_id, kind, quantity, reason, document, unit_cost, created_by)\n  VALUES (\n    v_item.product_id,\n    COALESCE(_location_id, v_po.location_id),\n    'in',\n    _quantity,\n    'Recebimento OC ' || v_po.code,\n    v_po.code,\n    v_item.unit_cost,\n    auth.uid()\n  );\n\n  -- update item\n  UPDATE public.purchase_order_items\n    SET received_quantity = received_quantity + _quantity\n    WHERE id = _item_id;\n\n  -- supplier cost history\n  INSERT INTO public.supplier_product_costs (supplier_id, product_id, unit_cost, purchase_order_id)\n  VALUES (v_po.supplier_id, v_item.product_id, v_item.unit_cost, v_po.id);\n\n  -- refresh PO status\n  SELECT COALESCE(SUM(quantity),0), COALESCE(SUM(received_quantity),0)\n    INTO v_total_qty, v_total_recv\n    FROM public.purchase_order_items WHERE purchase_order_id = v_po.id;\n\n  UPDATE public.purchase_orders\n    SET status = CASE\n      WHEN v_total_recv >= v_total_qty THEN 'received'::purchase_order_status\n      WHEN v_total_recv > 0 THEN 'partial'::purchase_order_status\n      ELSE status\n    END,\n    received_at = CASE WHEN v_total_recv >= v_total_qty THEN now() ELSE received_at END\n    WHERE id = v_po.id;\nEND;\n$function$\n",
+      "argumentos": "_item_id uuid, _quantity numeric, _location_id uuid"
+    },
+    {
+      "nome": "resolve_login_email",
+      "retorno": "text",
+      "definicao": "CREATE OR REPLACE FUNCTION public.resolve_login_email(_identifier text)\n RETURNS text\n LANGUAGE plpgsql\n STABLE SECURITY DEFINER\n SET search_path TO 'public'\nAS $function$\nDECLARE\n  cleaned text := lower(trim(coalesce(_identifier, '')));\n  resolved_email text;\nBEGIN\n  IF cleaned = '' OR length(cleaned) > 200 THEN\n    RAISE EXCEPTION 'Usuário ou senha inválidos.';\n  END IF;\n\n  IF position('@' in cleaned) > 0 THEN\n    RETURN cleaned;\n  END IF;\n\n  SELECT lower(email)\n    INTO resolved_email\n  FROM public.profiles\n  WHERE lower(username) = cleaned\n  LIMIT 1;\n\n  IF resolved_email IS NULL THEN\n    RAISE EXCEPTION 'Usuário ou senha inválidos.';\n  END IF;\n\n  RETURN resolved_email;\nEND;\n$function$\n",
+      "argumentos": "_identifier text"
+    },
+    {
+      "nome": "set_limit",
+      "retorno": "real",
+      "definicao": "CREATE OR REPLACE FUNCTION public.set_limit(real)\n RETURNS real\n LANGUAGE c\n STRICT\nAS '$libdir/pg_trgm', $function$set_limit$function$\n",
+      "argumentos": "real"
+    },
+    {
+      "nome": "show_limit",
+      "retorno": "real",
+      "definicao": "CREATE OR REPLACE FUNCTION public.show_limit()\n RETURNS real\n LANGUAGE c\n STABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$show_limit$function$\n",
+      "argumentos": ""
+    },
+    {
+      "nome": "show_trgm",
+      "retorno": "text[]",
+      "definicao": "CREATE OR REPLACE FUNCTION public.show_trgm(text)\n RETURNS text[]\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$show_trgm$function$\n",
+      "argumentos": "text"
+    },
+    {
+      "nome": "similarity",
+      "retorno": "real",
+      "definicao": "CREATE OR REPLACE FUNCTION public.similarity(text, text)\n RETURNS real\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$similarity$function$\n",
+      "argumentos": "text, text"
+    },
+    {
+      "nome": "similarity_dist",
+      "retorno": "real",
+      "definicao": "CREATE OR REPLACE FUNCTION public.similarity_dist(text, text)\n RETURNS real\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$similarity_dist$function$\n",
+      "argumentos": "text, text"
+    },
+    {
+      "nome": "similarity_op",
+      "retorno": "boolean",
+      "definicao": "CREATE OR REPLACE FUNCTION public.similarity_op(text, text)\n RETURNS boolean\n LANGUAGE c\n STABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$similarity_op$function$\n",
+      "argumentos": "text, text"
+    },
+    {
+      "nome": "strict_word_similarity",
+      "retorno": "real",
+      "definicao": "CREATE OR REPLACE FUNCTION public.strict_word_similarity(text, text)\n RETURNS real\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$strict_word_similarity$function$\n",
+      "argumentos": "text, text"
+    },
+    {
+      "nome": "strict_word_similarity_commutator_op",
+      "retorno": "boolean",
+      "definicao": "CREATE OR REPLACE FUNCTION public.strict_word_similarity_commutator_op(text, text)\n RETURNS boolean\n LANGUAGE c\n STABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$strict_word_similarity_commutator_op$function$\n",
+      "argumentos": "text, text"
+    },
+    {
+      "nome": "strict_word_similarity_dist_commutator_op",
+      "retorno": "real",
+      "definicao": "CREATE OR REPLACE FUNCTION public.strict_word_similarity_dist_commutator_op(text, text)\n RETURNS real\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$strict_word_similarity_dist_commutator_op$function$\n",
+      "argumentos": "text, text"
+    },
+    {
+      "nome": "strict_word_similarity_dist_op",
+      "retorno": "real",
+      "definicao": "CREATE OR REPLACE FUNCTION public.strict_word_similarity_dist_op(text, text)\n RETURNS real\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$strict_word_similarity_dist_op$function$\n",
+      "argumentos": "text, text"
+    },
+    {
+      "nome": "strict_word_similarity_op",
+      "retorno": "boolean",
+      "definicao": "CREATE OR REPLACE FUNCTION public.strict_word_similarity_op(text, text)\n RETURNS boolean\n LANGUAGE c\n STABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$strict_word_similarity_op$function$\n",
+      "argumentos": "text, text"
+    },
+    {
+      "nome": "tg_set_updated_at",
+      "retorno": "trigger",
+      "definicao": "CREATE OR REPLACE FUNCTION public.tg_set_updated_at()\n RETURNS trigger\n LANGUAGE plpgsql\n SET search_path TO 'public'\nAS $function$\nBEGIN NEW.updated_at = now(); RETURN NEW; END; $function$\n",
+      "argumentos": ""
+    },
+    {
+      "nome": "word_similarity",
+      "retorno": "real",
+      "definicao": "CREATE OR REPLACE FUNCTION public.word_similarity(text, text)\n RETURNS real\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$word_similarity$function$\n",
+      "argumentos": "text, text"
+    },
+    {
+      "nome": "word_similarity_commutator_op",
+      "retorno": "boolean",
+      "definicao": "CREATE OR REPLACE FUNCTION public.word_similarity_commutator_op(text, text)\n RETURNS boolean\n LANGUAGE c\n STABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$word_similarity_commutator_op$function$\n",
+      "argumentos": "text, text"
+    },
+    {
+      "nome": "word_similarity_dist_commutator_op",
+      "retorno": "real",
+      "definicao": "CREATE OR REPLACE FUNCTION public.word_similarity_dist_commutator_op(text, text)\n RETURNS real\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$word_similarity_dist_commutator_op$function$\n",
+      "argumentos": "text, text"
+    },
+    {
+      "nome": "word_similarity_dist_op",
+      "retorno": "real",
+      "definicao": "CREATE OR REPLACE FUNCTION public.word_similarity_dist_op(text, text)\n RETURNS real\n LANGUAGE c\n IMMUTABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$word_similarity_dist_op$function$\n",
+      "argumentos": "text, text"
+    },
+    {
+      "nome": "word_similarity_op",
+      "retorno": "boolean",
+      "definicao": "CREATE OR REPLACE FUNCTION public.word_similarity_op(text, text)\n RETURNS boolean\n LANGUAGE c\n STABLE PARALLEL SAFE STRICT\nAS '$libdir/pg_trgm', $function$word_similarity_op$function$\n",
+      "argumentos": "text, text"
+    }
+  ],
+  "tabelas": [
+    {
+      "tabela": "analytics_events",
+      "colunas": [
+        {
+          "nome": "id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": "gen_random_uuid()",
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "visitor_id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "session_id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "event_type",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "path",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "target",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "title",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "meta",
+          "nulo": "NO",
+          "tipo": "jsonb",
+          "default": "'{}'::jsonb",
+          "tipo_udt": "jsonb"
+        },
+        {
+          "nome": "created_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        }
+      ]
+    },
+    {
+      "tabela": "analytics_leads",
+      "colunas": [
+        {
+          "nome": "id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": "gen_random_uuid()",
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "visitor_id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "session_id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "source_event",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "path",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "referrer",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "utm_source",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "utm_medium",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "utm_campaign",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "utm_term",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "utm_content",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "gclid",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "fbclid",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "meta",
+          "nulo": "NO",
+          "tipo": "jsonb",
+          "default": "'{}'::jsonb",
+          "tipo_udt": "jsonb"
+        },
+        {
+          "nome": "created_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        }
+      ]
+    },
+    {
+      "tabela": "analytics_sessions",
+      "colunas": [
+        {
+          "nome": "id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "visitor_id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "started_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        },
+        {
+          "nome": "last_seen_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        },
+        {
+          "nome": "landing_path",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "referrer",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "utm_source",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "utm_medium",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "utm_campaign",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "utm_term",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "utm_content",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "gclid",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "fbclid",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "user_agent",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "created_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        }
+      ]
+    },
+    {
+      "tabela": "analytics_visitors",
+      "colunas": [
+        {
+          "nome": "id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "first_seen_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        },
+        {
+          "nome": "last_seen_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        },
+        {
+          "nome": "first_referrer",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "first_utm_source",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "first_utm_medium",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "first_utm_campaign",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "country",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "city",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "created_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        },
+        {
+          "nome": "updated_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        }
+      ]
+    },
+    {
+      "tabela": "brands",
+      "colunas": [
+        {
+          "nome": "id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": "gen_random_uuid()",
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "name",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "slug",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "logo_url",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "active",
+          "nulo": "NO",
+          "tipo": "boolean",
+          "default": "true",
+          "tipo_udt": "bool"
+        },
+        {
+          "nome": "created_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        },
+        {
+          "nome": "updated_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        }
+      ]
+    },
+    {
+      "tabela": "categories",
+      "colunas": [
+        {
+          "nome": "id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": "gen_random_uuid()",
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "parent_id",
+          "nulo": "YES",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "name",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "slug",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "icon",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "sort_order",
+          "nulo": "NO",
+          "tipo": "integer",
+          "default": "0",
+          "tipo_udt": "int4"
+        },
+        {
+          "nome": "active",
+          "nulo": "NO",
+          "tipo": "boolean",
+          "default": "true",
+          "tipo_udt": "bool"
+        },
+        {
+          "nome": "created_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        },
+        {
+          "nome": "updated_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        }
+      ]
+    },
+    {
+      "tabela": "posts",
+      "colunas": [
+        {
+          "nome": "id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": "gen_random_uuid()",
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "slug",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "title",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "description",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": "''::text",
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "content_html",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": "''::text",
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "category",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": "'Geral'::text",
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "cover_url",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "status",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": "'draft'::text",
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "author_id",
+          "nulo": "YES",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "author_name",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "published_at",
+          "nulo": "YES",
+          "tipo": "timestamp with time zone",
+          "default": null,
+          "tipo_udt": "timestamptz"
+        },
+        {
+          "nome": "created_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        },
+        {
+          "nome": "updated_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        }
+      ]
+    },
+    {
+      "tabela": "product_barcodes",
+      "colunas": [
+        {
+          "nome": "id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": "gen_random_uuid()",
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "product_id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "code",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "pack_size",
+          "nulo": "NO",
+          "tipo": "numeric",
+          "default": "1",
+          "tipo_udt": "numeric"
+        },
+        {
+          "nome": "label",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "created_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        }
+      ]
+    },
+    {
+      "tabela": "product_images",
+      "colunas": [
+        {
+          "nome": "id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": "gen_random_uuid()",
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "product_id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "url",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "alt",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "sort_order",
+          "nulo": "NO",
+          "tipo": "integer",
+          "default": "0",
+          "tipo_udt": "int4"
+        },
+        {
+          "nome": "is_primary",
+          "nulo": "NO",
+          "tipo": "boolean",
+          "default": "false",
+          "tipo_udt": "bool"
+        },
+        {
+          "nome": "created_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        }
+      ]
+    },
+    {
+      "tabela": "products",
+      "colunas": [
+        {
+          "nome": "id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": "gen_random_uuid()",
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "sku",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "slug",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "name",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "short_description",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "description",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "category_id",
+          "nulo": "YES",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "brand_id",
+          "nulo": "YES",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "unit",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": "'un'::text",
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "ncm",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "weight_kg",
+          "nulo": "YES",
+          "tipo": "numeric",
+          "default": null,
+          "tipo_udt": "numeric"
+        },
+        {
+          "nome": "length_cm",
+          "nulo": "YES",
+          "tipo": "numeric",
+          "default": null,
+          "tipo_udt": "numeric"
+        },
+        {
+          "nome": "width_cm",
+          "nulo": "YES",
+          "tipo": "numeric",
+          "default": null,
+          "tipo_udt": "numeric"
+        },
+        {
+          "nome": "height_cm",
+          "nulo": "YES",
+          "tipo": "numeric",
+          "default": null,
+          "tipo_udt": "numeric"
+        },
+        {
+          "nome": "cost_price",
+          "nulo": "YES",
+          "tipo": "numeric",
+          "default": null,
+          "tipo_udt": "numeric"
+        },
+        {
+          "nome": "sale_price",
+          "nulo": "YES",
+          "tipo": "numeric",
+          "default": null,
+          "tipo_udt": "numeric"
+        },
+        {
+          "nome": "promo_price",
+          "nulo": "YES",
+          "tipo": "numeric",
+          "default": null,
+          "tipo_udt": "numeric"
+        },
+        {
+          "nome": "promo_starts_at",
+          "nulo": "YES",
+          "tipo": "timestamp with time zone",
+          "default": null,
+          "tipo_udt": "timestamptz"
+        },
+        {
+          "nome": "promo_ends_at",
+          "nulo": "YES",
+          "tipo": "timestamp with time zone",
+          "default": null,
+          "tipo_udt": "timestamptz"
+        },
+        {
+          "nome": "min_stock",
+          "nulo": "YES",
+          "tipo": "numeric",
+          "default": "0",
+          "tipo_udt": "numeric"
+        },
+        {
+          "nome": "status",
+          "nulo": "NO",
+          "tipo": "USER-DEFINED",
+          "default": "'draft'::product_status",
+          "tipo_udt": "product_status"
+        },
+        {
+          "nome": "featured",
+          "nulo": "NO",
+          "tipo": "boolean",
+          "default": "false",
+          "tipo_udt": "bool"
+        },
+        {
+          "nome": "cover_image_url",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "created_by",
+          "nulo": "YES",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "created_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        },
+        {
+          "nome": "updated_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        }
+      ]
+    },
+    {
+      "tabela": "profiles",
+      "colunas": [
+        {
+          "nome": "id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "display_name",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "email",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "created_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        },
+        {
+          "nome": "updated_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        },
+        {
+          "nome": "username",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        }
+      ]
+    },
+    {
+      "tabela": "purchase_order_items",
+      "colunas": [
+        {
+          "nome": "id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": "gen_random_uuid()",
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "purchase_order_id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "product_id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "quantity",
+          "nulo": "NO",
+          "tipo": "numeric",
+          "default": null,
+          "tipo_udt": "numeric"
+        },
+        {
+          "nome": "received_quantity",
+          "nulo": "NO",
+          "tipo": "numeric",
+          "default": "0",
+          "tipo_udt": "numeric"
+        },
+        {
+          "nome": "unit_cost",
+          "nulo": "NO",
+          "tipo": "numeric",
+          "default": "0",
+          "tipo_udt": "numeric"
+        },
+        {
+          "nome": "notes",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "created_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        }
+      ]
+    },
+    {
+      "tabela": "purchase_orders",
+      "colunas": [
+        {
+          "nome": "id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": "gen_random_uuid()",
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "code",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "supplier_id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "location_id",
+          "nulo": "YES",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "status",
+          "nulo": "NO",
+          "tipo": "USER-DEFINED",
+          "default": "'draft'::purchase_order_status",
+          "tipo_udt": "purchase_order_status"
+        },
+        {
+          "nome": "expected_at",
+          "nulo": "YES",
+          "tipo": "date",
+          "default": null,
+          "tipo_udt": "date"
+        },
+        {
+          "nome": "received_at",
+          "nulo": "YES",
+          "tipo": "timestamp with time zone",
+          "default": null,
+          "tipo_udt": "timestamptz"
+        },
+        {
+          "nome": "notes",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "freight",
+          "nulo": "NO",
+          "tipo": "numeric",
+          "default": "0",
+          "tipo_udt": "numeric"
+        },
+        {
+          "nome": "discount",
+          "nulo": "NO",
+          "tipo": "numeric",
+          "default": "0",
+          "tipo_udt": "numeric"
+        },
+        {
+          "nome": "created_by",
+          "nulo": "YES",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "created_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        },
+        {
+          "nome": "updated_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        }
+      ]
+    },
+    {
+      "tabela": "stock_balances",
+      "colunas": [
+        {
+          "nome": "product_id",
+          "nulo": "YES",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "location_id",
+          "nulo": "YES",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "balance",
+          "nulo": "YES",
+          "tipo": "numeric",
+          "default": null,
+          "tipo_udt": "numeric"
+        },
+        {
+          "nome": "last_movement_at",
+          "nulo": "YES",
+          "tipo": "timestamp with time zone",
+          "default": null,
+          "tipo_udt": "timestamptz"
+        }
+      ]
+    },
+    {
+      "tabela": "stock_locations",
+      "colunas": [
+        {
+          "nome": "id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": "gen_random_uuid()",
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "name",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "kind",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": "'store'::text",
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "active",
+          "nulo": "NO",
+          "tipo": "boolean",
+          "default": "true",
+          "tipo_udt": "bool"
+        },
+        {
+          "nome": "sort_order",
+          "nulo": "NO",
+          "tipo": "integer",
+          "default": "0",
+          "tipo_udt": "int4"
+        },
+        {
+          "nome": "created_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        },
+        {
+          "nome": "updated_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        }
+      ]
+    },
+    {
+      "tabela": "stock_movements",
+      "colunas": [
+        {
+          "nome": "id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": "gen_random_uuid()",
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "product_id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "location_id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "kind",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "quantity",
+          "nulo": "NO",
+          "tipo": "numeric",
+          "default": null,
+          "tipo_udt": "numeric"
+        },
+        {
+          "nome": "reason",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "document",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "unit_cost",
+          "nulo": "YES",
+          "tipo": "numeric",
+          "default": null,
+          "tipo_udt": "numeric"
+        },
+        {
+          "nome": "related_id",
+          "nulo": "YES",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "created_by",
+          "nulo": "YES",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "created_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        }
+      ]
+    },
+    {
+      "tabela": "supplier_product_costs",
+      "colunas": [
+        {
+          "nome": "id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": "gen_random_uuid()",
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "supplier_id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "product_id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "unit_cost",
+          "nulo": "NO",
+          "tipo": "numeric",
+          "default": null,
+          "tipo_udt": "numeric"
+        },
+        {
+          "nome": "purchase_order_id",
+          "nulo": "YES",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "recorded_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        }
+      ]
+    },
+    {
+      "tabela": "suppliers",
+      "colunas": [
+        {
+          "nome": "id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": "gen_random_uuid()",
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "name",
+          "nulo": "NO",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "legal_name",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "document",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "email",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "phone",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "contact_name",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "payment_terms",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "notes",
+          "nulo": "YES",
+          "tipo": "text",
+          "default": null,
+          "tipo_udt": "text"
+        },
+        {
+          "nome": "active",
+          "nulo": "NO",
+          "tipo": "boolean",
+          "default": "true",
+          "tipo_udt": "bool"
+        },
+        {
+          "nome": "created_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        },
+        {
+          "nome": "updated_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        }
+      ]
+    },
+    {
+      "tabela": "user_roles",
+      "colunas": [
+        {
+          "nome": "id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": "gen_random_uuid()",
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "user_id",
+          "nulo": "NO",
+          "tipo": "uuid",
+          "default": null,
+          "tipo_udt": "uuid"
+        },
+        {
+          "nome": "role",
+          "nulo": "NO",
+          "tipo": "USER-DEFINED",
+          "default": null,
+          "tipo_udt": "app_role"
+        },
+        {
+          "nome": "created_at",
+          "nulo": "NO",
+          "tipo": "timestamp with time zone",
+          "default": "now()",
+          "tipo_udt": "timestamptz"
+        }
+      ]
+    }
+  ],
+  "policies": [
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "has_role(auth.uid(), 'admin'::app_role)",
+      "policy": "Admins read events",
+      "tabela": "analytics_events",
+      "comando": "SELECT",
+      "permissiva": "PERMISSIVE",
+      "with_check": null
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "has_role(auth.uid(), 'admin'::app_role)",
+      "policy": "Admins read leads",
+      "tabela": "analytics_leads",
+      "comando": "SELECT",
+      "permissiva": "PERMISSIVE",
+      "with_check": null
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "has_role(auth.uid(), 'admin'::app_role)",
+      "policy": "Admins read sessions",
+      "tabela": "analytics_sessions",
+      "comando": "SELECT",
+      "permissiva": "PERMISSIVE",
+      "with_check": null
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "has_role(auth.uid(), 'admin'::app_role)",
+      "policy": "Admins read visitors",
+      "tabela": "analytics_visitors",
+      "comando": "SELECT",
+      "permissiva": "PERMISSIVE",
+      "with_check": null
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "Staff read brands",
+      "tabela": "brands",
+      "comando": "SELECT",
+      "permissiva": "PERMISSIVE",
+      "with_check": null
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "Staff write brands",
+      "tabela": "brands",
+      "comando": "ALL",
+      "permissiva": "PERMISSIVE",
+      "with_check": "is_staff(auth.uid())"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "Staff read categories",
+      "tabela": "categories",
+      "comando": "SELECT",
+      "permissiva": "PERMISSIVE",
+      "with_check": null
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "Staff write categories",
+      "tabela": "categories",
+      "comando": "ALL",
+      "permissiva": "PERMISSIVE",
+      "with_check": "is_staff(auth.uid())"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "((status = 'published'::text) OR (author_id = auth.uid()) OR is_staff(auth.uid()))",
+      "policy": "Auth reads published or own or staff",
+      "tabela": "posts",
+      "comando": "SELECT",
+      "permissiva": "PERMISSIVE",
+      "with_check": null
+    },
+    {
+      "roles": [
+        "anon"
+      ],
+      "using": "(status = 'published'::text)",
+      "policy": "Public reads published posts",
+      "tabela": "posts",
+      "comando": "SELECT",
+      "permissiva": "PERMISSIVE",
+      "with_check": null
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "Staff delete posts",
+      "tabela": "posts",
+      "comando": "DELETE",
+      "permissiva": "PERMISSIVE",
+      "with_check": null
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": null,
+      "policy": "Staff insert posts",
+      "tabela": "posts",
+      "comando": "INSERT",
+      "permissiva": "PERMISSIVE",
+      "with_check": "is_staff(auth.uid())"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "Staff update posts",
+      "tabela": "posts",
+      "comando": "UPDATE",
+      "permissiva": "PERMISSIVE",
+      "with_check": "is_staff(auth.uid())"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "Staff read barcodes",
+      "tabela": "product_barcodes",
+      "comando": "SELECT",
+      "permissiva": "PERMISSIVE",
+      "with_check": null
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "Staff write barcodes",
+      "tabela": "product_barcodes",
+      "comando": "ALL",
+      "permissiva": "PERMISSIVE",
+      "with_check": "is_staff(auth.uid())"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "Staff read product_images",
+      "tabela": "product_images",
+      "comando": "SELECT",
+      "permissiva": "PERMISSIVE",
+      "with_check": null
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "Staff write product_images",
+      "tabela": "product_images",
+      "comando": "ALL",
+      "permissiva": "PERMISSIVE",
+      "with_check": "is_staff(auth.uid())"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "Staff read products",
+      "tabela": "products",
+      "comando": "SELECT",
+      "permissiva": "PERMISSIVE",
+      "with_check": null
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "Staff write products",
+      "tabela": "products",
+      "comando": "ALL",
+      "permissiva": "PERMISSIVE",
+      "with_check": "is_staff(auth.uid())"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "has_role(auth.uid(), 'admin'::app_role)",
+      "policy": "Admins manage profiles",
+      "tabela": "profiles",
+      "comando": "ALL",
+      "permissiva": "PERMISSIVE",
+      "with_check": "has_role(auth.uid(), 'admin'::app_role)"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "true",
+      "policy": "Profiles readable by authenticated",
+      "tabela": "profiles",
+      "comando": "SELECT",
+      "permissiva": "PERMISSIVE",
+      "with_check": null
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "(auth.uid() = id)",
+      "policy": "Users update own profile",
+      "tabela": "profiles",
+      "comando": "UPDATE",
+      "permissiva": "PERMISSIVE",
+      "with_check": "(auth.uid() = id)"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "Staff read POI",
+      "tabela": "purchase_order_items",
+      "comando": "SELECT",
+      "permissiva": "PERMISSIVE",
+      "with_check": null
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "Staff write POI",
+      "tabela": "purchase_order_items",
+      "comando": "ALL",
+      "permissiva": "PERMISSIVE",
+      "with_check": "is_staff(auth.uid())"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "Staff read POs",
+      "tabela": "purchase_orders",
+      "comando": "SELECT",
+      "permissiva": "PERMISSIVE",
+      "with_check": null
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "Staff write POs",
+      "tabela": "purchase_orders",
+      "comando": "ALL",
+      "permissiva": "PERMISSIVE",
+      "with_check": "is_staff(auth.uid())"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "staff manage locations",
+      "tabela": "stock_locations",
+      "comando": "ALL",
+      "permissiva": "PERMISSIVE",
+      "with_check": "is_staff(auth.uid())"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "staff read locations",
+      "tabela": "stock_locations",
+      "comando": "SELECT",
+      "permissiva": "PERMISSIVE",
+      "with_check": null
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": null,
+      "policy": "staff insert movements",
+      "tabela": "stock_movements",
+      "comando": "INSERT",
+      "permissiva": "PERMISSIVE",
+      "with_check": "(is_staff(auth.uid()) AND (created_by = auth.uid()))"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "staff read movements",
+      "tabela": "stock_movements",
+      "comando": "SELECT",
+      "permissiva": "PERMISSIVE",
+      "with_check": null
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "Staff read SPC",
+      "tabela": "supplier_product_costs",
+      "comando": "SELECT",
+      "permissiva": "PERMISSIVE",
+      "with_check": null
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "Staff write SPC",
+      "tabela": "supplier_product_costs",
+      "comando": "ALL",
+      "permissiva": "PERMISSIVE",
+      "with_check": "is_staff(auth.uid())"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "Staff read suppliers",
+      "tabela": "suppliers",
+      "comando": "SELECT",
+      "permissiva": "PERMISSIVE",
+      "with_check": null
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "is_staff(auth.uid())",
+      "policy": "Staff write suppliers",
+      "tabela": "suppliers",
+      "comando": "ALL",
+      "permissiva": "PERMISSIVE",
+      "with_check": "is_staff(auth.uid())"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "has_role(auth.uid(), 'admin'::app_role)",
+      "policy": "Admins manage roles",
+      "tabela": "user_roles",
+      "comando": "ALL",
+      "permissiva": "PERMISSIVE",
+      "with_check": "has_role(auth.uid(), 'admin'::app_role)"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "using": "(user_id = auth.uid())",
+      "policy": "Users see own roles",
+      "tabela": "user_roles",
+      "comando": "SELECT",
+      "permissiva": "PERMISSIVE",
+      "with_check": null
+    }
+  ],
+  "triggers": [
+    {
+      "acao": "EXECUTE FUNCTION tg_set_updated_at()",
+      "evento": "UPDATE",
+      "quando": "BEFORE",
+      "tabela": "brands",
+      "trigger": "trg_brands_updated"
+    },
+    {
+      "acao": "EXECUTE FUNCTION tg_set_updated_at()",
+      "evento": "UPDATE",
+      "quando": "BEFORE",
+      "tabela": "categories",
+      "trigger": "trg_categories_updated"
+    },
+    {
+      "acao": "EXECUTE FUNCTION tg_set_updated_at()",
+      "evento": "UPDATE",
+      "quando": "BEFORE",
+      "tabela": "posts",
+      "trigger": "posts_set_updated_at"
+    },
+    {
+      "acao": "EXECUTE FUNCTION tg_set_updated_at()",
+      "evento": "UPDATE",
+      "quando": "BEFORE",
+      "tabela": "products",
+      "trigger": "trg_products_updated"
+    },
+    {
+      "acao": "EXECUTE FUNCTION tg_set_updated_at()",
+      "evento": "UPDATE",
+      "quando": "BEFORE",
+      "tabela": "profiles",
+      "trigger": "profiles_set_updated_at"
+    },
+    {
+      "acao": "EXECUTE FUNCTION tg_set_updated_at()",
+      "evento": "UPDATE",
+      "quando": "BEFORE",
+      "tabela": "purchase_orders",
+      "trigger": "purchase_orders_updated_at"
+    },
+    {
+      "acao": "EXECUTE FUNCTION tg_set_updated_at()",
+      "evento": "UPDATE",
+      "quando": "BEFORE",
+      "tabela": "stock_locations",
+      "trigger": "trg_stock_locations_updated"
+    },
+    {
+      "acao": "EXECUTE FUNCTION tg_set_updated_at()",
+      "evento": "UPDATE",
+      "quando": "BEFORE",
+      "tabela": "suppliers",
+      "trigger": "suppliers_updated_at"
+    }
+  ],
+  "gerado_em": "2026-11-12T13:08:10.894933+00:00",
+  "rls_ativo": {
+    "posts": true,
+    "brands": true,
+    "products": true,
+    "profiles": true,
+    "suppliers": true,
+    "categories": true,
+    "user_roles": true,
+    "product_images": true,
+    "analytics_leads": true,
+    "purchase_orders": true,
+    "stock_locations": true,
+    "stock_movements": true,
+    "analytics_events": true,
+    "product_barcodes": true,
+    "analytics_sessions": true,
+    "analytics_visitors": true,
+    "purchase_order_items": true,
+    "supplier_product_costs": true
+  },
+  "contagem_linhas": {
+    "posts": 5,
+    "brands": 0,
+    "products": 0,
+    "profiles": 1,
+    "suppliers": 0,
+    "categories": 0,
+    "user_roles": 2,
+    "product_images": 0,
+    "analytics_leads": 0,
+    "purchase_orders": 0,
+    "stock_locations": 3,
+    "stock_movements": 0,
+    "analytics_events": 77,
+    "product_barcodes": 0,
+    "analytics_sessions": 33,
+    "analytics_visitors": 33,
+    "purchase_order_items": 0,
+    "supplier_product_costs": 0
+  },
+  "chaves_primarias": [
+    {
+      "coluna": "id",
+      "tabela": "analytics_events"
+    },
+    {
+      "coluna": "id",
+      "tabela": "analytics_leads"
+    },
+    {
+      "coluna": "id",
+      "tabela": "analytics_sessions"
+    },
+    {
+      "coluna": "id",
+      "tabela": "analytics_visitors"
+    },
+    {
+      "coluna": "id",
+      "tabela": "brands"
+    },
+    {
+      "coluna": "id",
+      "tabela": "categories"
+    },
+    {
+      "coluna": "id",
+      "tabela": "posts"
+    },
+    {
+      "coluna": "id",
+      "tabela": "product_barcodes"
+    },
+    {
+      "coluna": "id",
+      "tabela": "product_images"
+    },
+    {
+      "coluna": "id",
+      "tabela": "products"
+    },
+    {
+      "coluna": "id",
+      "tabela": "profiles"
+    },
+    {
+      "coluna": "id",
+      "tabela": "purchase_order_items"
+    },
+    {
+      "coluna": "id",
+      "tabela": "purchase_orders"
+    },
+    {
+      "coluna": "id",
+      "tabela": "stock_locations"
+    },
+    {
+      "coluna": "id",
+      "tabela": "stock_movements"
+    },
+    {
+      "coluna": "id",
+      "tabela": "supplier_product_costs"
+    },
+    {
+      "coluna": "id",
+      "tabela": "suppliers"
+    },
+    {
+      "coluna": "id",
+      "tabela": "user_roles"
+    }
+  ],
+  "chaves_estrangeiras": [
+    {
+      "coluna": "parent_id",
+      "tabela": "categories",
+      "referencia": "categories.id"
+    },
+    {
+      "coluna": "product_id",
+      "tabela": "product_barcodes",
+      "referencia": "products.id"
+    },
+    {
+      "coluna": "product_id",
+      "tabela": "product_images",
+      "referencia": "products.id"
+    },
+    {
+      "coluna": "brand_id",
+      "tabela": "products",
+      "referencia": "brands.id"
+    },
+    {
+      "coluna": "category_id",
+      "tabela": "products",
+      "referencia": "categories.id"
+    },
+    {
+      "coluna": "product_id",
+      "tabela": "purchase_order_items",
+      "referencia": "products.id"
+    },
+    {
+      "coluna": "purchase_order_id",
+      "tabela": "purchase_order_items",
+      "referencia": "purchase_orders.id"
+    },
+    {
+      "coluna": "supplier_id",
+      "tabela": "purchase_orders",
+      "referencia": "suppliers.id"
+    },
+    {
+      "coluna": "location_id",
+      "tabela": "purchase_orders",
+      "referencia": "stock_locations.id"
+    },
+    {
+      "coluna": "location_id",
+      "tabela": "stock_movements",
+      "referencia": "stock_locations.id"
+    },
+    {
+      "coluna": "product_id",
+      "tabela": "stock_movements",
+      "referencia": "products.id"
+    },
+    {
+      "coluna": "supplier_id",
+      "tabela": "supplier_product_costs",
+      "referencia": "suppliers.id"
+    },
+    {
+      "coluna": "product_id",
+      "tabela": "supplier_product_costs",
+      "referencia": "products.id"
+    },
+    {
+      "coluna": "purchase_order_id",
+      "tabela": "supplier_product_costs",
+      "referencia": "purchase_orders.id"
+    }
+  ],
+  "triggers_auth_users": [
+    {
+      "acao": "EXECUTE FUNCTION handle_new_user()",
+      "evento": "INSERT",
+      "quando": "AFTER",
+      "trigger": "on_auth_user_created"
+    }
+  ],
+  "geckoai_sincronizado_em": "2026-11-12T13:09:04.805Z"
+}
