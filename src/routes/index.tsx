@@ -74,7 +74,7 @@ export const Route = createFileRoute("/")({
     ],
     links: [
       { rel: "canonical", href: SITE_URL + "/" },
-      { rel: "preload", as: "image", href: "/uploads/fachada.webp", fetchpriority: "high" } as any,
+      { rel: "preload", as: "image", href: "/uploads/fachada-russo.jpg", fetchpriority: "high" } as any,
     ],
     scripts: [
       {
@@ -86,7 +86,7 @@ export const Route = createFileRoute("/")({
           name: COMPANY_NAME,
           alternateName: "Russo Eletro Ferragens",
           url: SITE_URL,
-          image: [SITE_URL + "/uploads/qqqq.jpg", SITE_URL + "/uploads/fachada.webp"],
+          image: [SITE_URL + "/uploads/qqqq.jpg", SITE_URL + "/uploads/fachada-russo.jpg"],
           logo: SITE_URL + "/uploads/logo-russo.png",
           telephone: "+551137662002",
           email: "contato@russoeletrofer.com.br",

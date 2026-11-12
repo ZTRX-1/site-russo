@@ -1,5 +1,5 @@
 import { ShieldCheck, Star, Headset, Check, MapPin, ParkingSquare, FileText, Building2, Clock } from "lucide-react";
-import fachada from "/uploads/fachada.webp";
+import fachada from "/uploads/fachada-russo.jpg";
 import { CtaButton } from "@/components/ui/CtaButton";
 import { WHATSAPP_URL, WHATSAPP_URL_ESPECIALISTA } from "@/lib/constants";
 
